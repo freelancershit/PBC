@@ -18,6 +18,10 @@ router.get('/registrationlist', function(req, res, next) {
   res.render('admin/registrationlist');
 });
 
+router.get('/managenewsandannouncements', function(req, res, next) {
+  res.render('admin/managenews');
+});
+
 router.get('/facultydashboard', function(req, res, next) {
   res.render('faculty/dashboard');
 });
