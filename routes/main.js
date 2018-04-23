@@ -14,6 +14,10 @@ router.get('/admindashboard', function(req, res, next) {
   res.render('admin/dashboard');
 });
 
+router.get('/registrationlist', function(req, res, next) {
+  res.render('admin/registrationlist');
+});
+
 router.get('/facultydashboard', function(req, res, next) {
   res.render('faculty/dashboard');
 });
