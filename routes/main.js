@@ -38,6 +38,10 @@ router.get('/createliteraryworks', function(req, res, next) {
   res.render('student/createlitworks');
 });
 
+router.get('/viewgrade', function(req, res, next) {
+  res.render('student/grade');
+});
+
 router.get('/admissionreq', function(req, res, next) {
   res.render('main/admissionreq');
 });
