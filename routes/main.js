@@ -11,7 +11,15 @@ router.get('/activities', function(req, res, next) {
 });
 
 router.get('/admindashboard', function(req, res, next) {
-  res.render('main/administrator/dasboard');
+  res.render('admin/dashboard');
+});
+
+router.get('/facultydashboard', function(req, res, next) {
+  res.render('faculty/dashboard');
+});
+
+router.get('/studentdashboard', function(req, res, next) {
+  res.render('student/dashboard');
 });
 
 router.get('/admissionreq', function(req, res, next) {
