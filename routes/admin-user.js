@@ -35,8 +35,11 @@ router.post("/users", adminAuthentication, function(req, res, next){
         req.flash("errors", "Your password and confirm password does not match");
         return res.redirect("/users/new");
     }
-    if(req.body.admin === "true"){
+    if(req.body.admin === "faculty"){
         user.isAdmin = true;
+    } else if(req.body.admin === "admin"){
+        user.isAdmin = true;
+        user.superUser = true;
     } else{
         user.isAdmin = false;
     }
