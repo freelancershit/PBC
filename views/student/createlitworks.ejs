@@ -1,0 +1,89 @@
+<% layout("layout") -%>
+
+  <div class="container">
+    <div class="panel panel-info" id="myScrollspy" style="padding: 10px; margin-top: 10px;">
+      <div class="panel-heading" style="color: #ffffff;">Create Literary Works</div>
+      <div class=" form-group ">
+        <br>
+        <label for="usr " style="margin-left: 5px; ">Category:</label>
+        <div class="container ">
+          <div class="dropdown " style="margin-top:5px; margin-left: -10px; ">
+            <button style="border-radius: 5px; " class="dropdown-toggle " type="button " data-toggle="dropdown ">--Please Select--
+              <span class="caret "></span>
+            </button>
+            <ul class="dropdown-menu ">
+              <li>
+                <a href="# ">1</a>
+              </li>
+              <li>
+                <a href="# ">2</a>
+              </li>
+              <li>
+                <a href="# ">3</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="form-group ">
+        <label for="usr ">Title:</label>
+        <input type="text " class="form-control " id="usr ">
+      </div>
+      <div class="form-group ">
+        <label for="comment ">Content:</label>
+        <textarea class="form-control " rows="10 " id="comment "></textarea>
+      </div>
+
+      <div style="text-align: right; ">
+        <button type="button " style="width: 100px; " class="btn btn-primary ">
+          Post</button>
+        <button type="button " style="width: 100px; " class="btn btn-danger ">
+          Discard</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- //modal -->
+  <div class="modal fade " id="myModal " role="dialog ">
+    <div class="modal-dialog modal-m ">
+      <div class="modal-content ">
+        <div class="modal-header ">
+          <button type="button " class="close " data-dismiss="modal ">&times;</button>
+          <h4 class="modal-title ">Delete News and Announcement</h4>
+        </div>
+        <div class="modal-body ">
+          <p>Are you sure you want to delete?</p>
+        </div>
+        <div class="modal-footer ">
+          <button type="button " class="btn btn-default " data-dismiss="modal ">Yes</button>
+          <button type="button " class="btn btn-default " data-dismiss="modal ">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade " id="editModal " role="dialog ">
+    <div class="modal-dialog modal-m ">
+      <div class="modal-content ">
+        <div class="modal-header ">
+          <button type="button " class="close " data-dismiss="modal ">&times;</button>
+          <h4 class="modal-title ">Edit News and Announcement</h4>
+        </div>
+        <div class="modal-body ">
+          <div class="form-group ">
+            <label for="usr ">Title:</label>
+            <input type="text " class="form-control " id="usr ">
+          </div>
+          <div class="form-group ">
+            <label for="comment ">Content:</label>
+            <textarea class="form-control " rows="5 " id="comment "></textarea>
+          </div>
+        </div>
+        <div class="modal-footer ">
+          <button type="button " class="btn btn-default " data-dismiss="modal ">Update</button>
+          <button type="button " class="btn btn-default " data-dismiss="modal ">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

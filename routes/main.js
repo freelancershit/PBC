@@ -34,6 +34,10 @@ router.get('/studentdashboard', function(req, res, next) {
   res.render('student/dashboard');
 });
 
+router.get('/createliteraryworks', function(req, res, next) {
+  res.render('student/createlitworks');
+});
+
 router.get('/admissionreq', function(req, res, next) {
   res.render('main/admissionreq');
 });
