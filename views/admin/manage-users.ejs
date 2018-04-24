@@ -14,17 +14,27 @@
               </tr>
             </thead>
             <tbody>
-            <% allPending.forEach(function(pending){ %>
-           
-              <tr>
-                <td><%=pending.lastName %>, <%= pending.firstName %> <%= pending.middleName %> </td>
-                <td><%= pending.status %>
-                  <i class="fa fa-edit"></i>
-                </td>
-                <td><%= pending.date %></td>
-             <td> <a class="btn btn-info btn-sm" href="/manage/<%= pending._id %>">Manage</a> </td>
+              <% allPending.forEach(function(pending){ %>
+
+                <tr>
+                  <td>
+                    <%=pending.lastName %>,
+                      <%= pending.firstName %>
+                        <%= pending.middleName %>
+                  </td>
+                  <td>
+                    <%= pending.status %>
+                  </td>
+                  <td>
+                    <%= moment(pending.date).format('LL')%>
+
+                  </td>
+                  <td>
+                    <a class="btn btn-info btn-sm" href="/manage/<%= pending._id %>">Accept</a>
+                    <a class="btn btn-info btn-sm" href="/manage/<%= pending._id %>">Delete</a>
+                  </td>
                 </tr>
-              <% }); %>
+                <% }); %>
             </tbody>
           </table>
         </div>
