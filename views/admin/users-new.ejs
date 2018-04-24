@@ -1,144 +1,152 @@
 <% layout("layout") -%>
+  <!-- <div class="container">
+    <div class="row">
+      <div class="col-lg-12"> -->
 
+  <% include ../partials/adminpanel %>
 
-	<div class="row">
-		<div class="col-lg-6 cold-md-offset-3">
-		<div class="row">
-		<div class="col-md-3 col-sm-3"></div>
-		<div class="col-md-6 col-sm-6 text-center">
-		<% if(errors.length >0){ %>
-			<div class="alert alert-danger alert-dismissible">
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
-					
-				</button>
-				<%= errors %>
-			</div>
-		<% } %>
-		</div>
-		</div>
-		<div class="container">
+    <div class="container">
+      <div class="panel panel-info" id="myScrollspy" style="padding: 10px; margin-top: 50px;">
         <div class="row">
-        <form action="/users" method="POST">    
-     <% include ../partials/adminpanel %>
-                
-		<div class="col-md-4">
-                <h1 style="text-align: center; margin-top: 0;">Signup Form</h1>
+          <div class="col-lg-6 cold-md-offset-3">
+            <div class="row">
+              <div class="col-md-3 col-sm-3"></div>
+              <div class="col-md-6 col-sm-6 text-center">
+                <% if(errors.length >0){ %>
+                  <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+
+                    </button>
+                    <%= errors %>
+                  </div>
+                  <% } %>
+              </div>
+            </div>
+            <div class="container">
+              <div class="row">
+                <form action="/users" method="POST">
+
+
+                  <div class="col-md-4">
+                    <h1 style="text-align: center; margin-top: 0;">Signup Form</h1>
                     <div class="form-group text-center">
-                    <label for="admin">User Privileges: 
+                      <label for="admin">User Privileges:
                         <select onchange="getUsers()" id="users" name="user" class="form-control">
-                            <option value="student">Student</option>
-                            <option value="faculty">Faculty</option>
-                            <option value="admin">Admin</option>
+                          <option value="student">Student</option>
+                          <option value="faculty">Faculty</option>
+                          <option value="admin">Admin</option>
                         </select>
-                    </label>
+                      </label>
                     </div>
                     <div class="form-group">
-                        <label for="name">ID No:</label>
-                        <input id="userNumber" class="form-control" type="Number" name="idNumber" value="<%= studentCount %>" disabled>
+                      <label for="name">ID No:</label>
+                      <input id="userNumber" class="form-control" type="Number" name="idNumber" value="<%= studentCount %>" disabled>
                     </div>
                     <div class="form-group">
-                        <label for="name">First name:</label>
-                        <input class="form-control" type="text" name="firstName" placeholder="first name">
+                      <label for="name">First name:</label>
+                      <input class="form-control" type="text" name="firstName" placeholder="first name">
                     </div>
                     <div class="form-group">
-                        <label for="name">Middle name:</label>
-                        <input class="form-control" type="text" name="middleName" placeholder="middle name">
+                      <label for="name">Middle name:</label>
+                      <input class="form-control" type="text" name="middleName" placeholder="middle name">
                     </div>
                     <div class="form-group">
-                        <label for="name">Last name:</label>
-                        <input class="form-control" type="text" name="lastName" placeholder="last name">
+                      <label for="name">Last name:</label>
+                      <input class="form-control" type="text" name="lastName" placeholder="last name">
                     </div>
                     <div class="form-group">
-                        <label for="name">Age:</label>
-                        <input class="form-control" type="number" min="0" name="age" placeholder="your age">
+                      <label for="name">Age:</label>
+                      <input class="form-control" type="number" min="0" name="age" placeholder="your age">
                     </div>
-                    <label >Birthdate: </label>	
+                    <label>Birthdate: </label>
                     <div class="form-group">
-                        <select class="btn btn-default" name="year" id="year">	
-                        </select>
-                        <select class="btn btn-default"  name="month" id="month">
-                            <option value="01">January</option>
-                            <option value="02">February</option>
-                            <option value="03">March</option>
-                            <option value="04">April</option>
-                            <option value="05">May</option>
-                            <option value="06">June</option>
-                            <option value="07">July</option>
-                            <option value="08">August</option>
-                            <option value="09">September</option>
-                            <option value="10">October</option>
-                            <option value="11">November</option>
-                            <option value="12">December</option>
-                        </select>
-                        <select class="btn btn-default" name="day" id="day">
-                            
-                        </select>
-                    </div>		
-                    
-        </div>
-        <div class="col-md-4">
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-            <div class="form-group">
-            <label for="name">Email:</label>
-            <input class="form-control" type="email" name="email" placeholder="email address">
-            </div>
-            <div class="form-group">
-            <label for="name">Password:</label>
-            <input class="form-control" type="password" name="password" placeholder="password">
-            </div>
-            <div class="form-group">
-            <label for="confirmPassword">Confirm Password: </label>
-            <input class="form-control" type="password" name="confirmPassword" placeholder="confirm password">
-            </div>
-            <div class="form-group">
-    <label for="">Incoming Year Level: </label><br>
-    <select name="yrLvl" class="form-control">
-      <option value="kinder1">Kinder 1</option>
-      <option value="kinder2">Kinder 2</option>
-      <option value="kinder3">Kinder 3</option>
-      <option value="grade1">Grade 1</option>
-      <option value="grade2">Grade 2</option>
-      <option value="grade3">Grade 3</option>
-      <option value="grade4">Grade 4</option>
-      <option value="grade5">Grade 5</option>
-      <option value="grade6">Grade 6</option>
-      <option value="grade7">Grade 7</option>
-      <option value="grade8">Grade 8</option>
-      <option value="grade9">Grade 9</option>
-      <option value="grade10">Grade 10</option>
-      <option value="grade11">Grade 11</option>
-      <option value="grade12">Grade 12</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="">Gender:</label>
-    <label class="radio-inline" style="margin-left: 1%;">
-      <input type="radio" id="gender" name="gender" value="female">Female
-    </label>
-    <label class="radio-inline" style="margin-left: 2%;">
-      <input type="radio" id="gender" name="gender" value="male">Male
-    </label>
-  </div>
-  <div class="form-group">
-            <label for="name">Section:</label>
-            <input class="form-control" type="text" name="section" placeholder="section">
-    </div>
-    <div class="form-group">
-    <label for="pwd">Contact Number:</label>
-    <input type="number" min="0" class="form-control" name="contact" id="contact">
-  </div>
-    <div class="form-group">
-                    <div class="text-center">
-                    <button class="btn btn-success form-control">Submit</button>
+                      <select class="btn btn-default" name="year" id="year">
+                      </select>
+                      <select class="btn btn-default" name="month" id="month">
+                        <option value="01">January</option>
+                        <option value="02">February</option>
+                        <option value="03">March</option>
+                        <option value="04">April</option>
+                        <option value="05">May</option>
+                        <option value="06">June</option>
+                        <option value="07">July</option>
+                        <option value="08">August</option>
+                        <option value="09">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                      </select>
+                      <select class="btn btn-default" name="day" id="day">
+
+                      </select>
                     </div>
+
+                  </div>
+                  <div class="col-md-4">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="form-group">
+                      <label for="name">Email:</label>
+                      <input class="form-control" type="email" name="email" placeholder="email address">
                     </div>
-        </div>
-        <!-- <div id="tableFaculty" style="display:none; text-align:center;" class="col-md-12">
+                    <div class="form-group">
+                      <label for="name">Password:</label>
+                      <input class="form-control" type="password" name="password" placeholder="password">
+                    </div>
+                    <div class="form-group">
+                      <label for="confirmPassword">Confirm Password: </label>
+                      <input class="form-control" type="password" name="confirmPassword" placeholder="confirm password">
+                    </div>
+                    <div class="form-group">
+                      <label for="">Incoming Year Level: </label>
+                      <br>
+                      <select name="yrLvl" class="form-control">
+                        <option value="kinder1">Kinder 1</option>
+                        <option value="kinder2">Kinder 2</option>
+                        <option value="kinder3">Kinder 3</option>
+                        <option value="grade1">Grade 1</option>
+                        <option value="grade2">Grade 2</option>
+                        <option value="grade3">Grade 3</option>
+                        <option value="grade4">Grade 4</option>
+                        <option value="grade5">Grade 5</option>
+                        <option value="grade6">Grade 6</option>
+                        <option value="grade7">Grade 7</option>
+                        <option value="grade8">Grade 8</option>
+                        <option value="grade9">Grade 9</option>
+                        <option value="grade10">Grade 10</option>
+                        <option value="grade11">Grade 11</option>
+                        <option value="grade12">Grade 12</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="">Gender:</label>
+                      <label class="radio-inline" style="margin-left: 1%;">
+                        <input type="radio" id="gender" name="gender" value="female">Female
+                      </label>
+                      <label class="radio-inline" style="margin-left: 2%;">
+                        <input type="radio" id="gender" name="gender" value="male">Male
+                      </label>
+                    </div>
+                    <div class="form-group">
+                      <label for="name">Section:</label>
+                      <input class="form-control" type="text" name="section" placeholder="section">
+                    </div>
+                    <div class="form-group">
+                      <label for="pwd">Contact Number:</label>
+                      <input type="number" min="0" class="form-control" name="contact" id="contact">
+                    </div>
+                    <div class="form-group">
+                      <div class="text-center">
+                        <button class="btn btn-success form-control">Submit</button>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div id="tableFaculty" style="display:none; text-align:center;" class="col-md-12">
             <table border="1" cellspacing="2" cellpadding="2">
                 <thead>
                         <th>Subject</th>
@@ -154,55 +162,60 @@
                 </tbody>
             </table>
         </div> -->
-        </form>                
-		</div>
-		</div>
-		</div>
-	</div>		
-	</div>
-	<script type="text/javascript">
-		for(var i = (new Date).getFullYear(); i >= 1905; i--){
-			$("#year").append('<option value="' + i + '">'+ i + '</option>');
-		}
-		for(var i = 31; i >= 1; i--){
-			$("#day").append('<option value="' + i + '">'+ i + '</option>');
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    </div>
+    <!-- </div>
+  </div>
+  </div> -->
+    <script type="text/javascript">
+      for (var i = (new Date).getFullYear(); i >= 1905; i--) {
+        $("#year").append('<option value="' + i + '">' + i + '</option>');
+      }
+      for (var i = 31; i >= 1; i--) {
+        $("#day").append('<option value="' + i + '">' + i + '</option>');
+      }
+      function getUsers() {
+        var users = document.getElementById("users").value;
+
+        if (users === "faculty") {
+          var numUsers = document.getElementById("userNumber").value = <%= facultyCount %>;
+          // document.getElementById("tableFaculty").style.display = "block";
+          console.log(numUsers);
+        } else if (users === "admin") {
+          // document.getElementById("tableFaculty").style.display = "none";
+          var numUsers = document.getElementById("userNumber").value = <%= adminCount %>;
+          console.log(numUsers);
+
+        } else {
+          // document.getElementById("tableFaculty").style.display = "none";
+          var numUsers = document.getElementById("userNumber").value = <%= studentCount %>;
+          console.log(numUsers);
+
         }
-        function getUsers(){
-            var users = document.getElementById("users").value;
-            
-            if(users === "faculty"){
-            var numUsers = document.getElementById("userNumber").value = <%= facultyCount %>;
-            // document.getElementById("tableFaculty").style.display = "block";
-            console.log(numUsers);
-            } else if(users === "admin"){
-            // document.getElementById("tableFaculty").style.display = "none";
-            var numUsers = document.getElementById("userNumber").value = <%= adminCount %>;
-            console.log(numUsers);
-                
-            } else{
-            // document.getElementById("tableFaculty").style.display = "none";
-            var numUsers = document.getElementById("userNumber").value = <%= studentCount %>;
-            console.log(numUsers);
-                
-            }
+      }
+
+      function removeElement() {
+
+
+      }
+
+      function changeVisibility() {
+        // document.getElementById("imgbox2").style.visibility = "hidden";
+      }
+
+      function resetElement() {
+        var users = document.getElementById("users").value;
+        if (users === "faculty") {
+          // document.getElementById("tableFaculty").style.display = "block";
+          // document.getElementById("imgbox2").style.visibility = "visible";
         }
+      }
 
-function removeElement() {
-
-         
-}
-
-function changeVisibility() {
-    // document.getElementById("imgbox2").style.visibility = "hidden";
-}
-
-function resetElement() {
-    var users = document.getElementById("users").value;    
-    if(users === "faculty"){
-    // document.getElementById("tableFaculty").style.display = "block";
-    // document.getElementById("imgbox2").style.visibility = "visible";
-    }
-}
-
-</script>
-
+    </script>

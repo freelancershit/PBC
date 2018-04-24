@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var User = require("../models/user");
-var Pending = require("../models/pending");
+var User = require('../models/user');
+var Pending = require('../models/pending');
 
 router.get('/', function(req, res, next) {
   res.render('main/home');
@@ -21,6 +21,10 @@ router.get('/registrationlist', function(req, res, next) {
 
 router.get('/managenewsandannouncements', function(req, res, next) {
   res.render('admin/managenews');
+});
+
+router.get('/manageaccount', function(req, res, next) {
+  res.render('admin/manageaccount');
 });
 
 router.get('/postnewsandannouncements', function(req, res, next) {
@@ -63,29 +67,43 @@ router.get('/facilities', function(req, res, next) {
   res.render('main/facilities');
 });
 
-router.get("/register", function(req, res, next){
-    res.render("main/register", {errors: req.flash("errors"), success: req.flash("success")});
+router.get('/register', function(req, res, next) {
+  res.render('main/register', {
+    errors: req.flash('errors'),
+    success: req.flash('success'),
+  });
 });
 
-router.post("/register", function(req, res, next){
-    var pending = new Pending();
-    if(req.body.firstName && req.body.middleName && req.body.lastName && req.body.age && req.body.address && req.body.email && req.body.contact ){
+router.post('/register', function(req, res, next) {
+  var pending = new Pending();
+  if (
+    req.body.firstName &&
+    req.body.middleName &&
+    req.body.lastName &&
+    req.body.age &&
+    req.body.address &&
+    req.body.email &&
+    req.body.contact
+  ) {
     pending.firstName = req.body.firstName;
-    pending.middleName= req.body.middleName;
+    pending.middleName = req.body.middleName;
     pending.lastName = req.body.lastName;
     pending.age = req.body.age;
     pending.address = req.body.address;
     pending.email = req.body.email;
     pending.contact = req.body.contact;
-    pending.save(function(err, pendingUser){
-        if(err) return next(err);
-        req.flash("success", "Your account is in proccess now by the administrator");
-        res.redirect("/register");
+    pending.save(function(err, pendingUser) {
+      if (err) return next(err);
+      req.flash(
+        'success',
+        'Your account is in proccess now by the administrator',
+      );
+      res.redirect('/register');
     });
-    } else{
-        req.flash("errors", "Please enter all the required information.")
-        res.redirect("/register")
-    }
+  } else {
+    req.flash('errors', 'Please enter all the required information.');
+    res.redirect('/register');
+  }
 });
 
 router.get('/gallery', function(req, res, next) {
