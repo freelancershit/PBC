@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-var momemnt = require("moment");
+var moment = require("moment");
 var Schema = mongoose.Schema;
 
 var pendingSchema = new Schema({

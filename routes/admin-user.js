@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var User = require("../models/user");
 var Pending = require("../models/pending");
+var News = require("../models/newsAndAnnouncement");
 var async = require("async");
 var passport = require("passport");
 var passportConfig = require("../config/passport");
@@ -263,6 +264,34 @@ router.post("/manage/:id", adminAuthentication, function(req, res, next){
       User.find({}, function(err, allUsers){
         res.render('admin/manageaccount', {users: allUsers});
       });
+    });
+
+    router.get('/manageaccount/:id', function(req, res, next) {
+      User.findById(req.params.id, function(err, user){
+        if(err) return next(err);
+        console.log(user);
+        res.render('admin/userdetails', {user: user});
+      });
+    });
+
+    router.get('/postnewsandannouncements', function(req, res, next) {
+      res.render('admin/postnews');
+    });
+
+    router.post("/postnewsandannouncements", function(req, res, next){
+      if(req.body.category && req.body.title && req.body.content){
+        var news = new News();        
+        news.category = req.body.category;
+        news.title = req.body.title;
+        news.content = req.body.content;
+
+        news.save(function(err, news){
+          if(err) return next(err);
+          console.log(news);
+          res.redirect("/postnewsandannouncements");
+        });
+      } 
+      console.log(req.body);
     });
 
 module.exports = router;

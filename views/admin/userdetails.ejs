@@ -9,32 +9,32 @@
         </h3>
       </div>
       <h1>
-        <span>Jose Carlo R. San Pedro</span>
-        <span style=" font-size: 20px; align:right ">2012-105736</span>
+        <span><%= user.profile.lastName %>, <%= user.profile.firstName %> <%= user.profile.middleName %></span>
+        <span style=" font-size: 20px; align:right "><%= user.idNumber %></span>
       </h1>
       </br>
       <h3>
-        <span>Account Type: Student </span>
+        <span>Account Type: <%= user.user %> </span>
       </h3>
       <h3>
-        <span>Year and Section: BSCPE 5D </span>
+        <span>Year and Section: <%= user.yrLvl %> - <%= user.section %> </span>
       </h3>
       <h3>
-        <span>Gender: Male</span>
+        <span>Gender: <%= user.gender %></span>
       </h3>
       <h3>
-        <span>Age: 21</span>
+        <span>Age: <%= user.age %></span>
       </h3>
       <h3>
-        <span>Birthday: March 2, 1996</span>
-      </h3>
-
-      <h3>
-        <span>Address: Paltao Pulilan Bulacan</span>
+        <span>Birthday: <%= moment(user.birthdate).format("LL") %></span>
       </h3>
 
       <h3>
-        <span>Contact: 09970869245</span>
+        <span>Address: <%= user.address %></span>
+      </h3>
+
+      <h3>
+        <span>Contact: <%= user.contact %></span>
       </h3>
     </div>
   </div>

@@ -1,46 +1,33 @@
 <% layout("layout") -%>
 
   <div class="container">
+  <% include ../partials/adminpanel %>
     <div class="panel panel-info" id="myScrollspy" style="padding: 10px; margin-top: 50px;">
-      <div class="form-group">
-        <div class="panel-heading" style="color: #ffffff;">Post News and Announcements</div>
-        <br>
-        <label for="usr" style="margin-left: 5px;">Category:</label>
-        <div class="container">
-          <div class="dropdown" style="margin-top:5px; margin-left: -10px;">
-            <button style="border-radius: 5px;" class="dropdown-toggle" type="button" data-toggle="dropdown">--Please Select--
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-              <li>
-                <a href="#">1</a>
-              </li>
-              <li>
-                <a href="#">2</a>
-              </li>
-              <li>
-                <a href="#">3</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
       <br>
+      <form action="/postnewsandannouncements" method="POST">
+      <div class="form-group">
+        <label for="usr">Category:</label>
+        <select name="category" class="form-control" id="usr">
+          <option value="news">News</option>
+          <option value="announcenment">Announcement</option>
+        </select>
+      </div>
       <div class="form-group">
         <label for="usr">Title:</label>
-        <input type="text" class="form-control" id="usr">
+        <input type="text" name="title" class="form-control" id="usr">
       </div>
       <div class="form-group">
         <label for="comment">Content:</label>
-        <textarea class="form-control" rows="10" id="comment"></textarea>
+        <textarea name="content" class="form-control" rows="10" id="comment"></textarea>
       </div>
-
+      <button style="width: 100px;" class="btn btn-primary">
+      Post</button>
       <div style="text-align: right;">
-        <button type="button" style="width: 100px;" class="btn btn-primary">
-          Post</button>
+        
         <button type="button" style="width: 100px;" class="btn btn-danger">
           Discard</button>
       </div>
+      </form>
     </div>
   </div>
 

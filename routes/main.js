@@ -23,11 +23,6 @@ router.get('/managenewsandannouncements', function(req, res, next) {
   res.render('admin/managenews');
 });
 
-
-router.get('/postnewsandannouncements', function(req, res, next) {
-  res.render('admin/postnews');
-});
-
 router.get('/facultydashboard', function(req, res, next) {
   res.render('faculty/dashboard');
 });
