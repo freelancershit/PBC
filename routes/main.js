@@ -23,9 +23,6 @@ router.get('/managenewsandannouncements', function(req, res, next) {
   res.render('admin/managenews');
 });
 
-router.get('/manageaccount', function(req, res, next) {
-  res.render('admin/manageaccount');
-});
 
 router.get('/postnewsandannouncements', function(req, res, next) {
   res.render('admin/postnews');
