@@ -1,7 +1,7 @@
 module.exports = {
-	database: "mongodb://localhost/pbc",
+	database: "mongodb://pbc:pbc@ds139072.mlab.com:39072/pbc",
 	port: (process.env.PORT, process.env.IP || 3000),
 	secretKey: "143KIM"
 }
-
-// "mongodb://nicho:nicho@ds113455.mlab.com:13455/hershoppe"
+// "mongodb://localhost/pbc"
+// "mongodb://pbc:pbc@ds139072.mlab.com:39072/pbc"
