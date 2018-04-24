@@ -1,17 +1,10 @@
 var express = require('express');
 var router = express.Router();
-<<<<<<< Updated upstream
-var User = require('../models/user');
-var async = require('async');
-var passport = require('passport');
-var passportConfig = require('../config/passport');
-=======
 var User = require("../models/user");
 var Pending = require("../models/pending");
 var async = require("async");
 var passport = require("passport");
 var passportConfig = require("../config/passport");
->>>>>>> Stashed changes
 
 function adminAuthentication(req, res, next) {
   if (req.isAuthenticated()) {
@@ -25,10 +18,6 @@ function adminAuthentication(req, res, next) {
   }
 }
 
-<<<<<<< Updated upstream
-router.get('/users/new', adminAuthentication, function(req, res, next) {
-  res.render('admin/users-new', { errors: req.flash('errors') });
-=======
 router.get("/users/new", adminAuthentication, function(req, res, next){
         User.count({user: "admin"}).exec(function(err, adminCount){
             var adminNumber = (new Date()).getFullYear() +  "000000";
@@ -49,7 +38,6 @@ router.get("/users/new", adminAuthentication, function(req, res, next){
             });
         });
     });
->>>>>>> Stashed changes
 });
 
 router.post("/users", adminAuthentication, function(req, res, next){
@@ -107,18 +95,6 @@ router.post("/users", adminAuthentication, function(req, res, next){
         user.isAdmin = false;
     }
 
-<<<<<<< Updated upstream
-  user.password = req.body.password;
-  User.findOne({ email: req.body.email }, function(err, existingUser) {
-    if (existingUser) {
-      req.flash('errors', 'Account with that email address already exist');
-      return res.redirect('/users/new');
-    } else {
-      user.save(function(err, user) {
-        if (err) return next(err);
-        // callback(null, user);
-      });
-=======
     user.password = req.body.password;
     User.findOne({email : req.body.email}, function(err, existingUser){
     if(existingUser){
@@ -130,7 +106,6 @@ router.post("/users", adminAuthentication, function(req, res, next){
             res.redirect("/users/new");
             // callback(null, user);
         });
->>>>>>> Stashed changes
     }
   });
   //     },
@@ -143,9 +118,6 @@ router.post("/users", adminAuthentication, function(req, res, next){
   //         });
   //     }
   // ]);
-});
-<<<<<<< Updated upstream
-=======
 
 
 //     },
@@ -274,6 +246,5 @@ router.post("/manage/:id", adminAuthentication, function(req, res, next){
             res.redirect("/manage/" + req.params.id);
         }
     });
->>>>>>> Stashed changes
 
 module.exports = router;

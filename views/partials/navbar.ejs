@@ -126,12 +126,9 @@
                   <%= user.profile.name %>
                 </a>
                 <ul class="dropdown-menu">
-                  <li>
-                    <a href="/profile">Profile</a>
-                  </li>
                   <% if(user.isAdmin || user.superUser){ %>
                     <li>
-                      <a href="/admininterface">Admin Interface</a>
+                      <a href="/admindashboard">Admin Interface</a>
                     </li>
 
                     <% } %>

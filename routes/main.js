@@ -1,11 +1,7 @@
 var express = require('express');
 var router = express.Router();
-<<<<<<< Updated upstream
-var User = require('../models/user');
-=======
 var User = require("../models/user");
 var Pending = require("../models/pending");
->>>>>>> Stashed changes
 
 router.get('/', function(req, res, next) {
   res.render('main/home');
@@ -67,10 +63,6 @@ router.get('/facilities', function(req, res, next) {
   res.render('main/facilities');
 });
 
-<<<<<<< Updated upstream
-router.get('/faculty', function(req, res, next) {
-  res.render('main/faculty');
-=======
 router.get("/register", function(req, res, next){
     res.render("main/register", {errors: req.flash("errors"), success: req.flash("success")});
 });
@@ -94,7 +86,6 @@ router.post("/register", function(req, res, next){
         req.flash("errors", "Please enter all the required information.")
         res.redirect("/register")
     }
->>>>>>> Stashed changes
 });
 
 router.get('/gallery', function(req, res, next) {

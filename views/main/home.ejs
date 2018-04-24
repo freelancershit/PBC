@@ -89,7 +89,7 @@
         <li><a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= user.profile.name %></a>
           <ul class="dropdown-menu">
           <% if(user.isAdmin && user.superUser){ %>
-            <li><a href="/admininterface">Admin Interface</a></li>                
+            <li><a href="/admindashboard">Admin Interface</a></li>                
           <% } %>
             <li><a href="/profile">Profile</a></li>
             <li><a href="/logout">Logout</a></li>
@@ -341,33 +341,7 @@
                     style="z-index: 14;text-transform:left;border-width:0px;">
               <div class="rs-looped rs-wave"  data-speed="4" data-angle="0" data-radius="10" data-origin="50% 50%"><img src="/assets/images/slider/blurflake1.png" alt="" data-ww="['120px','120px','120px','120px']" data-hh="['120px','120px','120px','120px']" width="120" height="120" data-no-retina> </div></div>
                 </li>
-                <li id="pink1">
-                  <a href="/login">Login</a>
-                </li>
-              </ul>
-            </li>
-
-            <% } else { %>
-
-              <li>
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                  <%= user.profile.name %>
-                </a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a href="/profile">Profile</a>
-                  </li>
-                  <li>
-                    <a href="/logout">Logout</a>
-                  </li>
-                </ul>
-              </li>
-              <% } %>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
+                
   <div class="gm_slider_wrapper">
     <div class="container">
       <div class="row">
