@@ -18,7 +18,9 @@
 		</div>
 		<div class="container">
         <div class="row">
-        <form action="/users" method="POST">        
+        <form action="/users" method="POST">    
+     <% include ../partials/adminpanel %>
+                
 		<div class="col-md-4">
                 <h1 style="text-align: center; margin-top: 0;">Signup Form</h1>
                     <div class="form-group text-center">
@@ -136,7 +138,7 @@
                     </div>
                     </div>
         </div>
-        <div id="tableFaculty" style="display:none; text-align:center;" class="col-md-12">
+        <!-- <div id="tableFaculty" style="display:none; text-align:center;" class="col-md-12">
             <table border="1" cellspacing="2" cellpadding="2">
                 <thead>
                         <th>Subject</th>
@@ -151,7 +153,7 @@
                 </tr>
                 </tbody>
             </table>
-        </div>
+        </div> -->
         </form>                
 		</div>
 		</div>
@@ -170,15 +172,15 @@
             
             if(users === "faculty"){
             var numUsers = document.getElementById("userNumber").value = <%= facultyCount %>;
-            document.getElementById("tableFaculty").style.display = "block";
+            // document.getElementById("tableFaculty").style.display = "block";
             console.log(numUsers);
             } else if(users === "admin"){
-            document.getElementById("tableFaculty").style.display = "none";
+            // document.getElementById("tableFaculty").style.display = "none";
             var numUsers = document.getElementById("userNumber").value = <%= adminCount %>;
             console.log(numUsers);
                 
             } else{
-            document.getElementById("tableFaculty").style.display = "none";
+            // document.getElementById("tableFaculty").style.display = "none";
             var numUsers = document.getElementById("userNumber").value = <%= studentCount %>;
             console.log(numUsers);
                 
@@ -191,13 +193,13 @@ function removeElement() {
 }
 
 function changeVisibility() {
-    document.getElementById("imgbox2").style.visibility = "hidden";
+    // document.getElementById("imgbox2").style.visibility = "hidden";
 }
 
 function resetElement() {
     var users = document.getElementById("users").value;    
     if(users === "faculty"){
-    document.getElementById("tableFaculty").style.display = "block";
+    // document.getElementById("tableFaculty").style.display = "block";
     // document.getElementById("imgbox2").style.visibility = "visible";
     }
 }
