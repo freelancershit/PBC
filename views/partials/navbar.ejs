@@ -107,40 +107,25 @@
           </li>
           <% if (!user) { %>
 
-            <li>
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Signup / Login</a>
-              <ul class="dropdown-menu">
-                <li><a href="/profile">Profile</a></li>
-                <% if(user.isAdmin && user.superUser){ %>
-                    <li><a href="/admininterface">Admin Interface</a></li>                
-                    
-                <% } %>
-                <li><a href="/logout">Logout</a></li>
-              </ul>
-            </li>
-
-            <% } else { %>
-
-              <li>
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                  <%= user.profile.name %>
-                </a>
-                <ul class="dropdown-menu">
-                  <% if(user.isAdmin || user.superUser){ %>
-                    <li>
-                      <a href="/admindashboard">Admin Interface</a>
-                    </li>
-
-                    <% } %>
-                      <li>
-                        <a href="/profile">Profile</a>
-                      </li>
-                      <li>
-                        <a href="/logout">Logout</a>
-                      </li>
-                </ul>
-              </li>
-              <% } %>
+        <li><a class="dropdown-toggle" data-toggle="dropdown" href="#">Signup / Login</a>
+          <ul class="dropdown-menu">
+            <li id="pink1"><a href="/signup">Signup</a></li>
+            <li id="pink1"><a href="/login">Login</a></li>
+          </ul>
+        </li>
+  
+       <% } else { %>
+  
+        <li><a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= user.profile.name %></a>
+          <ul class="dropdown-menu">
+          <% if(user.isAdmin && user.superUser){ %>
+            <li><a href="/admindashboard">Admin Interface</a></li>                
+          <% } %>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+        </li>
+        <% } %>
         </ul>
     </div>
   </div>
