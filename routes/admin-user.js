@@ -223,7 +223,12 @@ router.post("/manage/:id", adminAuthentication, function(req, res, next){
         } else{
             user.save(function(err, user){
                 if(err) return next(err);
-                res.redirect("/manage");
+                Pending.findByIdAndRemove(req.params.id, function(err, pendingUser){
+                  if(err) return next(err);
+                  console.log(pendingUser);                
+                  res.redirect("/manage");
+                  
+                });
                 // callback(null, user);
             });
         }
@@ -245,6 +250,13 @@ router.post("/manage/:id", adminAuthentication, function(req, res, next){
             console.log(req.body);
             res.redirect("/manage/" + req.params.id);
         }
+    });
+
+    router.delete("/manage/:id", function(req, res, next){
+      Pending.findByIdAndRemove(req.params.id, function(err, pendingUser){
+        if(err) return next(err);
+        res.redirect("/manage");
+      });
     });
 
 module.exports = router;
