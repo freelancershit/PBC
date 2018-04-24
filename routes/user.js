@@ -10,6 +10,14 @@ router.get('/login', function(req, res) {
   res.render('accounts/login', { message: req.flash('loginMessage') });
 });
 
+router.post("/login", passport.authenticate("local-login", {
+	successRedirect: "/",
+	failureRedirect: "/login",
+	failureFlash: true
+}), function(req, res){
+
+});
+
 router.get("/profile", function(req, res){
 	// User
 	// .findOne({_id: req.user._id})
