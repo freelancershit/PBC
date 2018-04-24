@@ -1,36 +1,56 @@
 <nav class="navbar navbar-inverse">
-    <img src="/images/sample.png" class="sunbeamlogo">
-    <div class="container-fluid"> 
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span> 
-        </button>
-          <a href="/" class="navbar-brand">PBC SUNBEAM SCHOOL INC.</a>
-      </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
+  <img src="/images/sample.png" class="sunbeamlogo">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">PBC SUNBEAM SCHOOL INC.</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Dashboard Test
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="/admindashboard">Admin</a>
+            </li>
+            <li>
+              <a href="/facultydashboard">Faculty</a>
+            </li>
+            <li>
+              <a href="/studentdashboard">Student</a>
+            </li>
+          </ul>
+        </li>
+
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">ABOUT
-          <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="/history">History</a></li>
-            <li><a href="/vmop">VMPO's</a></li>
-            <li><a href="/policies">Policies</a></li> 
-            <li><a href="/orgchart">Organizational Chart</a></li>
-            <li><a href="/facilities">Facilities</a></li>
-          </ul>
-        </li>
-          <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">ACADEMICS
-          <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="/curriculum">Curricular Offerings</a></li>
-            <li><a href="/awards">Awards</a></li>
-            <li><a href="/services">Services</a></li> 
-          </ul>
-        </li>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">ABOUT
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="/history">History</a>
+              </li>
+              <li>
+                <a href="/vmop">VMPO's</a>
+              </li>
+              <li>
+                <a href="/policies">Policies</a>
+              </li>
+              <li>
+                <a href="/orgchart">Organizational Chart</a>
+              </li>
+              <li>
+                <a href="/facilities">Facilities</a>
+              </li>
+            </ul>
           </li>
           <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">ADMISSION
@@ -38,46 +58,93 @@
           <ul class="dropdown-menu">
             <li><a href="/admissionreq">Admission Requirements</a></li>
             <li><a href="/scholarships">Scholarships</a></li>
+            <% if(!user){ %>
             <li><a href="/register">Register Now</a></li> 
-          </ul>
+            <%} %>
+            </ul>
         </li>
           <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">COMMUNITY
-          <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="/faculty">Faculty and Staff</a></li>
-            <li><a href="/clubs">Clubs</a></li>
-            <li><a href="/activities">Activities</a></li> 
-            <li><a href="/news">News / Announcements</a></li> 
-            <li><a href="/gallery">Gallery</a></li> 
-          </ul>
-        </li>
-          <li><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2"><span class="glyphicon glyphicon-search"></span> Search</button></li>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">ADMISSION
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="/admissionreq">Admission Requirements</a>
+              </li>
+              <li>
+                <a href="/scholarships">Scholarships</a>
+              </li>
+              <li>
+                <a href="/register">Register Now</a>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">COMMUNITY
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="/faculty">Faculty and Staff</a>
+              </li>
+              <li>
+                <a href="/clubs">Clubs</a>
+              </li>
+              <li>
+                <a href="/activities">Activities</a>
+              </li>
+              <li>
+                <a href="/news">News / Announcements</a>
+              </li>
+              <li>
+                <a href="/gallery">Gallery</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2">
+              <span class="glyphicon glyphicon-search"></span> Search</button>
+          </li>
           <% if (!user) { %>
 
-            <li><a class="dropdown-toggle" data-toggle="dropdown" href="#">Signup / Login</a>
-              <ul class="dropdown-menu">
-                <li id="pink1"><a href="/signup">Signup</a></li>
-                <li id="pink1"><a href="/login">Login</a></li>
-              </ul>
-            </li>
-      
-           <% } else { %>
-      
-            <li><a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= user.profile.name %></a>
+            <li>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Signup / Login</a>
               <ul class="dropdown-menu">
                 <li><a href="/profile">Profile</a></li>
-                <% if(user.isAdmin || user.superUser){ %>
+                <% if(user.isAdmin && user.superUser){ %>
                     <li><a href="/admininterface">Admin Interface</a></li>                
                     
                 <% } %>
-                <li><a href="/profile">Profile</a></li>
                 <li><a href="/logout">Logout</a></li>
               </ul>
             </li>
-            <% } %>
-    </ul>
-      </div>
+
+            <% } else { %>
+
+              <li>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  <%= user.profile.name %>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="/profile">Profile</a>
+                  </li>
+                  <% if(user.isAdmin || user.superUser){ %>
+                    <li>
+                      <a href="/admininterface">Admin Interface</a>
+                    </li>
+
+                    <% } %>
+                      <li>
+                        <a href="/profile">Profile</a>
+                      </li>
+                      <li>
+                        <a href="/logout">Logout</a>
+                      </li>
+                </ul>
+              </li>
+              <% } %>
+        </ul>
     </div>
-  </nav>
-  
+  </div>
+</nav>

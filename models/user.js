@@ -11,12 +11,20 @@ var UserSchema = new mongoose.Schema({
 	password: String,
 	birthdate: Date,
 	profile:{
+		firstName: String,
+		middleName: String,
+		lastName: String,
 		name:{type: String, default:""},
 		picture:{type: String, default:""}
 	},
+	user: {type: String, default: "student"},
+	age: Number,
+	gender: String,
 	address: String,
-	contact: Number,
-	idNumber: String,
+	contact: String,
+	idNumber: Number,
+	section: {type: String, default: ""},
+	yrLvl: {type: String, default: ""},
 	// inbox: [{
 	// 	type: Schema.Types.ObjectId,
 	// 	ref: "Message"

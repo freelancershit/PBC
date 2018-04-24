@@ -1,115 +1,71 @@
 <% layout("layout") -%>
- <header id="myCarousel" class="carousel slide">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
+  <header id="myCarousel" class="carousel slide">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
 
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-            <div class="item active">
-                <div class="fill" style="background-image:url('/images/h1.jpg');"></div>
-                <div class="carousel-caption">
-                </div>
-            </div>
-            <div class="item">
-                <div class="fill" style="background-image:url('/images/h2.jpg');"></div>
-                <div class="carousel-caption">
-                </div>
-            </div>
-            <div class="item">
-                <div class="fill" style="background-image:url('/images/h3.jpg');"></div>
-                <div class="carousel-caption">
-                </div>
-            </div>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="item active">
+        <div class="fill" style="background-image:url('/images/h1.jpg');"></div>
+        <div class="carousel-caption">
         </div>
-
-        <!-- Controls -->
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-            <span class="icon-prev"></span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-            <span class="icon-next"></span>
-        </a>
-    </header>
-
-    <div class="container">
-      <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">
-                  REGISTRATION
-                </h1>
-                <br>
-                <h5>Register now and be a part of our growing community! After filling up and submitting the necessary deatils, be sure to download our admission form by clicking on the button below.</h5>
-            </div>
       </div>
       <div class="container" id="reg-info">
   <div class="well well-sm" style="padding-left:100px;padding-right: 100px;padding-bottom: 50px;padding-top: 30px;background-color:#ffffff">
-  <form id="register-data" method="POST">
+  <form id="register-data" action="/register" method="POST">
   <div class="form-group">
     <label for="pwd">First Name:</label>
-    <input type="text" class="form-control" id="fname">
+    <input type="text" class="form-control" name="firstName" id="fname">
   </div>
   <div class="form-group">
     <label for="pwd">Last Name:</label>
-    <input type="text" class="form-control" id="lname">
+    <input type="text" class="form-control" name="lastName" id="lname">
   </div>
   <div class="form-group">
     <label for="pwd">Middle Name:</label>
-    <input type="text" class="form-control" id="mname">
+    <input type="text" class="form-control" name="middleName" id="mname">
   </div>
   <div class="form-group">
     <label for="pwd">Age:</label>
-    <input type="text" class="form-control" id="age">
+    <input type="number" min="0" class="form-control" name="age" id="age">
   </div>
   <div class="form-group">
     <label for="pwd">Address:</label>
-    <input type="text" class="form-control" id="address">
+    <input type="text" class="form-control" name="address" id="address">
   </div>
   <div class="form-group">
     <label for="pwd">Email Address:</label>
-    <input type="Email" class="form-control" id="emailadd">
+    <input type="Email" class="form-control" name="email" id="emailadd">
   </div>
   <div class="form-group">
     <label for="pwd">Contact Number:</label>
-    <input type="text" class="form-control" id="contact">
+    <input type="number" min="0" class="form-control" name="contact" id="contact">
   </div>
-     <div class="form-group">
-    <label for="">Incoming Year Level: </label><br>
-    <select id="month" name="selectyrlevel" class="form-control">
-      <option value="1">Kinder 1</option>
-      <option value="2">Kinder 2</option>
-      <option value="3">Kinder 3</option>
-      <option value="4">Grade 1</option>
-      <option value="5">Grade 2</option>
-      <option value="6">Grade 3</option>
-      <option value="7">Grade 4</option>
-      <option value="8">Grade 5</option>
-      <option value="9">Grade 6</option>
-      <option value="10">Grade 7</option>
-      <option value="11">Grade 8</option>
-      <option value="12">Grade 9</option>
-      <option value="13">Grade 10</option>
-      <option value="14">Grade 11</option>
-      <option value="15">Grade 12</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="">Gender:</label>
-    <label class="radio-inline" style="margin-left: 1%;">
-      <input type="radio" id="gender" name="gender" value="female">Female
-    </label>
-    <label class="radio-inline" style="margin-left: 2%;">
-      <input type="radio" id="gender" name="gender" value="male">Male
-    </label>
-  </div>
+  <button class="btn btn-primary" style="border: 1px solid #020531; border-radius: 3px;"><span class="fa fa-list-alt"></span> Register</button>
   </form>
+  <button type="button" class="btn btn-primary" style="display:block; border: 1px solid #020531; border-radius: 3px;"><span class="fa fa-download"></span> Download Admission Form</button>    
   <br>
+  <% if(success && success.length >0){ %>
+			<div class="alert alert-success alert-dismissible">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+					
+				</button>
+				<%= success %>
+			</div>
+		<% } %>
+		<% if(errors && errors.length >0){ %>
+			<div class="alert alert-danger alert-dismissible">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+					
+				</button>
+				<%= errors %>
+			</div>
+		<% } %>
   <center>
-  <button type="button" class="btn btn-primary" style="border: 1px solid #020531; border-radius: 3px;" onclick="register();"><span class="fa fa-list-alt"></span> Register</button>
-  <button type="button" class="btn btn-primary" style="border: 1px solid #020531; border-radius: 3px;"><span class="fa fa-download"></span> Download Admission Form</button>
 </center>
   </div>
 </div>
@@ -119,22 +75,97 @@
 
    
 
+    <!-- Controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="icon-prev"></span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="icon-next"></span>
+    </a>
+  </header>
 
-    <div class="row infos" style="margin-top: 3%;">
-    <div class="col-lg-4">
-      <img src="/images/Sunbeam.png" width=36% height=36% class="img-responsive" style="padding-right: 20px;float:left;">
-      <p style="padding-top: 3%;font-size: 24px; font-weight: bold;">PBC Sunbeam School Inc.</p>
-      <p style ="font-size: 20px;">Excellence in Education,</p>
-      <p style ="font-size: 20px;">Anchored in Christian Values</p>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header">
+          REGISTRATION
+        </h1>
+        <br>
+        <h5>Register now and be a part of our growing community! After filling up and submitting the necessary deatils, be sure
+          to download our admission form by clicking on the button below.</h5>
+      </div>
     </div>
-    <div class="col-lg-4" style="text-align:center;">
-      <p style="padding-top: 3%;font-size: 24px; font-weight: bold;"><span class="fa fa-location-arrow" style="padding-right:3%;"></span>Visit Us</p>
-      <p style ="font-size: 20px;">Bintog, Plaridel, Bulacan</p>
-      <p style ="font-size: 20px;">facebook.com/PBC Sunbeam School</p>
+    <div class="container" id="reg-info">
+      <div class="well well-sm" style="padding-left:100px;padding-right: 100px;padding-bottom: 50px;padding-top: 30px;background-color:#ffffff">
+        <form id="register-data" action="/register" method="POST">
+          <div class="form-group">
+            <label for="pwd">First Name:</label>
+            <input type="text" class="form-control" id="fname">
+          </div>
+          <div class="form-group">
+            <label for="pwd">Last Name:</label>
+            <input type="text" class="form-control" id="lname">
+          </div>
+          <div class="form-group">
+            <label for="pwd">Middle Name:</label>
+            <input type="text" class="form-control" id="mname">
+          </div>
+          <div class="form-group">
+            <label for="pwd">Age:</label>
+            <input type="text" class="form-control" id="age">
+          </div>
+          <div class="form-group">
+            <label for="pwd">Address:</label>
+            <input type="text" class="form-control" id="address">
+          </div>
+          <div class="form-group">
+            <label for="pwd">Email Address:</label>
+            <input type="Email" class="form-control" id="emailadd">
+          </div>
+          <div class="form-group">
+            <label for="pwd">Contact Number:</label>
+            <input type="text" class="form-control" id="contact">
+          </div>
+          <div class="form-group">
+            <label for="">Incoming Year Level: </label>
+            <br>
+            <select id="month" name="selectyrlevel" class="form-control">
+              <option value="1">Kinder 1</option>
+              <option value="2">Kinder 2</option>
+              <option value="3">Kinder 3</option>
+              <option value="4">Grade 1</option>
+              <option value="5">Grade 2</option>
+              <option value="6">Grade 3</option>
+              <option value="7">Grade 4</option>
+              <option value="8">Grade 5</option>
+              <option value="9">Grade 6</option>
+              <option value="10">Grade 7</option>
+              <option value="11">Grade 8</option>
+              <option value="12">Grade 9</option>
+              <option value="13">Grade 10</option>
+              <option value="14">Grade 11</option>
+              <option value="15">Grade 12</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="">Gender:</label>
+            <label class="radio-inline" style="margin-left: 1%;">
+              <input type="radio" id="gender" name="gender" value="female">Female
+            </label>
+            <label class="radio-inline" style="margin-left: 2%;">
+              <input type="radio" id="gender" name="gender" value="male">Male
+            </label>
+          </div>
+        </form>
+        <br>
+        <center>
+          <button type="button" class="btn btn-primary" style="border: 1px solid #020531; border-radius: 3px;" onclick="register();">
+            <span class="fa fa-list-alt"></span> Register</button>
+          <button type="button" class="btn btn-primary" style="border: 1px solid #020531; border-radius: 3px;">
+            <span class="fa fa-download"></span> Download Admission Form</button>
+        </center>
+      </div>
     </div>
-    <div class="col-lg-4" style="text-align:center;">
-      <p style="padding-top: 3%;font-size: 24px; font-weight: bold;"><span class="glyphicon glyphicon-envelope" style="padding-right:3%;"></span>Contact Us</p>
-      <p style ="font-size: 20px;">09264711504</p>
-      <p style ="font-size: 20px;">pbcssi@gmail.com</p>
-    </div>
-  </div> 
+
+  </div>
+  </div>
