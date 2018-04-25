@@ -259,4 +259,10 @@ router.post("/manage/:id", adminAuthentication, function(req, res, next){
       });
     });
 
+    router.get('/manageaccount', function(req, res, next) {
+      User.find({}, function(err, allUsers){
+        res.render('admin/manageaccount', {users: allUsers});
+      });
+    });
+
 module.exports = router;
