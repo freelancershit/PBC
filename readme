@@ -5,4 +5,4 @@ http://blog.teamtreehouse.com/install-node-js-npm-windows
 
 
 you should install all the above requirements before you do this.
-to start the application go to the project folder via terminal and then type "node server.js"
+to start the application go to the project folder via command prompt and then type "node server.js"
