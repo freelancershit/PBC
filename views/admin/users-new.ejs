@@ -3,34 +3,36 @@
     <div class="row">
       <div class="col-lg-12"> -->
 
-  <% include ../partials/adminpanel %>
+  <div class="col-sm-3" style=" padding: 10px; margin-top: 50px;" overflow-x: hidden;>
+    <div class="col-lg-12">
+      <% include ../partials/adminpanel %>
+    </div>
+  </div>
+  <div class="col-sm-6">
 
     <div class="container">
-      <div class="panel panel-info" id="myScrollspy" style="padding: 10px; margin-top: 50px;">
-        <div class="row">
-          <div class="col-lg-6 cold-md-offset-3">
-            <div class="row">
-              <div class="col-md-3 col-sm-3"></div>
-              <div class="col-md-6 col-sm-6 text-center">
-                <% if(errors.length >0){ %>
-                  <div class="alert alert-danger alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
+      <div class="panel panel-info col-sm-9" style="padding: 0px; margin-top: 58px;" overflow-x: hidden;>
+        <div class="panel-heading" style="color: #ffffff;">
 
-                    </button>
-                    <%= errors %>
-                  </div>
-                  <% } %>
-              </div>
-            </div>
+          Create Account
+
+        </div>
+        <% if(errors.length >0){ %>
+          <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+
+            </button>
+            <%= errors %>
+          </div>
+          <% } %>
             <div class="container">
               <div class="row">
                 <form action="/users" method="POST">
 
 
-                  <div class="col-md-4">
-                    <h1 style="text-align: center; margin-top: 0;">Signup Form</h1>
-                    <div class="form-group text-center">
+                  <div class="col-md-4" style="margin-top: 20px; ">
+                    <div class="form-group">
                       <label for="admin">User Privileges:
                         <select onchange="getUsers()" id="users" name="user" class="form-control">
                           <option value="student">Student</option>
@@ -90,7 +92,7 @@
                     <br>
                     <br>
                     <br>
-                    <div class="form-group">
+                    <div class="form-group" style="margin-top: -25px">
                       <label for="name">Email:</label>
                       <input class="form-control" type="email" name="email" placeholder="email address">
                     </div>
@@ -147,75 +149,91 @@
                     </div>
                   </div>
                   <!-- <div id="tableFaculty" style="display:none; text-align:center;" class="col-md-12">
-            <table border="1" cellspacing="2" cellpadding="2">
-                <thead>
-                        <th>Subject</th>
-                        <th>Year Level</th>
-                        <th>Section</th>
-                </thead>
-                <tbody>
-                <tr>
-                        <td><input type="text" name="subject" /></td>
-                        <td><input type="text" name="yearLevel" /></td>
-                        <td><input type="text" name="facultySection" /></td>
-                </tr>
-                </tbody>
-            </table>
-        </div> -->
+                      <table border="1" cellspacing="2" cellpadding="2">
+                          <thead>
+                                  <th>Subject</th>
+                                  <th>Year Level</th>
+                                  <th>Section</th>
+                          </thead>
+                          <tbody>
+                          <tr>
+                                  <td><input type="text" name="subject" /></td>
+                                  <td><input type="text" name="yearLevel" /></td>
+                                  <td><input type="text" name="facultySection" /></td>
+                          </tr>
+                          </tbody>
+                      </table>
+                  </div> -->
                 </form>
               </div>
             </div>
+      </div>
+    </div>
+  </div>
+  <!-- </div>
+
+  <div class="container">
+    <div class="panel panel-info" id="myScrollspy" style="padding: 10px; margin-top: 50px;">
+      <div class="row">
+        <div class="col-lg-6 cold-md-offset-3">
+          <div class="row">
+            <div class="col-md-3 col-sm-3"></div>
+            <div class="col-md-6 col-sm-6 text-center">
+
+            </div>
           </div>
+         
         </div>
       </div>
+    </div>
 
-    </div>
-    </div>
-    <!-- </div>
   </div>
   </div> -->
-    <script type="text/javascript">
-      for (var i = (new Date).getFullYear(); i >= 1905; i--) {
-        $("#year").append('<option value="' + i + '">' + i + '</option>');
-      }
-      for (var i = 31; i >= 1; i--) {
-        $("#day").append('<option value="' + i + '">' + i + '</option>');
-      }
-      function getUsers() {
-        var users = document.getElementById("users").value;
+  <!-- </div>
+  </div>
+  </div> -->
+  <script type="text/javascript">
+    for (var i = (new Date).getFullYear(); i >= 1905; i--) {
+      $("#year").append('<option value="' + i + '">' + i + '</option>');
+    }
+    for (var i = 31; i >= 1; i--) {
+      $("#day").append('<option value="' + i + '">' + i + '</option>');
+    }
+    function getUsers() {
+      var users = document.getElementById("users").value;
 
-        if (users === "faculty") {
-          var numUsers = document.getElementById("userNumber").value = <%= facultyCount %>;
-          // document.getElementById("tableFaculty").style.display = "block";
-          console.log(numUsers);
-        } else if (users === "admin") {
-          // document.getElementById("tableFaculty").style.display = "none";
-          var numUsers = document.getElementById("userNumber").value = <%= adminCount %>;
-          console.log(numUsers);
+      if (users === "faculty") {
+        var numUsers = document.getElementById("userNumber").value = <%= facultyCount %>;
+        // document.getElementById("tableFaculty").style.display = "block";
+        console.log(numUsers);
+      } else if (users === "admin") {
+        // document.getElementById("tableFaculty").style.display = "none";
+        var numUsers = document.getElementById("userNumber").value = <%= adminCount %>;
+        console.log(numUsers);
 
-        } else {
-          // document.getElementById("tableFaculty").style.display = "none";
-          var numUsers = document.getElementById("userNumber").value = <%= studentCount %>;
-          console.log(numUsers);
-
-        }
-      }
-
-      function removeElement() {
-
+      } else {
+        // document.getElementById("tableFaculty").style.display = "none";
+        var numUsers = document.getElementById("userNumber").value = <%= studentCount %>;
+        console.log(numUsers);
 
       }
+    }
 
-      function changeVisibility() {
-        // document.getElementById("imgbox2").style.visibility = "hidden";
+    function removeElement() {
+
+
+    }
+
+    function changeVisibility() {
+      // document.getElementById("imgbox2").style.visibility = "hidden";
+    }
+
+    function resetElement() {
+      var users = document.getElementById("users").value;
+      if (users === "faculty") {
+        // document.getElementById("tableFaculty").style.display = "block";
+        // document.getElementById("imgbox2").style.visibility = "visible";
       }
+    }
 
-      function resetElement() {
-        var users = document.getElementById("users").value;
-        if (users === "faculty") {
-          // document.getElementById("tableFaculty").style.display = "block";
-          // document.getElementById("imgbox2").style.visibility = "visible";
-        }
-      }
-
-    </script>
+  </script>
