@@ -1,30 +1,37 @@
 <% layout("layout") -%>
-  <% include ../partials/adminpanel %>
+  <div class="col-sm-3" style=" padding: 10px; margin-top: 50px;" overflow-x: hidden;>
+    <div class="col-lg-12">
+      <% include ../partials/adminpanel %>
+    </div>
+  </div>
+  <div class="col-sm-6">
     <div class="container">
-      <div class="panel panel-info" id="myScrollspy" style="padding: 10px; margin-top: 50px;">
-        <div class="form-group">
-          <div class="panel-heading" style="color: #ffffff;">Manage News and Announcements</div>
-          <br>
-          <label for="usr" style="margin-left: 5px;">Category:</label>
-          <div class="container">
-            <div class="dropdown" style="margin-top:5px; margin-left: -10px;">
-              <button style="border-radius: 5px;" class="dropdown-toggle" type="button" data-toggle="dropdown">--Please Select--
-                <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu">
-                <li>
-                  <a href="#">1</a>
-                </li>
-                <li>
-                  <a href="#">2</a>
-                </li>
-                <li>
-                  <a href="#">3</a>
-                </li>
-              </ul>
-            </div>
+      <div class="panel panel-info  col-sm-9" id="myScrollspy" style="padding: 0px; margin-top: 58px;">
+        <div class="panel-heading" style="color: #ffffff;">
+
+          Manage Accounts
+
+        </div>
+        <label for="usr" style="margin-left: 5px; margin-top: 15px;">Category:</label>
+        <div class="container">
+          <div class="dropdown" style="margin-top:5px; margin-left: -10px;">
+            <button style="border-radius: 5px;" class="dropdown-toggle" type="button" data-toggle="dropdown">--Please Select--
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="#">Admin</a>
+              </li>
+              <li>
+                <a href="#">Faculty</a>
+              </li>
+              <li>
+                <a href="#">Student</a>
+              </li>
+            </ul>
           </div>
         </div>
+
         <br>
         <div class="table-responsive">
           <div style="overflow-y: scroll; height:350px; ">
@@ -38,18 +45,26 @@
                 </tr>
               </thead>
               <tbody>
-              <% users.forEach(function(user){ %>
-                <tr>
-                  <td><%= user.idNumber %></td>
-                  <td><%= user.profile.lastName %>, <%= user.profile.firstName %> <%= user.profile.middleName %></td>
-                  <td><%= user.user %></td>
-                  <td>
-                    <a class="btn btn-info btn-sm" href="/manageaccount/<%= user._id %>">
-                      VIEW
-                    </a>
-                  </td>
-                </tr>
-              <% }); %>
+                <% users.forEach(function(user){ %>
+                  <tr>
+                    <td>
+                      <%= user.idNumber %>
+                    </td>
+                    <td>
+                      <%= user.profile.lastName %>,
+                        <%= user.profile.firstName %>
+                          <%= user.profile.middleName %>
+                    </td>
+                    <td>
+                      <%= user.user %>
+                    </td>
+                    <td>
+                      <a class="btn btn-info btn-sm" href="/manageaccount/<%= user._id %>">
+                        VIEW
+                      </a>
+                    </td>
+                  </tr>
+                  <% }); %>
               </tbody>
             </table>
           </div>
@@ -100,3 +115,4 @@
         </div>
       </div>
     </div>
+  </div>
