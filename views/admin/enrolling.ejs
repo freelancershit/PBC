@@ -1,9 +1,155 @@
 <% layout('layout') -%>
 
 <% include ../partials/adminpanel %>
+<div class="container">
+<div class="row">
+<div class="col-md-3">
+<label for="">Section: </label><br>
+<select onChange="generateTable()" id="yrLvl" name="yrLvl" class="form-control">
+  <option value="kinder1">Kinder 1</option>
+  <option value="kinder2">Kinder 2</option>
+  <option value="kinder3">Kinder 3</option>
+  <option value="grade1">Grade 1</option>
+  <option value="grade2">Grade 2</option>
+  <option value="grade3">Grade 3</option>
+  <option value="grade4">Grade 4</option>
+  <option value="grade5">Grade 5</option>
+  <option value="grade6">Grade 6</option>
+  <option value="grade7">Grade 7</option>
+  <option value="grade8">Grade 8</option>
+  <option value="grade9">Grade 9</option>
+  <option value="grade10">Grade 10</option>
+  <option value="grade11">Grade 11</option>
+  <option value="grade12">Grade 12</option>
+</select>
+<label for="">Incoming Year Level: </label><br>
+<div id="section">
+
+<div>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row>">
+<div class="col-md-12">
+<div class="table-responsive">
+<table class="table">
+<thead>
+<th>Subject</th>
+<th>1st Grading</th>
+<th>2nd Grading</th>
+<th>3rd Grading</th>
+<th>4th Grading</th>
+<th>Final Grade</th>
+<th>Remarks</th>
+</thead>
+<tbody>
+<tr>
+<td>asdasdasd</td>
+<td>asdasdasd</td>
+<td>asdasdasd</td>
+<td>asdasdasd</td>
+<td>asdasdasd</td>
+<td>asdasdasd</td>
+<td>asdasdada</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
 
 
 
+<script>
+    function generateTable(){
+       var value = document.getElementById("yrLvl").value;
+        console.log(value);
+    if(value === "kinder1"){
+
+    } else if( value === "kinder2"){
+
+    } else if( value === "kinder3"){
+
+    } else if(value === "grade1"){
+        $("#section").empty();
+        $("#section").append('<select name="section" class="form-control"><option value="joy">Joy</option><option value="love">Love</option></select>');
+    }else if(value === "grade2"){
+        $("#section").append('<select name="section" class="form-control"><option value="honor">Honor</option><option value="unity">Unity</option></select>');
+    }else if(value === "grade3"){
+        $("#section").empty();
+        $("#section")
+        .append(
+            '<select name="section" class="form-control"><option value="kindness">Kindness</option>'+
+            '<option value="faith">Faith</option>'+
+            '<option value="helpfulness">Helpfulness</option></select>'
+        );        
+    }else if(value === "grade4"){
+        $("#section").empty();
+        $("#section")
+        .append(
+            '<select name="section" class="form-control"><option value="generosity">Generosity</option>'+
+            '<option value="charity">Charity</option></select>'
+        );
+    }else if(value === "grade5"){
+        $("#section").empty();
+        $("#section")
+        .append(
+            '<select name="section" class="form-control"><option value="cooperate">Cooperate</option>'+
+            '<option value="punctuality">Punctuality</option></select>'
+        );
+    }else if(value === "grade6"){
+        $("#section").empty();
+        $("#section")
+        .append(
+            '<select name="section" class="form-control"><option value="courage">Courage</option>'+
+            '<option value="responsibility">Responsibiliy</option></select>'
+        );
+    }else if(value === "grade7"){
+        $("#section").empty();
+        $("#section")
+        .append(
+            '<select name="section" class="form-control"><option value="faithfulness">Faithfulness</option>'+
+            '<option value="obedience">Obedience</option>'+
+            '<option value="humility">Humility</option>'+
+            '<option value="patience">Patience</option>'+
+            '<option value="frugality">Frugality</option></select>'
+        );
+    }else if(value === "grade8"){
+        $("#section").empty();
+        $("#section")
+        .append(
+            '<select name="section" class="form-control"><option value="gratitude">Gratitude</option>'+
+            '<option value="solidarity">Solidarity</option>'+
+            '<option value="compassion">Compassion</option>'+
+            '<option value="fortitude">Fortitude</option>'+
+            '<option value="perseverance">Perseverance</option></select>'
+        );
+    }else if(value === "grade9"){
+        $("#section").empty();
+        $("#section")
+        .append(
+            '<select name="section" class="form-control"><option value="dignity">Dignity</option>'+
+            '<option value="sincerity">Sincerity</option>'+
+            '<option value="serenity">Serenity</option>'+
+            '<option value="diligence">Diligence</option></select>'
+        );
+    }else if(value === "grade10"){
+        $("#section").empty();
+        $("#section")
+        .append(
+            '<select name="section" class="form-control"><option value="prudence">Prudence</option>'+
+            '<option value="leadership">Leadership</option>'+
+            '<option value="knowledge">Knowledge</option>'+
+            '<option value="wisdom">Wisdom</option></select>'
+        );
+    }else if(value === "grade11"){
+        
+    }else if(value === "grade12"){
+        
+    }
+    }
 
 
-<script></script>
+</script>
