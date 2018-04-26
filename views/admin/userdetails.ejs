@@ -1,6 +1,6 @@
 <% layout("layout") -%>
   <div class="container">
-    <div class="panel panel-info" id="myScrollspy" style="padding: 10px; margin-top: 50px;">
+    <div class="panel panel-info" id="myScrollspy" style="padding: 10px; margin-top: 80px; height:460px;">
       <div class="panel-heading">
         <h3>
           <span style="color: #ffffff;">User Account Details</span>
@@ -9,32 +9,53 @@
         </h3>
       </div>
       <h1>
-        <span><%= user.profile.lastName %>, <%= user.profile.firstName %> <%= user.profile.middleName %></span>
-        <span style=" font-size: 20px; align:right "><%= user.idNumber %></span>
+        <span>
+          <%= user.profile.lastName %>,
+            <%= user.profile.firstName %>
+              <%= user.profile.middleName %>
+        </span>
+        <span style=" font-size: 20px; align:right ">
+          <%= user.idNumber %>
+        </span>
       </h1>
       </br>
       <h3>
-        <span>Account Type: <%= user.user %> </span>
+        <span>Account Type:
+          <%= user.user %>
+        </span>
       </h3>
       <h3>
-        <span>Year and Section: <%= user.yrLvl %> - <%= user.section %> </span>
+        <span>Year and Section:
+          <%= user.yrLvl %> -
+            <%= user.section %>
+        </span>
       </h3>
       <h3>
-        <span>Gender: <%= user.gender %></span>
+        <span>Gender:
+          <%= user.gender %>
+        </span>
       </h3>
       <h3>
-        <span>Age: <%= user.age %></span>
+        <span>Age:
+          <%= user.age %>
+        </span>
       </h3>
       <h3>
-        <span>Birthday: <%= moment(user.birthdate).format("LL") %></span>
+        <span>Birthday:
+          <%= moment(user.birthdate).format("LL") %>
+        </span>
       </h3>
 
       <h3>
-        <span>Address: <%= user.address %></span>
+        <span>Address:
+          <%= user.address %>
+        </span>
       </h3>
 
       <h3>
-        <span>Contact: <%= user.contact %></span>
+        <span>Contact:
+          <%= user.contact %>
+        </span>
       </h3>
     </div>
   </div>

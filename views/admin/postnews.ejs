@@ -6,54 +6,56 @@
   </div>
   <div class="col-sm-6">
     <div class="container">
-      <div class="panel panel-info col-sm-9" id="myScrollspy" style="padding: 0px; margin-top: 58px;">
+      <div class="panel panel-info col-sm-9" id="myScrollspy" style="padding: 0px; margin-top: 80px; height:730px;">
         <div class="panel-heading" style="color: #ffffff;">
-  <div class="container">
-<div class="col-md-8">
-  
-  <div class="panel panel-info" id="myScrollspy" style="padding: 10px; margin-top: 50px;">
-      <br>
-      <form action="/postnewsandannouncements" method="POST">
-      <div class="form-group">
-      <label for="postNumber" style="color:black;">Post ID:</label>
-      <select name="postNumber" class="btn btn-info" id="postNumber">
-        <option value="<%= (new Date()).getFullYear() %>00000<%= counter %>"><%= (new Date()).getFullYear() %>00000<%= counter %></option>
-      </select>
-      <label for="usr" style="color:black;">Category:</label>
-        <select name="category" class="btn btn-info" id="usr">
-          <option value="news">News</option>
-          <option value="announcenment">Announcement</option>
-        </select>
+
+          Post News and Announcement
+        </div>
+        <br>
+        <form action="/postnewsandannouncements" method="POST">
+          <div class="form-group" style="padding: 5px;">
+            <label for="postNumber" style="color:black; ">Post ID:</label>
+            <select name="postNumber" class="btn btn-info" id="postNumber">
+              <option value="<%= (new Date()).getFullYear() %>00000<%= counter %>">
+                <%= (new Date()).getFullYear() %>00000
+                  <%= counter %>
+              </option>
+            </select>
+            <label for="usr" style="color:black;">Category:</label>
+            <select name="category" class="btn btn-info" id="usr">
+              <option value="news">News</option>
+              <option value="announcenment">Announcement</option>
+            </select>
+          </div>
+          <div class="form-group" style="padding: 5px;">
+            <label for="title" style="color:black;">Title:</label>
+            <input placeholder="Write the title...." type="text" name="title" class="form-control" id="title">
+          </div>
+          <div class="form-group" style="padding: 5px;">
+            <label for="content" style="color:black;">Content:</label>
+            <textarea style="width:100px;" placeholder="Write a content..." name="content" class="form-control" id="content"></textarea>
+          </div>
+
+          <div style="text-align: right;" style="padding: 5px;">
+            <button style="width: 100px;" class="btn btn-primary">
+              Post</button>
+            <button onClick="discard()" type="button" style="width: 100px; margin-right:5px;" class="btn btn-danger">
+              Discard</button>
+          </div>
+        </form>
       </div>
-      <div class="form-group">
-        <label for="title" style="color:black;">Title:</label>
-        <input placeholder="Write the title...." type="text" name="title" class="form-control" id="title">
-      </div>
-      <div class="form-group">
-        <label for="content" style="color:black;">Content:</label>
-        <textarea placeholder="Write a content..." name="content" class="form-control" rows="10" id="content"></textarea>
-      </div>
-      
-      <div style="text-align: right;">
-      <button style="width: 100px;" class="btn btn-primary">
-      Post</button>
-        <button onClick="discard()" type="button" style="width: 100px;" class="btn btn-danger">
-          Discard</button>
-      </div>
-      </form>
+    </div>
+    <div>
     </div>
   </div>
-<div>
-        </div>
-      </div>
-    </div>
+  </div>
   </div>
 
   <script>
-    function discard(){
+    function discard() {
       document.getElementById("title").value = "";
       document.getElementById("content").value = "";
-    }    
+    }
     // var dateScript = new Date();
     // var thisYear = dateScript.getYear();
     // $("#postNumber").append('<option value="' +  thisYear<%= counter %> + '">' + thisYear<%= counter %> + '</option>');
