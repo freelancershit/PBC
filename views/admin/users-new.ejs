@@ -43,7 +43,9 @@
                     </div>
                     <div class="form-group">
                       <label for="name">ID No:</label>
-                      <input id="userNumber" class="form-control" type="Number" name="idNumber" value="<%= studentCount %>" disabled>
+                      <select id="userNumber" class="form-control" name="idNumber">
+                        <option value="<%= studentCount %>"><%= studentCount %></option>
+                      </select>
                     </div>
                     <div class="form-group">
                       <label for="name">First name:</label>
@@ -82,6 +84,10 @@
                       <select class="btn btn-default" name="day" id="day">
 
                       </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Address:</label>
+                        <input class="form-control" type="text" name="address" placeholder="address">
                     </div>
 
                   </div>
@@ -203,17 +209,23 @@
       var users = document.getElementById("users").value;
 
       if (users === "faculty") {
-        var numUsers = document.getElementById("userNumber").value = <%= facultyCount %>;
-        // document.getElementById("tableFaculty").style.display = "block";
+        // var numUsers = document.getElementById("userNumber").value = <%= facultyCount %>;
+        $("#userNumber").empty();
+        $("#userNumber").append('<option value="<%= facultyCount %>"><%= facultyCount %></option>');
+      // document.getElementById("tableFaculty").style.display = "block";
         console.log(numUsers);
       } else if (users === "admin") {
         // document.getElementById("tableFaculty").style.display = "none";
-        var numUsers = document.getElementById("userNumber").value = <%= adminCount %>;
+        // var numUsers = document.getElementById("userNumber").value = <%= adminCount %>;
+        $("#userNumber").empty();
+        $("#userNumber").append('<option value="<%= adminCount %>"><%= adminCount %></option>');
         console.log(numUsers);
 
       } else {
         // document.getElementById("tableFaculty").style.display = "none";
-        var numUsers = document.getElementById("userNumber").value = <%= studentCount %>;
+        // var numUsers = document.getElementById("userNumber").value = <%= studentCount %>;
+        $("#userNumber").empty();
+        $("#userNumber").append('<option value="<%= adminCount %>"><%= adminCount %></option>');
         console.log(numUsers);
 
       }

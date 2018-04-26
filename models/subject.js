@@ -19,7 +19,10 @@ var subjectSchema = new Schema({
     middleName: String,
     yrLvl: String,
     section: String,
-    faculty: String
+    faculty: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+}
 
 });
 

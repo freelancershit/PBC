@@ -66,7 +66,8 @@ router.post("/users", adminAuthentication, function(req, res, next){
     user.section = req.body.section;
     user.yrLvl = req.body.yrLvl;
     user.idNumber = req.body.idNumber;
-    user.gender = req.body.gender
+    user.gender = req.body.gender;
+    user.address = req.body.address;
 
     user.contact = "+63" + parseInt(req.body.contact);
     // if(user.user === "admin"){
@@ -110,6 +111,7 @@ router.post("/users", adminAuthentication, function(req, res, next){
             res.redirect("/users/new");
             // callback(null, user);
         });
+        console.log(user);
     }
   });
   //     },
@@ -135,6 +137,7 @@ router.post("/users", adminAuthentication, function(req, res, next){
 //     }
 // ]);
     } else{
+        console.log(req.body);
         req.flash("errors", "Please fillup all the required information.");
         res.redirect("/users/new");
     }

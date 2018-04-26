@@ -36,7 +36,38 @@
 <table class="table">
 <thead>
 <th>Subject</th>
-<th>1st Grading</th>
+<th>Teacher</th>
+</thead>
+<tbody>
+<tr>
+<td>
+    <select name="subject1">
+        <option value="english">English</option>
+    </select>
+</td>
+<td>
+    <select id="faculty" name="faculty">
+    <% faculties.forEach(function(faculty){ %>
+    <option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option>
+    <% }); %>
+    </select>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+<!-- <div class="container">
+<div class="row>">
+<div class="col-md-12">
+<div class="table-responsive">
+<table class="table">
+<thead>
+<th>Subject</th>
+<th>Teacher</th>
 <th>2nd Grading</th>
 <th>3rd Grading</th>
 <th>4th Grading</th>
@@ -58,9 +89,7 @@
 </div>
 </div>
 </div>
-</div>
-
-
+</div> -->
 
 <script>
     function generateTable(){
@@ -75,6 +104,11 @@
     } else if(value === "grade1"){
         $("#section").empty();
         $("#section").append('<select name="section" class="form-control"><option value="joy">Joy</option><option value="love">Love</option></select>');
+        // $("#faculty").append(
+        //     '<% faculties.forEach(function(faculty){ %>
+        //     <option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %><%= faculty.profile.middleName %></option>
+        //     <% }); %>'
+        // );        
     }else if(value === "grade2"){
         $("#section").append('<select name="section" class="form-control"><option value="honor">Honor</option><option value="unity">Unity</option></select>');
     }else if(value === "grade3"){
