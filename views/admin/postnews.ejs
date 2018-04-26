@@ -6,101 +6,56 @@
   </div>
   <div class="col-sm-6">
     <div class="container">
-      <div class="panel panel-info  col-sm-9" id="myScrollspy" style="padding: 0px; margin-top: 58px;">
+      <div class="panel panel-info col-sm-9" id="myScrollspy" style="padding: 0px; margin-top: 58px;">
         <div class="panel-heading" style="color: #ffffff;">
-
   <div class="container">
-  <% include ../partials/adminpanel %>
-    <div class="panel panel-info" id="myScrollspy" style="padding: 10px; margin-top: 50px;">
+<div class="col-md-8">
+  
+  <div class="panel panel-info" id="myScrollspy" style="padding: 10px; margin-top: 50px;">
       <br>
       <form action="/postnewsandannouncements" method="POST">
       <div class="form-group">
-        <label for="usr">Category:</label>
-        <select name="category" class="form-control" id="usr">
+      <label for="postNumber" style="color:black;">Post ID:</label>
+      <select name="postNumber" class="btn btn-info" id="postNumber">
+        <option value="<%= (new Date()).getFullYear() %>00000<%= counter %>"><%= (new Date()).getFullYear() %>00000<%= counter %></option>
+      </select>
+      <label for="usr" style="color:black;">Category:</label>
+        <select name="category" class="btn btn-info" id="usr">
           <option value="news">News</option>
           <option value="announcenment">Announcement</option>
         </select>
       </div>
       <div class="form-group">
-        <label for="usr">Title:</label>
-        <input type="text" name="title" class="form-control" id="usr">
+        <label for="title" style="color:black;">Title:</label>
+        <input placeholder="Write the title...." type="text" name="title" class="form-control" id="title">
       </div>
       <div class="form-group">
-        <label for="comment">Content:</label>
-        <textarea name="content" class="form-control" rows="10" id="comment"></textarea>
+        <label for="content" style="color:black;">Content:</label>
+        <textarea placeholder="Write a content..." name="content" class="form-control" rows="10" id="content"></textarea>
       </div>
+      
+      <div style="text-align: right;">
       <button style="width: 100px;" class="btn btn-primary">
       Post</button>
-      <div style="text-align: right;">
-        
-        <button type="button" style="width: 100px;" class="btn btn-danger">
+        <button onClick="discard()" type="button" style="width: 100px;" class="btn btn-danger">
           Discard</button>
       </div>
       </form>
     </div>
   </div>
-
-        <br>
-        <div style="padding: 10px;">
-          <div class="form-group">
-            <label for="usr">Title:</label>
-            <input type="text" class="form-control" id="usr">
-          </div>
-          <div class="form-group">
-            <label for="comment">Content:</label>
-            <textarea class="form-control" rows="10" id="comment"></textarea>
-          </div>
-
-          <div style="text-align: right;">
-            <button type="button" style="width: 100px;" class="btn btn-primary">
-              Post</button>
-            <button type="button" style="width: 100px;" class="btn btn-danger">
-              Discard</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- //modal -->
-    <div class="modal fade" id="myModal" role="dialog">
-      <div class="modal-dialog modal-m">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Delete News and Announcement</h4>
-          </div>
-          <div class="modal-body">
-            <p>Are you sure you want to delete?</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal fade" id="editModal" role="dialog">
-      <div class="modal-dialog modal-m">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Edit News and Announcement</h4>
-          </div>
-          <div class="modal-body">
-            <div class="form-group">
-              <label for="usr">Title:</label>
-              <input type="text" class="form-control" id="usr">
-            </div>
-            <div class="form-group">
-              <label for="comment">Content:</label>
-              <textarea class="form-control" rows="5" id="comment"></textarea>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Update</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
+<div>
         </div>
       </div>
     </div>
   </div>
+
+  <script>
+    function discard(){
+      document.getElementById("title").value = "";
+      document.getElementById("content").value = "";
+    }    
+    // var dateScript = new Date();
+    // var thisYear = dateScript.getYear();
+    // $("#postNumber").append('<option value="' +  thisYear<%= counter %> + '">' + thisYear<%= counter %> + '</option>');
+
+  </script>

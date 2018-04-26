@@ -275,12 +275,16 @@ router.post("/manage/:id", adminAuthentication, function(req, res, next){
     });
 
     router.get('/postnewsandannouncements', function(req, res, next) {
-      res.render('admin/postnews');
+            
+        News.count().exec(function(err, counter){
+            res.render('admin/postnews', {counter: counter});
+        });
     });
 
     router.post("/postnewsandannouncements", function(req, res, next){
       if(req.body.category && req.body.title && req.body.content){
-        var news = new News();        
+        var news = new News();       
+        news.postNumber = req.body.postNumber; 
         news.category = req.body.category;
         news.title = req.body.title;
         news.content = req.body.content;
@@ -293,5 +297,37 @@ router.post("/manage/:id", adminAuthentication, function(req, res, next){
       } 
       console.log(req.body);
     });
+
+    router.get('/managenewsandannouncements', function(req, res, next) {
+        News.find({archive : false}, function(err, allNews){
+            if(err) return next(err);
+        res.render('admin/managenews', {allNews: allNews});
+        });
+    });
+
+    router.delete("/managenewsandannouncements/:id", function(req, res, next){
+        News.findById(req.params.id, function(err, news){
+            news.archive = true;
+            news.save(function(err, news){
+            if(err) return next(err);
+            res.redirect("/managenewsandannouncements");
+            });
+        });
+    });
+
+    router.post("/managenewsandannouncements/:id/edit", function(req, res, next){
+        News.findById(req.params.id, function(err, news){
+            if(err) return next(err);
+            news.category = req.body.category;
+            news.title = req.body.title;
+            news.content = req.body.content;
+            news.save(function(err, news){
+                if(err) return next(err);
+                res.redirect("/managenewsandannouncements");
+            });
+        });
+    });
+
+    
 
 module.exports = router;
