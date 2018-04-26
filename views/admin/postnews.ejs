@@ -15,14 +15,14 @@
         <form action="/postnewsandannouncements" method="POST">
           <div class="form-group" style="padding: 5px;">
             <label for="postNumber" style="color:black; ">Post ID:</label>
-            <select name="postNumber" class="btn btn-info" id="postNumber">
+            <select name="postNumber" class="btn btn-info" style="border-radius:8px;" id="postNumber">
               <option value="<%= (new Date()).getFullYear() %>00000<%= counter %>">
                 <%= (new Date()).getFullYear() %>00000
                   <%= counter %>
               </option>
             </select>
             <label for="usr" style="color:black;">Category:</label>
-            <select name="category" class="btn btn-info" id="usr">
+            <select name="category" class="btn btn-info" style="border-radius:8px;" id="usr">
               <option value="news">News</option>
               <option value="announcenment">Announcement</option>
             </select>
