@@ -19,6 +19,10 @@ router.get('/registrationlist', function(req, res, next) {
   res.render('admin/registrationlist');
 });
 
+router.get("/abc", function(req,res,next){
+  res.render("main/abc");
+});
+
 router.get('/studentlist', function(req, res, next) {
   res.render('admin/studentlist');
 });

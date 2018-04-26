@@ -9,30 +9,9 @@
       <div class="panel panel-info  col-sm-9" id="myScrollspy" style="padding: 0px; margin-top: 58px;">
         <div class="panel-heading" style="color: #ffffff;">
 
-          Manage Accounts
+          Manage Enrollment
 
-        </div>
-        <label for="usr" style="margin-left: 5px; margin-top: 15px;">Category:</label>
-        <div class="container">
-          <div class="dropdown" style="margin-top:5px; margin-left: -10px;">
-            <button style="border-radius: 5px;" class="dropdown-toggle" type="button" data-toggle="dropdown">--Please Select--
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-              <li>
-                <a href="#">Admin</a>
-              </li>
-              <li>
-                <a href="#">Faculty</a>
-              </li>
-              <li>
-                <a href="#">Student</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <br>
+        </div>        <br>
         <div class="table-responsive">
           <div style="overflow-y: scroll; height:350px; ">
             <table class="table table-striped">
@@ -59,8 +38,8 @@
                       <%= user.user %>
                     </td>
                     <td>
-                      <a class="btn btn-info btn-sm" href="/manageaccount/<%= user._id %>">
-                        VIEW
+                      <a class="btn btn-info btn-sm" href="/enrollment/<%= user._id %>">
+                        MANAGE ENROLL
                       </a>
                     </td>
                   </tr>

@@ -1,11 +1,14 @@
 var express = require('express');
 var router = express.Router();
+var expressSanitizer = require("express-sanitizer");
 var User = require("../models/user");
 var Pending = require("../models/pending");
 var News = require("../models/newsAndAnnouncement");
 var async = require("async");
 var passport = require("passport");
 var passportConfig = require("../config/passport");
+
+router.use(expressSanitizer());
 
 function adminAuthentication(req, res, next) {
   if (req.isAuthenticated()) {
@@ -287,8 +290,7 @@ router.post("/manage/:id", adminAuthentication, function(req, res, next){
         news.postNumber = req.body.postNumber; 
         news.category = req.body.category;
         news.title = req.body.title;
-        news.content = req.body.content;
-
+        news.content = req.sanitize(req.body.content);
         news.save(function(err, news){
           if(err) return next(err);
           console.log(news);
@@ -308,6 +310,7 @@ router.post("/manage/:id", adminAuthentication, function(req, res, next){
     router.delete("/managenewsandannouncements/:id", function(req, res, next){
         News.findById(req.params.id, function(err, news){
             news.archive = true;
+            news.content = req.sanitize(req.body.content);
             news.save(function(err, news){
             if(err) return next(err);
             res.redirect("/managenewsandannouncements");
@@ -327,6 +330,25 @@ router.post("/manage/:id", adminAuthentication, function(req, res, next){
             });
         });
     });
+
+    router.get("/enrollment", function(req, res, next){
+        User.find({user: "student"}, function(err, users){
+            if(err) return next(err);
+            res.render("admin/enroll-student", {users: users})
+        });
+    });
+
+    router.get("/enrollment/:id", function(req, res, next){
+        User.findById(req.params.id, function(err, user){
+            if(err) return next(err);
+            User.find({user: "faculty"}, function(err, faculties){
+                if(err) return next(err);
+                res.render("admin/enrolling", {user: user, faculties: faculties});
+            });
+        });
+    });
+
+
 
     
 
