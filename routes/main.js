@@ -4,7 +4,7 @@ var User = require('../models/user');
 var Pending = require('../models/pending');
 
 router.get('/', function(req, res, next) {
-  res.render('main/home');
+  res.render('main/homeplayground');
 });
 
 router.get('/activities', function(req, res, next) {
@@ -19,8 +19,8 @@ router.get('/registrationlist', function(req, res, next) {
   res.render('admin/registrationlist');
 });
 
-router.get("/abc", function(req,res,next){
-  res.render("main/abc");
+router.get('/abc', function(req, res, next) {
+  res.render('main/abc');
 });
 
 router.get('/studentlist', function(req, res, next) {
