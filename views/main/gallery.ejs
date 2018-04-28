@@ -1,99 +1,65 @@
 <% layout("layout") -%>
-  <header id="myCarousel" class="carousel slide">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
+  <% include ../partials/Carousel %>
 
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-      <div class="item active">
-        <div class="fill" style="background-image:url('/images/h1.jpg');"></div>
-        <div class="carousel-caption">
-        </div>
-      </div>
-      <div class="item">
-        <div class="fill" style="background-image:url('/images/h2.jpg');"></div>
-        <div class="carousel-caption">
-        </div>
-      </div>
-      <div class="item">
-        <div class="fill" style="background-image:url('/images/h3.jpg');"></div>
-        <div class="carousel-caption">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h1 class="page-header">
+            GALLERY
+          </h1>
+          <br>
         </div>
       </div>
     </div>
+    <div class="container">
+      <div class="col-lg-6">
+        <div class="panel panel-info">
+          <div class="panel-heading" style="text-align:center;">
+            <h4>
+              <a> FACILITIES </a>
+            </h4>
+          </div>
+          <div class="panel-body" align="center">
+            <p>This is some news</p>
 
-    <!-- Controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-      <span class="icon-prev"></span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-      <span class="icon-next"></span>
-    </a>
-  </header>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <h1 class="page-header">
-          GALLERY
-        </h1>
-        <br>
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="col-lg-6">
-      <div class="panel panel-info">
-        <div class="panel-heading" style="text-align:center;">
-          <h4>
-            <a> FACILITIES </a>
-          </h4>
-        </div>
-        <div class="panel-body" align="center">
-          <p>This is some news</p>
+          </div>
 
         </div>
-
       </div>
-    </div>
-    <div class="col-lg-6">
-      <div class="panel panel-info">
-        <div class="panel-heading" style="text-align:center;">
-          <h4>
-            <a> EVENTS </a>
-          </h4>
-        </div>
-        <div class="panel-body" align="center">
-          <p>This is some announcement</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-6">
-      <div class="panel panel-info">
-        <div class="panel-heading" style="text-align:center;">
-          <h4>
-            <a> FACULTY AND STAFF </a>
-          </h4>
-        </div>
-        <div class="panel-body" align="center">
-          <p>This is some announcement</p>
+      <div class="col-lg-6">
+        <div class="panel panel-info">
+          <div class="panel-heading" style="text-align:center;">
+            <h4>
+              <a> EVENTS </a>
+            </h4>
+          </div>
+          <div class="panel-body" align="center">
+            <p>This is some announcement</p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-lg-6">
-      <div class="panel panel-info">
-        <div class="panel-heading" style="text-align:center;">
-          <h4>
-            <a> STUDENTS </a>
-          </h4>
+      <div class="col-lg-6">
+        <div class="panel panel-info">
+          <div class="panel-heading" style="text-align:center;">
+            <h4>
+              <a> FACULTY AND STAFF </a>
+            </h4>
+          </div>
+          <div class="panel-body" align="center">
+            <p>This is some announcement</p>
+          </div>
         </div>
-        <div class="panel-body" align="center">
-          <p>This is some announcement</p>
+      </div>
+      <div class="col-lg-6">
+        <div class="panel panel-info">
+          <div class="panel-heading" style="text-align:center;">
+            <h4>
+              <a> STUDENTS </a>
+            </h4>
+          </div>
+          <div class="panel-body" align="center">
+            <p>This is some announcement</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
