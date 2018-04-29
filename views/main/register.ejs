@@ -1,101 +1,85 @@
 <% layout("layout") -%>
-  <header id="myCarousel" class="carousel slide">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
+  <% include ../partials/Carousel %>
 
-    <!-- Wrapper for slides -->
-
-
-   
-
-    <!-- Controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-      <span class="icon-prev"></span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-      <span class="icon-next"></span>
-    </a>
-  </header>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <h1 class="page-header">
-          REGISTRATION
-        </h1>
-        <br>
-        <h5>Register now and be a part of our growing community! After filling up and submitting the necessary deatils, be sure
-          to download our admission form by clicking on the button below.</h5>
-      </div>
-    </div>
-    <div class="carousel-inner">
-      <div class="item active">
-        <div class="fill" style="background-image:url('/images/h1.jpg');"></div>
-        <div class="carousel-caption">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h1 class="page-header">
+            REGISTRATION
+          </h1>
+          <br>
+          <h5>Register now and be a part of our growing community! After filling up and submitting the necessary deatils, be
+            sure to download our admission form by clicking on the button below.</h5>
         </div>
       </div>
-      <div class="container" id="reg-info">
-  <div class="well well-sm" style="padding-left:100px;padding-right: 100px;padding-bottom: 50px;padding-top: 30px;background-color:#ffffff">
-  <form id="register-data" action="/register" method="POST">
-  <div class="form-group">
-    <label for="pwd">First Name:</label>
-    <input type="text" class="form-control" name="firstName" id="fname">
-  </div>
-  <div class="form-group">
-    <label for="pwd">Last Name:</label>
-    <input type="text" class="form-control" name="lastName" id="lname">
-  </div>
-  <div class="form-group">
-    <label for="pwd">Middle Name:</label>
-    <input type="text" class="form-control" name="middleName" id="mname">
-  </div>
-  <div class="form-group">
-    <label for="pwd">Age:</label>
-    <input type="number" min="0" class="form-control" name="age" id="age">
-  </div>
-  <div class="form-group">
-    <label for="pwd">Address:</label>
-    <input type="text" class="form-control" name="address" id="address">
-  </div>
-  <div class="form-group">
-    <label for="pwd">Email Address:</label>
-    <input type="Email" class="form-control" name="email" id="emailadd">
-  </div>
-  <div class="form-group">
-    <label for="pwd">Contact Number:</label>
-    <input type="number" min="0" class="form-control" name="contact" id="contact">
-  </div>
-  <button class="btn btn-primary" style="border: 1px solid #020531; border-radius: 3px;"><span class="fa fa-list-alt"></span> Register</button>
-  </form>
-  <button type="button" class="btn btn-primary" style="display:block; border: 1px solid #020531; border-radius: 3px;"><span class="fa fa-download"></span> Download Admission Form</button>    
-  <br>
-  <% if(success && success.length >0){ %>
-			<div class="alert alert-success alert-dismissible">
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
-					
-				</button>
-				<%= success %>
-			</div>
-		<% } %>
-		<% if(errors && errors.length >0){ %>
-			<div class="alert alert-danger alert-dismissible">
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
-					
-				</button>
-				<%= errors %>
-			</div>
-		<% } %>
-  <center>
-</center>
-  </div>
-</div>
+      <div class="carousel-inner">
+        <div class="item active">
+          <div class="fill" style="background-image:url('/images/h1.jpg');"></div>
+          <div class="carousel-caption">
+          </div>
+        </div>
+        <div class="container" id="reg-info">
+          <div class="well well-sm" style="padding-left:100px;padding-right: 100px;padding-bottom: 50px;padding-top: 30px;background-color:#ffffff">
+            <form id="register-data" action="/register" method="POST">
+              <div class="form-group">
+                <label for="pwd">First Name:</label>
+                <input type="text" class="form-control" name="firstName" id="fname">
+              </div>
+              <div class="form-group">
+                <label for="pwd">Last Name:</label>
+                <input type="text" class="form-control" name="lastName" id="lname">
+              </div>
+              <div class="form-group">
+                <label for="pwd">Middle Name:</label>
+                <input type="text" class="form-control" name="middleName" id="mname">
+              </div>
+              <div class="form-group">
+                <label for="pwd">Age:</label>
+                <input type="number" min="0" class="form-control" name="age" id="age">
+              </div>
+              <div class="form-group">
+                <label for="pwd">Address:</label>
+                <input type="text" class="form-control" name="address" id="address">
+              </div>
+              <div class="form-group">
+                <label for="pwd">Email Address:</label>
+                <input type="Email" class="form-control" name="email" id="emailadd">
+              </div>
+              <div class="form-group">
+                <label for="pwd">Contact Number:</label>
+                <input type="number" min="0" class="form-control" name="contact" id="contact">
+              </div>
+              <button class="btn btn-primary" style="border: 1px solid #020531; border-radius: 3px;">
+                <span class="fa fa-list-alt"></span> Register</button>
+            </form>
+            <button type="button" class="btn btn-primary" style="display:block; border: 1px solid #020531; border-radius: 3px;">
+              <span class="fa fa-download"></span> Download Admission Form</button>
+            <br>
+            <% if(success && success.length >0){ %>
+              <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
 
-</div>
-</div>
+                </button>
+                <%= success %>
+              </div>
+              <% } %>
+                <% if(errors && errors.length >0){ %>
+                  <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+
+                    </button>
+                    <%= errors %>
+                  </div>
+                  <% } %>
+                    <center>
+                    </center>
+          </div>
+        </div>
+
+      </div>
+    </div>
     <!-- <div class="container" id="reg-info">
       <div class="well well-sm" style="padding-left:100px;padding-right: 100px;padding-bottom: 50px;padding-top: 30px;background-color:#ffffff">
         <form id="register-data" action="/register" method="POST">
