@@ -20,11 +20,20 @@ router.get('/registrationlist', function(req, res, next) {
 });
 
 router.get('/abc', function(req, res, next) {
-  res.render('main/abc');
+  User.find({user: "faculty"}, function(err, faculties){
+    User.findById({_id: "5ae5606d9bc86038d602e338"}, function(err, user){
+    res.render('main/abc', {user: user, faculties: faculties});
+  });
+  });
 });
 
-router.get('/studentlist', function(req, res, next) {
-  res.render('admin/studentlist');
+router.post("/abc",function(req, res, next){
+  console.log(req.body.faculty1);
+  console.log(req.body.faculty2);
+  console.log(req.body.faculty3);
+  console.log(req.body.faculty4);
+  console.log(req.body.faculty5);
+  console.log(req.body.faculty6);
 });
 
 router.get('/adminviewgrade', function(req, res, next) {

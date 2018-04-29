@@ -2,27 +2,22 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var subjectSchema = new Schema({
-    subject: {
-        grade: {
-            firstGrading: Number,
-            secondGrading: Number,
-            thirdGrading: Number,
-            fourthGrading: Number,
-            finalGrading: Number,
-            remarks: String
-        },
-        subject: String
-    },
+    firstGrading: {type: Number, default: 0},
+    secondGrading: {type: Number, default: 0},
+    thirdGrading: {type: Number, default: 0},
+    fourthGrading: {type: Number, default: 0},
+    finalGrading: {type: Number, default: 0},
+    remarks: { type: String, default: "" },
+    firstSemester: {type: Number, default: 0},
+    secondSemester: {type: Number, default: 0},
+    subject: String,
     email: String,
     firstName: String,
     lastName: String,
     middleName: String,
     yrLvl: String,
     section: String,
-    faculty: {
-        type: Schema.Types.ObjectId,
-        ref: "User"
-}
+    faculty: String
 
 });
 

@@ -8,10 +8,16 @@ var curriculumSchema = new Schema({
             ref: "Subject"
     }],
     section: String,
-    academicYear: String,
+    academicYear: {type: String, default: (new Date()).getFullYear() + "-" +((new Date()).getFullYear() + 1)},
     firstName: String,
     middleName: String,
     lastName: String,
     email: String,
+    studentId: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    },
     date: { type: Date, default: Date.now()}
 });
+
+module.exports = mongoose.model("Curriculum", curriculumSchema);
