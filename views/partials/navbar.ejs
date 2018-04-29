@@ -7,7 +7,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="/" class="navbar-brand">PBC SUNBEAM SCHOOL INC.</a>
+      <a href="/" class="navbar-brand">
+        <span>PBC SUNBEAM SCHOOL INC.</span>
+      </a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
 
@@ -63,7 +65,7 @@
               <li>
                 <a href="/scholarships">Scholarships</a>
               </li>
-              <% if(!user){ %>
+              <% if(!loginUser){ %>
                 <li>
                   <a href="/register">Register Now</a>
                 </li>
@@ -96,7 +98,7 @@
             <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2">
               <span class="glyphicon glyphicon-search"></span> Search</button>
           </li>
-          <% if (!user) { %>
+          <% if (!loginUser) { %>
 
             <li>
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">Signup / Login</a>
@@ -114,10 +116,10 @@
 
               <li>
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                  <%= user.profile.name %>
+                  <%= loginUser.profile.name %>
                 </a>
                 <ul class="dropdown-menu">
-                  <% if(user.isAdmin && user.superUser){ %>
+                  <% if(loginUser.isAdmin && loginUser.superUser){ %>
                     <li>
                       <a href="/admindashboard">Admin Interface</a>
                     </li>

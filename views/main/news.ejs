@@ -1,181 +1,146 @@
 <% layout("layout") -%>
-  <header id="myCarousel" class="carousel slide">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-      <div class="item active">
-        <div class="fill" style="background-image:url('/images/h1.jpg');"></div>
-        <div class="carousel-caption">
-        </div>
-      </div>
-      <div class="item">
-        <div class="fill" style="background-image:url('/images/h2.jpg');"></div>
-        <div class="carousel-caption">
-        </div>
-      </div>
-      <div class="item">
-        <div class="fill" style="background-image:url('/images/h3.jpg');"></div>
-        <div class="carousel-caption">
-        </div>
-      </div>
-    </div>
-
-    <!-- Controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-      <span class="icon-prev"></span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-      <span class="icon-next"></span>
-    </a>
-  </header>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <h1 class="page-header">
-          NEWS AND ANNOUNCEMENTS
-        </h1>
-        <br>
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="col-lg-6">
-      <div class="panel panel-info">
-        <div class="panel-heading" style="text-align:center;">
-          <h4>
-            <a> LATEST NEWS </a>
-          </h4>
-        </div>
-        <div class="panel-body">
-          <ul>
-            <li>
-              <a data-toggle="modal" data-target="#newsModal" style="color: #020531">News 1</a>
-            </li>
-            <li>
-              <a data-toggle="modal" data-target="#newsModal" style="color: #020531">News 2</a>
-            </li>
-            <li>
-              <a data-toggle="modal" data-target="#newsModal" style="color: #020531">News 3</a>
-            </li>
-            <li>
-              <a data-toggle="modal" data-target="#newsModal" style="color: #020531">News 4</a>
-            </li>
-            <li>
-              <a data-toggle="modal" data-target="#newsModal" style="color: #020531">News 5</a>
-            </li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-    <div class="col-lg-6">
-      <div class="panel panel-info">
-        <div class="panel-heading" style="text-align:center;">
-          <h4>
-            <a> LATEST ANNOUNCEMENTS </a>
-          </h4>
-        </div>
-        <div class="panel-body">
-          <ul>
-            <li>
-              <a data-toggle="modal" data-target="#announcementModal" style="color: #020531">Announcement 1</a>
-            </li>
-            <li>
-              <a data-toggle="modal" data-target="#announcementModal" style="color: #020531">Announcement 2</a>
-            </li>
-            <li>
-              <a data-toggle="modal" data-target="#announcementModal" style="color: #020531">Announcement 3</a>
-            </li>
-            <li>
-              <a data-toggle="modal" data-target="#announcementModal" style="color: #020531">Announcement 4</a>
-            </li>
-            <li>
-              <a data-toggle="modal" data-target="#announcementModal" style="color: #020531">Announcement 5</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="modal fade" id="announcementModal" role="dialog">
-    <div class="modal-dialog modal-m">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Ang Magandang Buhay Announcement</h4>
-          <label> April 1, 2018</label>
-        </div>
-        <div class="modal-body">
-          <img style="width: 100%; height:200px;" src="https://www.w3schools.com/bootstrap/paris.jpg" class="img-rounded" alt="Cinque Terre">
+  <% include ../partials/Carousel %>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h1 class="page-header">
+            NEWS AND ANNOUNCEMENTS
+          </h1>
           <br>
-          <br>
-          <div style="overflow-y: scroll; height: 250px;">
-            <label> &nbsp &nbsp &nbsp This is content, some content , basta contentThis is content, some content , basta contentThis
-              is content, some content , basta contentThis is content, some content , basta contentThis is content, some
-              content , basta contentThis is content, some content , basta contentThis is content, some content , basta contentThis
-              is content, some content , basta contentThis is content, some content , basta contentThis is content, some
-              content , basta contentThis is content, some content , basta contentThis is content, some content , basta contentThis
-              is content, some content , basta contentThis is content, some content , basta contentThis is content, some
-              content , basta contentThis is content, some content , basta contentThis is content, some content , basta contentThis
-              is content, some content , basta contentThis is content, some content , basta contentThis is content, some
-              content , basta contentThis is content, some content , basta contentThis is content, some content , basta contentThis
-              is content, some content , basta contentThis is content, some content , basta contentThis is content, some
-              content , basta contentThis is content, some content , basta contentThis is content, some content , basta contentThis
-              is content, some content , basta contentThis is content, some content , basta contentThis is content, some
-              content , basta contentThis is content, some content , basta contentThis is content, some content , basta contentThis
-              is content, some content , basta contentThis is content, some content , basta contentThis is content, some
-              content , basta contentThis is content, some content , basta contentThis is content, some content , basta contentThis
-              is content, some content , basta contentThis is content, some content , basta contentThis is content, some
-              content , basta content
-            </label>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="col-lg-6">
+        <div class="panel panel-info">
+          <div class="panel-heading" style="text-align:center;">
+            <h4>
+              <a> LATEST NEWS </a>
+            </h4>
+          </div>
+          <div class="panel-body">
+            <ul>
+              <li>
+                <a data-toggle="modal" data-target="#newsModal" style="color: #020531">News 1</a>
+              </li>
+              <li>
+                <a data-toggle="modal" data-target="#newsModal" style="color: #020531">News 2</a>
+              </li>
+              <li>
+                <a data-toggle="modal" data-target="#newsModal" style="color: #020531">News 3</a>
+              </li>
+              <li>
+                <a data-toggle="modal" data-target="#newsModal" style="color: #020531">News 4</a>
+              </li>
+              <li>
+                <a data-toggle="modal" data-target="#newsModal" style="color: #020531">News 5</a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="panel panel-info">
+          <div class="panel-heading" style="text-align:center;">
+            <h4>
+              <a> LATEST ANNOUNCEMENTS </a>
+            </h4>
+          </div>
+          <div class="panel-body">
+            <ul>
+              <li>
+                <a data-toggle="modal" data-target="#announcementModal" style="color: #020531">Announcement 1</a>
+              </li>
+              <li>
+                <a data-toggle="modal" data-target="#announcementModal" style="color: #020531">Announcement 2</a>
+              </li>
+              <li>
+                <a data-toggle="modal" data-target="#announcementModal" style="color: #020531">Announcement 3</a>
+              </li>
+              <li>
+                <a data-toggle="modal" data-target="#announcementModal" style="color: #020531">Announcement 4</a>
+              </li>
+              <li>
+                <a data-toggle="modal" data-target="#announcementModal" style="color: #020531">Announcement 5</a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="modal fade" id="newsModal" role="dialog">
-    <div class="modal-dialog modal-m">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Ang Magandang Buhay News</h4>
-          <label> April 1, 2018</label>
-        </div>
-        <div class="modal-body">
-          <img style="width: 100%; height:200px;" src="https://www.w3schools.com/bootstrap/paris.jpg" class="img-rounded" alt="Cinque Terre">
-          <br>
-          <br>
-          <div style="overflow-y: scroll; height: 250px;">
-            <label> &nbsp &nbsp &nbsp This is content, some content , basta contentThis is content, some content , basta contentThis
-              is content, some content , basta contentThis is content, some content , basta contentThis is content, some
-              content , basta contentThis is content, some content , basta contentThis is content, some content , basta contentThis
-              is content, some content , basta contentThis is content, some content , basta contentThis is content, some
-              content , basta contentThis is content, some content , basta contentThis is content, some content , basta contentThis
-              is content, some content , basta contentThis is content, some content , basta contentThis is content, some
-              content , basta contentThis is content, some content , basta contentThis is content, some content , basta contentThis
-              is content, some content , basta contentThis is content, some content , basta contentThis is content, some
-              content , basta contentThis is content, some content , basta contentThis is content, some content , basta contentThis
-              is content, some content , basta contentThis is content, some content , basta contentThis is content, some
-              content , basta contentThis is content, some content , basta contentThis is content, some content , basta contentThis
-              is content, some content , basta contentThis is content, some content , basta contentThis is content, some
-              content , basta contentThis is content, some content , basta contentThis is content, some content , basta contentThis
-              is content, some content , basta contentThis is content, some content , basta contentThis is content, some
-              content , basta contentThis is content, some content , basta contentThis is content, some content , basta contentThis
-              is content, some content , basta contentThis is content, some content , basta contentThis is content, some
-              content , basta content
-            </label>
+
+    <div class="modal fade" id="announcementModal" role="dialog">
+      <div class="modal-dialog modal-m">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Ang Magandang Buhay Announcement</h4>
+            <label> April 1, 2018</label>
+          </div>
+          <div class="modal-body">
+            <img style="width: 100%; height:200px;" src="https://www.w3schools.com/bootstrap/paris.jpg" class="img-rounded" alt="Cinque Terre">
+            <br>
+            <br>
+            <div style="overflow-y: scroll; height: 250px;">
+              <label> &nbsp &nbsp &nbsp This is content, some content , basta contentThis is content, some content , basta contentThis
+                is content, some content , basta contentThis is content, some content , basta contentThis is content, some
+                content , basta contentThis is content, some content , basta contentThis is content, some content , basta
+                contentThis is content, some content , basta contentThis is content, some content , basta contentThis is
+                content, some content , basta contentThis is content, some content , basta contentThis is content, some content
+                , basta contentThis is content, some content , basta contentThis is content, some content , basta contentThis
+                is content, some content , basta contentThis is content, some content , basta contentThis is content, some
+                content , basta contentThis is content, some content , basta contentThis is content, some content , basta
+                contentThis is content, some content , basta contentThis is content, some content , basta contentThis is
+                content, some content , basta contentThis is content, some content , basta contentThis is content, some content
+                , basta contentThis is content, some content , basta contentThis is content, some content , basta contentThis
+                is content, some content , basta contentThis is content, some content , basta contentThis is content, some
+                content , basta contentThis is content, some content , basta contentThis is content, some content , basta
+                contentThis is content, some content , basta contentThis is content, some content , basta contentThis is
+                content, some content , basta contentThis is content, some content , basta contentThis is content, some content
+                , basta contentThis is content, some content , basta contentThis is content, some content , basta contentThis
+                is content, some content , basta contentThis is content, some content , basta content
+              </label>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+
+    <div class="modal fade" id="newsModal" role="dialog">
+      <div class="modal-dialog modal-m">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Ang Magandang Buhay News</h4>
+            <label> April 1, 2018</label>
+          </div>
+          <div class="modal-body">
+            <img style="width: 100%; height:200px;" src="https://www.w3schools.com/bootstrap/paris.jpg" class="img-rounded" alt="Cinque Terre">
+            <br>
+            <br>
+            <div style="overflow-y: scroll; height: 250px;">
+              <label> &nbsp &nbsp &nbsp This is content, some content , basta contentThis is content, some content , basta contentThis
+                is content, some content , basta contentThis is content, some content , basta contentThis is content, some
+                content , basta contentThis is content, some content , basta contentThis is content, some content , basta
+                contentThis is content, some content , basta contentThis is content, some content , basta contentThis is
+                content, some content , basta contentThis is content, some content , basta contentThis is content, some content
+                , basta contentThis is content, some content , basta contentThis is content, some content , basta contentThis
+                is content, some content , basta contentThis is content, some content , basta contentThis is content, some
+                content , basta contentThis is content, some content , basta contentThis is content, some content , basta
+                contentThis is content, some content , basta contentThis is content, some content , basta contentThis is
+                content, some content , basta contentThis is content, some content , basta contentThis is content, some content
+                , basta contentThis is content, some content , basta contentThis is content, some content , basta contentThis
+                is content, some content , basta contentThis is content, some content , basta contentThis is content, some
+                content , basta contentThis is content, some content , basta contentThis is content, some content , basta
+                contentThis is content, some content , basta contentThis is content, some content , basta contentThis is
+                content, some content , basta contentThis is content, some content , basta contentThis is content, some content
+                , basta contentThis is content, some content , basta contentThis is content, some content , basta contentThis
+                is content, some content , basta contentThis is content, some content , basta content
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

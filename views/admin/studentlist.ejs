@@ -46,60 +46,21 @@
                 </tr>
               </thead>
               <tbody>
+              <% users.forEach(function(user){ %>
+
                 <tr>
-                  <td>2018-00000</td>
-                  <td>Chenes</td>
-                  <td>ang ka Chenesan</td>
+                  <td><%= user.idNumber %></td>
+                  <td><%= user.profile.lastName %>, <%= user.profile.firstName %> <%= user.profile.middleName %></td>
+                  <td><%= user.yrLvl %> - <%= user.section %></td>
                   <td>
-                    <a href="/adminviewgrade">
+                    <a href="/studentlist/<%= user._id %>">
                       <button>
                         <i class="fa fa-eye " aria-hidden="true "></i>
                       </button>
                     </a>
                   </td>
                 </tr>
-                <tr>
-                  <td>2018-00000</td>
-                  <td>Chenes</td>
-                  <td>ang ka Chenesan</td>
-                  <td>
-                    <a href="/adminviewgrade">
-                      <button>
-                        <i class="fa fa-eye " aria-hidden="true "></i>
-                      </button>
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>2018-00000</td>
-                  <td>Chenes</td>
-                  <td>ang ka Chenesan</td>
-                  <td>
-                    <button data-toggle="modal " data-target="#myModal ">
-                      <i class="fa fa-eye " aria-hidden="true "></i>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>2018-00000</td>
-                  <td>Chenes</td>
-                  <td>ang ka Chenesan</td>
-                  <td>
-                    <button data-toggle="modal " data-target="#myModal ">
-                      <i class="fa fa-eye " aria-hidden="true "></i>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>2018-00000</td>
-                  <td>Chenes</td>
-                  <td>ang ka Chenesan</td>
-                  <td>
-                    <button data-toggle="modal " data-target="#myModal ">
-                      <i class="fa fa-eye " aria-hidden="true "></i>
-                    </button>
-                  </td>
-                </tr>
+                <% }); %>              
               </tbody>
             </table>
           </div>
@@ -121,31 +82,6 @@
           <div class="modal-footer ">
             <button type="button " class="btn btn-default " data-dismiss="modal ">Yes</button>
             <button type="button " class="btn btn-default " data-dismiss="modal ">No</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal fade " id="editModal " role="dialog ">
-      <div class="modal-dialog modal-m ">
-        <div class="modal-content ">
-          <div class="modal-header ">
-            <button type="button " class="close " data-dismiss="modal ">&times;</button>
-            <h4 class="modal-title ">Edit News and Announcement</h4>
-          </div>
-          <div class="modal-body ">
-            <div class="form-group ">
-              <label for="usr ">Title:</label>
-              <input type="text " class="form-control " id="usr ">
-            </div>
-            <div class="form-group ">
-              <label for="comment ">Content:</label>
-              <textarea class="form-control " rows="5 " id="comment "></textarea>
-            </div>
-          </div>
-          <div class="modal-footer ">
-            <button type="button " class="btn btn-default " data-dismiss="modal ">Update</button>
-            <button type="button " class="btn btn-default " data-dismiss="modal ">Close</button>
           </div>
         </div>
       </div>
