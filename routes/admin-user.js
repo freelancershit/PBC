@@ -790,6 +790,7 @@ router.post("/manage/:id", adminAuthentication, function(req, res, next){
     });
 
     router.get("/studentlist/:id", function(req, res, next){
+    console.log("user:" + req.user);
         Curriculum
         .findOne( {studentId : req.params.id, academicYear: (new Date()).getFullYear() + "-" +((new Date()).getFullYear() + 1) } )
         .populate("subjects")

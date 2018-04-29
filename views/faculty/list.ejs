@@ -1,0 +1,70 @@
+<% layout("layout") -%>
+  <div class="col-sm-3" style=" padding: 10px; margin-top: 50px;" overflow-x: hidden;>
+   <!-- <div class="col-lg-12">
+    </div> -->
+  </div>
+  <div class="col-sm-6">
+    <div class="container">
+      <div class="panel panel-info col-sm-9" id="myScrollspy" style="padding: 0px; margin-top: 80px; height:460px;">
+
+        <div class="panel-heading" style="color: #ffffff;">
+
+          Student List
+
+        </div>
+        <label for="usr" style="margin-left: 5px; margin-top: 15px;">Sort By:</label>
+        <div class="container">
+          <div class="dropdown" style="margin-top:5px; margin-left: -10px;">
+            <button style="border-radius: 5px;" class="dropdown-toggle" type="button" data-toggle="dropdown">--Please Select--
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="#">Student #</a>
+              </li>
+              <li>
+                <a href="#">Name</a>
+              </li>
+              <li>
+                <a href="#">Year and Section</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <br>
+        <div class="table-responsive">
+          <div style="overflow-y: scroll; height:350px; ">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th style="color: #ffffff; background-color: #020531;">Student #</th>
+                  <th style="color: #ffffff; background-color: #020531;">Name</th>
+                  <th style="color: #ffffff; background-color: #020531;">Year and Section</th>
+                  <th style="color: #ffffff; background-color: #020531;">View</th>
+                </tr>
+              </thead>
+              <tbody>
+              <% subjects.forEach(function(subject){ %>
+
+                <tr>
+                  <td><%= subject.subject %></td>
+                  <td><%= subject.lastName %>, <%= subject.firstName %> <%= subject.middleName %></td>
+                  <td><%= subject.yrLvl %> - <%= subject.section %></td>
+                  <td>
+                    <a href="/encode/<%= subject._id %>">
+                      <button>
+                        <i class="fa fa-eye " aria-hidden="true "></i>
+                      </button>
+                    </a>
+                  </td>
+                </tr>
+                <% }); %>              
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- //modal -->
