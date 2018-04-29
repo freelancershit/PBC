@@ -53,7 +53,11 @@ app.set("view engine", "ejs");
 var mainRoutes = require("./routes/main");
 var userRoutes = require("./routes/user");
 var adminRoutes = require("./routes/admin-user");
+var studentRoutes = require("./routes/student");
+var facultyRoutes = require("./routes/faculty");
 
+app.use(studentRoutes);
+app.use(facultyRoutes);
 app.use(mainRoutes);
 app.use(userRoutes);
 app.use(adminRoutes);

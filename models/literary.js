@@ -9,6 +9,7 @@ var newsSchema = new mongoose.Schema({
   publishDate: { type: Date, default: Date.now() },
   picture: { type: String, default: '' },
   archive: { type: Boolean, default: false },
+  status: { type: String, default: 'Pending' },
 });
 
 module.exports = mongoose.model('Literary', newsSchema);
