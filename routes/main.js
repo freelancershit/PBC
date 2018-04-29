@@ -106,6 +106,10 @@ router.get('/encode-grades', function(req, res, next) {
   res.render('faculty/encode-grades');
 });
 
+router.get('/encode1-grades', function(req, res, next) {
+  res.render('faculty/encode1-grades');
+});
+
 router.get('/viewgrades', function(req, res, next) {
   res.render('faculty/viewgrades');
 });
@@ -113,6 +117,7 @@ router.get('/viewgrades', function(req, res, next) {
 router.get('/viewencoded-grades', function(req, res, next) {
   res.render('faculty/viewencoded-grades');
 });
+
 
 router.get('/register', function(req, res, next) {
   res.render('main/register', {
