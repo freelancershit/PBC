@@ -67,6 +67,18 @@ router.get('/facilities', function(req, res, next) {
   res.render('main/facilities');
 });
 
+router.get('/managepubs', function(req, res, next) {
+  res.render('faculty/managepubs');
+});
+
+router.get('/encodegrades', function(req, res, next) {
+  res.render('faculty/encodegrades');
+});
+
+router.get('/viewgrades', function(req, res, next) {
+  res.render('faculty/viewgrades');
+});
+
 router.get('/register', function(req, res, next) {
   res.render('main/register', {
     errors: req.flash('errors'),
