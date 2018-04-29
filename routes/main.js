@@ -4,6 +4,7 @@ var router = express.Router();
 var expressSanitizer = require('express-sanitizer');
 var User = require('../models/user');
 var Pending = require('../models/pending');
+var Pendingpub = require('../models/pending');
 var Literary = require('../models/literary');
 
 router.use(expressSanitizer());
@@ -25,14 +26,14 @@ router.get('/registrationlist', function(req, res, next) {
 });
 
 router.get('/abc', function(req, res, next) {
-  User.find({user: "faculty"}, function(err, faculties){
-    User.findById({_id: "5ae5606d9bc86038d602e338"}, function(err, user){
-    res.render('main/abc', {user: user, faculties: faculties});
-  });
+  User.find({ user: 'faculty' }, function(err, faculties) {
+    User.findById({ _id: '5ae5606d9bc86038d602e338' }, function(err, user) {
+      res.render('main/abc', { user: user, faculties: faculties });
+    });
   });
 });
 
-router.post("/abc",function(req, res, next){
+router.post('/abc', function(req, res, next) {
   console.log(req.body.faculty1);
   console.log(req.body.faculty2);
   console.log(req.body.faculty3);
@@ -99,7 +100,10 @@ router.get('/facilities', function(req, res, next) {
 });
 
 router.get('/managepubs', function(req, res, next) {
-  res.render('faculty/managepubs');
+  Pendingpub.find({}, function(err, allPending) {
+    if (err) return next(err);
+    res.render('admin/managepub', { allPending: allPending });
+  });
 });
 
 router.get('/encode-grades', function(req, res, next) {
