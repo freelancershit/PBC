@@ -102,12 +102,16 @@ router.get('/managepubs', function(req, res, next) {
   res.render('faculty/managepubs');
 });
 
-router.get('/encodegrades', function(req, res, next) {
-  res.render('faculty/encodegrades');
+router.get('/encode-grades', function(req, res, next) {
+  res.render('faculty/encode-grades');
 });
 
 router.get('/viewgrades', function(req, res, next) {
   res.render('faculty/viewgrades');
+});
+
+router.get('/viewencoded-grades', function(req, res, next) {
+  res.render('faculty/viewencoded-grades');
 });
 
 router.get('/register', function(req, res, next) {
