@@ -29,15 +29,18 @@
                                     <th style="color: #ffffff; background-color: #020531;">Remarks</th>
                                 </tr>
                             </thead>
+                           <% subject.forEach(function(subject){ %>
+
                             <tr>
-                                <td>Salvador, Chelzea Louise</td>
-                                <td>85</td>
-                                <td>85</td>
-                                <td>85</td>
-                                <td>85</td>
-                                <td>85</td>
-                                <td>Passed!</td>
+                                <td><%= subject.lastname %>, <%= subject.firstname %> <%= subject.middleName %></td>
+                                <td><input class="form-control" type="text" name="firstGrading" /></td>
+                                <td><input class="form-control" type="text" name="secondGrading" /></td>
+                                <td><input class="form-control" type="text" name="thirdGrading" /></td>
+                                <td><input class="form-control" type="text" name="fourthGrading" /></td>
+                                <td><input class="form-control" type="text" name="finalGrading" /></td>
+                                <td><input class="form-control" type="text" name="remarks" /></td>
                             </tr>
+                            <% }); %>                            
                         </table>
 
                     </div>
