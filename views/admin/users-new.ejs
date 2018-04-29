@@ -11,7 +11,7 @@
   <div class="col-sm-6">
 
     <div class="container">
-      <div class="panel panel-info col-sm-9" style="padding: 0px; margin-top: 80px; height:700px;" overflow-x: hidden;>
+      <div class="panel panel-info col-sm-9" style="padding: 0px; margin-top: 80px; " overflow-x: hidden;>
         <div class="panel-heading" style="color: #ffffff;">
 
           Create Account
@@ -44,7 +44,9 @@
                     <div class="form-group">
                       <label for="name">ID No:</label>
                       <select id="userNumber" class="form-control" name="idNumber">
-                        <option value="<%= studentCount %>"><%= studentCount %></option>
+                        <option value="<%= studentCount %>">
+                          <%= studentCount %>
+                        </option>
                       </select>
                     </div>
                     <div class="form-group">
@@ -86,8 +88,8 @@
                       </select>
                     </div>
                     <div class="form-group">
-                        <label for="name">Address:</label>
-                        <input class="form-control" type="text" name="address" placeholder="address">
+                      <label for="name">Address:</label>
+                      <input class="form-control" type="text" name="address" placeholder="address">
                     </div>
 
                   </div>
@@ -110,7 +112,7 @@
                       <label for="confirmPassword">Confirm Password: </label>
                       <input class="form-control" type="password" name="confirmPassword" placeholder="confirm password">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="yrlvl">
                       <label for="">Incoming Year Level: </label>
                       <br>
                       <select name="yrLvl" class="form-control">
@@ -140,7 +142,8 @@
                         <input type="radio" id="gender" name="gender" value="male">Male
                       </label>
                     </div>
-                    <div class="form-group">
+
+                    <div class="form-group" id="section">
                       <label for="name">Section:</label>
                       <input class="form-control" type="text" name="section" placeholder="section">
                     </div>
@@ -212,13 +215,18 @@
         // var numUsers = document.getElementById("userNumber").value = <%= facultyCount %>;
         $("#userNumber").empty();
         $("#userNumber").append('<option value="<%= facultyCount %>"><%= facultyCount %></option>');
-      // document.getElementById("tableFaculty").style.display = "block";
+        document.getElementById("section").style.display = "none";
+
+        document.getElementById("yrlvl").style.display = "none";
+        // document.getElementById("tableFaculty").style.display = "block";
         console.log(numUsers);
       } else if (users === "admin") {
         // document.getElementById("tableFaculty").style.display = "none";
         // var numUsers = document.getElementById("userNumber").value = <%= adminCount %>;
         $("#userNumber").empty();
         $("#userNumber").append('<option value="<%= adminCount %>"><%= adminCount %></option>');
+        document.getElementById("section").style.display = "none";
+        document.getElementById("yrlvl").style.display = "none";
         console.log(numUsers);
 
       } else {
@@ -226,6 +234,8 @@
         // var numUsers = document.getElementById("userNumber").value = <%= studentCount %>;
         $("#userNumber").empty();
         $("#userNumber").append('<option value="<%= studentCount %>"><%= studentCount %></option>');
+        document.getElementById("section").style.display = "block";
+        document.getElementById("yrlvl").style.display = "block";
         console.log(numUsers);
 
       }
