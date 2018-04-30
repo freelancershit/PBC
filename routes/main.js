@@ -49,6 +49,9 @@ router.get('/adminviewgrade', function(req, res, next) {
 router.get('/facultydashboard', function(req, res, next) {
   res.render('faculty/dashboard');
 });
+router.get('/facultsetting', function(req, res, next) {
+  res.render('faculty/accountsetting');
+});
 
 router.get('/studentdashboard', function(req, res, next) {
   res.render('student/dashboard');
@@ -98,14 +101,31 @@ router.get('/curriculum', function(req, res, next) {
 router.get('/facilities', function(req, res, next) {
   res.render('main/facilities');
 });
-
+router.get('/viewpubs', function(req, res, next) {
+  res.render('admin/viewpublication');
+});
+router.get('/facultyviewpubs', function(req, res, next) {
+  res.render('faculty/viewpublication');
+});
+router.get('/adminsetting', function(req, res, next) {
+  res.render('admin/accountsetting');
+});
+router.get('/studentsetting', function(req, res, next) {
+  res.render('student/accountsetting');
+});
 router.get('/managepubs', function(req, res, next) {
   Pendingpub.find({}, function(err, allPending) {
     if (err) return next(err);
-    res.render('admin/managepub', { allPending: allPending });
+    res.render('admin/managepublication', { allPending: allPending });
   });
 });
 
+router.get('/facultymanagepubs', function(req, res, next) {
+  Pendingpub.find({}, function(err, allPending) {
+    if (err) return next(err);
+    res.render('faculty/managepublication', { allPending: allPending });
+  });
+});
 router.get('/encode-grades', function(req, res, next) {
   res.render('faculty/encode-grades');
 });
@@ -121,7 +141,6 @@ router.get('/viewgrades', function(req, res, next) {
 router.get('/viewencoded-grades', function(req, res, next) {
   res.render('faculty/viewencoded-grades');
 });
-
 
 router.get('/register', function(req, res, next) {
   res.render('main/register', {
