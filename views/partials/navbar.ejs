@@ -23,7 +23,7 @@
               <a href="/users/new">Admin</a>
             </li>
             <li>
-              <a href="/facultydashboard">Faculty</a>
+              <a href="/encode1-grades">Faculty</a>
             </li>
             <li>
               <a href="/studentdashboard">Student</a>
@@ -107,7 +107,7 @@
                   <a href="/signup">Signup</a>
                 </li>
                 <li id="pink1">
-                  <a href="/login">Login</a>
+                  <a data-toggle="modal" data-target="#announcementModal">Login</a>
                 </li>
               </ul>
             </li>
@@ -121,7 +121,7 @@
                 <ul class="dropdown-menu">
                   <% if(loginUser.isAdmin && loginUser.superUser){ %>
                     <li>
-                      <a href="/admindashboard">Admin Interface</a>
+                      <a href="/users/new">Admin Interface</a>
                     </li>
                     <% } %>
                       <li>
@@ -137,3 +137,47 @@
     </div>
   </div>
 </nav>
+
+
+<div class="modal fade" id="announcementModal" role="dialog">
+  <div class="modal-dialog modal-m">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Login</h4>
+        <div class="row">
+          <div class="col-lg-4 col-md-4"></div>
+          <div class="col-lg-4 col-md-4">
+
+            <% if(message.length >0){ %>
+              <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+
+                </button>
+                <%= message %>
+              </div>
+              <% } %>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4 col-sm-4"></div>
+          <div class="col-md-4 col-sm-4"></div>
+          <div class="col-md-4 col-sm-4">
+            <div style="padding-top: 50px;">
+              <form action="/login" method="POST" class="form-signin" style="margin: 50px auto; box-shadow: none; border-radius: 10px; border:1px solid black; background-color: rgba(255, 255, 255,0.8);">
+                <h1 class="form-signin-heading text-muted">SIGN IN</h1>
+                <input class="form-control" type="text" name="email" placeholder="EMAIL">
+                <input class="form-control" type="password" name="password" placeholder="PASSWORD">
+                <button id="pink" class="form-control">SIGN IN</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
