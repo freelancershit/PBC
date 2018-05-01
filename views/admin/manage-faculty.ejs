@@ -1,7 +1,7 @@
 <% layout("layout") -%>
     <div class="col-sm-3" style=" padding: 10px; margin-top: 50px;" overflow-x: hidden;>
         <div class="col-lg-12">
-            <% include ../partials/facultypanel %>
+            <% include ../partials/adminpanel %>
         </div>
     </div>
     <div class="col-sm-6">
@@ -37,44 +37,18 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th style="color: #ffffff; background-color: #020531;">Year</th>
-                                    <th style="color: #ffffff; background-color: #020531;">Section</th>
-                                    <th style="color: #ffffff; background-color: #020531;">Subject</th>
+                                    <th style="color: #ffffff; background-color: #020531;">ID Number</th>
+                                    <th style="color: #ffffff; background-color: #020531;">Full Name</th>
                                     <th style="color: #ffffff; background-color: #020531;">Action</th>
                                 </tr>
                             </thead>
+                            <% users.forEach(function(user){ %>
                             <tr>
-                                <td>Grade 1</td>
-                                <td>Matthews</td>
-                                <td>Math</td>
-                                <td>
-                                    <button>
-                                        <i class="fa fa-eye " aria-hidden="true "></i>
-                                    </button>
-                                </td>
+                                <td><%= user.idNumber %></td>
+                                <td><%= user.profile.lastName %>, <%= user.profile.firstName %> <%= user.profile.middleName %></td>
+                                <td><a class="btn btn-info btn-sm" href="/manage-faculty/<%= user._id %>">Manage Faculty</a></td>
                             </tr>
-                            <tr>
-                                <td>Grade 4</td>
-                                <td>Jude</td>
-                                <td>Science</td>
-                                <td>40</td>
-                                <td>
-                                    <button>
-                                        <i class="fa fa-eye " aria-hidden="true "></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Grade 9</td>
-                                <td>Joshua</td>
-                                <td>P.E</td>
-                                <td>40</td>
-                                <td>
-                                    <button>
-                                        <i class="fa fa-eye " aria-hidden="true "></i>
-                                    </button>
-                                </td>
-                            </tr>
+                        <% }); %>
                         </table>
 
                     </div>

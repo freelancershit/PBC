@@ -6,6 +6,7 @@ var Pending = require('../models/pending');
 var News = require('../models/newsAndAnnouncement');
 var Curriculum = require('../models/curriculum');
 var Subject = require('../models/subject');
+var Handle = require('../models/facultyHandle');
 var async = require('async');
 var passport = require('passport');
 var passportConfig = require('../config/passport');
@@ -525,11 +526,15 @@ router.get('/enrollment', function(req, res, next) {
 
 router.get('/enrollment/:id', function(req, res, next) {
   User.findById(req.params.id, function(err, user) {
+    Handle.find({}, function(err, handles){
     if (err) return next(err);
-    User.find({ user: 'faculty' }, function(err, faculties) {
+    User.find({ user: 'faculty' })
+    .populate("faculty")
+    .exec(function(err, faculties) {
       if (err) return next(err);
-      res.render('admin/enrolling', { user: user, faculties: faculties });
+      res.render('admin/enrolling', { user: user, faculties: faculties, handles: handles });
     });
+  });
   });
 });
 
@@ -1001,6 +1006,54 @@ router.get('/studentlist/:id', function(req, res, next) {
         res.render('admin/viewgrade', { curriculum: curriculum, user: user });
       });
     });
+});
+
+router.get("/manage-faculty", function(req, res, next){
+  User.find({user: "faculty"}, function(err, users){
+    if(err) return next(err);
+    res.render("admin/manage-faculty", {users: users});
+  });
+});
+
+router.get("/manage-faculty/:id", function(req, res, next){
+  User
+  .findById({ _id: req.params.id})
+  .populate("faculty")
+  .exec(function(err, users){
+    
+    if(err) return next(err);
+    console.log(users);
+    res.render("admin/assignSubjects", {users: users});
+  });
+});
+
+router.post("/manage-faculty/:id", function(req, res, next){
+  User.findById({ _id: req.params.id}, function(err, user){
+    if(err) return next(err);
+    var handle = new Handle();
+    handle.subject = req.body.subject;
+    handle.section = req.body.section;
+    handle.yrLvl = req.body.yrLvl;
+    handle.faculty= user._id;
+    handle.save(function(err, handle){
+      if(err) return next(err);
+      console.log(handle);
+    });
+
+    user.faculty.push(handle);
+    user.save(function(err, user){
+      if(err) return next(err);
+      console.log(user);
+    });
+    return res.redirect("back");
+  });
+});
+
+router.delete("/manage-faculty/:id", function(req, res, next){
+  Handle.findByIdAndRemove(req.params.id, function(err, subject){
+    if(err) return next(err);
+    return res.redirect("back");
+  });
 });
 
 module.exports = router;

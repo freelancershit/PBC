@@ -6,6 +6,7 @@ var Pending = require("../models/pending");
 var News = require("../models/newsAndAnnouncement");
 var Curriculum = require("../models/curriculum");
 var Subject = require("../models/subject");
+var Handle = require("../models/facultyHandle");
 var async = require("async");
 var passport = require("passport");
 var passportConfig = require("../config/passport");
@@ -23,5 +24,23 @@ router.get("/encode/:yr/:sec/:subj", function(req, res, next){
         res.render("faculty/viewgrades", {subject : subject});
     });
 });
+
+router.get('/encode-grades', function(req, res, next) {
+    res.render('faculty/encode-grades');
+  });
+  
+  router.get('/encode1-grades', function(req, res, next) {
+    Handle.find({_id: req.user._id}, function(err, handles){
+    res.render('faculty/encode1-grades', {handles: handles});
+    });
+  });
+  
+  router.get('/viewgrades', function(req, res, next) {
+    res.render('faculty/viewgrades');
+  });
+  
+  router.get('/viewencoded-grades', function(req, res, next) {
+    res.render('faculty/viewencoded-grades');
+  });
 
 module.exports = router;

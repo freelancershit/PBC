@@ -1,0 +1,219 @@
+<% layout("layout") -%>
+
+<div class="col-sm-3" style=" padding: 10px; margin-top: 50px;" overflow-x: hidden;>
+    <div class="col-lg-12">
+      <% include ../partials/adminpanel %>
+    </div>
+  </div>
+  <div class="col-sm-6">
+        <div class="container">
+            <div class="panel panel-info  col-sm-9" id="myScrollspy" style="padding: 0px; margin-top: 80px; height:460px;">
+
+                <div class="panel-heading" style="color: #ffffff;">Encode Student Grades</div>
+
+
+                <div class="container ">
+                    <div class="dropdown " style="margin-top:5px; margin-left: -10px; ">
+                        <button style="border-radius: 5px; " class="dropdown-toggle " type="button " data-toggle="dropdown ">--Please Select--
+                            <span class="caret "></span>
+                        </button>
+                        <ul class="dropdown-menu ">
+                            <li>
+                                <a href="# ">Subject</a>
+                            </li>
+                            <li>
+                                <a href="# ">Year</a>
+                            </li>
+                            <li>
+                                <a href="# ">Section</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <br>
+                <div class="table-responsive">
+                    <div style="overflow-y: scroll; height:350px; ">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th style="color: #ffffff; background-color: #020531;">Subject</th>
+                                    <th style="color: #ffffff; background-color: #020531;">Year Level</th>
+                                    <th style="color: #ffffff; background-color: #020531;">Section</th>
+                                    <th style="color: #ffffff; background-color: #020531;">Action</th>
+                                </tr>
+                            </thead>
+                            <% if( users.faculty){ %>
+                            <% users.faculty.forEach(function(faculty){ %>
+                            <tr>
+                                <td><%= faculty.subject %></td>
+                                <td><%= faculty.yrLvl %></td>
+                                <td><%= faculty.section %></td>
+                                <form action="/manage-faculty/<%= faculty._id %>?_method=DELETE" method="POST">
+                                <td>
+                                <button class="btn btn-info btn-sm">DELETE</button>
+                                </td>
+                                </form>
+                            </tr>
+                        <% }); %>
+                        <% } %>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+    </div>
+    </div>
+<div class="container">
+<div class="row">
+<br>
+<br>
+<br>
+<br>
+<div class="col-md-8">
+<form action="/manage-faculty/<%= users._id %>" method="POST">
+<div class="form-group">
+<label for="">Subject: </label><br>
+    <select class="form-control" name="subject">
+        <option value="math">Math</option>
+        <option value="science">Science</option>
+        <option value="english">English</option>
+        <option value="filipino">Filipino</option>
+        <option value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option
+        <option value="araling panlipunan">Araling Panlipunan</option>
+        <option value="mapeh">MAPEH</option>
+        <option value="computer">Computer</option>
+        <option value="TLE">TLE(Technology and Livelihood Education)</option>
+        <option value="Edukasyong Pantahanan at Pangkabuhayan">Edukasyong Pantahanan at Pangkabuhayan</option>
+    </select>
+</div>
+<div class="form-group">
+<label for="">Year Level: </label><br>
+<select onChange="generateTable()" id="yrLvl" name="yrLvl" class="form-control">
+  <option value="grade1">Grade 1</option>
+  <option value="grade2">Grade 2</option>
+  <option value="grade3">Grade 3</option>
+  <option value="grade4">Grade 4</option>
+  <option value="grade5">Grade 5</option>
+  <option value="grade6">Grade 6</option>
+  <option value="grade7">Grade 7</option>
+  <option value="grade8">Grade 8</option>
+  <option value="grade9">Grade 9</option>
+  <option value="grade10">Grade 10</option>
+  <option value="grade11">Grade 11</option>
+  <option value="grade12">Grade 12</option>
+</select>
+</div>
+<div class="form-group">
+<label for="">Section: </label><br>
+<div id="section">
+        <select name="section" class="form-control"><option value="joy">Joy</option><option value="love">Love</option></select>
+</div>
+</div>
+<div class="form-group">
+<button class="form-control btn btn-info btn-sm">SAVE</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+<script>
+function generateTable(){
+    var value = document.getElementById("yrLvl").value;
+     console.log(value);
+ if(value === "grade1"){
+     $("#section").empty();
+     $("#section").append('<select name="section" class="form-control"><option value="joy">Joy</option><option value="love">Love</option></select>');
+    
+ }else if(value === "grade2"){
+     $("#section").empty();
+     $("#section").append('<select name="section" class="form-control"><option value="honor">Honor</option><option value="unity">Unity</option></select>');
+     
+ }else if(value === "grade3"){
+     $("#section").empty();
+     $("#section")
+     .append(
+         '<select name="section" class="form-control"><option value="kindness">Kindness</option>'+
+         '<option value="faith">Faith</option>'+
+         '<option value="helpfulness">Helpfulness</option></select>'
+     ); 
+       
+ }else if(value === "grade4"){
+     $("#section").empty();
+     $("#section")
+     .append(
+         '<select name="section" class="form-control"><option value="generosity">Generosity</option>'+
+         '<option value="charity">Charity</option></select>'
+     );
+  
+ }else if(value === "grade5"){
+     $("#section").empty();
+     $("#section")
+     .append(
+         '<select name="section" class="form-control"><option value="cooperate">Cooperate</option>'+
+         '<option value="punctuality">Punctuality</option></select>'
+     );
+    
+ }else if(value === "grade6"){
+     $("#section").empty();
+     $("#section")
+     .append(
+         '<select name="section" class="form-control"><option value="courage">Courage</option>'+
+         '<option value="responsibility">Responsibiliy</option></select>'
+     );
+    
+ }else if(value === "grade7"){
+     $("#section").empty();
+     $("#section")
+     .append(
+         '<select name="section" class="form-control"><option value="faithfulness">Faithfulness</option>'+
+         '<option value="obedience">Obedience</option>'+
+         '<option value="humility">Humility</option>'+
+         '<option value="patience">Patience</option>'+
+         '<option value="frugality">Frugality</option></select>'
+     );
+   
+ }else if(value === "grade8"){
+     $("#section").empty();
+     $("#section")
+     .append(
+         '<select name="section" class="form-control"><option value="gratitude">Gratitude</option>'+
+         '<option value="solidarity">Solidarity</option>'+
+         '<option value="compassion">Compassion</option>'+
+         '<option value="fortitude">Fortitude</option>'+
+         '<option value="perseverance">Perseverance</option></select>'
+     );
+     
+ }else if(value === "grade9"){
+     $("#section").empty();
+     $("#section")
+     .append(
+         '<select name="section" class="form-control"><option value="dignity">Dignity</option>'+
+         '<option value="sincerity">Sincerity</option>'+
+         '<option value="serenity">Serenity</option>'+
+         '<option value="diligence">Diligence</option></select>'
+     );
+     
+ }else if(value === "grade10"){
+     $("#section").empty();
+     $("#section")
+     .append(
+         '<select name="section" class="form-control"><option value="prudence">Prudence</option>'+
+         '<option value="leadership">Leadership</option>'+
+         '<option value="knowledge">Knowledge</option>'+
+         '<option value="wisdom">Wisdom</option></select>'
+     );
+     
+ }else if(value === "grade11"){
+     
+ }else if(value === "grade12"){
+     
+ }
+ }
+</script>

@@ -33,6 +33,10 @@ var UserSchema = new mongoose.Schema({
   // 	type: Schema.Types.ObjectId,
   // 	ref: "History"
   // }],
+  faculty: [{
+    type: Schema.Types.ObjectId,
+    ref: "Handle"
+  }],
   isAdmin: { type: Boolean, default: false },
   superUser: { type: Boolean, default: false },
 });
