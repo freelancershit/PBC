@@ -46,21 +46,30 @@
                 </tr>
               </thead>
               <tbody>
-              <% users.forEach(function(user){ %>
+                <% users.forEach(function(user){ %>
 
-                <tr>
-                  <td><%= user.idNumber %></td>
-                  <td><%= user.profile.lastName %>, <%= user.profile.firstName %> <%= user.profile.middleName %></td>
-                  <td><%= user.yrLvl %> - <%= user.section %></td>
-                  <td>
-                    <a href="/studentlist/<%= user._id %>">
-                      <button>
-                        <i class="fa fa-eye " aria-hidden="true "></i>
-                      </button>
-                    </a>
-                  </td>
-                </tr>
-                <% }); %>              
+                  <tr>
+                    <td>
+                      <%= user.idNumber %>
+                    </td>
+                    <td>
+                      <%= user.profile.lastName %>,
+                        <%= user.profile.firstName %>
+                          <%= user.profile.middleName %>
+                    </td>
+                    <td>
+                      <%= user.yrLvl %> -
+                        <%= user.section %>
+                    </td>
+                    <td>
+                      <a href="/studentlist/<%= user._id %>">
+                        <button>
+                          <i class="fa fa-eye " aria-hidden="true " style="color:black;"></i>
+                        </button>
+                      </a>
+                    </td>
+                  </tr>
+                  <% }); %>
               </tbody>
             </table>
           </div>

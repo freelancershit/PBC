@@ -50,20 +50,20 @@
                       </select>
                     </div>
                     <div class="form-group">
-                      <label for="name">First name:</label>
-                      <input class="form-control" type="text" name="firstName" placeholder="first name">
+                      <label for="name">First Name:</label>
+                      <input class="form-control" type="text" name="firstName" placeholder="First Name">
                     </div>
                     <div class="form-group">
-                      <label for="name">Middle name:</label>
-                      <input class="form-control" type="text" name="middleName" placeholder="middle name">
+                      <label for="name">Middle Name:</label>
+                      <input class="form-control" type="text" name="middleName" placeholder="Middle Name">
                     </div>
                     <div class="form-group">
-                      <label for="name">Last name:</label>
-                      <input class="form-control" type="text" name="lastName" placeholder="last name">
+                      <label for="name">Last Name:</label>
+                      <input class="form-control" type="text" name="lastName" placeholder="Last Name">
                     </div>
                     <div class="form-group">
                       <label for="name">Age:</label>
-                      <input class="form-control" type="number" min="0" name="age" placeholder="your age">
+                      <input class="form-control" type="number" min="0" name="age" placeholder="Your Age">
                     </div>
                     <label>Birthdate: </label>
                     <div class="form-group">
@@ -89,7 +89,7 @@
                     </div>
                     <div class="form-group">
                       <label for="name">Address:</label>
-                      <input class="form-control" type="text" name="address" placeholder="address">
+                      <input class="form-control" type="text" name="address" placeholder="Address">
                     </div>
 
                   </div>
@@ -102,17 +102,28 @@
                     <br>
                     <div class="form-group" style="margin-top: -25px">
                       <label for="name">Email:</label>
-                      <input class="form-control" type="email" name="email" placeholder="email address">
+                      <input class="form-control" type="email" name="email" placeholder="abc123@email.com">
                     </div>
                     <div class="form-group">
                       <label for="name">Password:</label>
-                      <input class="form-control" type="password" name="password" placeholder="password">
+                      <input class="form-control" type="password" name="password" placeholder="Password">
                     </div>
                     <div class="form-group">
                       <label for="confirmPassword">Confirm Password: </label>
-                      <input class="form-control" type="password" name="confirmPassword" placeholder="confirm password">
+                      <input class="form-control" type="password" name="confirmPassword" placeholder="Confirm Password">
                     </div>
-                    <div class="form-group" id="yrlvl">
+
+                    <div class="form-group">
+                      <label for="">Gender:</label>
+                      <br>
+                      <label class="radio-inline" style="margin-left: 1%;">
+                        <input type="radio" id="gender" name="gender" value="female">Female
+                      </label>
+                      <label class="radio-inline" style="margin-left: 2%;">
+                        <input type="radio" id="gender" name="gender" value="male">Male
+                      </label>
+                    </div>
+                    <div class="form-group" id="yrlvl" style="margin-top:8%">
                       <label for="">Incoming Year Level: </label>
                       <br>
                       <select name="yrLvl" class="form-control">
@@ -133,30 +144,19 @@
                         <option value="grade12">Grade 12</option>
                       </select>
                     </div>
-                    <div class="form-group">
-                      <label for="">Gender:</label>
-                      <label class="radio-inline" style="margin-left: 1%;">
-                        <input type="radio" id="gender" name="gender" value="female">Female
-                      </label>
-                      <label class="radio-inline" style="margin-left: 2%;">
-                        <input type="radio" id="gender" name="gender" value="male">Male
-                      </label>
-                    </div>
 
                     <div class="form-group" id="section">
                       <label for="name">Section:</label>
-                      <input class="form-control" type="text" name="section" placeholder="section">
+                      <input class="form-control" type="text" name="section" placeholder="Section">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="margin-top:-5px;">
                       <label for="pwd">Contact Number:</label>
-                      <input type="number" min="0" class="form-control" name="contact" id="contact">
+                      <input type="number" min="0" class="form-control" name="contact" id="contact" placeholder="09XXXXXXXX">
                     </div>
-                    <div class="form-group">
-                      <div class="text-center">
-                        <button class="btn btn-success form-control">Submit</button>
-                      </div>
-                    </div>
+                    <br>
+                    <br>
                   </div>
+
                   <!-- <div id="tableFaculty" style="display:none; text-align:center;" class="col-md-12">
                       <table border="1" cellspacing="2" cellpadding="2">
                           <thead>
@@ -174,6 +174,11 @@
                       </table>
                   </div> -->
                 </form>
+              </div>
+              <div class="form-group" style="width:64%;margin-top:-30%;margin-left:12px;">
+                <div class="text-center">
+                  <button class="btn btn-success form-control" style="height:5%;font-weight:bold;">Submit</button>
+                </div>
               </div>
             </div>
       </div>
