@@ -44,13 +44,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <% handles.forEach(function(handle){ %>
+                            <% user.faculty.forEach(function(handle){ %>
                             <tr>
                                 <td><%= handle.yrLvl  %></td>
                                 <td><%= handle.subject %></td>
                                 <td><%= handle.section %></td>
                                 <td>
-                                    <a href="/encode-grades/<%= handle.faculty %>">
+                                    <a href="/encode-grades/<%= user._id %>/<%= handle.yrLvl %>/<%= handle.subject %>/<%= handle.section %>">
                                         <button>
                                             <i class="fa fa-pencil " aria-hidden="true " style="color:black;"></i>
                                         </button>

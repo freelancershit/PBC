@@ -16,7 +16,6 @@
                     <label for="usr " style="margin-left: 5px; ">Year:</label>
                     <label for="usr " style="margin-left: 55px; ">Section:</label>
                     <label for="usr " style="margin-left: 110px; ">Subject:</label>
-                    <label for="usr " style="margin-left: 125px; ">No.of Students:</label>
                     <br>
                 </div>
 
@@ -33,39 +32,36 @@
                                         <th style="color: #ffffff; background-color: #020531;">2nd Grading</th>
                                         <th style="color: #ffffff; background-color: #020531;">3rd Grading</th>
                                         <th style="color: #ffffff; background-color: #020531;">4th Grading</th>
+                                        <th style="color: #ffffff; background-color: #020531;">Final Grading</th>
+                                        <th style="color: #ffffff; background-color: #020531;">Remark</th>
                                     </tr>
                                 </tr>
                             </thead>
+                            <tbody>
+                            <% subjects.forEach(function(subject){ %>
                             <tr>
-                                <td>Salvador, Chelzea Louise</td>
+                                <td><%= subject.lastName %>, <%= subject.firstName %> <%= subject.middleName %></td>
                                 <td>
-                                    <input name="title" type="text" style="width:60px;" class="form-control">
+                                    <input name="firstGrading" type="number" min="0" max="100" style="width:60px;" class="form-control">
                                 </td>
                                 <td>
-                                    <input name="title" type="text" style="width:60px" class="form-control">
+                                    <input name="secondGrading" type="number" min="0" max="100" style="width:60px" class="form-control">
                                 </td>
                                 <td>
-                                    <input name="title" type="text" style="width:60px" class="form-control">
+                                    <input name="thirdGrading" type="number" min="0" max="100" style="width:60px" class="form-control">
                                 </td>
                                 <td>
-                                    <input name="title" type="text" style="width:60px" class="form-control">
+                                    <input name="fourthGrading" type="number" min="0" max="100" style="width:60px" class="form-control">
+                                </td>
+                                <td>
+                                    <input name="finalGrading" type="number" min="0" max="100" style="width:60px" class="form-control">
+                                </td>
+                                <td>
+                                    <input name="remarks" type="text" style="width:60px" class="form-control">
                                 </td>
                             </tr>
-                            <tr>
-                                <td>San Pedro, Jose Carlo</td>
-                                <td>
-                                    <input name="title" type="text" style="width:60px;" class="form-control">
-                                </td>
-                                <td>
-                                    <input name="title" type="text" style="width:60px" class="form-control">
-                                </td>
-                                <td>
-                                    <input name="title" type="text" style="width:60px" class="form-control">
-                                </td>
-                                <td>
-                                    <input name="title" type="text" style="width:60px" class="form-control">
-                                </td>
-                            </tr>
+                            <% }); %>
+                            </tbody>
                         </table>
                         <div style="margin-top:195px; margin-left:610px;">
                             <button type="button" style="width: 100px;" class="btn btn-success">
