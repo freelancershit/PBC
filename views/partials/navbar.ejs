@@ -128,7 +128,7 @@
 
 
 <div class="modal fade" id="announcementModal" role="dialog">
-  <div class="modal-dialog modal-sm">
+  <div class="modal-dialog modal-sm" sty>
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -149,15 +149,17 @@
       </div>
 
       <div class="row">
-        <div style="padding-top: 50px;margin-top: -40px;">
-          <form action="/login" method="POST" class="form-signin" style="margin: 50px auto; box-shadow: none; border-radius: 10px; border:1px solid #020531; background-color:white;">
-            <label style="color:black; font-weight:bold;">Username:</label>
-            <input class="form-control" type="text" name="email" placeholder="EMAIL">
-            <label style="color:black; font-weight:bold;">Password:</label>
-            <input class="form-control" type="password" name="password" placeholder="PASSWORD">
-            <div class="col-auto">
+        <div style="padding-top: 50px;">
+          <form action="/login" method="POST" class="col-auto" style="margin: 50px auto; box-shadow: none; border-radius: 10px;background-color:white;height: 50%;width:80%;">
+            <div style="margin-top:-70px;">
+              <label style="color:black; font-weight:bold;">Username:</label>
+              <input class="form-control" type="text" name="email" placeholder="EMAIL">
+              <br>
+              <label style="color:black; font-weight:bold;">Password:</label>
+              <input class="form-control" type="password" name="password" placeholder="PASSWORD">
+              <br>
               <center>
-                <button id="pink" class="btn btn-primary" style=" border-radius:5px;font-weight:bold; font-family:Verdana;">SIGN IN</button>
+                <button id="pink" class="btn btn-primary" style=" border-radius:5px;font-weight:bold; font-family:Verdana; width: 50%;">SIGN IN</button>
               </center>
             </div>
           </form>
