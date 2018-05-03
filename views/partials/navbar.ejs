@@ -96,19 +96,19 @@
                 <ul class="dropdown-menu">
                   <% if(loginUser.isAdmin && loginUser.superUser){ %>
                     <li>
-                      <a href="/users/new">Admin Dashboard</a>
+                        <a href="/users/new"><i class="fa fa-bars"></i>Admin Dashboard</a>
                     </li>
                     <% } else if(loginUser.isAdmin){ %>
                       <li>
-                        <a href="/encode1-grades">Faculty Dashboard</a>
+                         <a href="/encode1-grades"> <i class="fa fa-bars"></i>Faculty Dashboard</a>
                       </li>
                       <% } else {%>
                         <li>
-                          <a href="/viewgrade">Student Dashboard</a>
+                            <a href="/viewgrade"> <i class="fa fa-bars"></i> Student Dashboard</a>
                         </li>
                         <% } %>
                       <li>
-                        <a href="/logout">Logout</a>
+                          <a href="/logout"><i class="fa fa-sign-out"></i> Logout</a>
                       </li>
                 </ul>
               </li>
