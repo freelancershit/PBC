@@ -25,13 +25,17 @@ router.get("/encode/:yr/:sec/:subj", function(req, res, next){
     });
 });
 
-router.get('/encode-grades', function(req, res, next) {
-    res.render('faculty/encode-grades');
+router.get('/encode-grades/:id/:yrLvl/:subject/:section', function(req, res, next) {
+    Subject.find({faculty: req.params.id, yrLvl:req.params.yrLvl, subject: req.params.subject, section: req.params.section}, function(err, subjects){
+    res.render('faculty/encode-grades', {subjects : subjects});
   });
+});
   
   router.get('/encode1-grades', function(req, res, next) {
-    Handle.find({_id: req.user._id}, function(err, handles){
-    res.render('faculty/encode1-grades', {handles: handles});
+    User.findById({_id: req.user._id})
+    .populate("faculty")
+    .exec(function(err, user){
+    res.render('faculty/encode1-grades', {user: user});
     });
   });
   
