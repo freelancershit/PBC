@@ -34,40 +34,46 @@
                                         <th style="color: #ffffff; background-color: #020531;">4th Grading</th>
                                         <th style="color: #ffffff; background-color: #020531;">Final Grading</th>
                                         <th style="color: #ffffff; background-color: #020531;">Remark</th>
+                                        <th style="color: #ffffff; background-color: #020531;">Action</th>
                                     </tr>
                                 </tr>
                             </thead>
                             <tbody>
                             <% subjects.forEach(function(subject){ %>
+                            <form action="/encode-grades/<%= subject._id %>" method="POST">
                             <tr>
                                 <td><%= subject.lastName %>, <%= subject.firstName %> <%= subject.middleName %></td>
                                 <td>
-                                    <input name="firstGrading" type="number" min="0" max="100" style="width:60px;" class="form-control">
+                                    <input value="<%= subject.firstGrading %>" name="firstGrading" type="number" min="0" max="100" style="width:60px;" class="form-control">
                                 </td>
                                 <td>
-                                    <input name="secondGrading" type="number" min="0" max="100" style="width:60px" class="form-control">
+                                    <input value="<%= subject.secondGrading %>" name="secondGrading" type="number" min="0" max="100" style="width:60px" class="form-control">
                                 </td>
                                 <td>
-                                    <input name="thirdGrading" type="number" min="0" max="100" style="width:60px" class="form-control">
+                                    <input value="<%= subject.thirdGrading %>" name="thirdGrading" type="number" min="0" max="100" style="width:60px" class="form-control">
                                 </td>
                                 <td>
-                                    <input name="fourthGrading" type="number" min="0" max="100" style="width:60px" class="form-control">
+                                    <input value="<%= subject.fourthGrading %>" name="fourthGrading" type="number" min="0" max="100" style="width:60px" class="form-control">
                                 </td>
                                 <td>
-                                    <input name="finalGrading" type="number" min="0" max="100" style="width:60px" class="form-control">
+                                    <input value="<%= subject.finalGrading %>" name="finalGrading" type="number" min="0" max="100" style="width:60px" class="form-control">
                                 </td>
                                 <td>
-                                    <input name="remarks" type="text" style="width:60px" class="form-control">
+                                    <input value="<%= subject.remarks %>" name="remarks" type="text" style="width:60px" class="form-control">
+                                </td>
+                                <td>
+                                    <button class="btn btn-info btn-sm">ENCODE</button>
                                 </td>
                             </tr>
+                            </form>
                             <% }); %>
                             </tbody>
                         </table>
                         <div style="margin-top:195px; margin-left:610px;">
-                            <button type="button" style="width: 100px;" class="btn btn-success">
+                            <!-- <button type="button" style="width: 100px;" class="btn btn-success">
                                 Encode</button>
                             <button type="button" style="width: 100px; margin-right:5px;" class="btn btn-danger">
-                                Discard</button>
+                                Discard</button> -->
                         </div>
                     </div>
                 </div>

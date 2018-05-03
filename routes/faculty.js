@@ -30,6 +30,23 @@ router.get('/encode-grades/:id/:yrLvl/:subject/:section', function(req, res, nex
     res.render('faculty/encode-grades', {subjects : subjects});
   });
 });
+
+router.post("/encode-grades/:id", function(req, res, next){
+  Subject.findById(req.params.id, function(err, subject){
+    if(err) return next(err);
+    subject.firstGrading = req.body.firstGrading;
+    subject.secondGrading = req.body.secondGrading;
+    subject.thirdGrading = req.body.thirdGrading;
+    subject.fourthGrading = req.body.fourthGrading;
+    subject.finalGrading = req.body.finalGrading;
+    subject.remarks = req.body.remarks;
+    subject.save(function(err, subject){
+      if(err) return next(err);
+      console.log(subject);
+      return res.redirect("back");
+    });
+  });
+});
   
   router.get('/encode1-grades', function(req, res, next) {
     User.findById({_id: req.user._id})
