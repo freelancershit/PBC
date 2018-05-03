@@ -56,12 +56,18 @@ router.post("/encode-grades/:id", function(req, res, next){
     });
   });
   
-  router.get('/viewgrades', function(req, res, next) {
-    res.render('faculty/viewgrades');
+  router.get('/viewgrades/:id/:yrLvl/:subject/:section', function(req, res, next) {
+    Subject.find({faculty: req.params.id, yrLvl:req.params.yrLvl, subject: req.params.subject, section: req.params.section}, function(err, subjects){
+      res.render('faculty/viewgrades', {subjects : subjects});
+    });
   });
   
   router.get('/viewencoded-grades', function(req, res, next) {
-    res.render('faculty/viewencoded-grades');
+    User.findById({_id : req.user._id})
+      .populate("faculty")
+      .exec(function(err, user){
+    res.render('faculty/viewencoded-grades', {user : user});
+  });
   });
 
 module.exports = router;

@@ -44,15 +44,17 @@
                                 </tr>
                             </thead>
                             <tr>
-                                <td>Grade 1</td>
-                                <td>Matthews</td>
-                                <td>Math</td>
+                            <% user.faculty.forEach(function(handle){ %>
+                                <td><%= handle.yrLvl %></td>
+                                <td><%= handle.section %></td>
+                                <td><%= handle.subject %></td>
                                 <td>
-                                    <button>
-                                        <i class="fa fa-eye " aria-hidden="true "></i>
-                                    </button>
+                                <a href="/viewgrades/<%= user._id %>/<%= handle.yrLvl %>/<%= handle.subject %>/<%= handle.section %>">
+                                        <button class="fa fa-eye " aria-hidden="true ">VIEW</button>
+                                 </a>
                                 </td>
                             </tr>
+                            <% }); %>
                         </table>
 
                     </div>
