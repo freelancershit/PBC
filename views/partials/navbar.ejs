@@ -13,23 +13,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
 
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Dashboard Test
-            <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu">
-            <li>
-              <a href="/users/new">Admin</a>
-            </li>
-            <li>
-              <a href="/encode1-grades">Faculty</a>
-            </li>
-            <li>
-              <a href="/studentdashboard">Student</a>
-            </li>
-          </ul>
-        </li>
+  
 
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
@@ -114,7 +98,15 @@
                     <li>
                       <a href="/users/new">Admin Dashboard</a>
                     </li>
-                    <% } %>
+                    <% } else if(loginUser.isAdmin){ %>
+                      <li>
+                        <a href="/encode1-grades">Faculty Dashboard</a>
+                      </li>
+                      <% } else {%>
+                        <li>
+                          <a href="/viewgrade">Student Dashboard</a>
+                        </li>
+                        <% } %>
                       <li>
                         <a href="/logout">Logout</a>
                       </li>
