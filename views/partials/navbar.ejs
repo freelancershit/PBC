@@ -49,6 +49,11 @@
               <li>
                 <a href="/scholarships">Scholarships</a>
               </li>
+              <% if(loginUser){ %>
+              <li>
+                <a href="/publication">Publication</a>
+              </li>
+              <%} %>
               <% if(!loginUser){ %>
                 <li>
                   <a href="/register">Register Now</a>
