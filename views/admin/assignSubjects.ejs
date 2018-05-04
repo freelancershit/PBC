@@ -7,9 +7,9 @@
   </div>
   <div class="col-sm-6">
         <div class="container">
-            <div class="panel panel-info  col-sm-9" id="myScrollspy" style="padding: 0px; margin-top: 80px; height:460px;">
+            <div class="panel panel-info  col-sm-9" id="myScrollspy" style="padding: 0px; margin-top: 80px; min-height:485px;">
 
-                <div class="panel-heading" style="color: #ffffff;">Encode Student Grades</div>
+                <div class="panel-heading" style="color: #ffffff;">Manage Faculty</div>
 
 
                 <div class="container ">
@@ -34,7 +34,7 @@
 
                 <br>
                 <div class="table-responsive">
-                    <div style="overflow-y: scroll; height:350px; ">
+                    <div style="overflow-y: scroll; height:270px; ">
                         <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -62,53 +62,47 @@
 
                     </div>
                 </div>
-            </div>
-        </div>
+         
 
-    </div>
-    </div>
-    </div>
-    </div>
-<div class="container">
-<div class="row">
-<br>
-<br>
-<br>
-<br>
-<div class="col-md-8">
+<div class="panel-heading" style="color: #ffffff;">Add Subject Load</div>
+<div class="col-md-12">
+        <br>
 <form action="/manage-faculty/<%= users._id %>" method="POST">
+    <div class="form-group">
+            <label for="">Year Level: </label><br>
+            <select onChange="generateTable()" id="yrLvl" name="yrLvl" class="form-control">
+            
+              <option value="" disabled selected>Select your option</option>
+              <option value="grade1">Grade 1</option>
+              <option value="grade2">Grade 2</option>
+              <option value="grade3">Grade 3</option>
+              <option value="grade4">Grade 4</option>
+              <option value="grade5">Grade 5</option>
+              <option value="grade6">Grade 6</option>
+              <option value="grade7">Grade 7</option>
+              <option value="grade8">Grade 8</option>
+              <option value="grade9">Grade 9</option>
+              <option value="grade10">Grade 10</option>
+              <option value="grade11">Grade 11</option>
+              <option value="grade12">Grade 12</option>
+            </select>
+            </div>
 <div class="form-group">
 <label for="">Subject: </label><br>
-    <select class="form-control" name="subject">
-        <option value="math">Math</option>
-        <option value="science">Science</option>
-        <option value="english">English</option>
-        <option value="filipino">Filipino</option>
-        <option value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option
-        <option value="araling panlipunan">Araling Panlipunan</option>
-        <option value="mapeh">MAPEH</option>
-        <option value="computer">Computer</option>
-        <option value="TLE">TLE(Technology and Livelihood Education)</option>
-        <option value="Edukasyong Pantahanan at Pangkabuhayan">Edukasyong Pantahanan at Pangkabuhayan</option>
+    <select class="form-control" id="subj" name="subject">
+        <option id="math" value="math">Math</option>
+        <option id="science" value="science">Science</option>
+        <option id="english" value="english">English</option>
+        <option id="filipino" value="filipino">Filipino</option>
+        <option id="EP" value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option>
+        <option id="AP" value="araling panlipunan">Araling Panlipunan</option>
+        <option id="MAPEH" value="mapeh">MAPEH</option>
+        <option id="Comp" value="computer">Computer</option>
+        <option id="TLE" value="TLE">TLE(Technology and Livelihood Education)</option>
+        <option id="EPP" value="Edukasyong Pantahanan at Pangkabuhayan">Edukasyong Pantahanan at Pangkabuhayan</option>
     </select>
 </div>
-<div class="form-group">
-<label for="">Year Level: </label><br>
-<select onChange="generateTable()" id="yrLvl" name="yrLvl" class="form-control">
-  <option value="grade1">Grade 1</option>
-  <option value="grade2">Grade 2</option>
-  <option value="grade3">Grade 3</option>
-  <option value="grade4">Grade 4</option>
-  <option value="grade5">Grade 5</option>
-  <option value="grade6">Grade 6</option>
-  <option value="grade7">Grade 7</option>
-  <option value="grade8">Grade 8</option>
-  <option value="grade9">Grade 9</option>
-  <option value="grade10">Grade 10</option>
-  <option value="grade11">Grade 11</option>
-  <option value="grade12">Grade 12</option>
-</select>
-</div>
+
 <div class="form-group">
 <label for="">Section: </label><br>
 <div id="section">
@@ -116,25 +110,73 @@
 </div>
 </div>
 <div class="form-group">
-<button class="form-control btn btn-info btn-sm">SAVE</button>
+<button id = "btn" disabled class="form-control btn-info">SAVE</button>
 </div>
 </form>
 </div>
 </div>
 </div>
+</div>           </div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <script>
+
+
 function generateTable(){
     var value = document.getElementById("yrLvl").value;
+    var math = document.getElementById("math");
+    var science = document.getElementById("science");
+    var english = document.getElementById("english");
+    var filipino = document.getElementById("filipino");
+    var EP = document.getElementById("EP");
+    var AP = document.getElementById("AP");
+    var MAPEH = document.getElementById("MAPEH");
+    var Comp = document.getElementById("Comp");
+    var TLE = document.getElementById("TLE");
+    var EPP = document.getElementById("EPP");
+    var science = document.getElementById("science");
+    var btn = document.getElementById("btn");
+
      console.log(value);
  if(value === "grade1"){
      $("#section").empty();
      $("#section").append('<select name="section" class="form-control"><option value="joy">Joy</option><option value="love">Love</option></select>');
-    
+     english.disabled = false;
+     filipino.disabled = false;
+     math.disabled = false;
+     AP.disabled = false;
+     MAPEH.disabled = false;
+     EP.disabled = false;
+     Comp.disabled = false;
+     science.disabled = true;
+     TLE.disabled = true;
+     EPP.disabled = true;
+     btn.disabled = false;
+
  }else if(value === "grade2"){
      $("#section").empty();
      $("#section").append('<select name="section" class="form-control"><option value="honor">Honor</option><option value="unity">Unity</option></select>');
-     
+     english.disabled = false;
+     filipino.disabled = false;
+     math.disabled = false;
+     AP.disabled = false;
+     MAPEH.disabled = false;
+     EP.disabled = false;
+     Comp.disabled = false;
+     science.disabled = true;
+     TLE.disabled = true;
+     EPP.disabled = true;
+
+     btn.disabled = false
  }else if(value === "grade3"){
      $("#section").empty();
      $("#section")
@@ -143,6 +185,18 @@ function generateTable(){
          '<option value="faith">Faith</option>'+
          '<option value="helpfulness">Helpfulness</option></select>'
      ); 
+     english.disabled = false;
+     filipino.disabled = false;
+     math.disabled = false;
+     AP.disabled = false;
+     MAPEH.disabled = false;
+     EP.disabled = false;
+     Comp.disabled = false;
+     science.disabled = false;
+     TLE.disabled = true;
+     EPP.disabled = true;
+
+     btn.disabled = false
        
  }else if(value === "grade4"){
      $("#section").empty();
@@ -151,7 +205,19 @@ function generateTable(){
          '<select name="section" class="form-control"><option value="generosity">Generosity</option>'+
          '<option value="charity">Charity</option></select>'
      );
+
+     english.disabled = false;
+     filipino.disabled = false;
+     math.disabled = false;
+     AP.disabled = false;
+     MAPEH.disabled = false;
+     EP.disabled = false;
+     Comp.disabled = false;
+     science.disabled = false;
+     TLE.disabled = true;
+     EPP.disabled = false;
   
+     btn.disabled = false
  }else if(value === "grade5"){
      $("#section").empty();
      $("#section")
@@ -159,7 +225,18 @@ function generateTable(){
          '<select name="section" class="form-control"><option value="cooperate">Cooperate</option>'+
          '<option value="punctuality">Punctuality</option></select>'
      );
+     english.disabled = false;
+     filipino.disabled = false;
+     math.disabled = false;
+     AP.disabled = false;
+     MAPEH.disabled = false;
+     EP.disabled = false;
+     Comp.disabled = false;
+     science.disabled = false;
+     TLE.disabled = true;
+     EPP.disabled = false;
     
+     btn.disabled = false
  }else if(value === "grade6"){
      $("#section").empty();
      $("#section")
@@ -167,7 +244,18 @@ function generateTable(){
          '<select name="section" class="form-control"><option value="courage">Courage</option>'+
          '<option value="responsibility">Responsibiliy</option></select>'
      );
-    
+     english.disabled = false;
+     filipino.disabled = false;
+     math.disabled = false;
+     AP.disabled = false;
+     MAPEH.disabled = false;
+     EP.disabled = false;
+     Comp.disabled = false;
+     science.disabled = false;
+     TLE.disabled = true;
+     EPP.disabled = false;
+
+     btn.disabled = false
  }else if(value === "grade7"){
      $("#section").empty();
      $("#section")
@@ -178,7 +266,18 @@ function generateTable(){
          '<option value="patience">Patience</option>'+
          '<option value="frugality">Frugality</option></select>'
      );
-   
+     english.disabled = false;
+     filipino.disabled = false;
+     math.disabled = false;
+     AP.disabled = false;
+     MAPEH.disabled = false;
+     EP.disabled = false;
+     Comp.disabled = false;
+     science.disabled = false;
+     TLE.disabled = false;
+     EPP.disabled = true;
+
+     btn.disabled = false
  }else if(value === "grade8"){
      $("#section").empty();
      $("#section")
@@ -189,7 +288,18 @@ function generateTable(){
          '<option value="fortitude">Fortitude</option>'+
          '<option value="perseverance">Perseverance</option></select>'
      );
-     
+     english.disabled = false;
+     filipino.disabled = false;
+     math.disabled = false;
+     AP.disabled = false;
+     MAPEH.disabled = false;
+     EP.disabled = false;
+     Comp.disabled = false;
+     science.disabled = false;
+     TLE.disabled = false;
+     EPP.disabled = true;
+
+     btn.disabled = false
  }else if(value === "grade9"){
      $("#section").empty();
      $("#section")
@@ -199,7 +309,18 @@ function generateTable(){
          '<option value="serenity">Serenity</option>'+
          '<option value="diligence">Diligence</option></select>'
      );
-     
+     english.disabled = false;
+     filipino.disabled = false;
+     math.disabled = false;
+     AP.disabled = false;
+     MAPEH.disabled = false;
+     EP.disabled = false;
+     Comp.disabled = false;
+     science.disabled = false;
+     TLE.disabled = false;
+     EPP.disabled = true;
+
+     btn.disabled = false
  }else if(value === "grade10"){
      $("#section").empty();
      $("#section")
@@ -209,6 +330,18 @@ function generateTable(){
          '<option value="knowledge">Knowledge</option>'+
          '<option value="wisdom">Wisdom</option></select>'
      );
+     english.disabled = false;
+     filipino.disabled = false;
+     math.disabled = false;
+     AP.disabled = false;
+     MAPEH.disabled = false;
+     EP.disabled = false;
+     Comp.disabled = false;
+     science.disabled = false;
+     TLE.disabled = false;
+     EPP.disabled = true;
+
+     btn.disabled = false
      
  }else if(value === "grade11"){
      

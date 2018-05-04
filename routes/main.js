@@ -104,6 +104,9 @@ router.get('/facilities', function(req, res, next) {
 router.get('/viewpubs', function(req, res, next) {
   res.render('admin/viewpublication');
 });
+router.get('/faculty', function(req, res, next) {
+  res.render('main/faculty');
+});
 router.get('/facultyviewpubs', function(req, res, next) {
   res.render('faculty/viewpublication');
 });
