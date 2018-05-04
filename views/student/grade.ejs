@@ -51,8 +51,8 @@
                 </tr>
               </thead>
               <tbody>
+              <% if(curriculum){ %>
               <% curriculum.subjects.forEach(function(subject){ %>
-
                 <tr>
                   <td><%= subject.subject %></td>
                   <td><%= subject.firstGrading %></td>
@@ -63,6 +63,9 @@
                   <td><%= subject.remarks %></td>
                 </tr>
                 <% }); %>
+                <% } else if(!curriculum){ %>
+                  <h1>YOU ARE NOT ENROLLED IN ANY SUBJECTS!</h1>
+                <% } %>
               </tbody>
             </table>
           </div>

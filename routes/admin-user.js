@@ -527,13 +527,15 @@ router.get('/enrollment', function(req, res, next) {
 router.get('/enrollment/:id', function(req, res, next) {
   User.findById(req.params.id, function(err, user) {
     Handle.find({}, function(err, handles){
+      Curriculum.findOne({studentId : req.params.id, academicYear: (new Date()).getFullYear() + "-" +((new Date()).getFullYear() + 1)}, function(err, curriculum){
     if (err) return next(err);
     User.find({ user: 'faculty' })
     .populate("faculty")
     .exec(function(err, faculties) {
       if (err) return next(err);
-      res.render('admin/enrolling', { user: user, faculties: faculties, handles: handles });
+      res.render('admin/enrolling', { user: user, faculties: faculties, handles: handles, curriculum : curriculum });
     });
+  });
   });
   });
 });
@@ -1029,7 +1031,17 @@ router.get("/manage-faculty/:id", function(req, res, next){
 
 router.post("/manage-faculty/:id", function(req, res, next){
   User.findById({ _id: req.params.id}, function(err, user){
+    Handle.findOne({subject: req.body.subject
+      , section: req.body.section
+      , yrLvl: req.body.yrLvl
+    }, function(err, teacher){
     if(err) return next(err);
+        
+        if(teacher){
+          req.flash("message", "there is already a faculty assigned to this subject");
+          return res.redirect("back");
+        }else{
+          
     var handle = new Handle();
     handle.subject = req.body.subject;
     handle.section = req.body.section;
@@ -1046,7 +1058,9 @@ router.post("/manage-faculty/:id", function(req, res, next){
       console.log(user);
     });
     return res.redirect("back");
+  }
   });
+});
 });
 
 router.delete("/manage-faculty/:id", function(req, res, next){

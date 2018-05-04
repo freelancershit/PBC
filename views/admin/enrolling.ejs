@@ -74,11 +74,31 @@
           <%= user.contact %>
         </span>
       </h3>
+      <h3>
+        <span>Academic Year:
+        <% if(curriculum){ %>
+          <%= curriculum.academicYear %>
+        <% }else if(!curriculum){ %>
+            You are not enrolled in this academic year.
+        <% } %>
+          </span>
+      </h3>
     </div>
   </div>
 </div>
 </div>
 </div>
+<% if(curriculum && (new Date()).getFullYear() + "-" +((new Date()).getFullYear() + 1) === curriculum.academicYear){ %>
+<div class="container">
+<div class="row">
+<div class="col-md-12"> 
+<center>   
+<h1>This student is already enrolled!</h1>
+</center>
+</div>
+</div>
+</div>
+<% }else{ %>
 <div class="container">
 <div class="row">
 <div class="col-md-3">
@@ -268,7 +288,7 @@ Araling Panlipunan
 </div>
 </div>
 </form>
-
+<% } %>
 <!-- <div class="container">
 <div class="row>">
 <div class="col-md-12">
