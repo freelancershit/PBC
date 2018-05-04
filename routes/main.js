@@ -107,6 +107,9 @@ router.get('/viewpubs', function(req, res, next) {
 router.get('/faculty', function(req, res, next) {
   res.render('main/faculty');
 });
+router.get('/publication', function(req, res, next) {
+  res.render('main/Publication');
+});
 router.get('/facultyviewpubs', function(req, res, next) {
   res.render('faculty/viewpublication');
 });
