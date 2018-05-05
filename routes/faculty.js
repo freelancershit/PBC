@@ -26,15 +26,19 @@ router.get("/encode/:yr/:sec/:subj", function(req, res, next){
 });
 
 router.get('/encode-grades/:id/:yrLvl/:subject/:section', function(req, res, next) {
-    Subject.find({faculty: req.params.id, yrLvl:req.params.yrLvl, subject: req.params.subject, section: req.params.section}, function(err, subjects){
-    res.render('faculty/encode-grades', {subjects : subjects});
+    Handle.findOne({faculty: req.params.id, yrLvl:req.params.yrLvl, subject: req.params.subject, section: req.params.section})
+    .populate("handles")
+    .exec(function(err, handle){
+    res.render('faculty/encode-grades', {handle : handle, yrLvl: req.params.yrLvl, subject: req.params.subject, section: req.params.section});
   });
 });
 
 router.post("/encode-grades/:id", function(req, res, next){
-  Subject.findById(req.params.id, function(err, subject){
+  Handle.findById(req.params.id)
+  .populate("handles")
+  .exec(function(err, handle){
     if(err) return next(err);
-    subject.firstGrading = req.body.firstGrading;
+    handle.handles.firstGrading = req.body.firstGrading;
     subject.secondGrading = req.body.secondGrading;
     subject.thirdGrading = req.body.thirdGrading;
     subject.fourthGrading = req.body.fourthGrading;
@@ -58,7 +62,7 @@ router.post("/encode-grades/:id", function(req, res, next){
   
   router.get('/viewgrades/:id/:yrLvl/:subject/:section', function(req, res, next) {
     Subject.find({faculty: req.params.id, yrLvl:req.params.yrLvl, subject: req.params.subject, section: req.params.section}, function(err, subjects){
-      res.render('faculty/viewgrades', {subjects : subjects});
+      res.render('faculty/viewgrades', {subjects : subjects, yrLvl: req.params.yrLvl, subject: req.params.subject, section: req.params.section});
     });
   });
   

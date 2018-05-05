@@ -128,7 +128,7 @@
                         </div>
                       </form>
                     </td>
-                    <td>April 2, 2018</td>
+                    <td><%= moment(news.publishDate).format("LL") %></td>
                   </tr>
                   <% }); %>
               </tbody>

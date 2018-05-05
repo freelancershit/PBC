@@ -24,9 +24,14 @@ router.get('/createliteraryworks', function(req, res, next) {
 router.post('/createliteraryworks', function(req, res, next) {
   if (req.body.category && req.body.title && req.body.content) {
     var literary = new Literary();
+    console.log(req.user);
     literary.litNumber = req.body.litNumber;
     literary.category = req.body.category;
     literary.title = req.body.title;
+    literary.firstName = req.user.profile.firstName;
+    literary.middleName = req.user.profile.middleName;
+    literary.lastName = req.user.profile.lastName;
+    literary.student = req.user._id;
     literary.content = req.sanitize(req.body.content);
     literary.save(function(err, literary) {
       if (err) return next(err);

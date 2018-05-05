@@ -1,0 +1,131 @@
+<% layout("layout") -%>
+  <div class="col-sm-3" style=" padding: 10px; margin-top: 50px;" overflow-x: hidden;>
+    <div class="col-lg-12">
+    <% if(user.user === "admin"){ %>
+      <% include ../partials/adminpanel %>
+    <% } else if(user.user === "faculty"){ %>
+      <% include ../partials/facultypanel %>
+    <% }else if(user.user === "student"){ %>
+      <% include ../partials/studentpanel %>
+    <% } %> 
+      </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="container">
+      <div class="panel panel-info col-sm-9" style="padding: 0px; margin-top: 80px;" overflow-x: hidden;>
+        <div class="panel-heading" style="color: #ffffff;">
+
+          Account Settings <%= user.idNumber %>
+
+        </div>
+        <div class="row">
+          <div class="col-lg-6 cold-md-offset-3">
+            <div class="row">
+              <div class="col-md-3 col-sm-3"></div>
+              <div class="col-md-6 col-sm-6 text-center">
+              </div>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-md-8 " style="margin-top: 20px;">
+
+                  <!-- <div class="form-group">
+                    <label for="name">ID No:</label>
+                    <select id="userNumber" class="form-control" name="idNum">
+                      <option>
+
+                      </option>
+                    </select>
+                  </div> -->
+		<form action="/edit-profile" method="POST">                  
+                  <center>
+                  <% if(message.length >0){ %>
+			<div class="alert alert-success alert-dismissible">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+					
+				</button>
+				<%= message %>
+			</div>
+		<% } %>
+		<% if(errors.length >0){ %>
+			<div class="alert alert-danger alert-dismissible">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+					
+				</button>
+				<%= errors %>
+			</div>
+		<% } %>
+                  <label>Birthdate: </label>
+                  <div class="form-group">
+                  <select class="btn btn-default" name="year" id="year">
+                  <option selected value="<%= user.birthdate.getFullYear() %>" ><%= user.birthdate.getFullYear() %></option>
+                  </select>
+                  <select class="btn btn-default" name="month" id="month">
+                  <option selected value="<%= user.birthdate.getMonth() + 1 %>"><%= getMonth %></option>
+                      <option value="01">January</option>
+                      <option value="02">February</option>
+                      <option value="03">March</option>
+                      <option value="04">April</option>
+                      <option value="05">May</option>
+                      <option value="06">June</option>
+                      <option value="07">July</option>
+                      <option value="08">August</option>
+                      <option value="09">September</option>
+                      <option value="10">October</option>
+                      <option value="11">November</option>
+                      <option value="12">December</option>
+                  </select>
+                  <select class="btn btn-default" name="day" id="day">
+                  <option selected value="<%= user.birthdate.getDate() %>"><%= user.birthdate.getDate() %></option>
+                  </select>
+                  
+                  </div>
+</center>
+                  <div class="form-group" >
+                      <label for="name">Address:</label>
+                      <input value="<%= user.address %>" class="form-control" type="text" name="address" placeholder="Address">
+                    </div>
+                    <div class="form-group">
+                      <label for="name">Old Password:</label>
+                      <input class="form-control" type="password" name="currentPass" placeholder="current password">
+                    </div>
+                  <div class="form-group">
+                    <label for="name">Password:</label>
+                    <input class="form-control" type="password" name="password" placeholder="new password">
+                  </div>
+                  <div class="form-group">
+                    <label for="confirmPassword">Confirm Password: </label>
+                    <input class="form-control" type="password" name="confirmPass" placeholder="confirm new password">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="pwd">Contact Number:</label>
+                    <input value="<%= user.contact %>" type="number" min="0" class="form-control" name="contact" id="contact" placeholder="09XXXXXXXX">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" style="width:86%; margin-left:5%;">
+          <div class="text-center">
+            <button class="btn btn-success form-control" style="height:4%;font-weight:bold;">Update</button>
+          </div>
+          </form>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <script type="text/javascript">
+		// $("#prov").on("change", function(){
+
+		// });
+		for(var i = (new Date()).getFullYear(); i >= 1900; i--){
+			$("#year").append('<option value="' + i + '">'+ i + '</option>');
+		}
+		for(var i = 31; i >= 1; i--){
+			$("#day").append('<option value="' + i + '">'+ i + '</option>');
+		}
+</script>

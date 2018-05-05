@@ -57,27 +57,6 @@ router.get('/studentdashboard', function(req, res, next) {
   res.render('student/dashboard');
 });
 
-router.get('/createliteraryworks', function(req, res, next) {
-  Literary.count().exec(function(err, counter) {
-    res.render('student/createlitworks', { counter: counter });
-  });
-});
-router.post('/createliteraryworks', function(req, res, next) {
-  if (req.body.category && req.body.title && req.body.content) {
-    var literary = new Literary();
-    literary.litNumber = req.body.litNumber;
-    literary.category = req.body.category;
-    literary.title = req.body.title;
-    literary.content = req.sanitize(req.body.content);
-    literary.save(function(err, literary) {
-      if (err) return next(err);
-      console.log(literary);
-      res.redirect('/createliteraryworks');
-    });
-  }
-  console.log(req.body);
-});
-
 router.get('/viewgrade', function(req, res, next) {
   res.render('student/grade');
 });
@@ -108,7 +87,9 @@ router.get('/faculty', function(req, res, next) {
   res.render('main/faculty');
 });
 router.get('/publication', function(req, res, next) {
-  res.render('main/Publication');
+  Literary.find({status: true}, function(err, literaries){
+  res.render('main/Publication', {literaries: literaries});
+});
 });
 router.get('/facultyviewpubs', function(req, res, next) {
   res.render('faculty/viewpublication');
@@ -119,15 +100,9 @@ router.get('/adminsetting', function(req, res, next) {
 router.get('/studentsetting', function(req, res, next) {
   res.render('student/accountsetting');
 });
-router.get('/managepubs', function(req, res, next) {
-  Pendingpub.find({}, function(err, allPending) {
-    if (err) return next(err);
-    res.render('admin/managepublication', { allPending: allPending });
-  });
-});
 
 router.get('/facultymanagepubs', function(req, res, next) {
-  Pendingpub.find({}, function(err, allPending) {
+  Literary.find({}, function(err, allPending) {
     if (err) return next(err);
     res.render('faculty/managepublication', { allPending: allPending });
   });

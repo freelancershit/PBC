@@ -7,8 +7,11 @@ var handleSchema = new Schema({
         subject: String,
         section: String,
         yrLvl: String,
-        academicYear: {type: String, default: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() + 1) }
-        
+        academicYear: {type: String, default: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() + 1) },
+        handles: [{
+                type: Schema.Types.ObjectId,
+                 ref: "Subject"
+        }]
 });
 
 module.exports = mongoose.model("Handle", handleSchema);

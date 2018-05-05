@@ -131,45 +131,45 @@ router.get('/logout', function(req, res, next) {
   res.redirect('/');
 });
 
-// router.get("/edit-profile", function(req, res, next){
-// 	var month = ["January","February","March","April","May","June","July", "August", "September", "October", "November", "December"];
-// 	var city = cities;
-// 	var province = provinces;
-// 	User.findById(req.user._id, function(err, user){
-// 		if(err) return next(err);
-// 	var getMonth = month[parseInt(user.birthdate.getMonth())];
-// 	res.render("accounts/edit-profile", {message: req.flash("success"), user: user, getMonth: getMonth, city: city, province: province, errors: req.flash("errors")});
-// 	});
-// });
+router.get("/edit-profile", function(req, res, next){
+	var month = ["January","February","March","April","May","June","July", "August", "September", "October", "November", "December"];
 
-// router.post("/edit-profile", function(req, res, next){
-// 	User.findOne({_id: req.user._id}, function(err, user){
-// 		if(err) return next(err);
-// 		if(req.body.address) user.address = req.body.address;
-// 		if(req.body.month && req.body.day && req.body.year){
-// 			user.birthdate = new Date(req.body.year + "-" + req.body.month + "-" + req.body.day);
-// 		}
-// 		if(req.body.currentPass){
-// 		if(!user.comparePassword(req.body.currentPass)){
-// 			req.flash("errors", "You have entered a wrong password");
-// 			return res.redirect("/edit-profile");
-// 		}
-// 		}
-// 		if(req.body.password && req.body.confirmPass){
-// 		if(!(req.body.password === req.body.confirmPass)){
-// 			req.flash("errors", "Your new password and confirm password does not match");
-// 			return res.redirect("/edit-profile");
-// 		}
-// 		}
-// 		if(req.body.password){
-// 		user.password = req.body.password;
-// 		}
-// 		user.save(function(err){
-// 			if(err) return next(err);
-// 			req.flash("success", "You successfully edit your profile");
-// 			return res.redirect("/edit-profile");
-// 		});
-// 	});
-// });
+	User.findById(req.user._id, function(err, user){
+		if(err) return next(err);
+	var getMonth = month[parseInt(user.birthdate.getMonth())];
+	res.render("accounts/edit-profile", {message: req.flash("success"), user: user, getMonth: getMonth, errors: req.flash("errors")});
+	});
+});
+
+router.post("/edit-profile", function(req, res, next){
+	User.findOne({_id: req.user._id}, function(err, user){
+    if(err) return next(err);
+    if(req.body.contact) user.contact = req.body.contact;
+		if(req.body.address) user.address = req.body.address;
+		if(req.body.month && req.body.day && req.body.year){
+			user.birthdate = new Date(req.body.year + "-" + req.body.month + "-" + req.body.day);
+		}
+		if(req.body.currentPass){
+		if(!user.comparePassword(req.body.currentPass)){
+			req.flash("errors", "You have entered a wrong password");
+			return res.redirect("/edit-profile");
+		}
+		}
+		if(req.body.password && req.body.confirmPass){
+		if(!(req.body.password === req.body.confirmPass)){
+			req.flash("errors", "Your new password and confirm password does not match");
+			return res.redirect("/edit-profile");
+		}
+		}
+		if(req.body.password){
+		user.password = req.body.password;
+		}
+		user.save(function(err){
+			if(err) return next(err);
+			req.flash("success", "You successfully edit your profile");
+			return res.redirect("/edit-profile");
+		});
+	});
+});
 
 module.exports = router;
