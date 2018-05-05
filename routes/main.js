@@ -35,12 +35,7 @@ router.get('/abc', function(req, res, next) {
 });
 
 router.post('/abc', function(req, res, next) {
-  console.log(req.body.faculty1);
-  console.log(req.body.faculty2);
-  console.log(req.body.faculty3);
-  console.log(req.body.faculty4);
-  console.log(req.body.faculty5);
-  console.log(req.body.faculty6);
+  console.log(req.body.abc);
 });
 
 router.get('/adminviewgrade', function(req, res, next) {
