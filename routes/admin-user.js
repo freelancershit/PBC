@@ -520,7 +520,9 @@ router.post('/managenewsandannouncements/:id/edit', function(req, res, next) {
 router.get('/enrollment', function(req, res, next) {
   User.find({ user: 'student' }, function(err, users) {
     if (err) return next(err);
+  console.log(users);
     res.render('admin/enroll-student', { users: users });
+    
   });
 });
 
