@@ -56,7 +56,6 @@ router.post('/users', adminAuthentication, function(req, res, next) {
   if (req.body.user === 'student') {
     if (
       req.body.firstName &&
-      req.body.middleName &&
       req.body.lastName &&
       req.body.age &&
       req.body.address &&
@@ -126,7 +125,6 @@ router.post('/users', adminAuthentication, function(req, res, next) {
   } else {
     if (
       req.body.firstName &&
-      req.body.middleName &&
       req.body.lastName &&
       req.body.age &&
       req.body.address &&
@@ -149,7 +147,9 @@ router.post('/users', adminAuthentication, function(req, res, next) {
         req.body.lastName;
       user.profile.firstName = req.body.firstName;
       user.profile.lastName = req.body.lastName;
+      if(req.body.middleName){
       user.profile.middleName = req.body.middleName;
+    }
       user.email = req.body.email;
       user.profile.picture = user.gravatar();
       user.age = req.body.age;
@@ -345,7 +345,6 @@ router.post('/manage/:id', adminAuthentication, function(req, res, next) {
   var user = new User();
   if (
     req.body.firstName &&
-    req.body.middleName &&
     req.body.lastName &&
     req.body.age &&
     req.body.address &&
@@ -566,15 +565,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject1.yrLvl = req.body.yrLvl;
       subject1.faculty = req.body.faculty1;
       curriculum.subjects.push(subject1);
-      Handle.findOne({
-        faculty: req.body.faculty1, 
-        subject: req.body.subject1, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty1, 
+      //   subject: req.body.subject1, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       subject1.save();
       var subject2 = new Subject();
       subject2.subject = req.body.subject2;
@@ -587,15 +586,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject2.faculty = req.body.faculty2;
       curriculum.subjects.push(subject2);
       subject2.save();
-      Handle.findOne({
-        faculty: req.body.faculty2, 
-        subject: req.body.subject2, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty2, 
+      //   subject: req.body.subject2, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       var subject3 = new Subject();
       subject3.subject = req.body.subject3;
       subject3.email = user.email;
@@ -607,15 +606,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject3.faculty = req.body.faculty3;
       curriculum.subjects.push(subject3);
       subject3.save();
-      Handle.findOne({
-        faculty: req.body.faculty3, 
-        subject: req.body.subject3, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty3, 
+      //   subject: req.body.subject3, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       var subject4 = new Subject();
       subject4.subject = req.body.subject4;
       subject4.email = user.email;
@@ -627,15 +626,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject4.faculty = req.body.faculty4;
       curriculum.subjects.push(subject4);
       subject4.save();
-      Handle.findOne({
-        faculty: req.body.faculty4, 
-        subject: req.body.subject4, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty4, 
+      //   subject: req.body.subject4, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       var subject5 = new Subject();
       subject5.subject = req.body.subject5;
       subject5.email = user.email;
@@ -647,15 +646,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject5.faculty = req.body.faculty5;
       curriculum.subjects.push(subject5);
       subject5.save();
-      Handle.findOne({
-        faculty: req.body.faculty5, 
-        subject: req.body.subject5, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty5, 
+      //   subject: req.body.subject5, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       var subject6 = new Subject();
       subject6.subject = req.body.subject6;
       subject6.email = user.email;
@@ -667,15 +666,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject6.faculty = req.body.faculty6;
       curriculum.subjects.push(subject6);
       subject6.save();
-      Handle.findOne({
-        faculty: req.body.faculty6, 
-        subject: req.body.subject6, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty6, 
+      //   subject: req.body.subject6, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       var subject7 = new Subject();
       subject7.subject = req.body.subject7;
       subject7.email = user.email;
@@ -687,15 +686,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject7.faculty = req.body.faculty7;
       curriculum.subjects.push(subject7);
       subject7.save();
-      Handle.findOne({
-        faculty: req.body.faculty7, 
-        subject: req.body.subject7, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty7, 
+      //   subject: req.body.subject7, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       user.save(function(err, user) {
         if (err) return next(err);
         console.log(user);
@@ -731,15 +730,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject1.yrLvl = req.body.yrLvl;
       subject1.faculty = req.body.faculty1;
       curriculum.subjects.push(subject1);
-      Handle.findOne({
-        faculty: req.body.faculty1, 
-        subject: req.body.subject1, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty1, 
+      //   subject: req.body.subject1, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       subject1.save();
       var subject2 = new Subject();
       subject2.subject = req.body.subject2;
@@ -752,15 +751,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject2.faculty = req.body.faculty2;
       curriculum.subjects.push(subject2);
       subject2.save();
-      Handle.findOne({
-        faculty: req.body.faculty2, 
-        subject: req.body.subject2, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty2, 
+      //   subject: req.body.subject2, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       var subject3 = new Subject();
       subject3.subject = req.body.subject3;
       subject3.email = user.email;
@@ -772,15 +771,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject3.faculty = req.body.faculty3;
       curriculum.subjects.push(subject3);
       subject3.save();
-      Handle.findOne({
-        faculty: req.body.faculty3, 
-        subject: req.body.subject3, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty3, 
+      //   subject: req.body.subject3, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       var subject4 = new Subject();
       subject4.subject = req.body.subject4;
       subject4.email = user.email;
@@ -792,15 +791,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject4.faculty = req.body.faculty4;
       curriculum.subjects.push(subject4);
       subject4.save();
-      Handle.findOne({
-        faculty: req.body.faculty4, 
-        subject: req.body.subject4, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty4, 
+      //   subject: req.body.subject4, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       var subject5 = new Subject();
       subject5.subject = req.body.subject5;
       subject5.email = user.email;
@@ -812,15 +811,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject5.faculty = req.body.faculty5;
       curriculum.subjects.push(subject5);
       subject5.save();
-      Handle.findOne({
-        faculty: req.body.faculty5, 
-        subject: req.body.subject5, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty5, 
+      //   subject: req.body.subject5, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       var subject6 = new Subject();
       subject6.subject = req.body.subject6;
       subject6.email = user.email;
@@ -832,15 +831,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject6.faculty = req.body.faculty6;
       curriculum.subjects.push(subject6);
       subject6.save();
-      Handle.findOne({
-        faculty: req.body.faculty6, 
-        subject: req.body.subject6, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty6, 
+      //   subject: req.body.subject6, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       var subject7 = new Subject();
       subject7.subject = req.body.subject7;
       subject7.email = user.email;
@@ -852,15 +851,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject7.faculty = req.body.faculty7;
       curriculum.subjects.push(subject7);
       subject7.save();
-      Handle.findOne({
-        faculty: req.body.faculty7, 
-        subject: req.body.subject7, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty7, 
+      //   subject: req.body.subject7, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       var subject8 = new Subject();
       subject8.subject = req.body.subject8;
       subject8.email = user.email;
@@ -872,15 +871,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject8.faculty = req.body.faculty8;
       curriculum.subjects.push(subject8);
       subject8.save();
-      Handle.findOne({
-        faculty: req.body.faculty8, 
-        subject: req.body.subject8, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty8, 
+      //   subject: req.body.subject8, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       user.save(function(err, user) {
         if (err) return next(err);
         console.log(user);
@@ -906,15 +905,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject1.yrLvl = req.body.yrLvl;
       subject1.faculty = req.body.faculty1;
       curriculum.subjects.push(subject1);
-      Handle.findOne({
-        faculty: req.body.faculty1, 
-        subject: req.body.subject1, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty1, 
+      //   subject: req.body.subject1, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       subject1.save();
       var subject2 = new Subject();
       subject2.subject = req.body.subject2;
@@ -927,15 +926,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject2.faculty = req.body.faculty2;
       curriculum.subjects.push(subject2);
       subject2.save();
-      Handle.findOne({
-        faculty: req.body.faculty2, 
-        subject: req.body.subject2, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty2, 
+      //   subject: req.body.subject2, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       var subject3 = new Subject();
       subject3.subject = req.body.subject3;
       subject3.email = user.email;
@@ -947,15 +946,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject3.faculty = req.body.faculty3;
       curriculum.subjects.push(subject3);
       subject3.save();
-      Handle.findOne({
-        faculty: req.body.faculty3, 
-        subject: req.body.subject3, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty3, 
+      //   subject: req.body.subject3, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       var subject4 = new Subject();
       subject4.subject = req.body.subject4;
       subject4.email = user.email;
@@ -967,15 +966,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject4.faculty = req.body.faculty4;
       curriculum.subjects.push(subject4);
       subject4.save();
-      Handle.findOne({
-        faculty: req.body.faculty4, 
-        subject: req.body.subject4, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty4, 
+      //   subject: req.body.subject4, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       var subject5 = new Subject();
       subject5.subject = req.body.subject5;
       subject5.email = user.email;
@@ -987,15 +986,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject5.faculty = req.body.faculty5;
       curriculum.subjects.push(subject5);
       subject5.save();
-      Handle.findOne({
-        faculty: req.body.faculty5, 
-        subject: req.body.subject5, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty5, 
+      //   subject: req.body.subject5, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       var subject6 = new Subject();
       subject6.subject = req.body.subject6;
       subject6.email = user.email;
@@ -1007,15 +1006,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject6.faculty = req.body.faculty6;
       curriculum.subjects.push(subject6);
       subject6.save();
-      Handle.findOne({
-        faculty: req.body.faculty6, 
-        subject: req.body.subject6, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty6, 
+      //   subject: req.body.subject6, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       var subject7 = new Subject();
       subject7.subject = req.body.subject7;
       subject7.email = user.email;
@@ -1027,15 +1026,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject7.faculty = req.body.faculty7;
       curriculum.subjects.push(subject7);
       subject7.save();
-      Handle.findOne({
-        faculty: req.body.faculty7, 
-        subject: req.body.subject7, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty7, 
+      //   subject: req.body.subject7, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       var subject8 = new Subject();
       subject8.subject = req.body.subject8;
       subject8.email = user.email;
@@ -1047,15 +1046,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject8.faculty = req.body.faculty8;
       curriculum.subjects.push(subject8);
       subject8.save();
-      Handle.findOne({
-        faculty: req.body.faculty8, 
-        subject: req.body.subject8, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty8, 
+      //   subject: req.body.subject8, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       var subject9 = new Subject();
       subject9.subject = req.body.subject9;
       subject9.email = user.email;
@@ -1066,15 +1065,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject9.yrLvl = req.body.yrLvl;
       subject9.faculty = req.body.faculty9;
       subject9.save();
-      Handle.findOne({
-        faculty: req.body.faculty9, 
-        subject: req.body.subject9, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty9, 
+      //   subject: req.body.subject9, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       curriculum.subjects.push(subject9);
       user.save(function(err, user) {
         if (err) return next(err);
@@ -1100,15 +1099,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject1.yrLvl = req.body.yrLvl;
       subject1.faculty = req.body.faculty1;
       curriculum.subjects.push(subject1);
-      Handle.findOne({
-        faculty: req.body.faculty1, 
-        subject: req.body.subject1, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty1, 
+      //   subject: req.body.subject1, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       subject1.save();
       var subject2 = new Subject();
       subject2.subject = req.body.subject2;
@@ -1121,15 +1120,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject2.faculty = req.body.faculty2;
       curriculum.subjects.push(subject2);
       subject2.save();
-      Handle.findOne({
-        faculty: req.body.faculty2, 
-        subject: req.body.subject2, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty2, 
+      //   subject: req.body.subject2, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       var subject3 = new Subject();
       subject3.subject = req.body.subject3;
       subject3.email = user.email;
@@ -1141,15 +1140,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject3.faculty = req.body.faculty3;
       curriculum.subjects.push(subject3);
       subject3.save();
-      Handle.findOne({
-        faculty: req.body.faculty3, 
-        subject: req.body.subject3, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty3, 
+      //   subject: req.body.subject3, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       var subject4 = new Subject();
       subject4.subject = req.body.subject4;
       subject4.email = user.email;
@@ -1161,15 +1160,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject4.faculty = req.body.faculty4;
       curriculum.subjects.push(subject4);
       subject4.save();
-      Handle.findOne({
-        faculty: req.body.faculty4, 
-        subject: req.body.subject4, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty4, 
+      //   subject: req.body.subject4, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       var subject5 = new Subject();
       subject5.subject = req.body.subject5;
       subject5.email = user.email;
@@ -1181,15 +1180,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject5.faculty = req.body.faculty5;
       curriculum.subjects.push(subject5);
       subject5.save();
-      Handle.findOne({
-        faculty: req.body.faculty5, 
-        subject: req.body.subject5, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty5, 
+      //   subject: req.body.subject5, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       var subject6 = new Subject();
       subject6.subject = req.body.subject6;
       subject6.email = user.email;
@@ -1201,15 +1200,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject6.faculty = req.body.faculty6;
       curriculum.subjects.push(subject6);
       subject6.save();
-      Handle.findOne({
-        faculty: req.body.faculty6, 
-        subject: req.body.subject6, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty6, 
+      //   subject: req.body.subject6, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       var subject7 = new Subject();
       subject7.subject = req.body.subject7;
       subject7.email = user.email;
@@ -1221,15 +1220,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject7.faculty = req.body.faculty7;
       curriculum.subjects.push(subject7);
       subject7.save();
-      Handle.findOne({
-        faculty: req.body.faculty7, 
-        subject: req.body.subject7, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty7, 
+      //   subject: req.body.subject7, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       var subject8 = new Subject();
       subject8.subject = req.body.subject8;
       subject8.email = user.email;
@@ -1241,15 +1240,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject8.faculty = req.body.faculty8;
       curriculum.subjects.push(subject8);
       subject8.save();
-      Handle.findOne({
-        faculty: req.body.faculty8, 
-        subject: req.body.subject8, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty8, 
+      //   subject: req.body.subject8, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       var subject9 = new Subject();
       subject9.subject = req.body.subject10;
       subject9.email = user.email;
@@ -1260,15 +1259,15 @@ router.post('/enrollment/:id', function(req, res, next) {
       subject9.yrLvl = req.body.yrLvl;
       subject9.faculty = req.body.faculty10;
       subject9.save();
-      Handle.findOne({
-        faculty: req.body.faculty10, 
-        subject: req.body.subject10, 
-        section: req.body.section, 
-        yrLvl: req.body.yrLvl}, 
-        function(err, handle){
-          handle.handles.push(subject1);
-          handle.save();
-      });
+      // Handle.findOne({
+      //   faculty: req.body.faculty10, 
+      //   subject: req.body.subject10, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
       curriculum.subjects.push(subject9);
       user.save(function(err, user) {
         if (err) return next(err);
@@ -1282,7 +1281,7 @@ router.post('/enrollment/:id', function(req, res, next) {
     }
 
     console.log(user + ' and ' + curriculum);
-    res.redirect('/enrollment');
+   return res.redirect('/enrollment');
   });
 });
 
