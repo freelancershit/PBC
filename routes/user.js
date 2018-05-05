@@ -7,7 +7,7 @@ var passportConfig = require('../config/passport');
 
 router.get('/login', function(req, res) {
   if (req.user) return res.redirect('/');
-  res.render('accounts/login', { message: req.flash('loginMessage') });
+  res.render('main/homeplayground', { message: req.flash('loginMessage') });
 });
 
 router.post(
