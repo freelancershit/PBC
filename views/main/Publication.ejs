@@ -38,12 +38,12 @@
                                             <td ><%= moment(literary.publishDate).format("LL") %></td>
 
                                             <td>     
-                                                <button data-toggle="modal" data-target="#myModal">
+                                                <button data-toggle="modal" data-target="#<%= literary._id %>">
                                                   <i class="fa fa-eye" aria-hidden="true" style="color:black;"></i>
                                                 </button>
                                             </td>
                                             <!-- modal -->            
-                                            <div class="modal fade" id="myModal" role="dialog">
+                                            <div class="modal fade" id="<%= literary._id %>" role="dialog">
                                           <div class="modal-dialog modal-lg">
                                             <div class="modal-content">
                                               <div class="modal-header">

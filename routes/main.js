@@ -4,7 +4,8 @@ var router = express.Router();
 var expressSanitizer = require('express-sanitizer');
 var User = require('../models/user');
 var Pending = require('../models/pending');
-var Pendingpub = require('../models/pending');
+var News = require('../models/newsAndAnnouncement');
+
 var Literary = require('../models/literary');
 
 router.use(expressSanitizer());
@@ -160,7 +161,13 @@ router.get('/home', function(req, res, next) {
 });
 
 router.get('/news', function(req, res, next) {
-  res.render('main/news');
+  News.find({category: "news"}, function(err, news){
+    if(err) return next(err);
+    News.find({category: "announcement"}, function(err, announcements){
+    if(err) return next(err);
+      res.render('main/news', {news: news, announcements: announcements});
+  });
+});
 });
 
 router.get('/orgchart', function(req, res, next) {
