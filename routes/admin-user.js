@@ -1376,23 +1376,23 @@ router.get('/managepubs', function(req, res, next) {
   });
 });
 
-router.delete('/managepubs/:id', function(req, res, next) {
-  Literary.findByIdAndRemove(req.params.id, function(err, news) {
-      if (err) return next(err);
-      console.log(news);
-      res.redirect('/managepubs');
-  });
-});
+// router.delete('/managepubs/:id', function(req, res, next) {
+//   Literary.findByIdAndRemove(req.params.id, function(err, news) {
+//       if (err) return next(err);
+//       console.log(news);
+//       res.redirect('/managepubs');
+//   });
+// });
 
-router.post('/managepubs/:id', function(req, res, next) {
-  Literary.findById(req.params.id, function(err, news) {
-    news.status = true;
-    news.save(function(err, news) {
-      if (err) return next(err);
-      res.redirect('/managepubs');
-    });
-  });
-});
+// router.post('/managepubs/:id', function(req, res, next) {
+//   Literary.findById(req.params.id, function(err, news) {
+//     news.status = true;
+//     news.save(function(err, news) {
+//       if (err) return next(err);
+//       res.redirect('/managepubs');
+//     });
+//   });
+// });
 
 router.post('/managepubs/:id/edit', function(req, res, next) {
   Literary.findById(req.params.id, function(err, news) {
@@ -1405,6 +1405,38 @@ router.post('/managepubs/:id/edit', function(req, res, next) {
       res.redirect('/managepubs');
     });
   });
+});
+
+router.post("/managepubs/delete", function(req, res, next){
+  if(req.body.uniqueId){
+  var litArray = req.body.uniqueId;
+  litArray.forEach(function(lit){
+    Literary.remove({_id: lit}).exec(function(err, lit){
+      if(err) return next(err);
+      
+    });
+  });
+  return res.redirect("/managepubs");
+} else{
+  return res.redirect("/managepubs", req.flash("error", "You didnt clicked anything."));
+}
+
+});
+
+router.post("/managepubs/accept", function(req, res, next){
+  if(req.body.uniqueId){
+  var litArray = req.body.uniqueId;
+  litArray.forEach(function(lit){
+    Literary.update({_id: lit},{status: true}).exec(function(err, lit){
+      if(err) return next(err);
+      
+    });
+  });
+  return res.redirect("/managepubs");
+} else{
+  return res.redirect("/managepubs", req.flash("error", "You didnt clicked anything."));
+}
+
 });
 
 module.exports = router;

@@ -38,31 +38,35 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <% handle.handles.forEach(function(subject){ %>
-                            <form id="<%= subject._id %>" action="/encode-grades/<%= subject._id %>" method="POST" target="_blank">
+                            <form id="encodePost" action="/encode-grades" method="POST">
+                            
+                            <% handle.forEach(function(subject){ %>
                             <tr>
+                                <input type="hidden" value="<%= subject._id %>" name="id[]" />
                                 <td><%= subject.lastName %>, <%= subject.firstName %> <%= subject.middleName %></td>
                                 <td>
-                                    <input id="first" value="<%= subject.firstGrading %>" name="firstGrading" type="number" min="0" max="100" style="width:60px;" class="form-control">
+                                    <input id="first" value="<%= subject.firstGrading %>" name="firstGrading[]" type="number" min="0" max="100" style="width:60px;" class="form-control">
                                 </td>
                                 <td>
-                                    <input id="second" value="<%= subject.secondGrading %>" name="secondGrading" type="number" min="0" max="100" style="width:60px" class="form-control">
+                                    <input id="second" value="<%= subject.secondGrading %>" name="secondGrading[]" type="number" min="0" max="100" style="width:60px" class="form-control">
                                 </td>
                                 <td>
-                                    <input id="third" value="<%= subject.thirdGrading %>" name="thirdGrading" type="number" min="0" max="100" style="width:60px" class="form-control">
+                                    <input id="third" value="<%= subject.thirdGrading %>" name="thirdGrading[]" type="number" min="0" max="100" style="width:60px" class="form-control">
                                 </td>
                                 <td>
-                                    <input id="fourth" value="<%= subject.fourthGrading %>" name="fourthGrading" type="number" min="0" max="100" style="width:60px" class="form-control">
+                                    <input id="fourth" value="<%= subject.fourthGrading %>" name="fourthGrading[]" type="number" min="0" max="100" style="width:60px" class="form-control">
                                 </td>
                                 <td>
-                                    <input  value="<%= subject.finalGrading %>" name="finalGrading" type="number" min="0" max="100" style="width:60px" class="form-control">
+                                    <input  value="<%= subject.finalGrading %>" name="finalGrading[]" type="number" min="0" max="100" style="width:60px" class="form-control">
                                 </td>
                                 <td>
-                                    <input id="remarks" value="<%= subject.remarks %>" name="remarks" type="text" style="width:60px" class="form-control">
+                                    <input id="remarks" value="<%= subject.remarks %>" name="remarks[]" type="text" style="width:60px" class="form-control">
                                 </td>
                             </tr>
-                            </form>
                             <% }); %>
+
+                            </form>
+                            
                         </table>
                         <div style="margin-top:195px; margin-left:610px;">
                              <button id="encode" onclick="submitForms()" type="button" style="width: 100px;" class="btn btn-success">
@@ -78,10 +82,8 @@
     </div>
     </div>
     </div>
-    <script>
-    function submitForms(){
-        <% handle.handles.forEach(function(subject){ %>
-            document.getElementById("<%= subject._id %>").submit();
-       <% }); %>
-    }
-    </script>
+  <script>
+  function submitForms(){
+      $("#encodePost").submit();
+  }
+  </script>

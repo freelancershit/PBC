@@ -26,30 +26,69 @@ router.get("/encode/:yr/:sec/:subj", function(req, res, next){
 });
 
 router.get('/encode-grades/:id/:yrLvl/:subject/:section', function(req, res, next) {
-    Handle.findOne({faculty: req.params.id, yrLvl:req.params.yrLvl, subject: req.params.subject, section: req.params.section})
-    .populate("handles")
+    Subject.find({faculty: req.params.id, yrLvl:req.params.yrLvl, subject: req.params.subject, section: req.params.section})
     .exec(function(err, handle){
     res.render('faculty/encode-grades', {handle : handle, yrLvl: req.params.yrLvl, subject: req.params.subject, section: req.params.section});
   });
 });
 
-router.post("/encode-grades/:id", function(req, res, next){
-  Handle.findById(req.params.id)
-  .populate("handles")
-  .exec(function(err, handle){
-    if(err) return next(err);
-    handle.handles.firstGrading = req.body.firstGrading;
-    subject.secondGrading = req.body.secondGrading;
-    subject.thirdGrading = req.body.thirdGrading;
-    subject.fourthGrading = req.body.fourthGrading;
-    subject.finalGrading = req.body.finalGrading;
-    subject.remarks = req.body.remarks;
-    subject.save(function(err, subject){
+router.post("/encode-grades", function(req, res, next){
+  var grades = [];
+  if(req.body.firstGrading.length > 0){
+  var firstGrading = req.body.firstGrading;
+}
+  if(req.body.secondGrading.length > 0){
+  var secondGrading = req.body.secondGrading;
+}
+  if(req.body.thirdGrading.length > 0){
+  var thirdGrading = req.body.thirdGrading;
+}
+  if(req.body.fourthGrading.length > 0){
+  var fourthGrading = req.body.fourthGrading;
+}
+  if(req.body.finalGrading.length > 0){
+  var finalGrading = req.body.finalGrading;
+}
+  if(req.body.remarks.length > 0){
+  var remarks = req.body.remarks;
+}
+if(req.body.id.length > 0){
+  for(var i = 0; i < req.body.id.length; i++){
+    grades[i] ={
+      firstGrading : firstGrading[i],
+      secondGrading : secondGrading[i],
+      thirdGrading : thirdGrading[i],
+      fourthGrading : fourthGrading[i],
+      finalGrading : finalGrading[i],
+      remarks : remarks[i]
+    }
+  }
+}
+
+  var gradeArray = req.body.id;
+  for(var i = 0; i < gradeArray.length; i++){
+    Subject.update({_id: gradeArray[i]}, grades[i]).exec(function(err, subject){
       if(err) return next(err);
-      console.log(subject);
-      return res.redirect("back");
+        console.log(subject);
     });
-  });
+  }
+
+  
+  // Subject.findById(req.params.id)
+  // .exec(function(err, subject){
+  //   if(err) return next(err);
+  //   subject.firstGrading = req.body.firstGrading;
+  //   subject.secondGrading = req.body.secondGrading;
+  //   subject.thirdGrading = req.body.thirdGrading;
+  //   subject.fourthGrading = req.body.fourthGrading;
+  //   subject.finalGrading = req.body.finalGrading;
+  //   subject.remarks = req.body.remarks;
+  //   subject.save(function(err, subject){
+  //     if(err) return next(err);
+  //     console.log(subject);
+  //     return res.redirect("back");
+  //   });
+  // });
 });
   
   router.get('/encode1-grades', function(req, res, next) {

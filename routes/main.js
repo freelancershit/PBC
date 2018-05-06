@@ -4,6 +4,7 @@ var router = express.Router();
 var expressSanitizer = require('express-sanitizer');
 var User = require('../models/user');
 var Pending = require('../models/pending');
+var Subject = require("../models/subject");
 var News = require('../models/newsAndAnnouncement');
 
 var Literary = require('../models/literary');
@@ -27,14 +28,17 @@ router.get('/registrationlist', function(req, res, next) {
 });
 
 router.get('/abc', function(req, res, next) {
-  User.find({ user: 'faculty' }, function(err, faculties) {
-    User.findById({ _id: '5ae5606d9bc86038d602e338' }, function(err, user) {
-      res.render('main/abc', { user: user, faculties: faculties });
-    });
+    Subject.find({ faculty: '5ae5def3e4708d7dde8a190e' }, function(err, subjects) {
+      if(err) return next(err);
+      console.log(subjects);
+      res.render('main/abc', { subjects: subjects });
   });
 });
 
 router.post('/abc', function(req, res, next) {
+  console.log(req.body.abc);
+});
+router.post('/abc1', function(req, res, next) {
   console.log(req.body.abc);
 });
 
