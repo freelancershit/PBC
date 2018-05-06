@@ -10,6 +10,8 @@ var subjectSchema = new Schema({
     remarks: { type: String, default: "" },
     firstSemester: {type: Number, default: 0},
     secondSemester: {type: Number, default: 0},
+    firstSem: {type: Boolean, default: false},
+    secondSem: {type: Boolean, default: false},
     first: {type: Boolean, default: false},
     second: {type: Boolean, default: false},
     third: {type: Boolean, default: false},

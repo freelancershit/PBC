@@ -51,7 +51,7 @@
               </h5>
       <% }else{ %>
     
-      <% } %>
+      <% } %>disabled
       <h5>
         <span>Gender:
           <%= user.gender %>
@@ -103,6 +103,15 @@
 </div> -->
 <% }else{ %>
     <br>
+    <div class="container">
+    <div class="row">
+    <div class="col-md-8">
+
+    </div>
+    </div>
+    </div>
+
+    <div id="1to10">
 <div class="container">
 <div class="row">
 <div class="col-md-8">
@@ -140,7 +149,7 @@
 </div>
 </div>
 </div>
-<div style="display: none">
+<div style="display: none;">
 <div id="enroll">
 <div class="container">
     <div class="row>">
@@ -284,6 +293,128 @@ Araling Panlipunan
 </td>
 </tr>
 </tbody>
+<tbody>
+<tr>
+<td>
+<select id="shsubject1" class="form-control" name="shsubject1">
+<option value="Earth Science">Earth Science</option>
+</select>
+</td>
+<td>
+<select id="shfaculty1" class="form-control"  name="shfaculty1">
+<option value="">Choose a faculty...</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>
+<select id="shsubject2" class="form-control" name="shsubject2">
+<option value="General Mathematics">General Mathematics</option>
+</select>
+</td>
+<td>
+<select id="shfaculty2" class="form-control"  name="shfaculty2">
+<option value="">Choose a faculty...</option>
+
+</select>
+</td>
+</tr>
+<tr>
+<td>
+<select id="shsubject3" class="form-control" name="shsubject3">
+<option value="Komunikasyon sa Pananaliksik sa Wika at Kulturang Pilipino">Komunikasyon sa Pananaliksik sa Wika at Kulturang Pilipino</option>
+</select>
+</td>
+<td>
+<select id="shfaculty3" class="form-control"  name="shfaculty3">
+<option value="">Choose a faculty...</option>
+
+</select>
+</td>
+</tr>
+<tr>
+<td>
+<select id="shsubject4" class="form-control" name="shsubject4">
+<option value="Oral Communication">
+Oral Communication
+</option>
+</select>
+</td>
+<td>
+<select id="shfaculty4" class="form-control"  name="shfaculty4">
+<option value="">Choose a faculty...</option>
+
+</select>
+</td>
+</tr>
+<tr>
+<td>
+<select id="shsubject5" class="form-control" name="shsubject5">
+<option value="Personal Development/Pansariling Kaunlaran">Personal Development/Pansariling Kaunlaran</option>
+</select>
+</td>
+<td>
+<select id="shfaculty5" class="form-control"  name="shfaculty5">
+<option value="">Choose a faculty...</option>
+
+</select>
+</td>
+</tr>
+<tr>
+<td>
+<select id="shsubject6" class="form-control" name="shsubject6">
+<option value="Physical Education and Health">Physical Education and Health</option>
+</select>
+</td>
+<td>
+<select id="shfaculty6" class="form-control"  name="shfaculty6">
+<option value="">Choose a faculty...</option>
+
+</select>
+</td>
+</tr>
+<tr>
+<td>
+<select id="shsubject7" class="form-control" name="shsubject7">
+<option value="English for Academic and Professional Purposes">English for Academic and Professional Purposes</option>
+</select>
+</td>
+<td>
+<select id="shfaculty7" class="form-control"  name="shfaculty7">
+<option value="">Choose a faculty...</option>
+
+</select>
+</td>
+</tr>
+<tr>
+<td id="tdsubject8">
+<select id="shsubject8" class="form-control" name="shsubject8">
+<option value="General Chemistry">General Chemistry</option>
+</select>
+</td>
+<td id="tdfaculty8">
+<select id="shfaculty8" class="form-control"  name="shfaculty8">
+<option value="">Choose a faculty...</option>
+
+</select>
+</td>
+</tr>
+<tr>
+<td id="tdsubject9">
+<select id="shsubject9" class="form-control" name="shsubject9">
+<option value="Pre Calculus">Pre Calculus</option>
+</select>
+</td>
+<td id="tdfaculty9">
+<select id="shfaculty9" class="form-control"  name="shfaculty9">
+<option value="">Choose a faculty...</option>
+
+</select>
+</td>
+</tr>
+<tr>
+</tr>
+</tbody>
 </table>
                 </div>
             </div>
@@ -308,6 +439,7 @@ Araling Panlipunan
 </div>
 </form>
 <% } %>
+</div>
 </div>
 </div>
 </div>
@@ -398,13 +530,13 @@ Araling Panlipunan
         $("#section1").append('<option value="joy">Joy</option><option value="love">Love</option>');
         // $("#faculty").append('<% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %><%= faculty.profile.middleName %></option><% }); %>');        
         // $("#enroll").empty();
-        // $("#enroll").append('<div class="container"><div class="row>"><div class="col-md-12"><div class="table-responsive"><table class="table"><thead><th>Subject</th><th>Teacher</th></thead><tbody><tr><td><select class="form-control" name="subject1"><option value="english">English</option></select></td><td><select class="form-control"  name="faculty1"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject2"><option value="filipino">Filipino</option></select></td><td><select class="form-control"  name="faculty2"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject3"><option value="math">Math</option></select></td><td><select class="form-control"  name="faculty3"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject4"><option value="araling panlipunan">Araling Panlipunan</option></select></td><td><select class="form-control"  name="faculty4"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject5"><option value="mapeh">MAPEH</option></select></td><td><select class="form-control"  name="faculty5"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject6"><option value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option></select></td><td><select class="form-control"  name="faculty6"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject7"><option value="computer">Computer</option></select></td><td><select class="form-control"  name="faculty7"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr></tbody></table></div></div></div></div>');
-        // $( "#subject8" ).prop( "disabled", true );
-        // $( "#subject9" ).prop( "disabled", true );
-        // $( "#subject10" ).prop( "disabled", true );
-        // $( "#faculty8" ).prop( "disabled", true );
-        // $( "#faculty9" ).prop( "disabled", true );
-        // $( "#faculty10" ).prop( "disabled", true );
+        // $("#enroll").append('<div class="container"><div class="row>"><div class="col-md-12"><div class="table-responsive"><table class="table"><thead><th>Subject</th><th>Teacher</th></thead><tbody><tr><td><select class="form-control" name="subject1"><option value="english">English</option></select></td><td><select class="form-control"  name="faculty1"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject2"><option value="filipino">Filipino</option></select></td><td><select class="form-control"  name="faculty2"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject3"><option value="math">Math</option></select></td><td><select class="form-control"  name="faculty3"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject4"><option value="araling panlipunan">Araling Panlipunan</option></select></td><td><select class="form-control"  name="faculty4"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject5"><option value="mapeh">MAPEH</option></select></td><td><select class="form-control"  name="faculty5"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject6"><option value="">Edukasyon sa Pagpapakatao</option></select></td><td><select class="form-control"  name="faculty6"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject7"><option value="computer">Computer</option></select></td><td><select class="form-control"  name="faculty7"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr></tbody></table></div></div></div></div>');
+        $( "#subject8" ).prop( "disabled", true );
+        $( "#subject9" ).prop( "disabled", true );
+        $( "#subject10" ).prop( "disabled", true );
+        $( "#faculty8" ).prop( "disabled", true );
+        $( "#faculty9" ).prop( "disabled", true );
+        $( "#faculty10" ).prop( "disabled", true );
     }else if(value === "grade2"){
         $("#section1").empty();
         $("#section1").append('<option value="honor">Honor</option><option value="unity">Unity</option></select>');
@@ -563,9 +695,29 @@ Araling Panlipunan
         // $("#enroll").append('<div class="container"><div class="row>"><div class="col-md-12"><div class="table-responsive"><table class="table"><thead><th>Subject</th><th>Teacher</th></thead><tbody><tr><td><select class="form-control" name="subject1"><option value="english">English</option></select></td><td><select class="form-control"  name="faculty1"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject2"><option value="filipino">Filipino</option></select></td><td><select class="form-control"  name="faculty2"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject3"><option value="math">Math</option></select></td><td><select class="form-control"  name="faculty3"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject4"><option value="araling panlipunan">Araling Panlipunan</option></select></td><td><select class="form-control"  name="faculty4"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject5"><option value="mapeh">MAPEH</option></select></td><td><select class="form-control"  name="faculty5"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject6"><option value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option></select></td><td><select class="form-control"  name="faculty6"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject7"><option value="computer">Computer</option></select></td><td><select class="form-control"  name="faculty7"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject8"><option value="science">Science</option></select></td><td><select class="form-control"  name="faculty8"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject9"><option value="TLE">TLE(Technology and Livelihood Education)</option></select></td><td><select class="form-control"  name="faculty9"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr></tbody></table></div></div></div></div>');
         
     }else if(value === "grade11"){
-        
+        $("#section1").empty();
+        $("#section1")
+        .append(
+            '<option value="Sciences Technology Engineering and Mathematics">Sciences Technology Engineering and Mathematics</option>'+            
+            '<option value="Accountancy">Accountancy</option>'+
+            '<option value="Business Management">Business Management</option>'+
+            '<option value="Humanities and Social Sciences">Humanities and Social Sciences</option>' +
+            '<option value="Information and Communication Technology">Information and Communication Technology</option>' +
+            '<option value="Home Economics">Home Economics</option>'
+        );
+        generateTableSHS();
     }else if(value === "grade12"){
-        
+        $("#section1").empty();
+        $("#section1")
+        .append(
+            '<option value="Sciences Technology Engineering and Mathematics">Sciences Technology Engineering and Mathematics</option>'+
+            '<option value="Accountancy">Accountancy</option>'+
+            '<option value="Business Management">Business Management</option>'+
+            '<option value="Humanities and Social Sciences">Humanities and Social Sciences</option>' +
+            '<option value="Information and Communication Technology">Information and Communication Technology</option>' +
+            '<option value="Home Economics">Home Economics</option>'
+        );
+        generateTableSHS();        
     }
        var section1 = document.getElementById("section1").value;
        var subject1 = document.getElementById("subject1").value;
@@ -639,6 +791,7 @@ Araling Panlipunan
     function generate(){
        var value = document.getElementById("yrLvl").value;        
         var section1 = document.getElementById("section1").value;
+        generateSHSSubject();
        var subject1 = document.getElementById("subject1").value;
        var subject2 = document.getElementById("subject2").value;
        var subject3 = document.getElementById("subject3").value;
@@ -701,6 +854,237 @@ Araling Panlipunan
         } else if(subject10 == "<%= handles[i].subject %>" && value == "<%= handles[i].yrLvl %>" && section1 === "<%= handles[i].section %>"){
             
             $("#faculty10").append("<% faculties.forEach(function(faculty){ %> <% if(handles[i].faculty === faculty._id){ %> <option value='<%= faculty._id %>'><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option> <% } %> <% }); %>");
+        }
+       <% } %>
+    }
+
+    function generateTableSHS(){
+       generateSHSSubject();
+        
+       var value = document.getElementById("yrLvl").value;
+       var value1 = document.getElementById("section1").value;
+       
+       document.getElementById("enrolly").disabled = false;
+       
+       var section1 = document.getElementById("section1").value;
+       var subject1 = document.getElementById("shsubject1").value;
+       var subject2 = document.getElementById("shsubject2").value;
+       var subject3 = document.getElementById("shsubject3").value;
+       var subject4 = document.getElementById("shsubject4").value;
+       var subject5 = document.getElementById("shsubject5").value;
+       var subject6 = document.getElementById("shsubject6").value;
+       var subject7 = document.getElementById("shsubject7").value;
+       var subject8 = document.getElementById("shsubject8").value;
+       var subject9 = document.getElementById("shsubject9").value;
+       console.log("Subject1: " +subject1);
+       console.log("Subject2: " +subject2);
+       console.log("Subject3: " +subject3);
+       console.log("Subject4: " +subject4);
+       console.log("Subject5: " +subject5);
+       console.log("Subject6: " +subject6);
+       console.log("Subject7: " +subject7);
+       console.log("Subject8: " +subject8);
+       console.log("Subject9: " +subject9);
+       console.log("Subject10: " +subject10);
+       $("#shfaculty1").empty();
+            $("#shfaculty2").empty();
+            $("#shfaculty3").empty();
+            $("#shfaculty4").empty();
+            $("#shfaculty5").empty();
+            $("#shfaculty6").empty();
+            $("#shfaculty7").empty();
+            $("#shfaculty8").empty();
+            $("#shfaculty9").empty();
+            $("#shfaculty10").empty();
+       <% for(var i = 0; i < handles.length; i++){ %>
+        if(value == "<%= handles[i].yrLvl %>" && section1 == "<%= handles[i].section %>" && subject1 == "<%= handles[i].subject %>"){
+            $("#shfaculty1").append("<% faculties.forEach(function(faculty){ %> <% if(handles[i].faculty == faculty._id){ %> <option value='<%= faculty._id %>'><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option> <% } %> <% }); %>");
+        } else if(value == "<%= handles[i].yrLvl %>" && section1 == "<%= handles[i].section %>" && subject2 == "<%= handles[i].subject %>"){
+            
+            $("#shfaculty2").append("<% faculties.forEach(function(faculty){ %> <% if(handles[i].faculty == faculty._id){ %> <option value='<%= faculty._id %>'><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option> <% } %> <% }); %>");
+        } else if(subject3 == "<%= handles[i].subject %>" && value == "<%= handles[i].yrLvl %>" && section1 == "<%= handles[i].section %>"){
+            
+            $("#shfaculty3").append("<% faculties.forEach(function(faculty){ %> <% if(handles[i].faculty == faculty._id){ %> <option value='<%= faculty._id %>'><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option> <% } %> <% }); %>");
+        } else if(subject4 == "<%= handles[i].subject %>" && value == "<%= handles[i].yrLvl %>" && section1 == "<%= handles[i].section %>"){
+            
+            $("#shfaculty4").append("<% faculties.forEach(function(faculty){ %> <% if(handles[i].faculty == faculty._id){ %> <option value='<%= faculty._id %>'><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option> <% } %> <% }); %>");
+        } else if(subject5 == "<%= handles[i].subject %>" && value == "<%= handles[i].yrLvl %>" && section1 == "<%= handles[i].section %>"){
+            
+            $("#shfaculty5").append("<% faculties.forEach(function(faculty){ %> <% if(handles[i].faculty == faculty._id){ %> <option value='<%= faculty._id %>'><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option> <% } %> <% }); %>");
+        } else if(subject6 == "<%= handles[i].subject %>" && value == "<%= handles[i].yrLvl %>" && section1 == "<%= handles[i].section %>"){
+            
+            $("#shfaculty6").append("<% faculties.forEach(function(faculty){ %> <% if(handles[i].faculty == faculty._id){ %> <option value='<%= faculty._id %>'><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option> <% } %> <% }); %>");
+        } else if(subject7 == "<%= handles[i].subject %>" && value == "<%= handles[i].yrLvl %>" && section1 == "<%= handles[i].section %>"){
+            
+            $("#shfaculty7").append("<% faculties.forEach(function(faculty){ %> <% if(handles[i].faculty == faculty._id){ %> <option value='<%= faculty._id %>'><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option> <% } %> <% }); %>");
+        } else if(subject8 == "<%= handles[i].subject %>" && value == "<%= handles[i].yrLvl %>" && section1 == "<%= handles[i].section %>"){
+            
+            $("#shfaculty8").append("<% faculties.forEach(function(faculty){ %> <% if(handles[i].faculty == faculty._id){ %> <option value='<%= faculty._id %>'><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option> <% } %> <% }); %>");
+        } else if(subject9 == "<%= handles[i].subject %>" && value == "<%= handles[i].yrLvl %>" && section1 == "<%= handles[i].section %>"){
+           
+            $("#shfaculty9").append("<% faculties.forEach(function(faculty){ %> <% if(handles[i].faculty == faculty._id){ %> <option value='<%= faculty._id %>'><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option> <% } %> <% }); %>");
+        } 
+       <% } %>
+       
+
+        console.log(value);
+    
+    }
+
+    function generateSHSSubject(){
+       var value = document.getElementById("yrLvl").value;        
+        var section1 = document.getElementById("section1").value;
+       var subject1 = document.getElementById("shsubject1").value;
+       var subject2 = document.getElementById("shsubject2").value;
+       var subject3 = document.getElementById("shsubject3").value;
+       var subject4 = document.getElementById("shsubject4").value;
+       var subject5 = document.getElementById("shsubject5").value;
+       var subject6 = document.getElementById("shsubject6").value;
+       var subject7 = document.getElementById("shsubject7").value;
+       var subject8 = document.getElementById("shsubject8").value;
+       var subject9 = document.getElementById("shsubject9").value;
+       console.log("GENERATESHS: " + section1);
+       if(section1 === "Sciences Technology Engineering and Mathematics"){
+        $("#shsubject1").empty();
+        $("#shsubject1").append("<option value='Earth Science'>Earth Science</option>");
+        $("#shsubject2").empty();
+        $("#shsubject2").append("<option value='General Mathematics'>General Mathematics</option>");
+        $("#shsubject3").empty();
+        $("#shsubject3").append("<option value='Komunikasyon sa Pananaliksik sa Wika at Kulturang Pilipino'>Komunikasyon sa Pananaliksik sa Wika at Kulturang Pilipino</option>");
+        $("#shsubject4").empty();
+        $("#shsubject4").append("<option value='Oral Communication'>Oral Communication</option>");
+        $("#shsubject5").empty();
+        $("#shsubject5").append("<option value='Personal Development/Pansariling Kaunlaran'>Personal Development/Pansariling Kaunlaran</option>");
+        $("#shsubject6").empty();
+        $("#shsubject6").append("<option value='Physical Education and Health'>Physical Education and Health</option>");
+        $("#shsubject7").empty();
+        $("#shsubject7").append("<option value='English for Academic and Professional Purposes'>English for Academic and Professional Purposes</option>");
+        $("#shsubject8").empty();
+        $("#shsubject8").append("<option value='General Chemistry 1'>General Chemistry 1</option>");
+        $("#shsubject9").empty();
+        $("#shsubject9").append("<option value='Pre Calculus'>Pre Calculus</option>");
+       }else if(section1 ==="Accountancy" || section1 === "Business Management"){
+        $("#shsubject1").empty();
+        $("#shsubject1").append("<option value='21st Century Literature from the Philippines and the World'>21st Century Literature from the Philippines and the World</option>");
+        $("#shsubject2").empty();
+        $("#shsubject2").append("<option value='Understanding Culture, Society and Politics'>Understanding Culture, Society and Politics</option>");
+        $("#shsubject3").empty();
+        $("#shsubject3").append("<option value='Physical Science'>Physical Science</option>");
+        $("#shsubject4").empty();
+        $("#shsubject4").append("<option value='Physical Education and Health'>Physical Education and Health</option>");
+        $("#shsubject5").empty();
+        $("#shsubject5").append("<option value='Empowerment Technologies'>Empowerment Technologies</option>");
+        $("#shsubject6").empty();
+        $("#shsubject6").append("<option value='Practical Research 2'>Practical Research 2</option>");
+        $("#shsubject7").empty();
+        $("#shsubject7").append("<option value='Entrepreneurship'>Entrepreneurship</option>");
+        $("#shsubject8").empty();
+        $("#shsubject8").append("<option value='Business Mathematics'>Business Mathematics</option>");
+        $("#shsubject9").empty();
+
+       }else if(section1 === "Humanities and Social Sciences"){
+        $("#shsubject1").empty();
+        $("#shsubject1").append("<option value='Reading and Writing'>Reading and Writing</option>");
+        $("#shsubject2").empty();
+        $("#shsubject2").append("<option value='Pagbasa at Pagsusuri ng Ibat Ibang Teksto Tungo sa Pananaliksik'>Pagbasa at Pagsusuri ng Ibat Ibang Teksto Tungo sa Pananaliksik</option>");
+        $("#shsubject3").empty();
+        $("#shsubject3").append("<option value='Statistics and Probability'>Statistics and Probability</option>");
+        $("#shsubject4").empty();
+        $("#shsubject4").append("<option value='Physical Education and Health'>Physical Education and Health</option>");
+        $("#shsubject5").empty();
+        $("#shsubject5").append("<option value='Filipino sa Piling Larangan'>Filipino sa Piling Larangan</option>");
+        $("#shsubject6").empty();
+        $("#shsubject6").append("<option value='Practical Research 1'>Practical Research 1</option>");
+        $("#shsubject7").empty();
+        $("#shsubject7").append("<option value='Disciplines and Ideas in the Social Sciences'>Disciplines and Ideas in the Social Sciences</option>");
+        $("#shsubject8").empty();
+        $("#shsubject8").append("<option value='Creative Non-Fiction: The Literacy Essay'>Creative Non-Fiction: The Literacy Essay</option>");
+        $("#shsubject9").empty();
+       }else if(section1 === "Information and Communication Technology"){
+        $("#shsubject1").empty();
+        $("#shsubject1").append("<option value='Reading and Writing'>Reading and Writing</option>");
+        $("#shsubject2").empty();
+        $("#shsubject2").append("<option value='Pagbasa at Pagsusuri ng Ibat Ibang Teksto Tungo sa Pananaliksik'>Pagbasa at Pagsusuri ng Ibat Ibang Teksto Tungo sa Pananaliksik</option>");
+        $("#shsubject3").empty();
+        $("#shsubject3").append("<option value='Statistics and Probability'>Statistics and Probability</option>");
+        $("#shsubject4").empty();
+        $("#shsubject4").append("<option value='Physical Education and Health'>Physical Education and Health</option>");
+        $("#shsubject5").empty();
+        $("#shsubject5").append("<option value='Filipino sa Piling Larangan'>Filipino sa Piling Larangan</option>");
+        $("#shsubject6").empty();
+        $("#shsubject6").append("<option value='Practical Research 1'>Practical Research 1</option>");
+        $("#shsubject7").empty();
+        $("#shsubject7").append("<option value='Computer System Servicing'>Computer System Servicing</option>");
+        $("#shsubject8").empty();
+        $("#shsubject9").empty();
+       }else if(section1 ==="Home Economics"){
+        $("#shsubject1").empty();
+        $("#shsubject1").append("<option value='Contemporary Philippine Arts from the Regions'>Contemporary Philippine Arts from the Regions</option>");
+        $("#shsubject2").empty();
+        $("#shsubject2").append("<option value='Introducting to the Philosophy of the Human Person/Pambungad sa Pilosopiya ng Tao'>Introducting to the Philosophy of the Human Person/Pambungad sa Pilosopiya ng Tao</option>");
+        $("#shsubject3").empty();
+        $("#shsubject3").append("<option value='Entrepreneurship'>Entrepreneurship</option>");
+        $("#shsubject4").empty();
+        $("#shsubject4").append("<option value='Physical Education and Health'>Physical Education and Health</option>");
+        $("#shsubject5").empty();
+        $("#shsubject5").append("<option value='Inquiries, Investigations and Immersions'>Inquiries, Investigations and Immersions</option>");
+        $("#shsubject6").empty();
+        $("#shsubject6").append("<option value='Bread and Pastry Production'>Bread and Pastry Production</option>");
+        $("#shsubject7").empty();
+        $("#shsubject7").append("<option value='Work Immersion'>Work Immersion</option>");
+        $("#shsubject8").empty();
+        $("#shsubject9").empty();
+       }
+       console.log("Subject1: " +subject1);
+       console.log("Subject2: " +subject2);
+       console.log("Subject3: " +subject3);
+       console.log("Subject4: " +subject4);
+       console.log("Subject5: " +subject5);
+       console.log("Subject6: " +subject6);
+       console.log("Subject7: " +subject7);
+       console.log("Subject8: " +subject8);
+       console.log("Subject9: " +subject9);
+       var btn = document.getElementById("enroll");
+    
+       $("#shfaculty1").empty();
+            $("#shfaculty2").empty();
+            $("#shfaculty3").empty();
+            $("#shfaculty4").empty();
+            $("#shfaculty5").empty();
+            $("#shfaculty6").empty();
+            $("#shfaculty7").empty();
+            $("#shfaculty8").empty();
+            $("#shfaculty9").empty();
+       <% for(var i = 0; i < handles.length; i++){ %>
+        if(value == "<%= handles[i].yrLvl %>" && section1 == "<%= handles[i].section %>" && subject1 == "<%= handles[i].subject %>"){
+            $("#shfaculty1").append("<% faculties.forEach(function(faculty){ %> <% if(handles[i].faculty == faculty._id){ %> <option value='<%= faculty._id %>'><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option> <% } %> <% }); %>");
+        } else if(value == "<%= handles[i].yrLvl %>" && section1 == "<%= handles[i].section %>" && subject2 == "<%= handles[i].subject %>"){
+            
+            $("#shfaculty2").append("<% faculties.forEach(function(faculty){ %> <% if(handles[i].faculty == faculty._id){ %> <option value='<%= faculty._id %>'><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option> <% } %> <% }); %>");
+        } else if(subject3 == "<%= handles[i].subject %>" && value == "<%= handles[i].yrLvl %>" && section1 == "<%= handles[i].section %>"){
+            
+            $("#shfaculty3").append("<% faculties.forEach(function(faculty){ %> <% if(handles[i].faculty == faculty._id){ %> <option value='<%= faculty._id %>'><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option> <% } %> <% }); %>");
+        } else if(subject4 == "<%= handles[i].subject %>" && value == "<%= handles[i].yrLvl %>" && section1 == "<%= handles[i].section %>"){
+            
+            $("#shfaculty4").append("<% faculties.forEach(function(faculty){ %> <% if(handles[i].faculty == faculty._id){ %> <option value='<%= faculty._id %>'><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option> <% } %> <% }); %>");
+        } else if(subject5 == "<%= handles[i].subject %>" && value == "<%= handles[i].yrLvl %>" && section1 == "<%= handles[i].section %>"){
+            
+            $("#shfaculty5").append("<% faculties.forEach(function(faculty){ %> <% if(handles[i].faculty == faculty._id){ %> <option value='<%= faculty._id %>'><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option> <% } %> <% }); %>");
+        } else if(subject6 == "<%= handles[i].subject %>" && value == "<%= handles[i].yrLvl %>" && section1 == "<%= handles[i].section %>"){
+            
+            $("#shfaculty6").append("<% faculties.forEach(function(faculty){ %> <% if(handles[i].faculty == faculty._id){ %> <option value='<%= faculty._id %>'><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option> <% } %> <% }); %>");
+        } else if(subject7 == "<%= handles[i].subject %>" && value == "<%= handles[i].yrLvl %>" && section1 == "<%= handles[i].section %>"){
+            
+            $("#shfaculty7").append("<% faculties.forEach(function(faculty){ %> <% if(handles[i].faculty == faculty._id){ %> <option value='<%= faculty._id %>'><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option> <% } %> <% }); %>");
+        } else if(subject8 == "<%= handles[i].subject %>" && value == "<%= handles[i].yrLvl %>" && section1 == "<%= handles[i].section %>"){
+            
+            $("#shfaculty8").append("<% faculties.forEach(function(faculty){ %> <% if(handles[i].faculty == faculty._id){ %> <option value='<%= faculty._id %>'><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option> <% } %> <% }); %>");
+        } else if(subject9 == "<%= handles[i].subject %>" && value == "<%= handles[i].yrLvl %>" && section1 == "<%= handles[i].section %>"){
+           
+            $("#shfaculty9").append("<% faculties.forEach(function(faculty){ %> <% if(handles[i].faculty == faculty._id){ %> <option value='<%= faculty._id %>'><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option> <% } %> <% }); %>");
+        } else if(subject10 == "<%= handles[i].subject %>" && value == "<%= handles[i].yrLvl %>" && section1 === "<%= handles[i].section %>"){
+            
+            $("#shfaculty10").append("<% faculties.forEach(function(faculty){ %> <% if(handles[i].faculty === faculty._id){ %> <option value='<%= faculty._id %>'><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option> <% } %> <% }); %>");
         }
        <% } %>
     }

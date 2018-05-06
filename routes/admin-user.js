@@ -1280,6 +1280,2102 @@ router.post('/enrollment/:id', function(req, res, next) {
         console.log(curr);
       });
       console.log('Success');
+    }else if(req.body.yrLvl === "grade11" && req.body.section ==="Sciences Technology Engineering and Mathematics"){
+      var subject1 = new Subject();
+      subject1.subject = req.body.shsubject1;
+      subject1.email = user.email;
+      subject1.firstName = user.profile.firstName;
+      subject1.middleName = user.profile.middleName;
+      subject1.lastName = user.profile.lastName;
+      subject1.section = req.body.section;
+      subject1.yrLvl = req.body.yrLvl;
+      subject1.faculty = req.body.shfaculty1;
+      curriculum.subjects.push(subject1);
+      // Handle.findOne({
+      //   faculty: req.body.faculty1, 
+      //   subject: req.body.subject1, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      subject1.save();
+      var subject2 = new Subject();
+      subject2.subject = req.body.shsubject2;
+      subject2.email = user.email;
+      subject2.firstName = user.profile.firstName;
+      subject2.middleName = user.profile.middleName;
+      subject2.lastName = user.profile.lastName;
+      subject2.section = req.body.section;
+      subject2.yrLvl = req.body.yrLvl;
+      subject2.faculty = req.body.shfaculty2;
+      curriculum.subjects.push(subject2);
+      subject2.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty2, 
+      //   subject: req.body.subject2, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject3 = new Subject();
+      subject3.subject = req.body.shsubject3;
+      subject3.email = user.email;
+      subject3.firstName = user.profile.firstName;
+      subject3.middleName = user.profile.middleName;
+      subject3.lastName = user.profile.lastName;
+      subject3.section = req.body.section;
+      subject3.yrLvl = req.body.yrLvl;
+      subject3.faculty = req.body.shfaculty3;
+      curriculum.subjects.push(subject3);
+      subject3.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty3, 
+      //   subject: req.body.subject3, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject4 = new Subject();
+      subject4.subject = req.body.shsubject4;
+      subject4.email = user.email;
+      subject4.firstName = user.profile.firstName;
+      subject4.middleName = user.profile.middleName;
+      subject4.lastName = user.profile.lastName;
+      subject4.section = req.body.section;
+      subject4.yrLvl = req.body.yrLvl;
+      subject4.faculty = req.body.shfaculty4;
+      curriculum.subjects.push(subject4);
+      subject4.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty4, 
+      //   subject: req.body.subject4, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject5 = new Subject();
+      subject5.subject = req.body.shsubject5;
+      subject5.email = user.email;
+      subject5.firstName = user.profile.firstName;
+      subject5.middleName = user.profile.middleName;
+      subject5.lastName = user.profile.lastName;
+      subject5.section = req.body.section;
+      subject5.yrLvl = req.body.yrLvl;
+      subject5.faculty = req.body.shfaculty5;
+      curriculum.subjects.push(subject5);
+      subject5.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty5, 
+      //   subject: req.body.subject5, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject6 = new Subject();
+      subject6.subject = req.body.shsubject6;
+      subject6.email = user.email;
+      subject6.firstName = user.profile.firstName;
+      subject6.middleName = user.profile.middleName;
+      subject6.lastName = user.profile.lastName;
+      subject6.section = req.body.section;
+      subject6.yrLvl = req.body.yrLvl;
+      subject6.faculty = req.body.shfaculty6;
+      curriculum.subjects.push(subject6);
+      subject6.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty6, 
+      //   subject: req.body.subject6, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject7 = new Subject();
+      subject7.subject = req.body.shsubject7;
+      subject7.email = user.email;
+      subject7.firstName = user.profile.firstName;
+      subject7.middleName = user.profile.middleName;
+      subject7.lastName = user.profile.lastName;
+      subject7.section = req.body.section;
+      subject7.yrLvl = req.body.yrLvl;
+      subject7.faculty = req.body.shfaculty7;
+      curriculum.subjects.push(subject7);
+      subject7.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty7, 
+      //   subject: req.body.subject7, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject8 = new Subject();
+      subject8.subject = req.body.shsubject8;
+      subject8.email = user.email;
+      subject8.firstName = user.profile.firstName;
+      subject8.middleName = user.profile.middleName;
+      subject8.lastName = user.profile.lastName;
+      subject8.section = req.body.section;
+      subject8.yrLvl = req.body.yrLvl;
+      subject8.faculty = req.body.shfaculty8;
+      curriculum.subjects.push(subject8);
+      subject8.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty8, 
+      //   subject: req.body.subject8, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject9 = new Subject();
+      subject9.subject = req.body.shsubject9;
+      subject9.email = user.email;
+      subject9.firstName = user.profile.firstName;
+      subject9.middleName = user.profile.middleName;
+      subject9.lastName = user.profile.lastName;
+      subject9.section = req.body.section;
+      subject9.yrLvl = req.body.yrLvl;
+      subject9.faculty = req.body.shfaculty9;
+      subject9.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty10, 
+      //   subject: req.body.subject10, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      curriculum.subjects.push(subject9);
+      user.save(function(err, user) {
+        if (err) return next(err);
+        console.log(user);
+      });
+      curriculum.save(function(err, curr) {
+        if (err) return next(err);
+        console.log(curr);
+      });
+      console.log('Success');
+    }else if(req.body.yrLvl === "grade11" && req.body.section ==="Accountancy"){
+      var subject1 = new Subject();
+      subject1.subject = req.body.shsubject1;
+      subject1.email = user.email;
+      subject1.firstName = user.profile.firstName;
+      subject1.middleName = user.profile.middleName;
+      subject1.lastName = user.profile.lastName;
+      subject1.section = req.body.section;
+      subject1.yrLvl = req.body.yrLvl;
+      subject1.faculty = req.body.shfaculty1;
+      curriculum.subjects.push(subject1);
+      // Handle.findOne({
+      //   faculty: req.body.faculty1, 
+      //   subject: req.body.subject1, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      subject1.save();
+      var subject2 = new Subject();
+      subject2.subject = req.body.shsubject2;
+      subject2.email = user.email;
+      subject2.firstName = user.profile.firstName;
+      subject2.middleName = user.profile.middleName;
+      subject2.lastName = user.profile.lastName;
+      subject2.section = req.body.section;
+      subject2.yrLvl = req.body.yrLvl;
+      subject2.faculty = req.body.shfaculty2;
+      curriculum.subjects.push(subject2);
+      subject2.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty2, 
+      //   subject: req.body.subject2, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject3 = new Subject();
+      subject3.subject = req.body.shsubject3;
+      subject3.email = user.email;
+      subject3.firstName = user.profile.firstName;
+      subject3.middleName = user.profile.middleName;
+      subject3.lastName = user.profile.lastName;
+      subject3.section = req.body.section;
+      subject3.yrLvl = req.body.yrLvl;
+      subject3.faculty = req.body.shfaculty3;
+      curriculum.subjects.push(subject3);
+      subject3.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty3, 
+      //   subject: req.body.subject3, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject4 = new Subject();
+      subject4.subject = req.body.shsubject4;
+      subject4.email = user.email;
+      subject4.firstName = user.profile.firstName;
+      subject4.middleName = user.profile.middleName;
+      subject4.lastName = user.profile.lastName;
+      subject4.section = req.body.section;
+      subject4.yrLvl = req.body.yrLvl;
+      subject4.faculty = req.body.shfaculty4;
+      curriculum.subjects.push(subject4);
+      subject4.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty4, 
+      //   subject: req.body.subject4, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject5 = new Subject();
+      subject5.subject = req.body.shsubject5;
+      subject5.email = user.email;
+      subject5.firstName = user.profile.firstName;
+      subject5.middleName = user.profile.middleName;
+      subject5.lastName = user.profile.lastName;
+      subject5.section = req.body.section;
+      subject5.yrLvl = req.body.yrLvl;
+      subject5.faculty = req.body.shfaculty5;
+      curriculum.subjects.push(subject5);
+      subject5.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty5, 
+      //   subject: req.body.subject5, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject6 = new Subject();
+      subject6.subject = req.body.shsubject6;
+      subject6.email = user.email;
+      subject6.firstName = user.profile.firstName;
+      subject6.middleName = user.profile.middleName;
+      subject6.lastName = user.profile.lastName;
+      subject6.section = req.body.section;
+      subject6.yrLvl = req.body.yrLvl;
+      subject6.faculty = req.body.shfaculty6;
+      curriculum.subjects.push(subject6);
+      subject6.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty6, 
+      //   subject: req.body.subject6, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject7 = new Subject();
+      subject7.subject = req.body.shsubject7;
+      subject7.email = user.email;
+      subject7.firstName = user.profile.firstName;
+      subject7.middleName = user.profile.middleName;
+      subject7.lastName = user.profile.lastName;
+      subject7.section = req.body.section;
+      subject7.yrLvl = req.body.yrLvl;
+      subject7.faculty = req.body.shfaculty7;
+      curriculum.subjects.push(subject7);
+      subject7.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty7, 
+      //   subject: req.body.subject7, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject8 = new Subject();
+      subject8.subject = req.body.shsubject8;
+      subject8.email = user.email;
+      subject8.firstName = user.profile.firstName;
+      subject8.middleName = user.profile.middleName;
+      subject8.lastName = user.profile.lastName;
+      subject8.section = req.body.section;
+      subject8.yrLvl = req.body.yrLvl;
+      subject8.faculty = req.body.shfaculty8;
+      curriculum.subjects.push(subject8);
+      subject8.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty8, 
+      //   subject: req.body.subject8, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      // Handle.findOne({
+      //   faculty: req.body.faculty10, 
+      //   subject: req.body.subject10, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      user.save(function(err, user) {
+        if (err) return next(err);
+        console.log(user);
+      });
+      curriculum.save(function(err, curr) {
+        if (err) return next(err);
+        console.log(curr);
+      });
+      console.log('Success');
+    }else if(req.body.yrLvl === "grade11" && req.body.section ==="Business Management"){
+      var subject1 = new Subject();
+      subject1.subject = req.body.shsubject1;
+      subject1.email = user.email;
+      subject1.firstName = user.profile.firstName;
+      subject1.middleName = user.profile.middleName;
+      subject1.lastName = user.profile.lastName;
+      subject1.section = req.body.section;
+      subject1.yrLvl = req.body.yrLvl;
+      subject1.faculty = req.body.shfaculty1;
+      curriculum.subjects.push(subject1);
+      // Handle.findOne({
+      //   faculty: req.body.faculty1, 
+      //   subject: req.body.subject1, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      subject1.save();
+      var subject2 = new Subject();
+      subject2.subject = req.body.shsubject2;
+      subject2.email = user.email;
+      subject2.firstName = user.profile.firstName;
+      subject2.middleName = user.profile.middleName;
+      subject2.lastName = user.profile.lastName;
+      subject2.section = req.body.section;
+      subject2.yrLvl = req.body.yrLvl;
+      subject2.faculty = req.body.shfaculty2;
+      curriculum.subjects.push(subject2);
+      subject2.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty2, 
+      //   subject: req.body.subject2, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject3 = new Subject();
+      subject3.subject = req.body.shsubject3;
+      subject3.email = user.email;
+      subject3.firstName = user.profile.firstName;
+      subject3.middleName = user.profile.middleName;
+      subject3.lastName = user.profile.lastName;
+      subject3.section = req.body.section;
+      subject3.yrLvl = req.body.yrLvl;
+      subject3.faculty = req.body.shfaculty3;
+      curriculum.subjects.push(subject3);
+      subject3.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty3, 
+      //   subject: req.body.subject3, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject4 = new Subject();
+      subject4.subject = req.body.shsubject4;
+      subject4.email = user.email;
+      subject4.firstName = user.profile.firstName;
+      subject4.middleName = user.profile.middleName;
+      subject4.lastName = user.profile.lastName;
+      subject4.section = req.body.section;
+      subject4.yrLvl = req.body.yrLvl;
+      subject4.faculty = req.body.shfaculty4;
+      curriculum.subjects.push(subject4);
+      subject4.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty4, 
+      //   subject: req.body.subject4, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject5 = new Subject();
+      subject5.subject = req.body.shsubject5;
+      subject5.email = user.email;
+      subject5.firstName = user.profile.firstName;
+      subject5.middleName = user.profile.middleName;
+      subject5.lastName = user.profile.lastName;
+      subject5.section = req.body.section;
+      subject5.yrLvl = req.body.yrLvl;
+      subject5.faculty = req.body.shfaculty5;
+      curriculum.subjects.push(subject5);
+      subject5.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty5, 
+      //   subject: req.body.subject5, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject6 = new Subject();
+      subject6.subject = req.body.shsubject6;
+      subject6.email = user.email;
+      subject6.firstName = user.profile.firstName;
+      subject6.middleName = user.profile.middleName;
+      subject6.lastName = user.profile.lastName;
+      subject6.section = req.body.section;
+      subject6.yrLvl = req.body.yrLvl;
+      subject6.faculty = req.body.shfaculty6;
+      curriculum.subjects.push(subject6);
+      subject6.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty6, 
+      //   subject: req.body.subject6, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject7 = new Subject();
+      subject7.subject = req.body.shsubject7;
+      subject7.email = user.email;
+      subject7.firstName = user.profile.firstName;
+      subject7.middleName = user.profile.middleName;
+      subject7.lastName = user.profile.lastName;
+      subject7.section = req.body.section;
+      subject7.yrLvl = req.body.yrLvl;
+      subject7.faculty = req.body.shfaculty7;
+      curriculum.subjects.push(subject7);
+      subject7.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty7, 
+      //   subject: req.body.subject7, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject8 = new Subject();
+      subject8.subject = req.body.shsubject8;
+      subject8.email = user.email;
+      subject8.firstName = user.profile.firstName;
+      subject8.middleName = user.profile.middleName;
+      subject8.lastName = user.profile.lastName;
+      subject8.section = req.body.section;
+      subject8.yrLvl = req.body.yrLvl;
+      subject8.faculty = req.body.shfaculty8;
+      curriculum.subjects.push(subject8);
+      subject8.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty8, 
+      //   subject: req.body.subject8, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      // Handle.findOne({
+      //   faculty: req.body.faculty10, 
+      //   subject: req.body.subject10, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      user.save(function(err, user) {
+        if (err) return next(err);
+        console.log(user);
+      });
+      curriculum.save(function(err, curr) {
+        if (err) return next(err);
+        console.log(curr);
+      });
+      console.log('Success');
+    }else if(req.body.yrLvl === "grade11" && req.body.section ==="Humanities and Social Sciences"){
+      var subject1 = new Subject();
+      subject1.subject = req.body.shsubject1;
+      subject1.email = user.email;
+      subject1.firstName = user.profile.firstName;
+      subject1.middleName = user.profile.middleName;
+      subject1.lastName = user.profile.lastName;
+      subject1.section = req.body.section;
+      subject1.yrLvl = req.body.yrLvl;
+      subject1.faculty = req.body.shfaculty1;
+      curriculum.subjects.push(subject1);
+      // Handle.findOne({
+      //   faculty: req.body.faculty1, 
+      //   subject: req.body.subject1, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      subject1.save();
+      var subject2 = new Subject();
+      subject2.subject = req.body.shsubject2;
+      subject2.email = user.email;
+      subject2.firstName = user.profile.firstName;
+      subject2.middleName = user.profile.middleName;
+      subject2.lastName = user.profile.lastName;
+      subject2.section = req.body.section;
+      subject2.yrLvl = req.body.yrLvl;
+      subject2.faculty = req.body.shfaculty2;
+      curriculum.subjects.push(subject2);
+      subject2.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty2, 
+      //   subject: req.body.subject2, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject3 = new Subject();
+      subject3.subject = req.body.shsubject3;
+      subject3.email = user.email;
+      subject3.firstName = user.profile.firstName;
+      subject3.middleName = user.profile.middleName;
+      subject3.lastName = user.profile.lastName;
+      subject3.section = req.body.section;
+      subject3.yrLvl = req.body.yrLvl;
+      subject3.faculty = req.body.shfaculty3;
+      curriculum.subjects.push(subject3);
+      subject3.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty3, 
+      //   subject: req.body.subject3, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject4 = new Subject();
+      subject4.subject = req.body.shsubject4;
+      subject4.email = user.email;
+      subject4.firstName = user.profile.firstName;
+      subject4.middleName = user.profile.middleName;
+      subject4.lastName = user.profile.lastName;
+      subject4.section = req.body.section;
+      subject4.yrLvl = req.body.yrLvl;
+      subject4.faculty = req.body.shfaculty4;
+      curriculum.subjects.push(subject4);
+      subject4.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty4, 
+      //   subject: req.body.subject4, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject5 = new Subject();
+      subject5.subject = req.body.shsubject5;
+      subject5.email = user.email;
+      subject5.firstName = user.profile.firstName;
+      subject5.middleName = user.profile.middleName;
+      subject5.lastName = user.profile.lastName;
+      subject5.section = req.body.section;
+      subject5.yrLvl = req.body.yrLvl;
+      subject5.faculty = req.body.shfaculty5;
+      curriculum.subjects.push(subject5);
+      subject5.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty5, 
+      //   subject: req.body.subject5, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject6 = new Subject();
+      subject6.subject = req.body.shsubject6;
+      subject6.email = user.email;
+      subject6.firstName = user.profile.firstName;
+      subject6.middleName = user.profile.middleName;
+      subject6.lastName = user.profile.lastName;
+      subject6.section = req.body.section;
+      subject6.yrLvl = req.body.yrLvl;
+      subject6.faculty = req.body.shfaculty6;
+      curriculum.subjects.push(subject6);
+      subject6.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty6, 
+      //   subject: req.body.subject6, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject7 = new Subject();
+      subject7.subject = req.body.shsubject7;
+      subject7.email = user.email;
+      subject7.firstName = user.profile.firstName;
+      subject7.middleName = user.profile.middleName;
+      subject7.lastName = user.profile.lastName;
+      subject7.section = req.body.section;
+      subject7.yrLvl = req.body.yrLvl;
+      subject7.faculty = req.body.shfaculty7;
+      curriculum.subjects.push(subject7);
+      subject7.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty7, 
+      //   subject: req.body.subject7, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject8 = new Subject();
+      subject8.subject = req.body.shsubject8;
+      subject8.email = user.email;
+      subject8.firstName = user.profile.firstName;
+      subject8.middleName = user.profile.middleName;
+      subject8.lastName = user.profile.lastName;
+      subject8.section = req.body.section;
+      subject8.yrLvl = req.body.yrLvl;
+      subject8.faculty = req.body.shfaculty8;
+      curriculum.subjects.push(subject8);
+      subject8.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty8, 
+      //   subject: req.body.subject8, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      // Handle.findOne({
+      //   faculty: req.body.faculty10, 
+      //   subject: req.body.subject10, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      user.save(function(err, user) {
+        if (err) return next(err);
+        console.log(user);
+      });
+      curriculum.save(function(err, curr) {
+        if (err) return next(err);
+        console.log(curr);
+      });
+      console.log('Success');
+    }else if(req.body.yrLvl === "grade11" && req.body.section ==="Information and Communication Technology"){
+      var subject1 = new Subject();
+      subject1.subject = req.body.shsubject1;
+      subject1.email = user.email;
+      subject1.firstName = user.profile.firstName;
+      subject1.middleName = user.profile.middleName;
+      subject1.lastName = user.profile.lastName;
+      subject1.section = req.body.section;
+      subject1.yrLvl = req.body.yrLvl;
+      subject1.faculty = req.body.shfaculty1;
+      curriculum.subjects.push(subject1);
+      // Handle.findOne({
+      //   faculty: req.body.faculty1, 
+      //   subject: req.body.subject1, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      subject1.save();
+      var subject2 = new Subject();
+      subject2.subject = req.body.shsubject2;
+      subject2.email = user.email;
+      subject2.firstName = user.profile.firstName;
+      subject2.middleName = user.profile.middleName;
+      subject2.lastName = user.profile.lastName;
+      subject2.section = req.body.section;
+      subject2.yrLvl = req.body.yrLvl;
+      subject2.faculty = req.body.shfaculty2;
+      curriculum.subjects.push(subject2);
+      subject2.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty2, 
+      //   subject: req.body.subject2, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject3 = new Subject();
+      subject3.subject = req.body.shsubject3;
+      subject3.email = user.email;
+      subject3.firstName = user.profile.firstName;
+      subject3.middleName = user.profile.middleName;
+      subject3.lastName = user.profile.lastName;
+      subject3.section = req.body.section;
+      subject3.yrLvl = req.body.yrLvl;
+      subject3.faculty = req.body.shfaculty3;
+      curriculum.subjects.push(subject3);
+      subject3.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty3, 
+      //   subject: req.body.subject3, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject4 = new Subject();
+      subject4.subject = req.body.shsubject4;
+      subject4.email = user.email;
+      subject4.firstName = user.profile.firstName;
+      subject4.middleName = user.profile.middleName;
+      subject4.lastName = user.profile.lastName;
+      subject4.section = req.body.section;
+      subject4.yrLvl = req.body.yrLvl;
+      subject4.faculty = req.body.shfaculty4;
+      curriculum.subjects.push(subject4);
+      subject4.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty4, 
+      //   subject: req.body.subject4, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject5 = new Subject();
+      subject5.subject = req.body.shsubject5;
+      subject5.email = user.email;
+      subject5.firstName = user.profile.firstName;
+      subject5.middleName = user.profile.middleName;
+      subject5.lastName = user.profile.lastName;
+      subject5.section = req.body.section;
+      subject5.yrLvl = req.body.yrLvl;
+      subject5.faculty = req.body.shfaculty5;
+      curriculum.subjects.push(subject5);
+      subject5.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty5, 
+      //   subject: req.body.subject5, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject6 = new Subject();
+      subject6.subject = req.body.shsubject6;
+      subject6.email = user.email;
+      subject6.firstName = user.profile.firstName;
+      subject6.middleName = user.profile.middleName;
+      subject6.lastName = user.profile.lastName;
+      subject6.section = req.body.section;
+      subject6.yrLvl = req.body.yrLvl;
+      subject6.faculty = req.body.shfaculty6;
+      curriculum.subjects.push(subject6);
+      subject6.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty6, 
+      //   subject: req.body.subject6, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject7 = new Subject();
+      subject7.subject = req.body.shsubject7;
+      subject7.email = user.email;
+      subject7.firstName = user.profile.firstName;
+      subject7.middleName = user.profile.middleName;
+      subject7.lastName = user.profile.lastName;
+      subject7.section = req.body.section;
+      subject7.yrLvl = req.body.yrLvl;
+      subject7.faculty = req.body.shfaculty7;
+      curriculum.subjects.push(subject7);
+      subject7.save();
+     
+      user.save(function(err, user) {
+        if (err) return next(err);
+        console.log(user);
+      });
+      curriculum.save(function(err, curr) {
+        if (err) return next(err);
+        console.log(curr);
+      });
+      console.log('Success');
+    }else if(req.body.yrLvl === "grade11" && req.body.section ==="Home Economics"){
+      var subject1 = new Subject();
+      subject1.subject = req.body.shsubject1;
+      subject1.email = user.email;
+      subject1.firstName = user.profile.firstName;
+      subject1.middleName = user.profile.middleName;
+      subject1.lastName = user.profile.lastName;
+      subject1.section = req.body.section;
+      subject1.yrLvl = req.body.yrLvl;
+      subject1.faculty = req.body.shfaculty1;
+      curriculum.subjects.push(subject1);
+      // Handle.findOne({
+      //   faculty: req.body.faculty1, 
+      //   subject: req.body.subject1, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      subject1.save();
+      var subject2 = new Subject();
+      subject2.subject = req.body.shsubject2;
+      subject2.email = user.email;
+      subject2.firstName = user.profile.firstName;
+      subject2.middleName = user.profile.middleName;
+      subject2.lastName = user.profile.lastName;
+      subject2.section = req.body.section;
+      subject2.yrLvl = req.body.yrLvl;
+      subject2.faculty = req.body.shfaculty2;
+      curriculum.subjects.push(subject2);
+      subject2.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty2, 
+      //   subject: req.body.subject2, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject3 = new Subject();
+      subject3.subject = req.body.shsubject3;
+      subject3.email = user.email;
+      subject3.firstName = user.profile.firstName;
+      subject3.middleName = user.profile.middleName;
+      subject3.lastName = user.profile.lastName;
+      subject3.section = req.body.section;
+      subject3.yrLvl = req.body.yrLvl;
+      subject3.faculty = req.body.shfaculty3;
+      curriculum.subjects.push(subject3);
+      subject3.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty3, 
+      //   subject: req.body.subject3, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject4 = new Subject();
+      subject4.subject = req.body.shsubject4;
+      subject4.email = user.email;
+      subject4.firstName = user.profile.firstName;
+      subject4.middleName = user.profile.middleName;
+      subject4.lastName = user.profile.lastName;
+      subject4.section = req.body.section;
+      subject4.yrLvl = req.body.yrLvl;
+      subject4.faculty = req.body.shfaculty4;
+      curriculum.subjects.push(subject4);
+      subject4.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty4, 
+      //   subject: req.body.subject4, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject5 = new Subject();
+      subject5.subject = req.body.shsubject5;
+      subject5.email = user.email;
+      subject5.firstName = user.profile.firstName;
+      subject5.middleName = user.profile.middleName;
+      subject5.lastName = user.profile.lastName;
+      subject5.section = req.body.section;
+      subject5.yrLvl = req.body.yrLvl;
+      subject5.faculty = req.body.shfaculty5;
+      curriculum.subjects.push(subject5);
+      subject5.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty5, 
+      //   subject: req.body.subject5, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject6 = new Subject();
+      subject6.subject = req.body.shsubject6;
+      subject6.email = user.email;
+      subject6.firstName = user.profile.firstName;
+      subject6.middleName = user.profile.middleName;
+      subject6.lastName = user.profile.lastName;
+      subject6.section = req.body.section;
+      subject6.yrLvl = req.body.yrLvl;
+      subject6.faculty = req.body.shfaculty6;
+      curriculum.subjects.push(subject6);
+      subject6.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty6, 
+      //   subject: req.body.subject6, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject7 = new Subject();
+      subject7.subject = req.body.shsubject7;
+      subject7.email = user.email;
+      subject7.firstName = user.profile.firstName;
+      subject7.middleName = user.profile.middleName;
+      subject7.lastName = user.profile.lastName;
+      subject7.section = req.body.section;
+      subject7.yrLvl = req.body.yrLvl;
+      subject7.faculty = req.body.shfaculty7;
+      curriculum.subjects.push(subject7);
+      subject7.save();
+      
+      user.save(function(err, user) {
+        if (err) return next(err);
+        console.log(user);
+      });
+      curriculum.save(function(err, curr) {
+        if (err) return next(err);
+        console.log(curr);
+      });
+      console.log('Success');
+    }else if(req.body.yrLvl === "grade12" && req.body.section ==="Sciences Technology Engineering and Mathematics"){
+      var subject1 = new Subject();
+      subject1.subject = req.body.shsubject1;
+      subject1.email = user.email;
+      subject1.firstName = user.profile.firstName;
+      subject1.middleName = user.profile.middleName;
+      subject1.lastName = user.profile.lastName;
+      subject1.section = req.body.section;
+      subject1.yrLvl = req.body.yrLvl;
+      subject1.faculty = req.body.shfaculty1;
+      curriculum.subjects.push(subject1);
+      // Handle.findOne({
+      //   faculty: req.body.faculty1, 
+      //   subject: req.body.subject1, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      subject1.save();
+      var subject2 = new Subject();
+      subject2.subject = req.body.shsubject2;
+      subject2.email = user.email;
+      subject2.firstName = user.profile.firstName;
+      subject2.middleName = user.profile.middleName;
+      subject2.lastName = user.profile.lastName;
+      subject2.section = req.body.section;
+      subject2.yrLvl = req.body.yrLvl;
+      subject2.faculty = req.body.shfaculty2;
+      curriculum.subjects.push(subject2);
+      subject2.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty2, 
+      //   subject: req.body.subject2, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject3 = new Subject();
+      subject3.subject = req.body.shsubject3;
+      subject3.email = user.email;
+      subject3.firstName = user.profile.firstName;
+      subject3.middleName = user.profile.middleName;
+      subject3.lastName = user.profile.lastName;
+      subject3.section = req.body.section;
+      subject3.yrLvl = req.body.yrLvl;
+      subject3.faculty = req.body.shfaculty3;
+      curriculum.subjects.push(subject3);
+      subject3.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty3, 
+      //   subject: req.body.subject3, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject4 = new Subject();
+      subject4.subject = req.body.shsubject4;
+      subject4.email = user.email;
+      subject4.firstName = user.profile.firstName;
+      subject4.middleName = user.profile.middleName;
+      subject4.lastName = user.profile.lastName;
+      subject4.section = req.body.section;
+      subject4.yrLvl = req.body.yrLvl;
+      subject4.faculty = req.body.shfaculty4;
+      curriculum.subjects.push(subject4);
+      subject4.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty4, 
+      //   subject: req.body.subject4, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject5 = new Subject();
+      subject5.subject = req.body.shsubject5;
+      subject5.email = user.email;
+      subject5.firstName = user.profile.firstName;
+      subject5.middleName = user.profile.middleName;
+      subject5.lastName = user.profile.lastName;
+      subject5.section = req.body.section;
+      subject5.yrLvl = req.body.yrLvl;
+      subject5.faculty = req.body.shfaculty5;
+      curriculum.subjects.push(subject5);
+      subject5.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty5, 
+      //   subject: req.body.subject5, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject6 = new Subject();
+      subject6.subject = req.body.shsubject6;
+      subject6.email = user.email;
+      subject6.firstName = user.profile.firstName;
+      subject6.middleName = user.profile.middleName;
+      subject6.lastName = user.profile.lastName;
+      subject6.section = req.body.section;
+      subject6.yrLvl = req.body.yrLvl;
+      subject6.faculty = req.body.shfaculty6;
+      curriculum.subjects.push(subject6);
+      subject6.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty6, 
+      //   subject: req.body.subject6, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject7 = new Subject();
+      subject7.subject = req.body.shsubject7;
+      subject7.email = user.email;
+      subject7.firstName = user.profile.firstName;
+      subject7.middleName = user.profile.middleName;
+      subject7.lastName = user.profile.lastName;
+      subject7.section = req.body.section;
+      subject7.yrLvl = req.body.yrLvl;
+      subject7.faculty = req.body.shfaculty7;
+      curriculum.subjects.push(subject7);
+      subject7.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty7, 
+      //   subject: req.body.subject7, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject8 = new Subject();
+      subject8.subject = req.body.shsubject8;
+      subject8.email = user.email;
+      subject8.firstName = user.profile.firstName;
+      subject8.middleName = user.profile.middleName;
+      subject8.lastName = user.profile.lastName;
+      subject8.section = req.body.section;
+      subject8.yrLvl = req.body.yrLvl;
+      subject8.faculty = req.body.shfaculty8;
+      curriculum.subjects.push(subject8);
+      subject8.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty8, 
+      //   subject: req.body.subject8, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject9 = new Subject();
+      subject9.subject = req.body.shsubject9;
+      subject9.email = user.email;
+      subject9.firstName = user.profile.firstName;
+      subject9.middleName = user.profile.middleName;
+      subject9.lastName = user.profile.lastName;
+      subject9.section = req.body.section;
+      subject9.yrLvl = req.body.yrLvl;
+      subject9.faculty = req.body.shfaculty9;
+      subject9.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty10, 
+      //   subject: req.body.subject10, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      curriculum.subjects.push(subject9);
+      user.save(function(err, user) {
+        if (err) return next(err);
+        console.log(user);
+      });
+      curriculum.save(function(err, curr) {
+        if (err) return next(err);
+        console.log(curr);
+      });
+      console.log('Success');
+    }else if(req.body.yrLvl === "grade12" && req.body.section ==="Accountancy"){
+      var subject1 = new Subject();
+      subject1.subject = req.body.shsubject1;
+      subject1.email = user.email;
+      subject1.firstName = user.profile.firstName;
+      subject1.middleName = user.profile.middleName;
+      subject1.lastName = user.profile.lastName;
+      subject1.section = req.body.section;
+      subject1.yrLvl = req.body.yrLvl;
+      subject1.faculty = req.body.shfaculty1;
+      curriculum.subjects.push(subject1);
+      // Handle.findOne({
+      //   faculty: req.body.faculty1, 
+      //   subject: req.body.subject1, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      subject1.save();
+      var subject2 = new Subject();
+      subject2.subject = req.body.shsubject2;
+      subject2.email = user.email;
+      subject2.firstName = user.profile.firstName;
+      subject2.middleName = user.profile.middleName;
+      subject2.lastName = user.profile.lastName;
+      subject2.section = req.body.section;
+      subject2.yrLvl = req.body.yrLvl;
+      subject2.faculty = req.body.shfaculty2;
+      curriculum.subjects.push(subject2);
+      subject2.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty2, 
+      //   subject: req.body.subject2, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject3 = new Subject();
+      subject3.subject = req.body.shsubject3;
+      subject3.email = user.email;
+      subject3.firstName = user.profile.firstName;
+      subject3.middleName = user.profile.middleName;
+      subject3.lastName = user.profile.lastName;
+      subject3.section = req.body.section;
+      subject3.yrLvl = req.body.yrLvl;
+      subject3.faculty = req.body.shfaculty3;
+      curriculum.subjects.push(subject3);
+      subject3.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty3, 
+      //   subject: req.body.subject3, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject4 = new Subject();
+      subject4.subject = req.body.shsubject4;
+      subject4.email = user.email;
+      subject4.firstName = user.profile.firstName;
+      subject4.middleName = user.profile.middleName;
+      subject4.lastName = user.profile.lastName;
+      subject4.section = req.body.section;
+      subject4.yrLvl = req.body.yrLvl;
+      subject4.faculty = req.body.shfaculty4;
+      curriculum.subjects.push(subject4);
+      subject4.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty4, 
+      //   subject: req.body.subject4, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject5 = new Subject();
+      subject5.subject = req.body.shsubject5;
+      subject5.email = user.email;
+      subject5.firstName = user.profile.firstName;
+      subject5.middleName = user.profile.middleName;
+      subject5.lastName = user.profile.lastName;
+      subject5.section = req.body.section;
+      subject5.yrLvl = req.body.yrLvl;
+      subject5.faculty = req.body.shfaculty5;
+      curriculum.subjects.push(subject5);
+      subject5.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty5, 
+      //   subject: req.body.subject5, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject6 = new Subject();
+      subject6.subject = req.body.shsubject6;
+      subject6.email = user.email;
+      subject6.firstName = user.profile.firstName;
+      subject6.middleName = user.profile.middleName;
+      subject6.lastName = user.profile.lastName;
+      subject6.section = req.body.section;
+      subject6.yrLvl = req.body.yrLvl;
+      subject6.faculty = req.body.shfaculty6;
+      curriculum.subjects.push(subject6);
+      subject6.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty6, 
+      //   subject: req.body.subject6, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject7 = new Subject();
+      subject7.subject = req.body.shsubject7;
+      subject7.email = user.email;
+      subject7.firstName = user.profile.firstName;
+      subject7.middleName = user.profile.middleName;
+      subject7.lastName = user.profile.lastName;
+      subject7.section = req.body.section;
+      subject7.yrLvl = req.body.yrLvl;
+      subject7.faculty = req.body.shfaculty7;
+      curriculum.subjects.push(subject7);
+      subject7.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty7, 
+      //   subject: req.body.subject7, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject8 = new Subject();
+      subject8.subject = req.body.shsubject8;
+      subject8.email = user.email;
+      subject8.firstName = user.profile.firstName;
+      subject8.middleName = user.profile.middleName;
+      subject8.lastName = user.profile.lastName;
+      subject8.section = req.body.section;
+      subject8.yrLvl = req.body.yrLvl;
+      subject8.faculty = req.body.shfaculty8;
+      curriculum.subjects.push(subject8);
+      subject8.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty8, 
+      //   subject: req.body.subject8, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      // Handle.findOne({
+      //   faculty: req.body.faculty10, 
+      //   subject: req.body.subject10, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      user.save(function(err, user) {
+        if (err) return next(err);
+        console.log(user);
+      });
+      curriculum.save(function(err, curr) {
+        if (err) return next(err);
+        console.log(curr);
+      });
+      console.log('Success');
+    }else if(req.body.yrLvl === "grade12" && req.body.section ==="Business Management"){
+      var subject1 = new Subject();
+      subject1.subject = req.body.shsubject1;
+      subject1.email = user.email;
+      subject1.firstName = user.profile.firstName;
+      subject1.middleName = user.profile.middleName;
+      subject1.lastName = user.profile.lastName;
+      subject1.section = req.body.section;
+      subject1.yrLvl = req.body.yrLvl;
+      subject1.faculty = req.body.shfaculty1;
+      curriculum.subjects.push(subject1);
+      // Handle.findOne({
+      //   faculty: req.body.faculty1, 
+      //   subject: req.body.subject1, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      subject1.save();
+      var subject2 = new Subject();
+      subject2.subject = req.body.shsubject2;
+      subject2.email = user.email;
+      subject2.firstName = user.profile.firstName;
+      subject2.middleName = user.profile.middleName;
+      subject2.lastName = user.profile.lastName;
+      subject2.section = req.body.section;
+      subject2.yrLvl = req.body.yrLvl;
+      subject2.faculty = req.body.shfaculty2;
+      curriculum.subjects.push(subject2);
+      subject2.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty2, 
+      //   subject: req.body.subject2, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject3 = new Subject();
+      subject3.subject = req.body.shsubject3;
+      subject3.email = user.email;
+      subject3.firstName = user.profile.firstName;
+      subject3.middleName = user.profile.middleName;
+      subject3.lastName = user.profile.lastName;
+      subject3.section = req.body.section;
+      subject3.yrLvl = req.body.yrLvl;
+      subject3.faculty = req.body.shfaculty3;
+      curriculum.subjects.push(subject3);
+      subject3.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty3, 
+      //   subject: req.body.subject3, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject4 = new Subject();
+      subject4.subject = req.body.shsubject4;
+      subject4.email = user.email;
+      subject4.firstName = user.profile.firstName;
+      subject4.middleName = user.profile.middleName;
+      subject4.lastName = user.profile.lastName;
+      subject4.section = req.body.section;
+      subject4.yrLvl = req.body.yrLvl;
+      subject4.faculty = req.body.shfaculty4;
+      curriculum.subjects.push(subject4);
+      subject4.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty4, 
+      //   subject: req.body.subject4, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject5 = new Subject();
+      subject5.subject = req.body.shsubject5;
+      subject5.email = user.email;
+      subject5.firstName = user.profile.firstName;
+      subject5.middleName = user.profile.middleName;
+      subject5.lastName = user.profile.lastName;
+      subject5.section = req.body.section;
+      subject5.yrLvl = req.body.yrLvl;
+      subject5.faculty = req.body.shfaculty5;
+      curriculum.subjects.push(subject5);
+      subject5.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty5, 
+      //   subject: req.body.subject5, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject6 = new Subject();
+      subject6.subject = req.body.shsubject6;
+      subject6.email = user.email;
+      subject6.firstName = user.profile.firstName;
+      subject6.middleName = user.profile.middleName;
+      subject6.lastName = user.profile.lastName;
+      subject6.section = req.body.section;
+      subject6.yrLvl = req.body.yrLvl;
+      subject6.faculty = req.body.shfaculty6;
+      curriculum.subjects.push(subject6);
+      subject6.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty6, 
+      //   subject: req.body.subject6, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject7 = new Subject();
+      subject7.subject = req.body.shsubject7;
+      subject7.email = user.email;
+      subject7.firstName = user.profile.firstName;
+      subject7.middleName = user.profile.middleName;
+      subject7.lastName = user.profile.lastName;
+      subject7.section = req.body.section;
+      subject7.yrLvl = req.body.yrLvl;
+      subject7.faculty = req.body.shfaculty7;
+      curriculum.subjects.push(subject7);
+      subject7.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty7, 
+      //   subject: req.body.subject7, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject8 = new Subject();
+      subject8.subject = req.body.shsubject8;
+      subject8.email = user.email;
+      subject8.firstName = user.profile.firstName;
+      subject8.middleName = user.profile.middleName;
+      subject8.lastName = user.profile.lastName;
+      subject8.section = req.body.section;
+      subject8.yrLvl = req.body.yrLvl;
+      subject8.faculty = req.body.shfaculty8;
+      curriculum.subjects.push(subject8);
+      subject8.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty8, 
+      //   subject: req.body.subject8, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      // Handle.findOne({
+      //   faculty: req.body.faculty10, 
+      //   subject: req.body.subject10, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      user.save(function(err, user) {
+        if (err) return next(err);
+        console.log(user);
+      });
+      curriculum.save(function(err, curr) {
+        if (err) return next(err);
+        console.log(curr);
+      });
+      console.log('Success');
+    }else if(req.body.yrLvl === "grade12" && req.body.section ==="Humanities and Social Sciences"){
+      var subject1 = new Subject();
+      subject1.subject = req.body.shsubject1;
+      subject1.email = user.email;
+      subject1.firstName = user.profile.firstName;
+      subject1.middleName = user.profile.middleName;
+      subject1.lastName = user.profile.lastName;
+      subject1.section = req.body.section;
+      subject1.yrLvl = req.body.yrLvl;
+      subject1.faculty = req.body.shfaculty1;
+      curriculum.subjects.push(subject1);
+      // Handle.findOne({
+      //   faculty: req.body.faculty1, 
+      //   subject: req.body.subject1, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      subject1.save();
+      var subject2 = new Subject();
+      subject2.subject = req.body.shsubject2;
+      subject2.email = user.email;
+      subject2.firstName = user.profile.firstName;
+      subject2.middleName = user.profile.middleName;
+      subject2.lastName = user.profile.lastName;
+      subject2.section = req.body.section;
+      subject2.yrLvl = req.body.yrLvl;
+      subject2.faculty = req.body.shfaculty2;
+      curriculum.subjects.push(subject2);
+      subject2.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty2, 
+      //   subject: req.body.subject2, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject3 = new Subject();
+      subject3.subject = req.body.shsubject3;
+      subject3.email = user.email;
+      subject3.firstName = user.profile.firstName;
+      subject3.middleName = user.profile.middleName;
+      subject3.lastName = user.profile.lastName;
+      subject3.section = req.body.section;
+      subject3.yrLvl = req.body.yrLvl;
+      subject3.faculty = req.body.shfaculty3;
+      curriculum.subjects.push(subject3);
+      subject3.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty3, 
+      //   subject: req.body.subject3, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject4 = new Subject();
+      subject4.subject = req.body.shsubject4;
+      subject4.email = user.email;
+      subject4.firstName = user.profile.firstName;
+      subject4.middleName = user.profile.middleName;
+      subject4.lastName = user.profile.lastName;
+      subject4.section = req.body.section;
+      subject4.yrLvl = req.body.yrLvl;
+      subject4.faculty = req.body.shfaculty4;
+      curriculum.subjects.push(subject4);
+      subject4.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty4, 
+      //   subject: req.body.subject4, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject5 = new Subject();
+      subject5.subject = req.body.shsubject5;
+      subject5.email = user.email;
+      subject5.firstName = user.profile.firstName;
+      subject5.middleName = user.profile.middleName;
+      subject5.lastName = user.profile.lastName;
+      subject5.section = req.body.section;
+      subject5.yrLvl = req.body.yrLvl;
+      subject5.faculty = req.body.shfaculty5;
+      curriculum.subjects.push(subject5);
+      subject5.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty5, 
+      //   subject: req.body.subject5, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject6 = new Subject();
+      subject6.subject = req.body.shsubject6;
+      subject6.email = user.email;
+      subject6.firstName = user.profile.firstName;
+      subject6.middleName = user.profile.middleName;
+      subject6.lastName = user.profile.lastName;
+      subject6.section = req.body.section;
+      subject6.yrLvl = req.body.yrLvl;
+      subject6.faculty = req.body.shfaculty6;
+      curriculum.subjects.push(subject6);
+      subject6.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty6, 
+      //   subject: req.body.subject6, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject7 = new Subject();
+      subject7.subject = req.body.shsubject7;
+      subject7.email = user.email;
+      subject7.firstName = user.profile.firstName;
+      subject7.middleName = user.profile.middleName;
+      subject7.lastName = user.profile.lastName;
+      subject7.section = req.body.section;
+      subject7.yrLvl = req.body.yrLvl;
+      subject7.faculty = req.body.shfaculty7;
+      curriculum.subjects.push(subject7);
+      subject7.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty7, 
+      //   subject: req.body.subject7, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject8 = new Subject();
+      subject8.subject = req.body.shsubject8;
+      subject8.email = user.email;
+      subject8.firstName = user.profile.firstName;
+      subject8.middleName = user.profile.middleName;
+      subject8.lastName = user.profile.lastName;
+      subject8.section = req.body.section;
+      subject8.yrLvl = req.body.yrLvl;
+      subject8.faculty = req.body.shfaculty8;
+      curriculum.subjects.push(subject8);
+      subject8.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty8, 
+      //   subject: req.body.subject8, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      // Handle.findOne({
+      //   faculty: req.body.faculty10, 
+      //   subject: req.body.subject10, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      user.save(function(err, user) {
+        if (err) return next(err);
+        console.log(user);
+      });
+      curriculum.save(function(err, curr) {
+        if (err) return next(err);
+        console.log(curr);
+      });
+      console.log('Success');
+    }else if(req.body.yrLvl === "grade12" && req.body.section ==="Information and Communication Technology"){
+      var subject1 = new Subject();
+      subject1.subject = req.body.shsubject1;
+      subject1.email = user.email;
+      subject1.firstName = user.profile.firstName;
+      subject1.middleName = user.profile.middleName;
+      subject1.lastName = user.profile.lastName;
+      subject1.section = req.body.section;
+      subject1.yrLvl = req.body.yrLvl;
+      subject1.faculty = req.body.shfaculty1;
+      curriculum.subjects.push(subject1);
+      // Handle.findOne({
+      //   faculty: req.body.faculty1, 
+      //   subject: req.body.subject1, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      subject1.save();
+      var subject2 = new Subject();
+      subject2.subject = req.body.shsubject2;
+      subject2.email = user.email;
+      subject2.firstName = user.profile.firstName;
+      subject2.middleName = user.profile.middleName;
+      subject2.lastName = user.profile.lastName;
+      subject2.section = req.body.section;
+      subject2.yrLvl = req.body.yrLvl;
+      subject2.faculty = req.body.shfaculty2;
+      curriculum.subjects.push(subject2);
+      subject2.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty2, 
+      //   subject: req.body.subject2, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject3 = new Subject();
+      subject3.subject = req.body.shsubject3;
+      subject3.email = user.email;
+      subject3.firstName = user.profile.firstName;
+      subject3.middleName = user.profile.middleName;
+      subject3.lastName = user.profile.lastName;
+      subject3.section = req.body.section;
+      subject3.yrLvl = req.body.yrLvl;
+      subject3.faculty = req.body.shfaculty3;
+      curriculum.subjects.push(subject3);
+      subject3.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty3, 
+      //   subject: req.body.subject3, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject4 = new Subject();
+      subject4.subject = req.body.shsubject4;
+      subject4.email = user.email;
+      subject4.firstName = user.profile.firstName;
+      subject4.middleName = user.profile.middleName;
+      subject4.lastName = user.profile.lastName;
+      subject4.section = req.body.section;
+      subject4.yrLvl = req.body.yrLvl;
+      subject4.faculty = req.body.shfaculty4;
+      curriculum.subjects.push(subject4);
+      subject4.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty4, 
+      //   subject: req.body.subject4, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject5 = new Subject();
+      subject5.subject = req.body.shsubject5;
+      subject5.email = user.email;
+      subject5.firstName = user.profile.firstName;
+      subject5.middleName = user.profile.middleName;
+      subject5.lastName = user.profile.lastName;
+      subject5.section = req.body.section;
+      subject5.yrLvl = req.body.yrLvl;
+      subject5.faculty = req.body.shfaculty5;
+      curriculum.subjects.push(subject5);
+      subject5.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty5, 
+      //   subject: req.body.subject5, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject6 = new Subject();
+      subject6.subject = req.body.shsubject6;
+      subject6.email = user.email;
+      subject6.firstName = user.profile.firstName;
+      subject6.middleName = user.profile.middleName;
+      subject6.lastName = user.profile.lastName;
+      subject6.section = req.body.section;
+      subject6.yrLvl = req.body.yrLvl;
+      subject6.faculty = req.body.shfaculty6;
+      curriculum.subjects.push(subject6);
+      subject6.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty6, 
+      //   subject: req.body.subject6, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject7 = new Subject();
+      subject7.subject = req.body.shsubject7;
+      subject7.email = user.email;
+      subject7.firstName = user.profile.firstName;
+      subject7.middleName = user.profile.middleName;
+      subject7.lastName = user.profile.lastName;
+      subject7.section = req.body.section;
+      subject7.yrLvl = req.body.yrLvl;
+      subject7.faculty = req.body.shfaculty7;
+      curriculum.subjects.push(subject7);
+      subject7.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty7, 
+      //   subject: req.body.subject7, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject8 = new Subject();
+      subject8.subject = req.body.shsubject8;
+      subject8.email = user.email;
+      subject8.firstName = user.profile.firstName;
+      subject8.middleName = user.profile.middleName;
+      subject8.lastName = user.profile.lastName;
+      subject8.section = req.body.section;
+      subject8.yrLvl = req.body.yrLvl;
+      subject8.faculty = req.body.shfaculty8;
+      curriculum.subjects.push(subject8);
+      subject8.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty8, 
+      //   subject: req.body.subject8, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      // Handle.findOne({
+      //   faculty: req.body.faculty10, 
+      //   subject: req.body.subject10, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      user.save(function(err, user) {
+        if (err) return next(err);
+        console.log(user);
+      });
+      curriculum.save(function(err, curr) {
+        if (err) return next(err);
+        console.log(curr);
+      });
+      console.log('Success');
+    }else if(req.body.yrLvl === "grade12" && req.body.section ==="Home Economics"){
+      var subject1 = new Subject();
+      subject1.subject = req.body.shsubject1;
+      subject1.email = user.email;
+      subject1.firstName = user.profile.firstName;
+      subject1.middleName = user.profile.middleName;
+      subject1.lastName = user.profile.lastName;
+      subject1.section = req.body.section;
+      subject1.yrLvl = req.body.yrLvl;
+      subject1.faculty = req.body.shfaculty1;
+      curriculum.subjects.push(subject1);
+      // Handle.findOne({
+      //   faculty: req.body.faculty1, 
+      //   subject: req.body.subject1, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      subject1.save();
+      var subject2 = new Subject();
+      subject2.subject = req.body.shsubject2;
+      subject2.email = user.email;
+      subject2.firstName = user.profile.firstName;
+      subject2.middleName = user.profile.middleName;
+      subject2.lastName = user.profile.lastName;
+      subject2.section = req.body.section;
+      subject2.yrLvl = req.body.yrLvl;
+      subject2.faculty = req.body.shfaculty2;
+      curriculum.subjects.push(subject2);
+      subject2.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty2, 
+      //   subject: req.body.subject2, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject3 = new Subject();
+      subject3.subject = req.body.shsubject3;
+      subject3.email = user.email;
+      subject3.firstName = user.profile.firstName;
+      subject3.middleName = user.profile.middleName;
+      subject3.lastName = user.profile.lastName;
+      subject3.section = req.body.section;
+      subject3.yrLvl = req.body.yrLvl;
+      subject3.faculty = req.body.shfaculty3;
+      curriculum.subjects.push(subject3);
+      subject3.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty3, 
+      //   subject: req.body.subject3, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject4 = new Subject();
+      subject4.subject = req.body.shsubject4;
+      subject4.email = user.email;
+      subject4.firstName = user.profile.firstName;
+      subject4.middleName = user.profile.middleName;
+      subject4.lastName = user.profile.lastName;
+      subject4.section = req.body.section;
+      subject4.yrLvl = req.body.yrLvl;
+      subject4.faculty = req.body.shfaculty4;
+      curriculum.subjects.push(subject4);
+      subject4.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty4, 
+      //   subject: req.body.subject4, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject5 = new Subject();
+      subject5.subject = req.body.shsubject5;
+      subject5.email = user.email;
+      subject5.firstName = user.profile.firstName;
+      subject5.middleName = user.profile.middleName;
+      subject5.lastName = user.profile.lastName;
+      subject5.section = req.body.section;
+      subject5.yrLvl = req.body.yrLvl;
+      subject5.faculty = req.body.shfaculty5;
+      curriculum.subjects.push(subject5);
+      subject5.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty5, 
+      //   subject: req.body.subject5, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject6 = new Subject();
+      subject6.subject = req.body.shsubject6;
+      subject6.email = user.email;
+      subject6.firstName = user.profile.firstName;
+      subject6.middleName = user.profile.middleName;
+      subject6.lastName = user.profile.lastName;
+      subject6.section = req.body.section;
+      subject6.yrLvl = req.body.yrLvl;
+      subject6.faculty = req.body.shfaculty6;
+      curriculum.subjects.push(subject6);
+      subject6.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty6, 
+      //   subject: req.body.subject6, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject7 = new Subject();
+      subject7.subject = req.body.shsubject7;
+      subject7.email = user.email;
+      subject7.firstName = user.profile.firstName;
+      subject7.middleName = user.profile.middleName;
+      subject7.lastName = user.profile.lastName;
+      subject7.section = req.body.section;
+      subject7.yrLvl = req.body.yrLvl;
+      subject7.faculty = req.body.shfaculty7;
+      curriculum.subjects.push(subject7);
+      subject7.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty7, 
+      //   subject: req.body.subject7, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      var subject8 = new Subject();
+      subject8.subject = req.body.shsubject8;
+      subject8.email = user.email;
+      subject8.firstName = user.profile.firstName;
+      subject8.middleName = user.profile.middleName;
+      subject8.lastName = user.profile.lastName;
+      subject8.section = req.body.section;
+      subject8.yrLvl = req.body.yrLvl;
+      subject8.faculty = req.body.shfaculty8;
+      curriculum.subjects.push(subject8);
+      subject8.save();
+      // Handle.findOne({
+      //   faculty: req.body.faculty8, 
+      //   subject: req.body.subject8, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      // Handle.findOne({
+      //   faculty: req.body.faculty10, 
+      //   subject: req.body.subject10, 
+      //   section: req.body.section, 
+      //   yrLvl: req.body.yrLvl}, 
+      //   function(err, handle){
+      //     handle.handles.push(subject1);
+      //     handle.save();
+      // });
+      user.save(function(err, user) {
+        if (err) return next(err);
+        console.log(user);
+      });
+      curriculum.save(function(err, curr) {
+        if (err) return next(err);
+        console.log(curr);
+      });
+      console.log('Success');
     }
 
     console.log(user + ' and ' + curriculum);
