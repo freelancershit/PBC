@@ -47,7 +47,7 @@
               </thead>
               <tbody>
                 <% users.forEach(function(user){ %>
-
+                  <% if (user.yrLvl !== "") { %> 
                   <tr>
                     <td>
                       <%= user.idNumber %>
@@ -69,7 +69,9 @@
                       </a>
                     </td>
                   </tr>
+                  <% } %>
                   <% }); %>
+               
               </tbody>
             </table>
           </div>

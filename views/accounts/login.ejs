@@ -1,3 +1,20 @@
+
+			<% if(message.length >0){ %>
+				<div class="alert alert-danger alert-dismissible" style= "position: absolute;
+				top: 0px;
+				right: 1%;
+				height: 100px;
+				width: 400px;
+				z-index: 99;">
+					<button type="button" id="btn" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+
+					</button>
+					<%= message %>
+				</div>
+				<% } %>
+
+
 <% layout("layout") -%>
 	<!-- Inspired by https://codepen.io/transportedman/pen/NPWRGq -->
 
@@ -15,22 +32,7 @@
 	</div>
 
 
-	<div class="row">
-		<div class="col-lg-4 col-md-4"></div>
-		<div class="col-lg-4 col-md-4">
 
-			<% if(message.length >0){ %>
-				<div class="alert alert-danger alert-dismissible">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-
-					</button>
-					<%= message %>
-				</div>
-				<% } %>
-
-		</div>
-	</div>
 
 	<div class="row">
 		<div class="col-md-4 col-sm-4">
@@ -44,3 +46,15 @@
 			</div>
 		</div>
 	</div>
+
+	<script>
+			var delay = 1000;
+		  window.onload = function(){
+			setTimeout( myfunction, delay )
+			// document.getElementById("btn").click();
+		
+		  };
+		  function myfunction() {
+			document.getElementById("btn").click();
+		 }
+		</script>

@@ -117,37 +117,45 @@ router.get('/register', function(req, res, next) {
 
 router.post('/register', function(req, res, next) {
   var pending = new Pending();
-  if (
-    req.body.firstName &&
-    req.body.middleName &&
-    req.body.lastName &&
-    req.body.age &&
-    req.body.gender &&
-    req.body.address &&
-    req.body.email &&
-    req.body.contact
-  ) {
-    pending.firstName = req.body.firstName;
-    pending.middleName = req.body.middleName;
-    pending.lastName = req.body.lastName;
-    pending.age = req.body.age;
-    pending.address = req.body.address;
-    pending.gender = req.body.gender;
-    pending.email = req.body.email;
-    pending.contact = req.body.contact;
-    pending.save(function(err, pendingUser) {
-      console.log(req.body.gender);
-      if (err) return next(err);
-      req.flash(
-        'success',
-        'Your account is in proccess now by the administrator',
-      );
-      res.redirect('/register');
-    });
-  } else {
-    req.flash('errors', 'Please enter all the required information.');
-    res.redirect('/register');
-  }
+  User.findOne({ email: req.body.email }, function(err, existingUser) {
+    if (existingUser) {
+      req.flash('errors', 'Account with that email address already exist');
+      return res.redirect('back');
+    } else {
+      if (
+        req.body.firstName &&
+        req.body.middleName &&
+        req.body.lastName &&
+        req.body.age &&
+        req.body.gender &&
+        req.body.address &&
+        req.body.email &&
+        req.body.contact
+      ) {
+        pending.firstName = req.body.firstName;
+        pending.middleName = req.body.middleName;
+        pending.lastName = req.body.lastName;
+        pending.age = req.body.age;
+        pending.address = req.body.address;
+        pending.gender = req.body.gender;
+        pending.email = req.body.email;
+        pending.contact = req.body.contact;
+        pending.save(function(err, pendingUser) {
+          console.log(req.body.gender);
+          if (err) return next(err);
+          req.flash(
+            'success',
+            'Your account is in proccess now by the administrator',
+          );
+          res.redirect('/register');
+        });
+      } else {
+        req.flash('errors', 'Please enter all the required information.');
+        res.redirect('/register');
+      }
+    }
+  });
+ 
 });
 
 router.get('/gallery', function(req, res, next) {

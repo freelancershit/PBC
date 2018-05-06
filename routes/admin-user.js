@@ -1424,15 +1424,19 @@ router.post("/managepubs/delete", function(req, res, next){
 });
 
 router.post("/managepubs/accept", function(req, res, next){
-  if(req.body.uniqueId){
+  console.log(freq.body.uniqueId);
+  if(req.body.uniqueId > 0){
   var litArray = req.body.uniqueId;
   litArray.forEach(function(lit){
     Literary.update({_id: lit},{status: true}).exec(function(err, lit){
       if(err) return next(err);
       
     });
+  
   });
   return res.redirect("/managepubs");
+} else if (!req.body.uniqueId) {
+  return res.redirect('/managepubs', req.flash("error", "You didnt clicked anything."));
 } else{
   return res.redirect("/managepubs", req.flash("error", "You didnt clicked anything."));
 }
