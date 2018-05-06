@@ -10,6 +10,7 @@ var pendingSchema = new Schema({
     fullName: String,
     age: Number,
     address: String,
+    gender: String,
     contact: String,
     status: {type: String, default: "Pending"},
     date: {type: Date, default: Date.now()}

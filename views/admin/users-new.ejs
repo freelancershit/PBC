@@ -43,11 +43,11 @@
                     </div>
                     <div class="form-group">
                       <label for="name">ID No:</label>
-                      <select id="userNumber" class="form-control" name="idNumber">
-                        <option value="<%= studentCount %>">
+                      <input id="userNumber" class="form-control" name="idNumber" value="<%= studentCount %>">
+                        <!-- <option >
                           <%= studentCount %>
-                        </option>
-                      </select>
+                        </option> -->
+                      </input>
                     </div>
                     <div class="form-group">
                       <label for="name">First Name:</label>
@@ -62,11 +62,11 @@
                       <input class="form-control" type="text" name="lastName" placeholder="Last Name">
                     </div>
 
-                    <label>Birthdate: </label>
+                    <label >Birthdate: </label>
                     <div class="form-group">
-                      <select class="btn btn-default" name="year" id="year">
+                      <select class="btn btn-default" onchange="agecalculator()" name="year" id="year">
                       </select>
-                      <select class="btn btn-default" name="month" id="month">
+                      <select class="btn btn-default" onchange="agecalculator()" name="month" id="month">
                         <option value="01">January</option>
                         <option value="02">February</option>
                         <option value="03">March</option>
@@ -80,41 +80,43 @@
                         <option value="11">November</option>
                         <option value="12">December</option>
                       </select>
-                      <select class="btn btn-default" name="day" id="day">
+                      <select class="btn btn-default" onchange="agecalculator()" name="day" id="day">
 
                       </select>
                     </div>
-                    <div class="form-group">
+                  </div>
+                  <div class="col-md-4" style="margin-top: -5px">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+        
+                
+                    <div class="form-group" style="display: none;">
                       <label for="name">Age:</label>
-                      <input class="form-control" type="number" min="0" name="age" placeholder="Your Age">
+                      <input class="form-control" id="age" type="text" min="0" value= "0" name="age" placeholder="Your Age">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" >
                       <label for="name">Address:</label>
                       <input class="form-control" type="text" name="address" placeholder="Address">
                     </div>
 
-                  </div>
-                  <div class="col-md-4">
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <div class="form-group" style="margin-top: -25px">
+                    <div class="form-group" >
                       <label for="name">Email:</label>
                       <input class="form-control" type="email" name="email" placeholder="abc123@email.com">
                     </div>
+                    <div style="display:none">
                     <div class="form-group">
                       <label for="name">Password:</label>
-                      <input class="form-control" type="password" name="password" placeholder="Password">
+                      <input class="form-control" value="123" type="password" name="password" placeholder="Password">
                     </div>
                     <div class="form-group">
                       <label for="confirmPassword">Confirm Password: </label>
-                      <input class="form-control" type="password" name="confirmPassword" placeholder="Confirm Password">
+                      <input class="form-control" value="123" type="password" name="confirmPassword" placeholder="Confirm Password">
                     </div>
-
-                    <div class="form-group">
+                  </div>
+                    <div class="form-group" style="margin-top: 20px">
                       <label for="">Gender:</label>
                       <br>
                       <label class="radio-inline" style="margin-left: 1%;">
@@ -147,7 +149,7 @@
                       <label for="name">Section:</label>
                       <input class="form-control" type="text" name="section" placeholder="Section">
                     </div> -->
-                    <div class="form-group" style="margin-top:-5px;">
+                    <div class="form-group" style="margin-top: 20px">
                       <label for="pwd">Contact Number:</label>
                       <input type="number" min="0" class="form-control" name="contact" id="contact" placeholder="09XXXXXXXX">
                     </div>
@@ -217,9 +219,9 @@
       var users = document.getElementById("users").value;
 
       if (users === "faculty") {
-        // var numUsers = document.getElementById("userNumber").value = <%= facultyCount %>;
+        var numUsers = document.getElementById("userNumber").value = "<%= facultyCount %>";
         $("#userNumber").empty();
-        $("#userNumber").append('<option value="<%= facultyCount %>"><%= facultyCount %></option>');
+        // $("#userNumber").append('<option value="<%= facultyCount %>"><%= facultyCount %></option>');
         document.getElementById("section").style.display = "none";
 
         document.getElementById("yrlvl").style.display = "none";
@@ -227,18 +229,18 @@
         console.log(numUsers);
       } else if (users === "admin") {
         // document.getElementById("tableFaculty").style.display = "none";
-        // var numUsers = document.getElementById("userNumber").value = <%= adminCount %>;
+        var numUsers = document.getElementById("userNumber").value = "<%= adminCount %>";
         $("#userNumber").empty();
-        $("#userNumber").append('<option value="<%= adminCount %>"><%= adminCount %></option>');
+        // $("#userNumber").append('<option value="<%= adminCount %>"><%= adminCount %></option>');
         document.getElementById("section").style.display = "none";
         document.getElementById("yrlvl").style.display = "none";
         console.log(numUsers);
 
       } else {
         // document.getElementById("tableFaculty").style.display = "none";
-        // var numUsers = document.getElementById("userNumber").value = <%= studentCount %>;
+        var numUsers = document.getElementById("userNumber").value = "<%= studentCount %>";
         $("#userNumber").empty();
-        $("#userNumber").append('<option value="<%= studentCount %>"><%= studentCount %></option>');
+        // $("#userNumber").append('<option value="<%= studentCount %>"><%= studentCount %></option>');
         document.getElementById("section").style.display = "none";
         document.getElementById("yrlvl").style.display = "none";
         console.log(numUsers);
@@ -262,5 +264,21 @@
         // document.getElementById("imgbox2").style.visibility = "visible";
       }
     }
+    function calculate_age(dob) { 
+      
+    var diff_ms = Date.now() - dob.getTime();
+    var age_dt = new Date(diff_ms); 
+  
+    return Math.abs(age_dt.getUTCFullYear() - 1970);
+  }
 
+function agecalculator() {
+  var year = document.getElementById("year").value;
+  var month = document.getElementById("month").value;
+  var day = document.getElementById("day").value;
+  var age = document.getElementById("age");
+  var totalAge = calculate_age(new Date(year, month, day));
+  age.value = totalAge;
+
+}
   </script>

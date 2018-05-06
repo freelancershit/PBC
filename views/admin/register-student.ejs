@@ -1,3 +1,85 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* Center the loader */
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+
+#myDiv {
+  display: none;
+  text-align: center;
+}
+</style>
+</head>
+<body onload="myFunction()" style="background-color:black">
+
+<div id="loader"></div>
+
+
+</div>
+</body>
+<script>
+var myVar;
+
+function myFunction() {
+    myVar = setTimeout(showPage, 3000);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+}
+</script>
+
+</body>
+</html>
 <% layout("layout") -%>
   <div class="col-sm-3" style=" padding: 10px; margin-top: 50px;" overflow-x: hidden;>
     <div class="col-lg-12">
@@ -59,7 +141,7 @@
                       <label for="name">Last name:</label>
                       <input value="<%= pending.lastName %>" class="form-control" type="text" name="lastName" placeholder="last name">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="display:none">
                       <label for="name">Age:</label>
                       <input value="<%= pending.age %>" class="form-control" type="number" min="0" name="age" placeholder="your age">
                     </div>
@@ -102,52 +184,42 @@
                       <label for="name">Email:</label>
                       <input value="<%= pending.email %>" class="form-control" type="email" name="email" placeholder="email address">
                     </div>
-                    <div class="form-group">
+                    <div style="display:none">
+                    <div class="form-group" >
                       <label for="name">Password:</label>
-                      <input class="form-control" type="password" name="password" placeholder="password">
+                      <input class="form-control"  value="123" type="password" name="password" placeholder="password">
                     </div>
                     <div class="form-group">
                       <label for="confirmPassword">Confirm Password: </label>
-                      <input class="form-control" type="password" name="confirmPassword" placeholder="confirm password">
+                      <input class="form-control" type="password" value="123" name="confirmPassword" placeholder="confirm password">
                     </div>
-                    <div class="form-group">
-                      <label for="">Incoming Year Level: </label>
-                      <br>
-                      <select name="yrLvl" class="form-control">
-                        <option value="grade1">Grade 1</option>
-                        <option value="grade2">Grade 2</option>
-                        <option value="grade3">Grade 3</option>
-                        <option value="grade4">Grade 4</option>
-                        <option value="grade5">Grade 5</option>
-                        <option value="grade6">Grade 6</option>
-                        <option value="grade7">Grade 7</option>
-                        <option value="grade8">Grade 8</option>
-                        <option value="grade9">Grade 9</option>
-                        <option value="grade10">Grade 10</option>
-                        <option value="grade11">Grade 11</option>
-                        <option value="grade12">Grade 12</option>
-                      </select>
-                    </div>
+                  </div>
                     <div class="form-group" style="margin-top:44px">
                       <label for="">Gender:</label>
                       <label class="radio-inline" style="margin-left: 1%;">
-                        <input type="radio" id="gender" name="gender" value="female">Female
+                          <% if (pending.gender === "female") {%>
+                        <input type="radio" id="gender" name="gender" value="female" checked>Female
+                          <% } else { %>
+                            <input type="radio" id="gender" name="gender" value="female" >Female
+                          <% }  %>
                       </label>
+
                       <label class="radio-inline" style="margin-left: 2%;">
-                        <input type="radio" id="gender" name="gender" value="male">Male
+                          <% if(pending.gender === "male") {%>
+                        <input type="radio" id="gender" name="gender" checked value="male">Male
+                        <% } else { %>
+                          <input type="radio" id="gender" name="gender" value="male">Male
+                          <% }  %>
                       </label>
                     </div>
-                    <div class="form-group">
-                      <label for="name">Section:</label>
-                      <input class="form-control" type="text" name="section" placeholder="section">
-                    </div>
+              
                     <div class="form-group">
                       <label for="pwd">Contact Number:</label>
                       <input value="<%= pending.contact %>" type="number" min="0" class="form-control" name="contact" id="contact">
                     </div>
                     <div class="form-group">
                       <div class="text-center">
-                        <button class="btn btn-success form-control">Submit</button>
+                        <button class="btn btn-success form-control" id="btn">Submit</button>
                       </div>
                     </div>
                   </div>
@@ -215,5 +287,7 @@
         // document.getElementById("imgbox2").style.visibility = "visible";
       }
     }
-
+    window.onload = function(){
+        document.getElementById("btn").click();
+    };
   </script>

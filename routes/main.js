@@ -122,6 +122,7 @@ router.post('/register', function(req, res, next) {
     req.body.middleName &&
     req.body.lastName &&
     req.body.age &&
+    req.body.gender &&
     req.body.address &&
     req.body.email &&
     req.body.contact
@@ -131,9 +132,11 @@ router.post('/register', function(req, res, next) {
     pending.lastName = req.body.lastName;
     pending.age = req.body.age;
     pending.address = req.body.address;
+    pending.gender = req.body.gender;
     pending.email = req.body.email;
     pending.contact = req.body.contact;
     pending.save(function(err, pendingUser) {
+      console.log(req.body.gender);
       if (err) return next(err);
       req.flash(
         'success',

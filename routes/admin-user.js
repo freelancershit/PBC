@@ -351,8 +351,8 @@ router.post('/manage/:id', adminAuthentication, function(req, res, next) {
     req.body.email &&
     req.body.contact &&
     req.body.user &&
-    req.body.section &&
-    req.body.yrLvl &&
+    // req.body.section &&
+    // req.body.yrLvl &&
     req.body.idNum &&
     req.body.year &&
     req.body.month &&
@@ -370,8 +370,8 @@ router.post('/manage/:id', adminAuthentication, function(req, res, next) {
     user.profile.picture = user.gravatar();
     user.age = req.body.age;
     user.user = req.body.user;
-    user.section = req.body.section;
-    user.yrLvl = req.body.yrLvl;
+    // user.section = req.body.section;
+    // user.yrLvl = req.body.yrLvl;
     user.idNumber = req.body.idNum;
     user.gender = req.body.gender;
     user.address = req.body.address;
