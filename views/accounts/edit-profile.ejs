@@ -1,11 +1,15 @@
 <% layout("layout") -%>
-  <div class="col-sm-3" style=" padding: 10px; margin-top: 50px;" overflow-x: hidden;>
-    <div class="col-lg-12">
     <% if(user.user === "admin"){ %>
+      <div class="col-sm-3" style=" padding: 10px; margin-top: 50px;" overflow-x: hidden;>
+          <div class="col-lg-12">
       <% include ../partials/adminpanel %>
     <% } else if(user.user === "faculty"){ %>
+      <div class="col-sm-3" style=" padding: 10px; margin-top: 50px;" overflow-x: hidden;>
+          <div class="col-lg-12">
       <% include ../partials/facultypanel %>
     <% }else if(user.user === "student"){ %>
+      <div class="col-sm-3" style=" padding: 10px; margin-top:70px;" overflow-x: hidden;>
+          <div class="col-lg-12">
       <% include ../partials/studentpanel %>
     <% } %> 
       </div>
