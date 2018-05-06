@@ -72,6 +72,7 @@ if(req.body.id.length > 0){
         console.log(subject);
     });
   }
+  res.redirect('/viewencoded-grades');
 
   
   // Subject.findById(req.params.id)
