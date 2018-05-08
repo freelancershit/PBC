@@ -3390,18 +3390,180 @@ router.get('/studentlist', function(req, res, next) {
   });
 });
 
+router.post("/studentlist", function(req, res, next){
+  Subject
+  .count({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)})
+  .exec(function(err, counter){
+    console.log(counter);
+    if(counter > 0){
+  if(req.body.grading === "firstGrading"){
+  for(var i = 0; i < counter; i++){
+    Subject.updateMany({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, {first : true}).exec(function(err, subjects){
+      if(err) return next(err);
+      console.log(subjects);
+      if(!subjects){
+        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {first : true}).exec(function(err, secondSubjects){
+          if(err) return next(err);
+          console.log(secondSubjects);
+        });
+      }
+    });
+}
+} else if(req.body.grading === "secondGrading"){
+  for(var i = 0; i < counter; i++){
+    Subject.updateMany({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, {second : true}).exec(function(err, subjects){
+      if(err) return next(err);
+      console.log(subjects);
+      if(!subjects){
+        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {second : true}).exec(function(err, secondSubjects){
+          if(err) return next(err);
+          console.log(secondSubjects);
+        });
+      }
+    });
+}
+}else if(req.body.grading === "thirdGrading"){
+  for(var i = 0; i < counter; i++){
+    Subject.updateMany({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, {third : true}).exec(function(err, subjects){
+      if(err) return next(err);
+      console.log(subjects);
+      if(!subjects){
+        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {third : true}).exec(function(err, secondSubjects){
+          if(err) return next(err);
+          console.log(secondSubjects);
+        });
+      }
+    });
+}
+}else if(req.body.grading === "fourthGrading"){
+  for(var i = 0; i < counter; i++){
+    Subject.updateMany({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, {fourth : true}).exec(function(err, subjects){
+      if(err) return next(err);
+      console.log(subjects);
+      if(!subjects){
+        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {fourth : true}).exec(function(err, secondSubjects){
+          if(err) return next(err);
+          console.log(secondSubjects);
+        });
+      }
+    });
+}
+}else if(req.body.grading === "firstSem"){
+  for(var i = 0; i < counter; i++){
+    Subject.updateMany({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, {firstSemester : true}).exec(function(err, subjects){
+      if(err) return next(err);
+      console.log(subjects);
+      if(!subjects){
+        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {firstSemester : true}).exec(function(err, secondSubjects){
+          if(err) return next(err);
+          console.log(secondSubjects);
+        });
+      }
+    });
+}
+}else if(req.body.grading === "secondSem"){
+  for(var i = 0; i < counter; i++){
+    Subject.updateMany({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, {secondSemester : true}).exec(function(err, subjects){
+      if(err) return next(err);
+      console.log(subjects);
+      if(!subjects){
+        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {secondSemester : true}).exec(function(err, secondSubjects){
+          if(err) return next(err);
+          console.log(secondSubjects);
+        });
+      }
+    });
+}
+}
+} else if(counter == 0){
+  if(req.body.grading === "firstGrading"){
+        Subject
+        .updateMany({
+          academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {first : true}).exec(function(err, secondSubjects){
+          if(err) return next(err);
+          console.log(secondSubjects);
+        });
+  }
+}else if(req.body.grading === "secondGrading"){
+        Subject
+        .updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {second : true}).exec(function(err, secondSubjects){
+          if(err) return next(err);
+          console.log(secondSubjects);
+        });
+}else if(req.body.grading === "thirdGrading"){
+        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {third : true}).exec(function(err, secondSubjects){
+          if(err) return next(err);
+          console.log(secondSubjects);
+        });
+}else if(req.body.grading === "fourthGrading"){
+        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {fourth : true}).exec(function(err, secondSubjects){
+          if(err) return next(err);
+          console.log(secondSubjects);
+        });
+}else if(req.body.grading === "firstSem"){
+        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {firstSemester : true}).exec(function(err, secondSubjects){
+          if(err) return next(err);
+          console.log(secondSubjects);
+        });
+}else if(req.body.grading === "secondSem"){
+        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {secondSemester : true}).exec(function(err, secondSubjects){
+          if(err) return next(err);
+          console.log(secondSubjects);
+        });
+}
+
+return res.redirect("/studentlist");
+});
+  
+});
+
+router.put("/studentlist", function(req, res, next){
+  Subject
+  .count({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)})
+  .exec(function(err, counter){
+    console.log(counter);
+    if(counter > 0){
+    Subject.updateMany({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, {first : false, second: false, third: false, fourth: false, firstSemester: false, secondSemester: false}).exec(function(err, subjects){
+      if(err) return next(err);
+      console.log(subjects);
+    });
+}else if(counter == 0){
+      Subject.updateMany({academicYear: ((new Date()).getFullYear() -1) + "-" + ((new Date()).getFullYear())}, {first : false, second: false, third: false, fourth: false, firstSemester: false, secondSemester: false}).exec(function(err, subjects){
+        if(err) return next(err);
+        console.log(subjects);
+      });
+}
+return res.redirect("/studentlist");
+});
+
+});
+
 router.get('/studentlist/:id', function(req, res, next) {
   Curriculum.findOne({
-    studentId: req.params.id,
+    studentId: req.params.id, $or:{
     academicYear:
-      new Date().getFullYear() + '-' + (new Date().getFullYear() + 1),
-  })
+      (new Date()).getFullYear() + '-' + (new Date().getFullYear() + 1)
+    }})
     .populate('subjects')
     .exec(function(err, curriculum) {
       console.log(curriculum);
-      User.findById(req.params.id, function(err, user) {
-        res.render('admin/viewgrade', { curriculum: curriculum, user: user });
-      });
+      if(curriculum){
+        User.findById(req.params.id, function(err, user) {
+          res.render('admin/viewgrade', { curriculum: curriculum, user: user });
+        });
+      } else if(!curriculum){
+        Curriculum.findOne({
+          studentId: req.params.id, $or:{
+          academicYear:
+            ((new Date()).getFullYear() - 1) + '-' + (new Date()).getFullYear()
+          }})
+          .populate('subjects')
+          .exec(function(err, curriculum) {
+            User.findById(req.params.id, function(err, user) {
+              res.render('admin/viewgrade', { curriculum: curriculum, user: user });
+            });
+          });
+      }
     });
 });
 

@@ -14,6 +14,16 @@
       <button>submit</button>
   <% }); %>
   </form>
+
+  <input onchange="changeValue();" type="number" id="try" />
+  <input type="number" id="xd" />
+  <script>
+  function changeValue(){
+  var x = document.getElementById("try").value;
+  document.getElementById("xd").value = x;
+  console.log(x);
+}
+  </script>
   </div>
   </div>
   </div>

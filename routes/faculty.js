@@ -28,32 +28,82 @@ router.get("/encode/:yr/:sec/:subj", function(req, res, next){
 router.get('/encode-grades/:id/:yrLvl/:subject/:section', function(req, res, next) {
     Subject.find({faculty: req.params.id, yrLvl:req.params.yrLvl, subject: req.params.subject, section: req.params.section})
     .exec(function(err, handle){
+      console.log(handle);
     res.render('faculty/encode-grades', {handle : handle, yrLvl: req.params.yrLvl, subject: req.params.subject, section: req.params.section});
   });
 });
 
 router.post("/encode-grades", function(req, res, next){
   var grades = [];
+  if(req.body.firstGrading){
   if(req.body.firstGrading.length > 0){
   var firstGrading = req.body.firstGrading;
+  console.log(req.body.firstGrading);
 }
+}
+if(req.body.secondGrading){
   if(req.body.secondGrading.length > 0){
   var secondGrading = req.body.secondGrading;
 }
+}
+if(req.body.thirdGrading){
   if(req.body.thirdGrading.length > 0){
   var thirdGrading = req.body.thirdGrading;
 }
+}
+if(req.body.fourthGrading){
   if(req.body.fourthGrading.length > 0){
   var fourthGrading = req.body.fourthGrading;
 }
+}
+if(req.body.finalGrading){
   if(req.body.finalGrading.length > 0){
   var finalGrading = req.body.finalGrading;
 }
+}
+if(req.body.remarks){
   if(req.body.remarks.length > 0){
   var remarks = req.body.remarks;
 }
+}
+if(req.body.id){
 if(req.body.id.length > 0){
   for(var i = 0; i < req.body.id.length; i++){
+if(req.body.firstGrading){
+  grades[i] ={
+    firstGrading : firstGrading[i]
+  }
+}
+if(req.body.secondGrading){
+  grades[i] ={
+    secondGrading : secondGrading[i]
+  }
+}
+if(req.body.thirdGrading){
+  grades[i] ={
+    thirdGrading : thirdGrading[i]
+  }
+}
+
+if(req.body.fourthGrading){
+  grades[i] ={
+    fourthGrading : fourthGrading[i]
+  }
+}
+
+if(req.body.finalGrading){
+  grades[i] ={
+    finalGrading : finalGrading[i]
+  }
+}
+
+if(req.body.remarks){
+  grades[i] ={
+    remarks : remarks[i]
+  }
+}
+
+if(req.body.firstGrading && req.body.secondGrading && req.body.thirdGrading && req.body.fourthGrading && req.body.finalGrading && req.body.remarks){
     grades[i] ={
       firstGrading : firstGrading[i],
       secondGrading : secondGrading[i],
@@ -63,11 +113,13 @@ if(req.body.id.length > 0){
       remarks : remarks[i]
     }
   }
+  }
+  }
 }
-
+console.log(grades);
   var gradeArray = req.body.id;
   for(var i = 0; i < gradeArray.length; i++){
-    Subject.update({_id: gradeArray[i]}, grades[i]).exec(function(err, subject){
+    Subject.update({_id: gradeArray[i]}, {$set: grades[i]}).exec(function(err, subject){
       if(err) return next(err);
         console.log(subject);
     });
