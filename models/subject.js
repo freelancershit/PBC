@@ -2,15 +2,15 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var subjectSchema = new Schema({
-    firstGrading: {type: Number, default: 0},
-    secondGrading: {type: Number, default: 0},
-    thirdGrading: {type: Number, default: 0},
-    fourthGrading: {type: Number, default: 0},
-    finalGrading: {type: Number, default: 0},
+    firstGrading: {type: String, default: "0"},
+    secondGrading: {type: String, default: "0"},
+    thirdGrading: {type: String, default: "0"},
+    fourthGrading: {type: String, default: "0"},
+    finalGrading: {type: String, default: "0"},
     remarks: { type: String, default: "" },
-    firstSem: {type: Number, default: 0},
+    firstSem: {type: String, default: "0"},
     postFirstSem:{type: Boolean, default: false},
-    secondSem: {type: Number, default: 0},
+    secondSem: {type: String, default: "0"},
     postSecondSem: {type:Boolean, default: false},
     firstSemester: {type: Boolean, default: false},
     postFirstGrading: {type: Boolean, default: false},

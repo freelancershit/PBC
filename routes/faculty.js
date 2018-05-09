@@ -71,10 +71,13 @@ if(req.body.id){
 if(req.body.id.length > 0){
   for(var i = 0; i < req.body.id.length; i++){
 if(req.body.firstGrading){
+  console.log("value: " + firstGrading[i]);
   grades[i] ={
     firstGrading : firstGrading[i],
     first: false
   }
+  console.log("array: " + grades[i].firstGrading );
+  console.log("array: " + grades[i].first );
 }
 if(req.body.secondGrading){
   grades[i] ={
@@ -92,19 +95,9 @@ if(req.body.thirdGrading){
 if(req.body.fourthGrading){
   grades[i] ={
     fourthGrading : fourthGrading[i],
+    remarks: remarks[i],
+    finalGrading: finalGrading[i],
     fourth : false
-  }
-}
-
-if(req.body.finalGrading){
-  grades[i] ={
-    finalGrading : finalGrading[i]
-  }
-}
-
-if(req.body.remarks){
-  grades[i] ={
-    remarks : remarks[i]
   }
 }
 
@@ -167,8 +160,9 @@ if(req.body.firstGrading && req.body.secondGrading && req.body.thirdGrading && r
 }
 console.log(grades);
   var gradeArray = req.body.id;
+  console.log("before loop:" + grades[i]);
   for(var i = 0; i < gradeArray.length; i++){
-    Subject.update({_id: gradeArray[i]}, {$set: grades[i]}).exec(function(err, subject){
+    Subject.updateMany({_id: gradeArray[i]},  {$set: grades[i]}).exec(function(err, subject){
       if(err) return next(err);
         console.log(subject);
     });

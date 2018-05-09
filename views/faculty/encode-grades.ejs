@@ -113,77 +113,7 @@
                             <% } %>
 
                             </form>
-                            <div style="display: none;">
-                            <form id="encodeSave" action="/encode-grades/save" method="POST">
-                            <input type="hidden" name="yrLvl" value="<%= yrLvl %>" />
                             
-                            <%if(!(yrLvl === "grade11" || yrLvl === "grade12")){ %>
-                            <% handle.forEach(function(subject){ %>
-                            <tr>
-                                <input type="hidden" value="<%= subject._id %>" name="id[]" />
-                                <td><%= subject.lastName %>, <%= subject.firstName %> <%= subject.middleName %></td>
-                                <td>
-                                <% if(subject.first == true || subject.first == "true"){ %>
-                                    <input id="first" value="<%= subject.firstGrading %>" name="firstGrading[]" type="number" min="0" max="100" style="width:60px;" class="form-control">
-                                <%} else{ %>
-                                    <input disabled id="first" value="<%= subject.firstGrading %>" name="firstGrading[]" type="number" min="0" max="100" style="width:60px;" class="form-control">
-                                <% } %>
-                                    </td>
-                                <td>
-                                <% if(subject.second == true || subject.second == "true"){ %>
-                                    <input id="second" value="<%= subject.secondGrading %>" name="secondGrading[]" type="number" min="0" max="100" style="width:60px" class="form-control">
-                                <% }else{ %>
-                                   <input disabled id="second" value="<%= subject.secondGrading %>" name="secondGrading[]" type="number" min="0" max="100" style="width:60px" class="form-control">
-                                <% } %>
-                                    </td>
-                                <td>
-                                <% if(subject.third == true || subject.third == "true"){ %>
-                                    <input id="third" value="<%= subject.thirdGrading %>" name="thirdGrading[]" type="number" min="0" max="100" style="width:60px" class="form-control">
-                                    <% }else{ %>
-                                    <input disabled id="third" value="<%= subject.thirdGrading %>" name="thirdGrading[]" type="number" min="0" max="100" style="width:60px" class="form-control">
-                                    <% } %>
-                                    </td>
-                                <td>
-                                <% if(subject.fourth == true || subject.fourth == "true"){ %>
-                                    <input id="fourth" value="<%= subject.fourthGrading %>" name="fourthGrading[]" type="number" min="0" max="100" style="width:60px" class="form-control">
-                                <% }else {%>
-                                <input disabled id="fourth" value="<%= subject.fourthGrading %>" name="fourthGrading[]" type="number" min="0" max="100" style="width:60px" class="form-control">
-                                <% } %>
-                                    </td>
-                                <td>
-                                    <input value="<%= subject.finalGrading %>" name="finalGrading[]" type="number" min="0" max="100" style="width:60px" class="form-control">
-                                </td>
-                                <td>
-                                    <input id="remarks" value="<%= subject.remarks %>" name="remarks[]" type="text" style="width:60px" class="form-control">
-                                </td>
-                            </tr>
-                            <% }); %>
-                            <% }else{ %>
-                            <% handle.forEach(function(subject){ %>
-                            <tr>
-                            <input type="hidden" value="<%= subject._id %>" name="id[]" />                            
-                            <td><%= subject.lastName %>, <%= subject.firstName %> <%= subject.middleName %></td>
-                            <td>
-                                
-                                <% if(subject.firstSemester == true || subject.firstSemester == "true"){ %>
-                                    <input id="firstSem" value="<%= subject.firstSem %>" name="firstSem[]" type="number" min="0" max="100" style="width:60px" class="form-control">
-                                <% }else{ %>
-                                <input disabled id="firstSem" value="<%= subject.firstSem %>" name="firstSem[]" type="number" min="0" max="100" style="width:60px" class="form-control">
-                                <% } %>
-                                    </td>
-                                <td>
-                                <% if(subject.secondSemester == true || subject.secondSemester == "true"){ %>
-                                <input id="secondSem" value="<%= subject.secondSem %>" name="secondSem[]" type="number" min="0" max="100" style="width:60px" class="form-control">
-                                <% }else{ %>                            
-                                <input disabled id="secondSem" value="<%= subject.secondSem %>" name="secondSem[]" type="number" min="0" max="100" style="width:60px" class="form-control">
-                                <% } %>
-                                </td>
-                            </tr>
-                            <% }); %>
-                            <% } %>
-
-                            </form>
-                            </div>
                         </table>
                         <div style="margin-top:195px; margin-left:610px;">
                              <button id="encode" onclick="submitForms()" type="button" style="width: 100px;" class="btn btn-success">
