@@ -43,13 +43,40 @@ router.post('/createliteraryworks', function(req, res, next) {
 });
 
 router.get('/viewgrade', function(req, res, next) {
-  console.log('user:' + req.user);
-  Curriculum.findOne({ email: req.user.email })
+  // console.log('user:' + req.user);
+  // Curriculum.findOne({ email: req.user.email })
+  //   .populate('subjects')
+  //   .exec(function(err, curriculum) {
+  //     if (err) return next(err);
+  //     console.log('subjects: ' + curriculum);
+  //     res.render('student/grade', { curriculum: curriculum });
+  //   });
+
+  Curriculum.findOne({
+    email: req.user.email,
+    academicYear:
+      (new Date()).getFullYear() + '-' + (new Date().getFullYear() + 1)
+    })
     .populate('subjects')
     .exec(function(err, curriculum) {
-      if (err) return next(err);
-      console.log('subjects: ' + curriculum);
-      res.render('student/grade', { curriculum: curriculum });
+      console.log(curriculum);
+      if(curriculum){
+        User.findById(req.user._id, function(err, user) {
+          res.render('student/grade', { curriculum: curriculum, user: user });
+        });
+      } else if(!curriculum){
+        Curriculum.findOne({
+          email: req.user.email,
+          academicYear:
+            ((new Date()).getFullYear() - 1) + '-' + (new Date()).getFullYear()
+          })
+          .populate('subjects')
+          .exec(function(err, curriculum) {
+            User.findById(req.params.id, function(err, user) {
+              res.render('student/grade', { curriculum: curriculum, user: user });
+            });
+          });
+      }
     });
 });
 

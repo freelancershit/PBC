@@ -35,6 +35,7 @@ router.get('/encode-grades/:id/:yrLvl/:subject/:section', function(req, res, nex
 
 router.post("/encode-grades", function(req, res, next){
   var grades = [];
+  if(!(req.body.yrLvl === "grade11" || req.body.yrLvl === "grade12")){
   if(req.body.firstGrading){
   if(req.body.firstGrading.length > 0){
   var firstGrading = req.body.firstGrading;
@@ -114,6 +115,42 @@ if(req.body.firstGrading && req.body.secondGrading && req.body.thirdGrading && r
     }
   }
   }
+  }
+}
+} else{
+  if(req.body.firstSem){
+    if(req.body.firstSem > 0){
+      var firstSem = req.body.firstSem;
+    }
+  }
+  if(req.body.secondSem){
+    if(req.body.secondSem > 0){
+      var secondSem = req.body.secondSem;
+    }
+  }
+  if(req.body.id){
+    if(req.body.id.length > 0){
+      for(var i = 0; i < req.body.id.length;i++){
+        if(req.body.firstSem){
+          grades[i] = {
+           firstSem : firstSem[i]
+          };
+        }
+
+        if(req.body.secondSem){
+          grades[i] ={
+            secondSem : secondSem[i]
+          }
+        }
+
+        if(req.body.firstSem && req.body.secondSem){
+          grades[i] ={
+            firstSem : firstSem[i],
+            secondSem : secondSem[i]
+          }
+        }
+      }
+    }
   }
 }
 console.log(grades);

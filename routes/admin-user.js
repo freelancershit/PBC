@@ -3540,10 +3540,10 @@ return res.redirect("/studentlist");
 
 router.get('/studentlist/:id', function(req, res, next) {
   Curriculum.findOne({
-    studentId: req.params.id, $or:{
+    studentId: req.params.id,
     academicYear:
       (new Date()).getFullYear() + '-' + (new Date().getFullYear() + 1)
-    }})
+    })
     .populate('subjects')
     .exec(function(err, curriculum) {
       console.log(curriculum);
@@ -3553,10 +3553,10 @@ router.get('/studentlist/:id', function(req, res, next) {
         });
       } else if(!curriculum){
         Curriculum.findOne({
-          studentId: req.params.id, $or:{
+          studentId: req.params.id,
           academicYear:
             ((new Date()).getFullYear() - 1) + '-' + (new Date()).getFullYear()
-          }})
+          })
           .populate('subjects')
           .exec(function(err, curriculum) {
             User.findById(req.params.id, function(err, user) {
