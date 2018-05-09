@@ -79,11 +79,7 @@ z-index: 99;">
               <li>
                 <a href="/scholarships">Scholarships</a>
               </li>
-              <% if(loginUser){ %>
-              <li>
-                <a href="/publication">Publication</a>
-              </li>
-              <%} %>
+           
               <% if(!loginUser){ %>
                 <li>
                   <a href="/register">Register Now</a>
@@ -96,9 +92,14 @@ z-index: 99;">
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li>
-                <a href="/faculty">Faculty and Staff</a>
-              </li>
+                <% if(loginUser){ %>
+                  <li>
+                    <a href="/publication">Publication</a>
+                  </li>
+                  <%} %>
+              <!-- <li> -->
+                <!-- <a href="/faculty">Faculty and Staff</a> -->
+              <!-- </li> -->
               <li>
                 <a href="/clubs">Clubs</a>
               </li>

@@ -3520,7 +3520,7 @@ router.post("/managepubs/delete", function(req, res, next){
 });
 
 router.post("/managepubs/accept", function(req, res, next){
-  console.log(freq.body.uniqueId);
+  console.log(req.body.uniqueId);
   if(req.body.uniqueId > 0){
   var litArray = req.body.uniqueId;
   litArray.forEach(function(lit){
