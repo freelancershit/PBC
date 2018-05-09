@@ -113,7 +113,11 @@
 
                   <div class="form-group">
                     <label for="pwd">Contact Number:</label>
-                    <input onkeypress="change()" value="<%= user.contact %>" type="number" min="0" class="form-control" name="contact" id="contact" placeholder="09XXXXXXXX">
+                    <input onkeypress="change()" value="<%= user.contact %>"
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                    type = "number"
+                    maxlength = "11"
+                    class="form-control" name="contact" id="contact" placeholder="09XXXXXXXX">
                   </div>
                 </div>
               </div>

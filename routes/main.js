@@ -197,7 +197,7 @@ router.get('/scholarships', function(req, res, next) {
 });
 
 router.get('/service', function(req, res, next) {
-  res.render('main/service');
+  res.render('main/services');
 });
 
 router.get('/vmop', function(req, res, next) {
