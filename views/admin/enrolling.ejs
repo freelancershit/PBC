@@ -123,27 +123,33 @@
 <center>
     <br>
     <br>
-    
+<label for="">Department </label><br>
+<select onChange="departmental()" id="department" class="form-control">
+  <option value="" disabled selected>Choose a department ...</option>
+  <option value="elem">Elementary</option>
+  <option value="jr">Junior High</option>
+  <option value="sr">Senior High</option>
+</select>
 <label for="">Year Level: </label><br>
-<select onChange="generateTable()" id="yrLvl" name="yrLvl" class="form-control">
+<select  onChange="generateTable()" id="yrLvl" name="yrLvl" class="form-control">
   <option value="" disabled selected>Choose a year level...</option>
-  <option value="grade1">Grade 1</option>
-  <option value="grade2">Grade 2</option>
-  <option value="grade3">Grade 3</option>
-  <option value="grade4">Grade 4</option>
-  <option value="grade5">Grade 5</option>
-  <option value="grade6">Grade 6</option>
-  <option value="grade7">Grade 7</option>
-  <option value="grade8">Grade 8</option>
-  <option value="grade9">Grade 9</option>
-  <option value="grade10">Grade 10</option>
-  <option value="grade11">Grade 11</option>
-  <option value="grade12">Grade 12</option>
+  <option id="1" value="grade1">Grade 1</option>
+  <option id="2" value="grade2">Grade 2</option>
+  <option id="3" value="grade3">Grade 3</option>
+  <option id="4" value="grade4">Grade 4</option>
+  <option id="5" value="grade5">Grade 5</option>
+  <option id="6" value="grade6">Grade 6</option>
+  <option id="7" value="grade7">Grade 7</option>
+  <option id="8" value="grade8">Grade 8</option>
+  <option id="9" value="grade9">Grade 9</option>
+  <option id="10" value="grade10">Grade 10</option>
+  <option id="11" value="grade11">Grade 11</option>
+  <option id="12" value="grade12">Grade 12</option>
 </select>
 <label for="">Section: </label><br>
 <div id="section">
       
-        <select id="section1" onChange="generate()" name="section" class="form-control">  <option value="joy">Joy</option><option value="love">Love</option></select>
+        <select id="section1"  onChange="generate()" name="section" class="form-control">  <option value="" disabled selected>Choose a section...</option> <option value="joy">Joy</option><option value="love">Love</option></select>
 </div>
 
 </div>
@@ -426,7 +432,7 @@ Oral Communication
 <div class="container">
     <div class="row">
         <div class="col-sm-8">
-    <button style="border-radius: 5px" id ="enrolly" class="form-control btn btn-info btn-md">ENROLL</button>
+    <button style="border-radius: 5px; color: black" disabled id ="enrolly" class="form-control btn btn-info btn-md">ENROLL</button>
 </div>
 </div>
 </div>
@@ -508,7 +514,96 @@ Oral Communication
         document.getElementById("btn").click();
         <% } %>
     };
+    function departmental(){
+        var department = document.getElementById("department").value;
+        var year = document.getElementById("yrLvl").value;
+        var section = document.getElementById("section1").value;
+        var grade1 = document.getElementById("1");
+        var grade2 = document.getElementById("2");
+        var grade3 = document.getElementById("3");
+        var grade4 = document.getElementById("4");
+        var grade5 = document.getElementById("5");
+        var grade6 = document.getElementById("6");
+        var grade7 = document.getElementById("7");
+        var grade8 = document.getElementById("8");
+        var grade9 = document.getElementById("9");
+        var grade10 = document.getElementById("10");
+        var grade11 = document.getElementById("11");
+        var grade12 = document.getElementById("12");
+     
+        if (document.getElementById("department").value === "elem") {
+    
+            grade1.disabled = false;
+            grade2.disabled = false;
+            grade3.disabled = false;
+            grade4.disabled = false;
+            grade5.disabled = false;
+            grade6.disabled = false;
+            grade7.disabled = true;
+            grade8.disabled = true;
+            grade9.disabled = true;
+            grade10.disabled = true;
+            grade11.disabled = true;
+            grade12.disabled = true;    
+        } else if (document.getElementById("department").value === "jr") {
+    
+                grade1.disabled = true;
+                grade2.disabled = true;
+                grade3.disabled = true;
+                grade4.disabled = true;
+                grade5.disabled = true;
+                grade6.disabled = true;
+                grade7.disabled = false;
+                grade8.disabled = false;
+                grade9.disabled = false;
+                grade10.disabled = false;
+                grade11.disabled = true;
+                grade12.disabled = true;    
+        } else {
+
+                grade1.disabled = true;
+                grade2.disabled = true;
+                grade3.disabled = true;
+                grade4.disabled = true;
+                grade5.disabled = true;
+                grade6.disabled = true;
+                grade7.disabled = true;
+                grade8.disabled = true;
+                grade9.disabled = true;
+                grade10.disabled = true;
+                grade11.disabled = false;
+                grade12.disabled = false;   
+        }
+
+
+        if (department == "" || year == "" || section == "") {
+
+       document.getElementById("enrolly").disabled = true;
+
+        }
+        else {
+
+       document.getElementById("enrolly").disabled = false;
+
+       document.getElementById("enrolly").style.color = "white";
+        }
+        
+    }
     function generateTable(){
+        var department = document.getElementById("department").value;
+        var year = document.getElementById("yrLvl").value;
+       var section = document.getElementById("section1").value;
+        if (department == "" || year == "" || section == "") {
+
+       document.getElementById("enrolly").disabled = true;
+        }
+        else {
+
+       document.getElementById("enrolly").disabled = false;
+
+
+       document.getElementById("enrolly").style.color = "white";
+        }
        var value = document.getElementById("yrLvl").value;
        var value1 = document.getElementById("section1").value;
        var science = document.getElementById("tdsubject8");
@@ -517,7 +612,6 @@ Oral Communication
        var scienceth = document.getElementById("tdfaculty8");
        var tleth = document.getElementById("tdfaculty9");
        var EPPth = document.getElementById("tdfaculty10");
-       document.getElementById("enrolly").disabled = false;
 
        if(value === "grade1"){
         science.style.display="none";
@@ -789,6 +883,19 @@ Oral Communication
     }
 
     function generate(){
+        var department = document.getElementById("department").value;
+        var year = document.getElementById("yrLvl").value;
+       var section = document.getElementById("section1").value;
+        if (department == "" || year == "" || section == "") {
+
+        document.getElementById("enrolly").disabled = true;
+        }
+        else {
+        document.getElementById("enrolly").disabled = false;
+
+
+       document.getElementById("enrolly").style.color = "white";
+        }
        var value = document.getElementById("yrLvl").value;        
         var section1 = document.getElementById("section1").value;
         generateSHSSubject();
@@ -864,7 +971,6 @@ Oral Communication
        var value = document.getElementById("yrLvl").value;
        var value1 = document.getElementById("section1").value;
        
-       document.getElementById("enrolly").disabled = false;
        
        var section1 = document.getElementById("section1").value;
        var subject1 = document.getElementById("shsubject1").value;
