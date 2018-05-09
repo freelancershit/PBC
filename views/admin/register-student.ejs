@@ -214,7 +214,11 @@ function showPage() {
               
                     <div class="form-group">
                       <label for="pwd">Contact Number:</label>
-                      <input value="<%= pending.contact %>" type="number" min="0" class="form-control" name="contact" id="contact">
+                      <input value="<%= pending.contact %>" 
+                      oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                      type = "number"
+                      maxlength = "11"
+                      class="form-control" name="contact" id="contact">
                     </div>
                     <div class="form-group">
                       <div class="text-center">

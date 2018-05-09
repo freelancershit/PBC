@@ -73,13 +73,18 @@
           
               <div class="form-group">
                 <label for="pwd">Contact Number:</label>
-                <input type="number" min="0" class="form-control" name="contact" id="contact">
+                <input 
+                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                type = "number"
+                maxlength = "11"
+                class="form-control"  name="contact" id="contact">
               </div>
               <button class="btn btn-primary" style="border: 1px solid #020531; border-radius: 3px;">
                 <span class="fa fa-list-alt"></span> Register</button>
             </form>
+            <a href="https://drive.google.com/file/d/19nxvoB0xSpx1ggOBm2NoqjtsVb7vweiB/view?usp=sharing" ownload>
             <button type="button" class="btn btn-primary" style="display:block; border: 1px solid #020531; border-radius: 3px;">
-              <span class="fa fa-download"></span> Download Admission Form</button>
+              <span class="fa fa-download"></span> Download Admission Form</button></a>
             <br>
             <% if(success && success.length >0){ %>
               <div class="alert alert-success alert-dismissible">
