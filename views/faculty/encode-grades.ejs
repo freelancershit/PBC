@@ -46,7 +46,7 @@
                             <tbody>
                             <form id="encodePost" action="/encode-grades" method="POST">
                             <input type="hidden" name="yrLvl" value="<%= yrLvl %>" />
-                            
+                            <input type="hidden" name="toggle" id="toggle" />
                             <%if(!(yrLvl === "grade11" || yrLvl === "grade12")){ %>
                             <% handle.forEach(function(subject){ %>
                             <tr>
@@ -135,6 +135,9 @@
   }
 
   function saveForm(){
-      $("#encodeSave").submit();
+      var toggle = document.getElementById("toggle");
+      toggle.value = "true";
+      console.log(toggle.value);
+      $("#encodePost").submit();
   }
   </script>

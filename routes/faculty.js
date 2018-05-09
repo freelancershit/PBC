@@ -35,6 +35,9 @@ router.get('/encode-grades/:id/:yrLvl/:subject/:section', function(req, res, nex
 
 router.post("/encode-grades", function(req, res, next){
   var grades = [];
+  console.log("ohh: " + req.body.toggle);
+  var toggle = req.body.toggle;
+if(toggle == ""){
   if(!(req.body.yrLvl === "grade11" || req.body.yrLvl === "grade12")){
   if(req.body.firstGrading){
   if(req.body.firstGrading.length > 0){
@@ -100,6 +103,15 @@ if(req.body.fourthGrading){
     fourth : false
   }
 }
+
+if(req.body.finalGrading){
+  grades[i].finalGrading = finalGrading[i]
+}
+
+if(req.body.remarks){
+  grades[i].remarks = remarks[i]
+}
+
 
 if(req.body.firstGrading && req.body.secondGrading && req.body.thirdGrading && req.body.fourthGrading && req.body.finalGrading && req.body.remarks){
     grades[i] ={
@@ -185,6 +197,141 @@ console.log(grades);
   //     return res.redirect("back");
   //   });
   // });
+}else if(toggle == "true" || toggle == true){
+  console.log("pasok");
+  if(!(req.body.yrLvl === "grade11" || req.body.yrLvl === "grade12")){
+    if(req.body.firstGrading){
+    if(req.body.firstGrading.length > 0){
+    var firstGrading = req.body.firstGrading;
+    console.log(req.body.firstGrading);
+  }
+  }
+  if(req.body.secondGrading){
+    if(req.body.secondGrading.length > 0){
+    var secondGrading = req.body.secondGrading;
+  }
+  }
+  if(req.body.thirdGrading){
+    if(req.body.thirdGrading.length > 0){
+    var thirdGrading = req.body.thirdGrading;
+  }
+  }
+  if(req.body.fourthGrading){
+    if(req.body.fourthGrading.length > 0){
+    var fourthGrading = req.body.fourthGrading;
+  }
+  }
+  if(req.body.finalGrading){
+    if(req.body.finalGrading.length > 0){
+    var finalGrading = req.body.finalGrading;
+  }
+  }
+  if(req.body.remarks){
+    if(req.body.remarks.length > 0){
+    var remarks = req.body.remarks;
+  }
+  }
+  if(req.body.id){
+  if(req.body.id.length > 0){
+    for(var i = 0; i < req.body.id.length; i++){
+  if(req.body.firstGrading){
+    console.log("value: " + firstGrading[i]);
+    grades[i] ={
+      firstGrading : firstGrading[i],
+    }
+    console.log("array: " + grades[i].firstGrading );
+    console.log("array: " + grades[i].first );
+  }
+  if(req.body.secondGrading){
+    grades[i] ={
+      secondGrading : secondGrading[i],
+    }
+  }
+  if(req.body.thirdGrading){
+    grades[i] ={
+      thirdGrading : thirdGrading[i],
+    }
+  }
+  
+  if(req.body.fourthGrading){
+    grades[i] ={
+      fourthGrading : fourthGrading[i],
+      remarks: remarks[i],
+      finalGrading: finalGrading[i],
+    }
+  }
+  
+  if(req.body.finalGrading){
+    grades[i].finalGrading = finalGrading[i]
+  }
+  
+  if(req.body.remarks){
+    grades[i].remarks = remarks[i]
+  }
+  
+  
+  if(req.body.firstGrading && req.body.secondGrading && req.body.thirdGrading && req.body.fourthGrading && req.body.finalGrading && req.body.remarks){
+      grades[i] ={
+        firstGrading : firstGrading[i],
+        secondGrading : secondGrading[i],
+        thirdGrading : thirdGrading[i],
+        fourthGrading : fourthGrading[i],
+        finalGrading : finalGrading[i],
+        remarks : remarks[i]
+      }
+    }
+    }
+    }
+  }
+  } else{
+    if(req.body.firstSem){
+      if(req.body.firstSem > 0){
+        var firstSem = req.body.firstSem;
+      }
+    }
+    if(req.body.secondSem){
+      if(req.body.secondSem > 0){
+        var secondSem = req.body.secondSem;
+      }
+    }
+    if(req.body.id){
+      if(req.body.id.length > 0){
+        for(var i = 0; i < req.body.id.length;i++){
+          if(req.body.firstSem){
+            grades[i] = {
+             firstSem : firstSem[i],
+            };
+          }
+  
+          if(req.body.secondSem){
+            grades[i] ={
+              secondSem : secondSem[i],
+            }
+          }
+  
+          if(req.body.firstSem && req.body.secondSem){
+            grades[i] ={
+              firstSem : firstSem[i],
+              secondSem : secondSem[i],
+            }
+          }
+        }
+      }
+    }
+  }
+  console.log(grades);
+    var gradeArray = req.body.id;
+    console.log("before loop:" + grades[i]);
+    for(var i = 0; i < gradeArray.length; i++){
+      Subject.updateMany({_id: gradeArray[i]},  {$set: grades[i]}).exec(function(err, subject){
+        if(err) return next(err);
+          console.log(subject);
+      });
+    }
+    res.redirect('/viewencoded-grades');
+  
+    
+}
 });
 
 router.post("/encode-grades/save", function(req, res, next){
@@ -333,6 +480,7 @@ console.log(grades);
   //     return res.redirect("back");
   //   });
   // });
+
 });
   
   router.get('/encode1-grades', function(req, res, next) {
