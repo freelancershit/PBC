@@ -38,6 +38,7 @@
             <table class="table table-striped">
               <thead>
                 <tr>
+                <% if(!(curriculum.yrLvl == "grade11" || curriculum.yrLvl =="grade12")){ %>
                   <th style="color: #ffffff; background-color: #020531;">Subject </th>
                   <th style="color: #ffffff; background-color: #020531;">1st Grading</th>
                   <th style="color: #ffffff; background-color: #020531;">2nd Grading</th>
@@ -48,11 +49,19 @@
                   <th style="color: #ffffff; background-color: #020531;">Final Grade</th>
 
                   <th style="color: #ffffff; background-color: #020531;">Remark</th>
+                  <% }else{ %>
+                  <th style="color: #ffffff; background-color: #020531;">Subject </th>
+                  <th style="color: #ffffff; background-color: #020531;">First Semester</th>
+                  <th style="color: #ffffff; background-color: #020531;">Second Semester</th>
+                    
+                  <% } %>
                 </tr>
               </thead>
               <tbody>
               <% if(curriculum){ %>
+              <% if(!(curriculum.yrLvl =="grade11" || curriculum.yrLvl == "grade12")){ %>
               <% curriculum.subjects.forEach(function(subject){ %>
+
                 <tr>
                   <td><%= subject.subject %></td>
                   <% if(subject.firstGrading === 0){ %>
@@ -91,6 +100,24 @@
                   <% }; %> 
                 </tr>
                 <% }); %>
+                <% }else{ %>
+                  <% curriculum.subjects.forEach(function(subject){ %>
+                  <tr>
+                  <td><%= subject.subject %></td>
+                  
+                  <% if(subject.firstSem === 0){ %>
+                    <td></td>
+                  <% } else {%>
+                    <td><%= subject.firstSem %></td>
+                  <% }; %> 
+                  <% if(subject.secondSem === 0){ %>
+                    <td></td>
+                  <% } else {%>
+                  <td><%= subject.secondSem %></td>
+                  <% }; %> 
+                  <tr>
+                  <% }); %>
+                <% } %>
                 <% } else if(!curriculum){ %>
                 <% } %>
               </tbody>
