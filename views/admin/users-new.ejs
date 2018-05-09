@@ -92,6 +92,10 @@
 
                       </select>
                     </div>
+                    <div class="form-group"  >
+                      <label for="name">Age:</label>
+                      <input class="form-control" disabled id="age2" type="text" min="0" value= "0" name="age" placeholder="Your Age">
+                    </div>
                   </div>
                   <div class="col-md-4" style="margin-top: -5px">
                     <br>
@@ -101,9 +105,9 @@
                     <br>
         
                 
-                    <div class="form-group" >
+                    <div class="form-group" style="display: none" >
                       <label for="name">Age:</label>
-                      <input class="form-control" disabled id="age" type="text" min="0" value= "0" name="age" placeholder="Your Age">
+                      <input class="form-control" id="age" type="text" min="0" value= "0" name="age" placeholder="Your Age">
                     </div>
                     <div class="form-group" >
                       <label for="name">Address:</label>
@@ -158,7 +162,11 @@
                     </div> -->
                     <div class="form-group" style="margin-top: 20px">
                       <label for="pwd">Contact Number:</label>
-                      <input type="number" min="0" class="form-control" name="contact" id="contact" placeholder="09XXXXXXXX">
+                      <input 
+                      oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                      type = "number"
+                      maxlength = "11"
+                      min="0" class="form-control" name="contact" id="contact" placeholder="09XXXXXXXX">
                     </div>
                     <br>
                     <br>
@@ -166,7 +174,7 @@
                   </div>
                   <div class="form-group" style="width:64%;">
                     <div class="text-center">
-                      <button class="btn btn-success form-control" style="height:5%;font-weight:bold;">Submit</button>
+                      <button class="btn btn-success form-control" style="height:5%;font-weight:bold; margin-left: 2%">Submit</button>
                     </div>
                   </div>
                   <!-- <div id="tableFaculty" style="display:none; text-align:center;" class="col-md-12">
@@ -286,6 +294,7 @@ function agecalculator() {
   var age = document.getElementById("age");
   var totalAge = calculate_age(new Date(year, month, day));
   age.value = totalAge;
+  document.getElementById("age2").value = totalAge;
 
 }
 

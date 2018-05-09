@@ -106,8 +106,13 @@
                                     <option selected value="<%= news.category %>">
                                       <%= news.category %>
                                     </option>
-                                    <option value="news">News</option>
-                                    <option value="announcenment">Announcement</option>
+                                    <%if (news.category === "news") { %>
+
+                                    <option value="announcenment">announcement</option>
+                                    <%} else { %>
+
+                                    <option value="news">news</option>
+                                    <%}%>
                                   </select>
                                 </div>
                                 <div class="form-group">

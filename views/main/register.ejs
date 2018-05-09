@@ -73,7 +73,11 @@
           
               <div class="form-group">
                 <label for="pwd">Contact Number:</label>
-                <input type="number" min="0" class="form-control" name="contact" id="contact">
+                <input 
+                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                type = "number"
+                maxlength = "11"
+                class="form-control"  name="contact" id="contact">
               </div>
               <button class="btn btn-primary" style="border: 1px solid #020531; border-radius: 3px;">
                 <span class="fa fa-list-alt"></span> Register</button>

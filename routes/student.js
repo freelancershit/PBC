@@ -35,6 +35,10 @@ router.post('/createliteraryworks', function(req, res, next) {
     literary.content = req.sanitize(req.body.content);
     literary.save(function(err, literary) {
       if (err) return next(err);
+      req.flash(
+        'success',
+        'Your account is in proccess now by the administrator',
+      );
       console.log(literary);
       res.redirect('/createliteraryworks');
     });
