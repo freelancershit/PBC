@@ -3666,7 +3666,12 @@ router.post('/managepubs/:id/edit', function(req, res, next) {
 });
 
 router.post("/managepubs/delete", function(req, res, next){
-  if(req.body.uniqueId){
+if(req.body.uniqueId && req.body.uniqueId.constructor == String){
+  Literary.remove({_id: req.body.uniqueId}).exec(function(err, lit){
+    if(err) return next(err);
+    return res.redirect("/managepubs");
+  });
+}else if(req.body.uniqueId && req.body.uniqueId.constructor == Array){
   var litArray = req.body.uniqueId;
   litArray.forEach(function(lit){
     Literary.remove({_id: lit}).exec(function(err, lit){
@@ -3676,27 +3681,35 @@ router.post("/managepubs/delete", function(req, res, next){
   });
   return res.redirect("/managepubs");
 } else{
-  return res.redirect("/managepubs", req.flash("error", "You didnt clicked anything."));
+  req.flash("error", "You didnt clicked anything.");
+  return res.redirect("/managepubs");
 }
 
 });
 
 router.post("/managepubs/accept", function(req, res, next){
-  console.log(req.body.uniqueId);
-  if(req.body.uniqueId > 0){
-  var litArray = req.body.uniqueId;
-  litArray.forEach(function(lit){
-    Literary.update({_id: lit},{status: true}).exec(function(err, lit){
+
+
+if(req.body.uniqueId && req.body.uniqueId.constructor == String){
+  Literary.update({ _id : req.body.uniqueId }, { status : true}).exec(function(err, lit){
+      console.log(lit);
       if(err) return next(err);
-      
+      return res.redirect("/managepubs");
     });
-  
-  });
+}else if(req.body.uniqueId && req.body.uniqueId.constructor == Array){
+  var litArray = req.body.uniqueId;
+  for(var i = 0; i < litArray.length; i++){
+  Literary.update({ _id : litArray[i] }, { status : true}).exec(function(err, lit){
+      console.log(lit);
+    });
+  }
   return res.redirect("/managepubs");
 } else if (!req.body.uniqueId) {
-  return res.redirect('/managepubs', req.flash("error", "You didnt clicked anything."));
+  req.flash("error", "You didnt clicked anything.");
+  return res.redirect('/managepubs');
 } else{
-  return res.redirect("/managepubs", req.flash("error", "You didnt clicked anything."));
+  req.flash("error", "You didnt clicked anything.");
+  return res.redirect("/managepubs");
 }
 
 });

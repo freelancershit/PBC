@@ -72,6 +72,166 @@ if(req.body.id.length > 0){
   for(var i = 0; i < req.body.id.length; i++){
 if(req.body.firstGrading){
   grades[i] ={
+    firstGrading : firstGrading[i],
+    first: false
+  }
+}
+if(req.body.secondGrading){
+  grades[i] ={
+    secondGrading : secondGrading[i],
+    second: false
+  }
+}
+if(req.body.thirdGrading){
+  grades[i] ={
+    thirdGrading : thirdGrading[i],
+    third : false
+  }
+}
+
+if(req.body.fourthGrading){
+  grades[i] ={
+    fourthGrading : fourthGrading[i],
+    fourth : false
+  }
+}
+
+if(req.body.finalGrading){
+  grades[i] ={
+    finalGrading : finalGrading[i]
+  }
+}
+
+if(req.body.remarks){
+  grades[i] ={
+    remarks : remarks[i]
+  }
+}
+
+if(req.body.firstGrading && req.body.secondGrading && req.body.thirdGrading && req.body.fourthGrading && req.body.finalGrading && req.body.remarks){
+    grades[i] ={
+      firstGrading : firstGrading[i],
+      first: false,
+      secondGrading : secondGrading[i],
+      second : false,
+      thirdGrading : thirdGrading[i],
+      third: false,
+      fourthGrading : fourthGrading[i],
+      fourth : false,
+      finalGrading : finalGrading[i],
+      remarks : remarks[i]
+    }
+  }
+  }
+  }
+}
+} else{
+  if(req.body.firstSem){
+    if(req.body.firstSem > 0){
+      var firstSem = req.body.firstSem;
+    }
+  }
+  if(req.body.secondSem){
+    if(req.body.secondSem > 0){
+      var secondSem = req.body.secondSem;
+    }
+  }
+  if(req.body.id){
+    if(req.body.id.length > 0){
+      for(var i = 0; i < req.body.id.length;i++){
+        if(req.body.firstSem){
+          grades[i] = {
+           firstSem : firstSem[i],
+           firstSemester : false
+          };
+        }
+
+        if(req.body.secondSem){
+          grades[i] ={
+            secondSem : secondSem[i],
+            secondSemester : false
+          }
+        }
+
+        if(req.body.firstSem && req.body.secondSem){
+          grades[i] ={
+            firstSem : firstSem[i],
+            firstSemester: false,
+            secondSem : secondSem[i],
+            secondSemester : false
+          }
+        }
+      }
+    }
+  }
+}
+console.log(grades);
+  var gradeArray = req.body.id;
+  for(var i = 0; i < gradeArray.length; i++){
+    Subject.update({_id: gradeArray[i]}, {$set: grades[i]}).exec(function(err, subject){
+      if(err) return next(err);
+        console.log(subject);
+    });
+  }
+  res.redirect('/viewencoded-grades');
+
+  
+  // Subject.findById(req.params.id)
+  // .exec(function(err, subject){
+  //   if(err) return next(err);
+  //   subject.firstGrading = req.body.firstGrading;
+  //   subject.secondGrading = req.body.secondGrading;
+  //   subject.thirdGrading = req.body.thirdGrading;
+  //   subject.fourthGrading = req.body.fourthGrading;
+  //   subject.finalGrading = req.body.finalGrading;
+  //   subject.remarks = req.body.remarks;
+  //   subject.save(function(err, subject){
+  //     if(err) return next(err);
+  //     console.log(subject);
+  //     return res.redirect("back");
+  //   });
+  // });
+});
+
+router.post("/encode-grades/save", function(req, res, next){
+  var grades = [];
+  if(!(req.body.yrLvl === "grade11" || req.body.yrLvl === "grade12")){
+  if(req.body.firstGrading){
+  if(req.body.firstGrading.length > 0){
+  var firstGrading = req.body.firstGrading;
+  console.log(req.body.firstGrading);
+}
+}
+if(req.body.secondGrading){
+  if(req.body.secondGrading.length > 0){
+  var secondGrading = req.body.secondGrading;
+}
+}
+if(req.body.thirdGrading){
+  if(req.body.thirdGrading.length > 0){
+  var thirdGrading = req.body.thirdGrading;
+}
+}
+if(req.body.fourthGrading){
+  if(req.body.fourthGrading.length > 0){
+  var fourthGrading = req.body.fourthGrading;
+}
+}
+if(req.body.finalGrading){
+  if(req.body.finalGrading.length > 0){
+  var finalGrading = req.body.finalGrading;
+}
+}
+if(req.body.remarks){
+  if(req.body.remarks.length > 0){
+  var remarks = req.body.remarks;
+}
+}
+if(req.body.id){
+if(req.body.id.length > 0){
+  for(var i = 0; i < req.body.id.length; i++){
+if(req.body.firstGrading){
+  grades[i] ={
     firstGrading : firstGrading[i]
   }
 }
