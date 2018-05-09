@@ -19,6 +19,23 @@
             <button style="border-radius: 5px;" class="dropdown-toggle" type="button" data-toggle="dropdown">--Please Select--
               <span class="caret"></span>
             </button>
+         
+            <form id="delete-form" class="form-group" action="/studentlist" method="POST">
+              <select name="grading" class="btn btn-default">
+                <option value="">Choose a Grading Period </option>              
+                <option value="firstGrading">First Grading</option>
+                <option value="secondGrading">Second Grading</option>
+                <option value="thirdGrading">Third Grading</option>
+                <option value="fourthGrading">Fourth Grading</option>
+                <option value="firstSem">First Semester</option>
+                <option value="secondSem">Second Semester</option>
+              </select>
+            <button class="btn btn-info">Allow Encoding of Grades</button>
+                </form>
+                <form id="delete-form" action="/studentlist?_method=PUT" method="POST">
+              
+                <button class="btn btn-info">Disable Encoding of Grades</button>
+                    </form>
             <ul class="dropdown-menu">
               <li>
                 <a href="#">Student #</a>

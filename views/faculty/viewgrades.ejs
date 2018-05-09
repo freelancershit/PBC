@@ -13,9 +13,9 @@
 
                 <div class="container ">
                     <br>
-                    <label for="usr " style="margin-left: 5px; ">Year:</label>
-                    <label for="usr " style="margin-left: 55px; ">Section:</label>
-                    <label for="usr " style="margin-left: 110px; ">Subject:</label>
+                    <label for="usr " style="margin-left: 5px; ">Year: <strong><%= yrLvl %></strong></label>
+                    <label for="usr " style="margin-left: 55px; ">Section: <strong><%= section %></strong></label>
+                    <label for="usr " style="margin-left: 110px; ">Subject: <strong><%= subject %></strong></label>
                     <br>
                 </div>
 
@@ -27,6 +27,11 @@
                             <thead>
                                 <tr>
                                     <tr>
+                                    <% if(yrLvl === "grade11" || yrLvl === "grade12"){ %>
+                                        <th style="color: #ffffff; background-color: #020531;">Student </th>
+                                        <th style="color: #ffffff; background-color: #020531;">First Semester</th>
+                                        <th style="color: #ffffff; background-color: #020531;">Second Semester</th>
+                                    <% }else{ %>
                                         <th style="color: #ffffff; background-color: #020531;">Student </th>
                                         <th style="color: #ffffff; background-color: #020531;">1st Grading</th>
                                         <th style="color: #ffffff; background-color: #020531;">2nd Grading</th>
@@ -34,92 +39,64 @@
                                         <th style="color: #ffffff; background-color: #020531;">4th Grading</th>
                                         <th style="color: #ffffff; background-color: #020531;">Final Grading</th>
                                         <th style="color: #ffffff; background-color: #020531;">Remark</th>
-                                    </tr>
+                                    <% } %>
+                                        </tr>
                                 </tr>
                             </thead>
                             <tbody>
+                            
+                            <%if(!(yrLvl === "grade11" || yrLvl === "grade12")){ %>
                             <% subjects.forEach(function(subject){ %>
-                            <form action="/encode-grades/<%= subject._id %>" method="POST">
                             <tr>
+                                <input type="hidden" value="<%= subject._id %>" name="id[]" />
                                 <td><%= subject.lastName %>, <%= subject.firstName %> <%= subject.middleName %></td>
                                 <td>
-                                    <input disabled value="<%= subject.firstGrading %>" name="firstGrading" type="number" min="0" max="100" style="width:60px;" class="form-control">
-                                </td>
-                                <td>
-                                    <input disabled value="<%= subject.secondGrading %>" name="secondGrading" type="number" min="0" max="100" style="width:60px" class="form-control">
-                                </td>
-                                <td>
-                                    <input disabled value="<%= subject.thirdGrading %>" name="thirdGrading" type="number" min="0" max="100" style="width:60px" class="form-control">
-                                </td>
-                                <td>
-                                    <input disabled value="<%= subject.fourthGrading %>" name="fourthGrading" type="number" min="0" max="100" style="width:60px" class="form-control">
-                                </td>
-                                <td>
-                                    <input disabled value="<%= subject.finalGrading %>" name="finalGrading" type="number" min="0" max="100" style="width:60px" class="form-control">
-                                </td>
-                                <td>
-                                    <input disabled value="<%= subject.remarks %>" name="remarks" type="text" style="width:60px" class="form-control">
-                                </td>
                                 
+                                    <input disabled id="first" value="<%= subject.firstGrading %>" name="firstGrading[]" type="number" min="0" max="100" style="width:60px;" class="form-control">
+                                    </td>
+                                <td>
+                                   <input disabled id="second" value="<%= subject.secondGrading %>" name="secondGrading[]" type="number" min="0" max="100" style="width:60px" class="form-control">
+                                    </td>
+                                <td>
+                                    <input disabled id="third" value="<%= subject.thirdGrading %>" name="thirdGrading[]" type="number" min="0" max="100" style="width:60px" class="form-control">
+                                    </td>
+                                <td>
+                                <input disabled id="fourth" value="<%= subject.fourthGrading %>" name="fourthGrading[]" type="number" min="0" max="100" style="width:60px" class="form-control">
+                                    </td>
+                                <td>
+                                    <input value="<%= subject.finalGrading %>" name="finalGrading[]" type="number" min="0" max="100" style="width:60px" class="form-control">
+                                </td>
+                                <td>
+                                    <input id="remarks" value="<%= subject.remarks %>" name="remarks[]" type="text" style="width:60px" class="form-control">
+                                </td>
                             </tr>
-                            </form>
                             <% }); %>
-                            </tbody>
+                            <% }else{ %>
+                            <% subjects.forEach(function(subject){ %>
+                            <tr>
+                            <input type="hidden" value="<%= subject._id %>" name="id[]" />                            
+                            <td><%= subject.lastName %>, <%= subject.firstName %> <%= subject.middleName %></td>
+                            <td>
+                                
+                                <input disabled id="firstSem" value="<%= subject.firstSem %>" name="firstSem[]" type="number" min="0" max="100" style="width:60px" class="form-control">
+                                    </td>
+                                <td>
+                                <input disabled id="secondSem" value="<%= subject.secondSem %>" name="secondSem[]" type="number" min="0" max="100" style="width:60px" class="form-control">
+                                </td>
+                            </tr>
+                            <% }); %>
+                            <% } %>
+
+                            
                         </table>
-                        <div style="margin-top:195px; margin-left:610px;">
-                            <!-- <button type="button" style="width: 100px;" class="btn btn-success">
-                                Encode</button>
-                            <button type="button" style="width: 100px; margin-right:5px;" class="btn btn-danger">
-                                Discard</button> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    </div>
-    </div>
 
-    <div class="modal fade " id="myModal " role="dialog ">
-        <div class="modal-dialog modal-m ">
-            <div class="modal-content ">
-                <div class="modal-header ">
-                    <button type="button " class="close " data-dismiss="modal ">&times;</button>
-                    <h4 class="modal-title ">Discard the changes made?</h4>
-                </div>
-                <div class="modal-body ">
-                    <p>Are you sure you want to delete?</p>
-                </div>
-                <div class="modal-footer ">
-                    <button type="button " class="btn btn-default " data-dismiss="modal ">Yes</button>
-                    <button type="button " class="btn btn-default " data-dismiss="modal ">No</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="modal fade " id="editModal " role="dialog ">
-        <div class="modal-dialog modal-m ">
-            <div class="modal-content ">
-                <div class="modal-header ">
-                    <button type="button " class="close " data-dismiss="modal ">&times;</button>
-                    <h4 class="modal-title ">Encode Student's Grade</h4>
-                </div>
-                <div class="modal-body ">
-                    <div class="form-group ">
-                        <label for="usr "></label>
-                        <input type="text " class="form-control " id="usr ">
-                    </div>
-                    <div class="form-group ">
-                        <label for="comment "></label>
-                        <textarea class="form-control " rows="5 " id="comment "></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer ">
-                    <button type="button " class="btn btn-default " data-dismiss="modal ">Encode</button>
-                    <button type="button " class="btn btn-default " data-dismiss="modal ">Close</button>
-                </div>
-            </div>
-        </div>
     </div>
+    </div>
+    </div>
+  <script>
+  </script>
