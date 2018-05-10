@@ -37,8 +37,6 @@
                                         <th style="color: #ffffff; background-color: #020531;">2nd Grading</th>
                                         <th style="color: #ffffff; background-color: #020531;">3rd Grading</th>
                                         <th style="color: #ffffff; background-color: #020531;">4th Grading</th>
-                                        <th style="color: #ffffff; background-color: #020531;">Final Grading</th>
-                                        <th style="color: #ffffff; background-color: #020531;">Remark</th>
                                     <% } %>
                                         </tr>
                                 </tr>
@@ -54,14 +52,16 @@
                                 <td><%= subject.lastName %>, <%= subject.firstName %> <%= subject.middleName %></td>
                                 <td>
                                 <% if(subject.first == true || subject.first == "true"){ %>
-                                    <input id="first" value="<%= subject.firstGrading %>" name="firstGrading[]" type="number" min="0" max="100" style="width:60px;" class="form-control">
+                                    <input id="first" value="<%= subject.firstGrading %>" 
+                                    maxlength = "3" name="firstGrading[]" type="number" min="0" max="100" style="width:60px;" class="form-control">
                                 <%} else{ %>
-                                    <input disabled id="first" value="<%= subject.firstGrading %>" name="firstGrading[]" type="number" min="0" max="100" style="width:60px;" class="form-control">
+                                    <input disabled id="first" value="<%= subject.firstGrading %>" 
+                                    maxlength = "3"name="firstGrading[]" type="number" min="0" max="100" style="width:60px;" class="form-control">
                                 <% } %>
                                     </td>
                                 <td>
                                 <% if(subject.second == true || subject.second == "true"){ %>
-                                    <input id="second" value="<%= subject.secondGrading %>" name="secondGrading[]" type="number" min="0" max="100" style="width:60px" class="form-control">
+                                    <input id="second" value="<%= subject.secondGrading %>" name="secondGrading[]" type="number" min="0" max="100"  style="width:60px" class="form-control">
                                 <% }else{ %>
                                    <input disabled id="second" value="<%= subject.secondGrading %>" name="secondGrading[]" type="number" min="0" max="100" style="width:60px" class="form-control">
                                 <% } %>
@@ -80,12 +80,7 @@
                                 <input disabled id="fourth" value="<%= subject.fourthGrading %>" name="fourthGrading[]" type="number" min="0" max="100" style="width:60px" class="form-control">
                                 <% } %>
                                     </td>
-                                <td>
-                                    <input value="<%= subject.finalGrading %>" name="finalGrading[]" type="number" min="0" max="100" style="width:60px" class="form-control">
-                                </td>
-                                <td>
-                                    <input id="remarks" value="<%= subject.remarks %>" name="remarks[]" type="text" style="width:60px" class="form-control">
-                                </td>
+                                
                             </tr>
                             <% }); %>
                             <% }else{ %>
