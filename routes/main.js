@@ -12,8 +12,14 @@ var Literary = require('../models/literary');
 router.use(expressSanitizer());
 
 router.get('/', function(req, res, next) {
-  res.render('main/homeplayground');
+  News.findOne({category: "news"}).sort({_id: 1}).exec(function(err1, news){
+    News.findOne({category: "announcement"}).sort({_id: 1}).exec(function(err, announcements){
+    if(err) return next(err1);
+    if(err) return next(err);
+      res.render('main/homeplayground', {news: news, announcements: announcements});
+  });
 });
+ });
 
 router.get('/activities', function(req, res, next) {
   res.render('main/activities');
