@@ -29,9 +29,12 @@
             </h4>
           </div>
           <div class="panel-body" align="center">
-            <h4>News Title</h4>
-            <p>This is some news</p>
-
+            <% if(news){ %>
+            <h4><%= news.title %></h4>
+            <p><%= news.content %></p>
+              <% }else{ %>
+                No news found!
+                <% } %>
           </div>
 
         </div>
@@ -45,9 +48,12 @@
             </h4>
           </div>
           <div class="panel-body" align="center">
-            <h4>Announcement Title</h4>
-            <p>This is some announcement</p>
-          </div>
+            <% if(announcements){ %>
+              <h4><%= announcements.title %></h4>
+              <p><%= announcements.content %></p>
+                <% }else{ %>
+                  No Announcement Found
+            <% } %>
         </div>
       </div>
     </div>

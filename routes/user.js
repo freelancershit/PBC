@@ -1,14 +1,21 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
+var News = require('../models/newsAndAnnouncement');
 var async = require('async');
 var passport = require('passport');
 var passportConfig = require('../config/passport');
 
 router.get('/login', function(req, res) {
-  if (req.user) return res.redirect('/');
-  res.render('main/homeplayground', { message: req.flash('loginMessage') });
+  
+  News.findOne({category: "news"}).sort({_id: 1}).exec(function(err1, news){
+    News.findOne({category: "announcement"}).sort({_id: 1}).exec(function(err, announcements){
+    if(err) return next(err1);
+    if(err) return next(err);
+      res.render('main/homeplayground', {news: news, announcements: announcements, message: req.flash('loginMessage') });
+  });
 });
+ });
 
 router.post(
   '/login',
