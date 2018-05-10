@@ -50,7 +50,7 @@
           <div class="panel-body" align="center">
             <% if(announcements){ %>
               <h4><%= announcements.title %></h4>
-              <p><%= announcements.content %></p>
+              <p><%- announcements.content %></p>
                 <% }else{ %>
                   No Announcement Found
             <% } %>
