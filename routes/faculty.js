@@ -77,7 +77,8 @@ if(req.body.firstGrading){
   console.log("value: " + firstGrading[i]);
   grades[i] ={
     firstGrading : firstGrading[i],
-    first: false
+    first: false,
+    postFirstGrading: true
   }
   console.log("array: " + grades[i].firstGrading );
   console.log("array: " + grades[i].first );
@@ -85,19 +86,22 @@ if(req.body.firstGrading){
 if(req.body.secondGrading){
   grades[i] ={
     secondGrading : secondGrading[i],
-    second: false
+    second: false,
+    postSecondGrading: true
   }
 }
 if(req.body.thirdGrading){
   grades[i] ={
     thirdGrading : thirdGrading[i],
-    third : false
+    third : false,
+    postThirdGrading: true
   }
 }
 
 if(req.body.fourthGrading){
   grades[i] ={
     fourthGrading : fourthGrading[i],
+    postFourthGrading: true,
     remarks: remarks[i],
     finalGrading: finalGrading[i],
     fourth : false
@@ -117,12 +121,16 @@ if(req.body.firstGrading && req.body.secondGrading && req.body.thirdGrading && r
     grades[i] ={
       firstGrading : firstGrading[i],
       first: false,
+      postFirstGrading: true,
       secondGrading : secondGrading[i],
       second : false,
+      postSecondGrading: true,
       thirdGrading : thirdGrading[i],
       third: false,
+      postThirdGrading: true,
       fourthGrading : fourthGrading[i],
       fourth : false,
+      postFourthGrading: true,
       finalGrading : finalGrading[i],
       remarks : remarks[i]
     }
@@ -147,14 +155,16 @@ if(req.body.firstGrading && req.body.secondGrading && req.body.thirdGrading && r
         if(req.body.firstSem){
           grades[i] = {
            firstSem : firstSem[i],
-           firstSemester : false
+           firstSemester : false,
+           postFirstSem: true
           };
         }
 
         if(req.body.secondSem){
           grades[i] ={
             secondSem : secondSem[i],
-            secondSemester : false
+            secondSemester : false,
+            postSecondSem: true,
           }
         }
 
@@ -162,7 +172,9 @@ if(req.body.firstGrading && req.body.secondGrading && req.body.thirdGrading && r
           grades[i] ={
             firstSem : firstSem[i],
             firstSemester: false,
+            postFirstSem: true,
             secondSem : secondSem[i],
+            postSecondSem: true,
             secondSemester : false
           }
         }

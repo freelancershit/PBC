@@ -67,22 +67,30 @@
                   <% if(subject.firstGrading === 0){ %>
                     <td></td>
                   <% } else {%>
+                  <% if(subject.postFirstGrading == true){ %>
                     <td><%= subject.firstGrading %></td>
+                    <% } %>
                   <% }; %> 
                   <% if(subject.secondGrading === 0){ %>
                     <td></td>
                   <% } else {%>
+                  <% if(subject.postSecondGrading == true){ %>
                   <td><%= subject.secondGrading %></td>
+                  <% } %>
                   <% }; %> 
                   <% if(subject.thirdGrading === 0){ %>
                     <td></td>
                   <% } else {%>
+                  <% if(subject.postThirdGrading == true){ %>
                   <td><%= subject.thirdGrading %></td>
+                  <% } %>
                   <% }; %> 
                   <% if(subject.fourthGrading === 0){ %>
                     <td></td>
                   <% } else {%>
+                  <% if(subject.postFourthGrading == true){ %>
                   <td><%= subject.fourthGrading %></td>
+                  <% } %>
                   <% }; %> 
                   <% if(subject.fourthGrading === 0){ %>
                     <td></td>
@@ -108,12 +116,16 @@
                   <% if(subject.firstSem === 0){ %>
                     <td></td>
                   <% } else {%>
+                  <% if(subject.postFirstSem == true){ %>
                     <td><%= subject.firstSem %></td>
+                    <% } %>
                   <% }; %> 
                   <% if(subject.secondSem === 0){ %>
                     <td></td>
                   <% } else {%>
+                  <% if(subject.postSecondSem == true){ %>
                   <td><%= subject.secondSem %></td>
+                  <% } %>
                   <% }; %> 
                   <tr>
                   <% }); %>
