@@ -92,24 +92,34 @@
 <div class="panel-heading" style="color: #ffffff;">Add Subject Load</div>
 <div class="col-md-12">
         <br>
+        <div class="form-group">
+            <label for="">Department </label><br>
+            <select onChange="departments()" id="departmental"  class="form-control">
+            
+              <option value="" disabled selected>Select your option</option>
+              <option value="elem">Elementary</option>
+              <option value="jr">Junior High School</option>
+              <option value="sr">Senior High School</option>
+            </select>
+            </div>
 <form action="/manage-faculty/<%= users._id %>" method="POST">
     <div class="form-group">
             <label for="">Year Level: </label><br>
             <select onChange="generateTable()" id="yrLvl" name="yrLvl" class="form-control">
             
               <option value="" disabled selected>Select your option</option>
-              <option value="grade1">Grade 1</option>
-              <option value="grade2">Grade 2</option>
-              <option value="grade3">Grade 3</option>
-              <option value="grade4">Grade 4</option>
-              <option value="grade5">Grade 5</option>
-              <option value="grade6">Grade 6</option>
-              <option value="grade7">Grade 7</option>
-              <option value="grade8">Grade 8</option>
-              <option value="grade9">Grade 9</option>
-              <option value="grade10">Grade 10</option>
-              <option value="grade11">Grade 11</option>
-              <option value="grade12">Grade 12</option>
+              <option id="1" value="grade1">Grade 1</option>
+            <option id="2" value="grade2">Grade 2</option>
+            <option id="3" value="grade3">Grade 3</option>
+            <option id="4" value="grade4">Grade 4</option>
+            <option id="5" value="grade5">Grade 5</option>
+            <option id="6" value="grade6">Grade 6</option>
+            <option id="7" value="grade7">Grade 7</option>
+            <option id="8" value="grade8">Grade 8</option>
+            <option id="9" value="grade9">Grade 9</option>
+            <option id="10" value="grade10">Grade 10</option>
+            <option id="11" value="grade11">Grade 11</option>
+            <option id="12" value="grade12">Grade 12</option>
             </select>
             </div>
 <div class="form-group">
@@ -135,7 +145,7 @@
 </div>
 </div>
 <div class="form-group">
-<button id = "btn" disabled class="form-control btn-info">SAVE</button>
+<button id = "btn" style="color:black" disabled class="form-control btn-info">SAVE</button>
 </div>
 </form>
 </div>
@@ -155,6 +165,68 @@
 </div>
 </div>
 <script>
+
+    function departments(){
+        var value = document.getElementById("departmental").value;
+        var grade1 = document.getElementById("1");
+        var grade2 = document.getElementById("2");
+        var grade3 = document.getElementById("3");
+        var grade4 = document.getElementById("4");
+        var grade5 = document.getElementById("5");
+        var grade6 = document.getElementById("6");
+        var grade7 = document.getElementById("7");
+        var grade8 = document.getElementById("8");
+        var grade9 = document.getElementById("9");
+        var grade10 = document.getElementById("10");
+        var grade11 = document.getElementById("11");
+        var grade12 = document.getElementById("12");
+     
+        if (document.getElementById("departmental").value === "elem") {
+   
+            grade1.disabled = false;
+            grade2.disabled = false;
+            grade3.disabled = false;
+            grade4.disabled = false;
+            grade5.disabled = false;
+            grade6.disabled = false;
+            grade7.disabled = true;
+            grade8.disabled = true;
+            grade9.disabled = true;
+            grade10.disabled = true;
+            grade11.disabled = true;
+            grade12.disabled = true;    
+        } else if (document.getElementById("departmental").value === "jr") {
+    
+                grade1.disabled = true;
+                grade2.disabled = true;
+                grade3.disabled = true;
+                grade4.disabled = true;
+                grade5.disabled = true;
+                grade6.disabled = true;
+                grade7.disabled = false;
+                grade8.disabled = false;
+                grade9.disabled = false;
+                grade10.disabled = false;
+                grade11.disabled = true;
+                grade12.disabled = true;    
+        } else {
+
+                grade1.disabled = true;
+                grade2.disabled = true;
+                grade3.disabled = true;
+                grade4.disabled = true;
+                grade5.disabled = true;
+                grade6.disabled = true;
+                grade7.disabled = true;
+                grade8.disabled = true;
+                grade9.disabled = true;
+                grade10.disabled = true;
+                grade11.disabled = false;
+                grade12.disabled = false;   
+        }
+
+    }
+
 
     var delay = 2000;
   window.onload = function(){
@@ -182,6 +254,7 @@ function generateTable(){
 
      console.log(value);
  if(value === "grade1"){
+     alert("shit")
      $("#subj").empty();
      $("#subj").append('<option id="math" value="math">Math</option><option id="science" value="science">Science</option><option id="english" value="english">English</option><option id="filipino" value="filipino">Filipino</option><option id="EP" value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option><option id="AP" value="araling panlipunan">Araling Panlipunan</option><option id="MAPEH" value="mapeh">MAPEH</option><option id="Comp" value="computer">Computer</option><option id="TLE" value="TLE">TLE(Technology and Livelihood Education)</option><option id="EPP" value="Edukasyong Pantahanan at Pangkabuhayan">Edukasyong Pantahanan at Pangkabuhayan</option>');
      $("#section1").empty();

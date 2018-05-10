@@ -166,7 +166,7 @@
                         <th>Subject</th>
                         <th>Teacher</th>
                     </thead>
-<tbody>
+<tbody id="Junior" style="display: none">
 <tr>
 <td>
 <select id="subject1" class="form-control" name="subject1">
@@ -299,7 +299,7 @@ Araling Panlipunan
 </td>
 </tr>
 </tbody>
-<tbody>
+<tbody id="Senior"  style="display: none">
 <tr>
 <td>
 <select id="shsubject1" class="form-control" name="shsubject1">
@@ -422,6 +422,7 @@ Oral Communication
 </tr>
 </tbody>
 </table>
+</div>
                 </div>
             </div>
         </div>
@@ -593,6 +594,7 @@ Oral Communication
         var department = document.getElementById("department").value;
         var year = document.getElementById("yrLvl").value;
        var section = document.getElementById("section1").value;
+
         if (department == "" || year == "" || section == "") {
 
        document.getElementById("enrolly").disabled = true;
@@ -612,16 +614,21 @@ Oral Communication
        var scienceth = document.getElementById("tdfaculty8");
        var tleth = document.getElementById("tdfaculty9");
        var EPPth = document.getElementById("tdfaculty10");
+       var junior = document.getElementById("Junior");
+       var senior = document.getElementById("Senior");
 
        if(value === "grade1"){
         science.style.display="none";
         tle.style.display="none";
         EPP.style.display="none";
+        junior.style.display="";
         scienceth.style.display="none";
         tleth.style.display="none";
         EPPth.style.display="none"; 
+        senior.style.display="none";
         $("#section1").empty();
-        $("#section1").append('<option value="joy">Joy</option><option value="love">Love</option>');
+        $("#section1").append(
+            '<option value="" disabled selected>Choose a section...</option>'+'<option value="joy">Joy</option><option value="love">Love</option>');
         // $("#faculty").append('<% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %><%= faculty.profile.middleName %></option><% }); %>');        
         // $("#enroll").empty();
         // $("#enroll").append('<div class="container"><div class="row>"><div class="col-md-12"><div class="table-responsive"><table class="table"><thead><th>Subject</th><th>Teacher</th></thead><tbody><tr><td><select class="form-control" name="subject1"><option value="english">English</option></select></td><td><select class="form-control"  name="faculty1"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject2"><option value="filipino">Filipino</option></select></td><td><select class="form-control"  name="faculty2"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject3"><option value="math">Math</option></select></td><td><select class="form-control"  name="faculty3"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject4"><option value="araling panlipunan">Araling Panlipunan</option></select></td><td><select class="form-control"  name="faculty4"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject5"><option value="mapeh">MAPEH</option></select></td><td><select class="form-control"  name="faculty5"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject6"><option value="">Edukasyon sa Pagpapakatao</option></select></td><td><select class="form-control"  name="faculty6"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject7"><option value="computer">Computer</option></select></td><td><select class="form-control"  name="faculty7"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr></tbody></table></div></div></div></div>');
@@ -633,7 +640,8 @@ Oral Communication
         $( "#faculty10" ).prop( "disabled", true );
     }else if(value === "grade2"){
         $("#section1").empty();
-        $("#section1").append('<option value="honor">Honor</option><option value="unity">Unity</option></select>');
+        $("#section1").append(
+            '<option value="" disabled selected>Choose a section...</option>'+'<option value="honor">Honor</option><option value="unity">Unity</option></select>');
         // $("#enroll").empty();
         // $("#enroll").append('<div class="container"><div class="row>"><div class="col-md-12"><div class="table-responsive"><table class="table"><thead><th>Subject</th><th>Teacher</th></thead><tbody><tr><td><select class="form-control" name="subject1"><option value="english">English</option></select></td><td><select class="form-control"  name="faculty1"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject2"><option value="filipino">Filipino</option></select></td><td><select class="form-control"  name="faculty2"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject3"><option value="math">Math</option></select></td><td><select class="form-control"  name="faculty3"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject4"><option value="araling panlipunan">Araling Panlipunan</option></select></td><td><select class="form-control"  name="faculty4"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject5"><option value="mapeh">MAPEH</option></select></td><td><select class="form-control"  name="faculty5"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject6"><option value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option></select></td><td><select class="form-control"  name="faculty6"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject7"><option value="computer">Computer</option></select></td><td><select class="form-control"  name="faculty7"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr></tbody></table></div></div></div></div>');
        
@@ -642,11 +650,15 @@ Oral Communication
         EPP.style.display="none";
         scienceth.style.display="none";
         tleth.style.display="none";
+        junior.style.display="";
         EPPth.style.display="none"; 
+
+        senior.style.display="none";
     }else if(value === "grade3"){
         $("#section1").empty();
         $("#section1")
         .append(
+            '<option value="" disabled selected>Choose a section...</option>'+
             '<option value="kindness">Kindness</option>'+
             '<option value="faith">Faith</option>'+
             '<option value="helpfulness">Helpfulness</option>'
@@ -658,6 +670,9 @@ Oral Communication
         scienceth.style.display="";
         tleth.style.display="none";
         EPPth.style.display="none"; 
+
+        junior.style.display="";
+        senior.style.display="none";
         // $("#enroll").empty();
         // $("#enroll").append('<div class="container"><div class="row>"><div class="col-md-12"><div class="table-responsive"><table class="table"><thead><th>Subject</th><th>Teacher</th></thead><tbody><tr><td><select class="form-control" name="subject1"><option value="english">English</option></select></td><td><select class="form-control"  name="faculty1"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject2"><option value="filipino">Filipino</option></select></td><td><select class="form-control"  name="faculty2"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject3"><option value="math">Math</option></select></td><td><select class="form-control"  name="faculty3"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject4"><option value="araling panlipunan">Araling Panlipunan</option></select></td><td><select class="form-control"  name="faculty4"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject5"><option value="mapeh">MAPEH</option></select></td><td><select class="form-control"  name="faculty5"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject6"><option value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option></select></td><td><select class="form-control"  name="faculty6"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject7"><option value="computer">Computer</option></select></td><td><select class="form-control"  name="faculty7"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject8"><option value="science">Science</option></select></td><td><select class="form-control"  name="faculty8"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr></tbody></table></div></div></div></div>'); 
               
@@ -665,12 +680,14 @@ Oral Communication
         $("#section1").empty();
         $("#section1")
         .append(
+            '<option value="" disabled selected>Choose a section...</option>'+
             '<option value="generosity">Generosity</option>'+
             '<option value="charity">Charity</option>'
         );
         science.style.display="";
         tle.style.display="none";
         EPP.style.display="none";
+        junior.style.display="";
         scienceth.style.display="";
         tleth.style.display="none";
         EPPth.style.display="none"; 
@@ -681,6 +698,7 @@ Oral Communication
         $("#section1").empty();
         $("#section1")
         .append(
+            '<option value="" disabled selected>Choose a section...</option>'+
             '<option value="cooperate">Cooperate</option>'+
             '<option value="punctuality">Punctuality</option>'
         );
@@ -691,6 +709,8 @@ Oral Communication
         scienceth.style.display="";
         tleth.style.display="none";
         EPPth.style.display=""; 
+        junior.style.display="";
+        senior.style.display="none";
         // $("#enroll").empty();
         // $("#enroll").append('<div class="container"><div class="row>"><div class="col-md-12"><div class="table-responsive"><table class="table"><thead><th>Subject</th><th>Teacher</th></thead><tbody><tr><td><select class="form-control" name="subject1"><option value="english">English</option></select></td><td><select class="form-control"  name="faculty1"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject2"><option value="filipino">Filipino</option></select></td><td><select class="form-control"  name="faculty2"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject3"><option value="math">Math</option></select></td><td><select class="form-control"  name="faculty3"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject4"><option value="araling panlipunan">Araling Panlipunan</option></select></td><td><select class="form-control"  name="faculty4"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject5"><option value="mapeh">MAPEH</option></select></td><td><select class="form-control"  name="faculty5"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject6"><option value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option></select></td><td><select class="form-control"  name="faculty6"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject7"><option value="computer">Computer</option></select></td><td><select class="form-control"  name="faculty7"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject8"><option value="science">Science</option></select></td><td><select class="form-control"  name="faculty8"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject9"><option value="Edukasyong Pantahanan at Pangkabuhayan">Edukasyong Pantahanan at Pangkabuhayan</option></select></td><td><select class="form-control"  name="faculty9"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr></tbody></table></div></div></div></div>');
         
@@ -698,6 +718,7 @@ Oral Communication
         $("#section1").empty();
         $("#section1")
         .append(
+            '<option value="" disabled selected>Choose a section...</option>'+
             '<option value="courage">Courage</option>'+
             '<option value="responsibility">Responsibiliy</option>'
         );
@@ -708,7 +729,9 @@ Oral Communication
         EPP.style.display="";
         scienceth.style.display="";
         tleth.style.display="none";
-        EPPth.style.display=""; 
+        EPPth.style.display="";
+        junior.style.display=""; 
+        senior.style.display="none";
         // $("#enroll").empty();
         // $("#enroll").append('<div class="container"><div class="row>"><div class="col-md-12"><div class="table-responsive"><table class="table"><thead><th>Subject</th><th>Teacher</th></thead><tbody><tr><td><select class="form-control" name="subject1"><option value="english">English</option></select></td><td><select class="form-control"  name="faculty1"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject2"><option value="filipino">Filipino</option></select></td><td><select class="form-control"  name="faculty2"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject3"><option value="math">Math</option></select></td><td><select class="form-control"  name="faculty3"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject4"><option value="araling panlipunan">Araling Panlipunan</option></select></td><td><select class="form-control"  name="faculty4"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject5"><option value="mapeh">MAPEH</option></select></td><td><select class="form-control"  name="faculty5"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject6"><option value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option></select></td><td><select class="form-control"  name="faculty6"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject7"><option value="computer">Computer</option></select></td><td><select class="form-control"  name="faculty7"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject8"><option value="science">Science</option></select></td><td><select class="form-control"  name="faculty8"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject9"><option value="Edukasyong Pantahanan at Pangkabuhayan">Edukasyong Pantahanan at Pangkabuhayan</option></select></td><td><select class="form-control"  name="faculty9"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr></tbody></table></div></div></div></div>');
         
@@ -716,6 +739,7 @@ Oral Communication
         $("#section1").empty();
         $("#section1")
         .append(
+            '<option value="" disabled selected>Choose a section...</option>'+
             '<option value="faithfulness">Faithfulness</option>'+
             '<option value="obedience">Obedience</option>'+
             '<option value="humility">Humility</option>'+
@@ -726,10 +750,12 @@ Oral Communication
 
         science.style.display="";
         tle.style.display="";
+        junior.style.display="";
         EPP.style.display="none";
         scienceth.style.display="";
         tleth.style.display="";
         EPPth.style.display="none"; 
+        senior.style.display="none";
         // $("#enroll").empty();
         // $("#enroll").append('<div class="container"><div class="row>"><div class="col-md-12"><div class="table-responsive"><table class="table"><thead><th>Subject</th><th>Teacher</th></thead><tbody><tr><td><select class="form-control" name="subject1"><option value="english">English</option></select></td><td><select class="form-control"  name="faculty1"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject2"><option value="filipino">Filipino</option></select></td><td><select class="form-control"  name="faculty2"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject3"><option value="math">Math</option></select></td><td><select class="form-control"  name="faculty3"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject4"><option value="araling panlipunan">Araling Panlipunan</option></select></td><td><select class="form-control"  name="faculty4"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject5"><option value="mapeh">MAPEH</option></select></td><td><select class="form-control"  name="faculty5"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject6"><option value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option></select></td><td><select class="form-control"  name="faculty6"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject7"><option value="computer">Computer</option></select></td><td><select class="form-control"  name="faculty7"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject8"><option value="science">Science</option></select></td><td><select class="form-control"  name="faculty8"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject9"><option value="TLE">TLE(Technology and Livelihood Education)</option></select></td><td><select class="form-control"  name="faculty9"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr></tbody></table></div></div></div></div>');
         
@@ -737,6 +763,7 @@ Oral Communication
         $("#section1").empty();
         $("#section1")
         .append(
+            '<option value="" disabled selected>Choose a section...</option>'+
             '<option value="gratitude">Gratitude</option>'+
             '<option value="solidarity">Solidarity</option>'+
             '<option value="compassion">Compassion</option>'+
@@ -748,7 +775,9 @@ Oral Communication
         EPP.style.display="none";
         scienceth.style.display="";
         tleth.style.display="";
+        junior.style.display="";
         EPPth.style.display="none"; 
+        senior.style.display="none";
         // $("#enroll").empty();
         // $("#enroll").append('<div class="container"><div class="row>"><div class="col-md-12"><div class="table-responsive"><table class="table"><thead><th>Subject</th><th>Teacher</th></thead><tbody><tr><td><select class="form-control" name="subject1"><option value="english">English</option></select></td><td><select class="form-control"  name="faculty1"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject2"><option value="filipino">Filipino</option></select></td><td><select class="form-control"  name="faculty2"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject3"><option value="math">Math</option></select></td><td><select class="form-control"  name="faculty3"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject4"><option value="araling panlipunan">Araling Panlipunan</option></select></td><td><select class="form-control"  name="faculty4"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject5"><option value="mapeh">MAPEH</option></select></td><td><select class="form-control"  name="faculty5"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject6"><option value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option></select></td><td><select class="form-control"  name="faculty6"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject7"><option value="computer">Computer</option></select></td><td><select class="form-control"  name="faculty7"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject8"><option value="science">Science</option></select></td><td><select class="form-control"  name="faculty8"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject9"><option value="TLE">TLE(Technology and Livelihood Education)</option></select></td><td><select class="form-control"  name="faculty9"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr></tbody></table></div></div></div></div>');
         
@@ -756,6 +785,7 @@ Oral Communication
         $("#section1").empty();
         $("#section1")
         .append(
+            '<option value="" disabled selected>Choose a section...</option>'+
             '<option value="dignity">Dignity</option>'+
             '<option value="sincerity">Sincerity</option>'+
             '<option value="serenity">Serenity</option>'+
@@ -763,10 +793,12 @@ Oral Communication
         );
         science.style.display="";
         tle.style.display="";
+        junior.style.display="";
         EPP.style.display="none";
         scienceth.style.display="";
         tleth.style.display="";
         EPPth.style.display="none"; 
+        senior.style.display="none";
         // $("#enroll").empty();
         // $("#enroll").append('<div class="container"><div class="row>"><div class="col-md-12"><div class="table-responsive"><table class="table"><thead><th>Subject</th><th>Teacher</th></thead><tbody><tr><td><select class="form-control" name="subject1"><option value="english">English</option></select></td><td><select class="form-control"  name="faculty1"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject2"><option value="filipino">Filipino</option></select></td><td><select class="form-control"  name="faculty2"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject3"><option value="math">Math</option></select></td><td><select class="form-control"  name="faculty3"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject4"><option value="araling panlipunan">Araling Panlipunan</option></select></td><td><select class="form-control"  name="faculty4"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject5"><option value="mapeh">MAPEH</option></select></td><td><select class="form-control"  name="faculty5"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject6"><option value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option></select></td><td><select class="form-control"  name="faculty6"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject7"><option value="computer">Computer</option></select></td><td><select class="form-control"  name="faculty7"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject8"><option value="science">Science</option></select></td><td><select class="form-control"  name="faculty8"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject9"><option value="TLE">TLE(Technology and Livelihood Education)</option></select></td><td><select class="form-control"  name="faculty9"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr></tbody></table></div></div></div></div>');
         
@@ -774,6 +806,7 @@ Oral Communication
         $("#section1").empty();
         $("#section1")
         .append(
+            '<option value="" disabled selected>Choose a section...</option>'+
             '<option value="prudence">Prudence</option>'+
             '<option value="leadership">Leadership</option>'+
             '<option value="knowledge">Knowledge</option>'+
@@ -784,6 +817,9 @@ Oral Communication
         EPP.style.display="none";
         scienceth.style.display="";
         tleth.style.display="";
+
+        junior.style.display="";
+        senior.style.display="none";
         EPPth.style.display="none"; 
         // $("#enroll").empty();
         // $("#enroll").append('<div class="container"><div class="row>"><div class="col-md-12"><div class="table-responsive"><table class="table"><thead><th>Subject</th><th>Teacher</th></thead><tbody><tr><td><select class="form-control" name="subject1"><option value="english">English</option></select></td><td><select class="form-control"  name="faculty1"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject2"><option value="filipino">Filipino</option></select></td><td><select class="form-control"  name="faculty2"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject3"><option value="math">Math</option></select></td><td><select class="form-control"  name="faculty3"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject4"><option value="araling panlipunan">Araling Panlipunan</option></select></td><td><select class="form-control"  name="faculty4"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject5"><option value="mapeh">MAPEH</option></select></td><td><select class="form-control"  name="faculty5"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject6"><option value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option></select></td><td><select class="form-control"  name="faculty6"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject7"><option value="computer">Computer</option></select></td><td><select class="form-control"  name="faculty7"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject8"><option value="science">Science</option></select></td><td><select class="form-control"  name="faculty8"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr><tr><td><select class="form-control" name="subject9"><option value="TLE">TLE(Technology and Livelihood Education)</option></select></td><td><select class="form-control"  name="faculty9"><% faculties.forEach(function(faculty){ %><option value="<%= faculty._id %>"><%= faculty.profile.lastName %>, <%= faculty.profile.firstName %> <%= faculty.profile.middleName %></option><% }); %></select></td></tr></tbody></table></div></div></div></div>');
@@ -792,6 +828,7 @@ Oral Communication
         $("#section1").empty();
         $("#section1")
         .append(
+            '<option value="" disabled selected>Choose a section...</option>'+
             '<option value="Sciences Technology Engineering and Mathematics">Sciences Technology Engineering and Mathematics</option>'+            
             '<option value="Accountancy">Accountancy</option>'+
             '<option value="Business Management">Business Management</option>'+
@@ -800,10 +837,13 @@ Oral Communication
             '<option value="Home Economics">Home Economics</option>'
         );
         generateTableSHS();
+        senior.style.display="";  
+        junior.style.display="none";
     }else if(value === "grade12"){
         $("#section1").empty();
         $("#section1")
         .append(
+            '<option value="" disabled selected>Choose a section...</option>'+
             '<option value="Sciences Technology Engineering and Mathematics">Sciences Technology Engineering and Mathematics</option>'+
             '<option value="Accountancy">Accountancy</option>'+
             '<option value="Business Management">Business Management</option>'+
@@ -811,7 +851,9 @@ Oral Communication
             '<option value="Information and Communication Technology">Information and Communication Technology</option>' +
             '<option value="Home Economics">Home Economics</option>'
         );
-        generateTableSHS();        
+        generateTableSHS();    
+        senior.style.display="";  
+        junior.style.display="none";    
     }
        var section1 = document.getElementById("section1").value;
        var subject1 = document.getElementById("subject1").value;
@@ -883,6 +925,13 @@ Oral Communication
     }
 
     function generate(){
+        generateSHSSubject();
+
+        generateSHSSubject();
+
+        generateSHSSubject();
+
+        generateSHSSubject();
         var department = document.getElementById("department").value;
         var year = document.getElementById("yrLvl").value;
        var section = document.getElementById("section1").value;
@@ -898,7 +947,7 @@ Oral Communication
         }
        var value = document.getElementById("yrLvl").value;        
         var section1 = document.getElementById("section1").value;
-        generateSHSSubject();
+  
        var subject1 = document.getElementById("subject1").value;
        var subject2 = document.getElementById("subject2").value;
        var subject3 = document.getElementById("subject3").value;
