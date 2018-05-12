@@ -80,6 +80,12 @@
                                 <input disabled id="fourth" value="<%= subject.fourthGrading %>" name="fourthGrading[]" type="number" min="0" max="100" style="width:60px" class="form-control">
                                 <% } %>
                                     </td>
+                                 <td style="display: none">
+-                                    <input value="<%= subject.finalGrading %>" name="finalGrading[]" type="number" min="0" max="100" style="width:60px" class="form-control">
+-                                </td>
+-                                <td style="display: none">
+-                                    <input id="remarks" value="<%= subject.remarks %>" name="remarks[]" type="text" style="width:60px" class="form-control">
+-                                </td>
                                 
                             </tr>
                             <% }); %>
