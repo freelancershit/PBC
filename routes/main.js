@@ -25,6 +25,11 @@ router.get('/activities', function(req, res, next) {
   res.render('main/activities');
 });
 
+
+router.get('/search', function(req, res, next) {
+  res.render('main/search');
+});
+
 router.get('/admindashboard', function(req, res, next) {
   res.render('admin/dashboard');
 });
