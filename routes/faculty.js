@@ -60,11 +60,6 @@ if(req.body.fourthGrading){
   var fourthGrading = req.body.fourthGrading;
 }
 }
-if(req.body.finalGrading){
-  if(req.body.finalGrading.length > 0){
-  var finalGrading = req.body.finalGrading;
-}
-}
 if(req.body.remarks){
   if(req.body.remarks.length > 0){
   var remarks = req.body.remarks;
@@ -102,22 +97,13 @@ if(req.body.fourthGrading){
   grades[i] ={
     fourthGrading : fourthGrading[i],
     postFourthGrading: true,
-    remarks: remarks[i],
-    finalGrading: finalGrading[i],
     fourth : false
   }
 }
 
-if(req.body.finalGrading){
-  grades[i].finalGrading = finalGrading[i]
-}
-
-if(req.body.remarks){
-  grades[i].remarks = remarks[i]
-}
 
 
-if(req.body.firstGrading && req.body.secondGrading && req.body.thirdGrading && req.body.fourthGrading && req.body.finalGrading && req.body.remarks){
+if(req.body.firstGrading && req.body.secondGrading && req.body.thirdGrading && req.body.fourthGrading){
     grades[i] ={
       firstGrading : firstGrading[i],
       first: false,
@@ -131,8 +117,6 @@ if(req.body.firstGrading && req.body.secondGrading && req.body.thirdGrading && r
       fourthGrading : fourthGrading[i],
       fourth : false,
       postFourthGrading: true,
-      finalGrading : finalGrading[i],
-      remarks : remarks[i]
     }
   }
   }
@@ -233,16 +217,6 @@ console.log(grades);
     var fourthGrading = req.body.fourthGrading;
   }
   }
-  if(req.body.finalGrading){
-    if(req.body.finalGrading.length > 0){
-    var finalGrading = req.body.finalGrading;
-  }
-  }
-  if(req.body.remarks){
-    if(req.body.remarks.length > 0){
-    var remarks = req.body.remarks;
-  }
-  }
   if(req.body.id){
   if(req.body.id.length > 0){
     for(var i = 0; i < req.body.id.length; i++){
@@ -268,28 +242,16 @@ console.log(grades);
   if(req.body.fourthGrading){
     grades[i] ={
       fourthGrading : fourthGrading[i],
-      remarks: remarks[i],
-      finalGrading: finalGrading[i],
     }
   }
   
-  if(req.body.finalGrading){
-    grades[i].finalGrading = finalGrading[i]
-  }
   
-  if(req.body.remarks){
-    grades[i].remarks = remarks[i]
-  }
-  
-  
-  if(req.body.firstGrading && req.body.secondGrading && req.body.thirdGrading && req.body.fourthGrading && req.body.finalGrading && req.body.remarks){
+  if(req.body.firstGrading && req.body.secondGrading && req.body.thirdGrading && req.body.fourthGrading){
       grades[i] ={
         firstGrading : firstGrading[i],
         secondGrading : secondGrading[i],
         thirdGrading : thirdGrading[i],
         fourthGrading : fourthGrading[i],
-        finalGrading : finalGrading[i],
-        remarks : remarks[i]
       }
     }
     }
@@ -370,16 +332,6 @@ if(req.body.fourthGrading){
   var fourthGrading = req.body.fourthGrading;
 }
 }
-if(req.body.finalGrading){
-  if(req.body.finalGrading.length > 0){
-  var finalGrading = req.body.finalGrading;
-}
-}
-if(req.body.remarks){
-  if(req.body.remarks.length > 0){
-  var remarks = req.body.remarks;
-}
-}
 if(req.body.id){
 if(req.body.id.length > 0){
   for(var i = 0; i < req.body.id.length; i++){
@@ -405,26 +357,13 @@ if(req.body.fourthGrading){
   }
 }
 
-if(req.body.finalGrading){
-  grades[i] ={
-    finalGrading : finalGrading[i]
-  }
-}
 
-if(req.body.remarks){
-  grades[i] ={
-    remarks : remarks[i]
-  }
-}
-
-if(req.body.firstGrading && req.body.secondGrading && req.body.thirdGrading && req.body.fourthGrading && req.body.finalGrading && req.body.remarks){
+if(req.body.firstGrading && req.body.secondGrading && req.body.thirdGrading && req.body.fourthGrading){
     grades[i] ={
       firstGrading : firstGrading[i],
       secondGrading : secondGrading[i],
       thirdGrading : thirdGrading[i],
       fourthGrading : fourthGrading[i],
-      finalGrading : finalGrading[i],
-      remarks : remarks[i]
     }
   }
   }
