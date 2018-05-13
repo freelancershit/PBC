@@ -82,9 +82,11 @@
                                     </td>
                                 <td>
                                     <input value="<%= subject.finalGrading %>" name="finalGrading[]" type="number" min="0" max="100" style="width:60px" class="form-control">
+                                    <input style="display: none" value="<%= subject.finalGrading %>" name="finalGrading[]" type="number" min="0" max="100" style="width:60px" class="form-control">
                                 </td>
                                 <td>
                                     <input id="remarks" value="<%= subject.remarks %>" name="remarks[]" type="text" style="width:60px" class="form-control">
+                                    <input style="display: none" id="remarks" value="<%= subject.remarks %>" name="remarks[]" type="text" style="width:60px" class="form-control">
                                 </td>
                             </tr>
                             <% }); %>

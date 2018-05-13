@@ -64,43 +64,43 @@
 
                 <tr>
                   <td><%= subject.subject %></td>
-                  <% if(subject.firstGrading === 0){ %>
-                    <td></td>
+                  <% if(subject.firstGrading == 0){ %>
+                    <td>&nbsp</td>
                   <% } else {%>
                   <% if(subject.postFirstGrading == true){ %>
                     <td><%= subject.firstGrading %></td>
                     <% } %>
                   <% }; %> 
-                  <% if(subject.secondGrading === 0){ %>
-                    <td></td>
+                  <% if(subject.secondGrading == 0){ %>
+                    <td>&nbsp</td>
                   <% } else {%>
                   <% if(subject.postSecondGrading == true){ %>
                   <td><%= subject.secondGrading %></td>
                   <% } %>
                   <% }; %> 
-                  <% if(subject.thirdGrading === 0){ %>
-                    <td></td>
+                  <% if(subject.thirdGrading == 0){ %>
+                    <td>&nbsp</td>
                   <% } else {%>
                   <% if(subject.postThirdGrading == true){ %>
                   <td><%= subject.thirdGrading %></td>
                   <% } %>
                   <% }; %> 
-                  <% if(subject.fourthGrading === 0){ %>
-                    <td></td>
+                  <% if(subject.fourthGrading == 0){ %>
+                    <td>&nbsp</td>
                   <% } else {%>
                   <% if(subject.postFourthGrading == true){ %>
                   <td><%= subject.fourthGrading %></td>
                   <% } %>
                   <% }; %> 
-                  <% if(subject.fourthGrading === 0){ %>
-                    <td></td>
+                  <% if(subject.fourthGrading == 0){ %>
+                    <td>&nbsp</td>
                   <% } else {%>
-                  <td><%= subject.firstGrading + subject.secondGrading + subject.thirdGrading + subject.fourthGrading  %></td>
+                  <td><%= (parseFloat(subject.firstGrading) + parseFloat(subject.secondGrading) + parseFloat(subject.thirdGrading) + parseFloat(subject.fourthGrading)) /4  %></td>
                   <% }; %> 
-                  <% if(subject.fourthGrading === 0){ %>
-                    <td></td>
-                    <% } else {%>
-                  <% if(subject.firstGrading + subject.secondGrading + subject.thirdGrading + subject.fourthGrading >= 75){ %>
+                  <% if(subject.fourthGrading == 0){ %>
+                    <td>&nbsp</td>
+                  <% } else {%>
+                  <% if((parseFloat(subject.firstGrading) + parseFloat(subject.secondGrading) + parseFloat(subject.thirdGrading) + parseFloat(subject.fourthGrading)) /4 >= 75){ %>
                   <td>Passed!</td>
                   <% } else {%>
                     <td>Failed!</td>
