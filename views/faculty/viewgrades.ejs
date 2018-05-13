@@ -65,18 +65,18 @@
                                     </td>
                                 <td>
                                     <% if (subject.fourthGrading > 0) { %>
-                                    <input value="<%= (parseFloat(subject.firstGrading)  +  parseFloat(subject.secondGrading) +  parseFloat(subject.thirdGrading) + parseFloat(subject.fourthGrading)) / 4 %>" name="finalGrading[]" type="number" min="0" max="100" style="width:60px" class="form-control">
+                                    <input disabled value="<%= (parseFloat(subject.firstGrading)  +  parseFloat(subject.secondGrading) +  parseFloat(subject.thirdGrading) + parseFloat(subject.fourthGrading)) / 4 %>" name="finalGrading[]" type="number" min="0" max="100" style="width:60px" class="form-control">
                                     <% } else { %>
-                                        <input value="" name="finalGrading[]" type="number" min="0" max="100" style="width:60px" class="form-control">
+                                        <input disabled value="" name="finalGrading[]" type="number" min="0" max="100" style="width:60px" class="form-control">
                                         <% } %>
                                     </td>
                                 <td>
                                     <% if (((parseFloat(subject.firstGrading)  +  parseFloat(subject.secondGrading) +  parseFloat(subject.thirdGrading) + parseFloat(subject.fourthGrading)) / 4) > 75) { %>
-                                    <input id="remarks" value="Passed!" name="remarks[]" type="text" style="width:60px" class="form-control">
+                                    <input disabled id="remarks" value="Passed!" name="remarks[]" type="text" style="width:60px" class="form-control">
                                     <% } else if (((parseFloat(subject.firstGrading)  +  parseFloat(subject.secondGrading) +  parseFloat(subject.thirdGrading) + parseFloat(subject.fourthGrading)) / 4) < 75) { %>
-                                        <input id="remarks" value="Failed!" name="remarks[]" type="text" style="width:60px" class="form-control">
+                                        <input disabled id="remarks" value="Failed!" name="remarks[]" type="text" style="width:60px" class="form-control">
                                         <% } else { %>   
-                                            <input id="remarks" value="" name="remarks[]" type="text" style="width:60px" class="form-control">
+                                            <input disabled id="remarks" value="" name="remarks[]" type="text" style="width:60px" class="form-control">
                                             <% } %>
                                     </td>
                             </tr>

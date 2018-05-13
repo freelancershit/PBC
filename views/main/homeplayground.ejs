@@ -31,7 +31,7 @@
           <div class="panel-body" align="center">
             <% if(news){ %>
             <h4><%= news.title %></h4>
-            <p><%- news.content %></p>
+            <p><%= news.content %></p>
               <% }else{ %>
                 No news found!
                 <% } %>
@@ -50,7 +50,7 @@
           <div class="panel-body" align="center">
             <% if(announcements){ %>
               <h4><%= announcements.title %></h4>
-              <p><%- announcements.content %></p>
+              <p><%= announcements.content %></p>
                 <% }else{ %>
                   No Announcement Found
             <% } %>

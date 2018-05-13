@@ -37,6 +37,9 @@
                                         <th style="color: #ffffff; background-color: #020531;">2nd Grading</th>
                                         <th style="color: #ffffff; background-color: #020531;">3rd Grading</th>
                                         <th style="color: #ffffff; background-color: #020531;">4th Grading</th>
+
+                                        <th style="color: #ffffff; background-color: #020531;">Final Grading</th>
+                                        <th style="color: #ffffff; background-color: #020531;">Remark</th>
                                     <% } %>
                                         </tr>
                                 </tr>
@@ -80,12 +83,25 @@
                                 <input disabled id="fourth" value="<%= subject.fourthGrading %>" name="fourthGrading[]" type="number" min="0" max="100" style="width:60px" class="form-control">
                                 <% } %>
                                     </td>
+                                <td>
+                                 <input disabled value="<%= (parseFloat(subject.firstGrading)  +  parseFloat(subject.secondGrading) +  parseFloat(subject.thirdGrading) + parseFloat(subject.fourthGrading)) / 4 %>" name="finalGrading[]" type="number" min="0" max="100" style="width:60px" class="form-control">
+                                </td>
                                  <td style="display: none">
--                                    <input value="<%= subject.finalGrading %>" name="finalGrading[]" type="number" min="0" max="100" style="width:60px" class="form-control">
--                                </td>
--                                <td style="display: none">
--                                    <input id="remarks" value="<%= subject.remarks %>" name="remarks[]" type="text" style="width:60px" class="form-control">
--                                </td>
+                                    <input value="<%= (parseFloat(subject.firstGrading)  +  parseFloat(subject.secondGrading) +  parseFloat(subject.thirdGrading) + parseFloat(subject.fourthGrading)) / 4 %>" name="finalGrading[]" type="number" min="0" max="100" style="width:60px" class="form-control">
+                                </td>
+                                <% if (((parseFloat(subject.firstGrading)  +  parseFloat(subject.secondGrading) +  parseFloat(subject.thirdGrading) + parseFloat(subject.fourthGrading)) / 4) > 75) { %>
+                                    <td>
+                                    <input disabled id="remarks" value="Passed!" name="remarks[]" type="text" style="width:60px" class="form-control">
+                                </td>
+                                    <% } else if (((parseFloat(subject.firstGrading)  +  parseFloat(subject.secondGrading) +  parseFloat(subject.thirdGrading) + parseFloat(subject.fourthGrading)) / 4) < 75) { %>
+                                        <td>
+                                        <input disabled id="remarks" value="Failed!" name="remarks[]" type="text" style="width:60px" class="form-control">
+                                    </td>
+                                        <% } else { %>   
+                                            <td>
+                                            <input disabled id="remarks" value="" name="remarks[]" type="text" style="width:60px" class="form-control">
+                                        </td>
+                                            <% } %>
                                 
                             </tr>
                             <% }); %>

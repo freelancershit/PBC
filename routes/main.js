@@ -12,8 +12,8 @@ var Literary = require('../models/literary');
 router.use(expressSanitizer());
 
 router.get('/', function(req, res, next) {
-  News.findOne({category: "news"}).sort({_id: 1}).exec(function(err1, news){
-    News.findOne({category: "announcement"}).sort({_id: 1}).exec(function(err, announcements){
+  News.findOne({category: "news", archive: false}).sort({postNumber: -1}).exec(function(err1, news){
+    News.findOne({category: "announcement", archive: false}).sort({postNumber: -1}).exec(function(err, announcements){
     if(err) return next(err1);
     if(err) return next(err);
       res.render('main/homeplayground', {news: news, announcements: announcements});
