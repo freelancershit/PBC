@@ -11,6 +11,35 @@ var Literary = require('../models/literary');
 
 router.use(expressSanitizer());
 
+router.get("/search", function(req, res, next){
+  if(req.query.search == "news"){
+    const regex = new RegExp(escapeRegex(req.query.search), "gi");
+    News.find({category: regex}, function(err, allNews){
+      if(err) return next(err);
+      return res.render("main/search", {allNews: allNews});
+    });
+
+  }else if(req.query.search == "announcement" || req.query.search == "announcements"){
+    const regex = new RegExp(escapeRegex(req.query.search), "gi");
+    News.find({category: regex}, function(err, allNews){
+      if(err) return next(err);
+      return res.render("main/search", {allNews: allNews});
+    });
+  }else if(req.query.search){
+    console.log(req.query.search)
+    const regex = new RegExp(escapeRegex(req.query.search), "gi");
+    News.find({$or: [{title: regex}, {content: regex}]}, function(err, allNews){
+      if(err) return next(err);
+      return res.render("main/search", {allNews: allNews});
+    });
+  }else{
+    News.find({}, function(err, allNews){
+      if(err) return next(err);
+      return res.render("main/search", {allNews: allNews});
+    });
+  }
+});
+
 router.get('/', function(req, res, next) {
   News.findOne({category: "news", archive: false}).sort({postNumber: -1}).exec(function(err1, news){
     News.findOne({category: "announcement", archive: false}).sort({postNumber: -1}).exec(function(err, announcements){
@@ -214,5 +243,9 @@ router.get('/service', function(req, res, next) {
 router.get('/vmop', function(req, res, next) {
   res.render('main/vmop');
 });
+
+function escapeRegex(text){
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+}
 
 module.exports = router;
