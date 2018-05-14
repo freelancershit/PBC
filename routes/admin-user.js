@@ -451,9 +451,37 @@ router.delete('/manage/:id', function(req, res, next) {
 });
 
 router.get('/manageaccount', function(req, res, next) {
+  if(req.query.Admin){
+    const regex = new RegExp(escapeRegex(req.query.Admin), "gi");
+    User.find({user: "admin"}).sort({idNumber: -1}).exec(function(err, allUsers){
+      if(err) return next(err);
+      res.render('admin/manageaccount', { users: allUsers });
+    });
+
+  } else  if(req.query.Faculty){
+    const regex = new RegExp(escapeRegex(req.query.Faculty), "gi");
+    User.find({user: "faculty"}).sort({idNumber: -1}).exec(function(err, allUsers){
+      if(err) return next(err);
+      res.render('admin/manageaccount', { users: allUsers });
+    });
+  
+  }
+  else  if(req.query.Student){
+    const regex = new RegExp(escapeRegex(req.query.Student), "gi");
+    User.find({user: "student"}).sort({idNumber: -1}).exec(function(err, allUsers){
+      if(err) return next(err);
+      res.render('admin/manageaccount', { users: allUsers });
+    });
+  
+  
+  }else{
   User.find({}, function(err, allUsers) {
+    if (err) return next(err);
     res.render('admin/manageaccount', { users: allUsers });
   });
+}
+
+
 });
 
 router.get('/manageaccount/:id', function(req, res, next) {
@@ -465,7 +493,7 @@ router.get('/manageaccount/:id', function(req, res, next) {
 });
 
 router.get('/postnewsandannouncements', function(req, res, next) {
-  News.count().exec(function(err, counter) {
+  User.count().exec(function(err, counter) {
     res.render('admin/postnews', { counter: counter });
   });
 });
@@ -540,12 +568,19 @@ router.post('/managenewsandannouncements/:id/edit', function(req, res, next) {
 });
 
 router.get('/enrollment', function(req, res, next) {
+  if(req.query.lastName){
+    User.find({user: 'student'}).sort({"profile.lastName" : 1, "profile.firstName" : 1}).exec(function(err, users){
+      if(err) return next(err);
+      res.render('admin/enroll-student', { users: users });
+    });
+  }else { 
   User.find({ user: 'student' }, function(err, users) {
     if (err) return next(err);
   console.log(users);
     res.render('admin/enroll-student', { users: users });
     
   });
+}
 });
 
 router.get('/enrollment/:id', function(req, res, next) {

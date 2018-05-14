@@ -11,12 +11,19 @@
 
           Manage Enrollment
 
-        </div>       
-          <div class="form-group" style="padding: 5px;">
-            <div class="row">
-            <label for="title" style="color:black;">Key:</label>
-            <input style="width: 20%"id="title"> </input>
-            <button style="width: 10%" id="title">Search</button>
+        </div>   <div class="row">    
+        <div class="dropdown" style="margin-top:5px;">
+            <button style="border-radius: 5px;" class="dropdown-toggle btn btn-default" type="button" data-toggle="dropdown">--Please Select--
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <button class="btn btn-default form-control" onClick="postLastName()">Last Name</button>
+                    <form id="postFormLastName" action="/enrollment" method="GET">
+                      <input type="hidden" value="postLastName" id="postLastName" name="lastName" />
+                    </form>
+                    </li>
+            </ul>
           </div>
         </div>  
         <br>
@@ -59,3 +66,13 @@
       </div>
     </div>
   </div>
+  <script>
+
+  function postLastName(){
+    var postLastName = document.getElementById("postLastName");
+    var postNumVal = (postLastName.value = "postLastName");
+    // console.log(postNumVal);
+    $("#postFormLastName").submit();
+  }
+
+</script>
