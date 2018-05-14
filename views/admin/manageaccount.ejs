@@ -20,13 +20,22 @@
             </button>
             <ul class="dropdown-menu">
               <li>
-                <a href="#">Admin</a>
+                  <button class="btn btn-default form-control" onClick="postAdmin()">Admin</button>
+                  <form id="postFormAdmin" action="/manageaccount" method="GET">
+                    <input type="hidden" value="postAdmin" id="postAdmin" name="Admin" />
+                  </form>
               </li>
               <li>
-                <a href="#">Faculty</a>
+                  <button class="btn btn-default form-control" onClick="postFaculty()">Faculty</button>
+                  <form id="postFormFaculty" action="/manageaccount" method="GET">
+                    <input type="hidden" value="postFaculty" id="postFaculty" name="Faculty" />
+                  </form>
               </li>
               <li>
-                <a href="#">Student</a>
+                  <button class="btn btn-default form-control" onClick="postStudent()">Student</button>
+                  <form id="postFormStudent" action="/manageaccount" method="GET">
+                    <input type="hidden" value="postStudent" id="postStudent" name="Student" />
+                  </form>
               </li>
             </ul>
           </div>
@@ -72,3 +81,29 @@
       </div>
     </div>
   </div>
+
+  <script>
+    function postAdmin(){
+// alert("lol1")
+    var postAdmin = document.getElementById("postAdmin");
+    var postNumVal = (postAdmin.value = "postAdmin");
+    console.log(postNumVal);
+    $("#postFormAdmin").submit();
+  }
+
+  function postFaculty(){
+    // alert("lol2")
+    var postFaculty = document.getElementById("postFaculty");
+    var postNumVal = (postFaculty.value = "postFaculty");
+    console.log(postNumVal);
+    $("#postFormFaculty").submit();
+  }
+
+  function postStudent(){
+    // alert("lol3")
+    var postStudent = document.getElementById("postStudent");
+    var postNumVal = (postStudent.value = "postStudent");
+    console.log(postNumVal);
+    $("#postFormStudent").submit();
+  }
+  </script>
