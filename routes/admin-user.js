@@ -611,6 +611,18 @@ router.post('/enrollment/:id', function(req, res, next) {
     curriculum.studentId = user._id;
     curriculum.yrLvl = req.body.yrLvl;
     curriculum.section = req.body.section;
+    if(req.body.yrLvl === ("grade10" || "grade1" || "grade2" || "grade3" || "grade4" || "grade5" || "grade6" || "grade7" || "grade8" || "grade9")){
+    if(!(req.body.faculty1 && req.body.faculty2 && req.body.faculty3 && req.body.faculty4 && req.body.faculty5 && req.body.faculty6 && req.body.faculty7 && req.body.faculty8 && req.body.faculty9 && req.body.faculty10)){
+      req.flash("error", "There is no faculty assigned on some subjects.");
+      return res.redirect("/enrollment");
+    }
+  }
+  if(req.body.yrLvl === ("grade11" || "grade12")){
+    if(!(req.body.faculty1 && req.body.faculty2 && req.body.faculty3 && req.body.faculty4 && req.body.faculty5 && req.body.faculty6 && req.body.faculty7 && req.body.faculty8 && req.body.faculty9 && req.body.faculty10)){
+      req.flash("error", "There is no faculty assigned on some subjects.");
+      return res.redirect("/enrollment");
+    }
+  }
     console.log(user);
     console.log(req.body.yrLvl + ' and ' + req.body.yrLvl.length);
     if (req.body.yrLvl === 'grade1' || req.body.yrLvl === 'grade2') {
@@ -3474,11 +3486,13 @@ router.post("/studentlist", function(req, res, next){
     if(counter > 0){
   if(req.body.grading === "firstGrading"){
   for(var i = 0; i < counter; i++){
-    Subject.updateMany({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, {first : true}).exec(function(err, subjects){
+    Subject.updateMany({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, {first : true})
+    Subject.find({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, function(err, subjects){
       if(err) return next(err);
       console.log(subjects);
       if(!subjects){
-        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {first : true}).exec(function(err, secondSubjects){
+        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {first : true})
+        Subject.find({}, function(err, secondSubjects){
           if(err) return next(err);
           console.log(secondSubjects);
         });
@@ -3487,11 +3501,13 @@ router.post("/studentlist", function(req, res, next){
 }
 } else if(req.body.grading === "secondGrading"){
   for(var i = 0; i < counter; i++){
-    Subject.updateMany({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, {second : true}).exec(function(err, subjects){
+    Subject.updateMany({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, {second : true})
+    Subject.find({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, function(err, subjects){
       if(err) return next(err);
       console.log(subjects);
       if(!subjects){
-        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {second : true}).exec(function(err, secondSubjects){
+        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {second : true})
+        Subject.find({}, function(err, secondSubjects){
           if(err) return next(err);
           console.log(secondSubjects);
         });
@@ -3500,11 +3516,13 @@ router.post("/studentlist", function(req, res, next){
 }
 }else if(req.body.grading === "thirdGrading"){
   for(var i = 0; i < counter; i++){
-    Subject.updateMany({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, {third : true}).exec(function(err, subjects){
+    Subject.updateMany({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, {third : true})
+    Subject.find({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, function(err, subjects){
       if(err) return next(err);
       console.log(subjects);
       if(!subjects){
-        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {third : true}).exec(function(err, secondSubjects){
+        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {third : true})
+        Subject.find({}, function(err, secondSubjects){
           if(err) return next(err);
           console.log(secondSubjects);
         });
@@ -3513,11 +3531,13 @@ router.post("/studentlist", function(req, res, next){
 }
 }else if(req.body.grading === "fourthGrading"){
   for(var i = 0; i < counter; i++){
-    Subject.updateMany({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, {fourth : true}).exec(function(err, subjects){
+    Subject.updateMany({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, {fourth : true})
+    Subject.find({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, function(err, subjects){
       if(err) return next(err);
       console.log(subjects);
       if(!subjects){
-        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {fourth : true}).exec(function(err, secondSubjects){
+        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {fourth : true})
+        Subject.find({}, function(err, secondSubjects){
           if(err) return next(err);
           console.log(secondSubjects);
         });
@@ -3526,11 +3546,13 @@ router.post("/studentlist", function(req, res, next){
 }
 }else if(req.body.grading === "firstSem"){
   for(var i = 0; i < counter; i++){
-    Subject.updateMany({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, {firstSemester : true}).exec(function(err, subjects){
+    Subject.updateMany({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, {firstSemester : true})
+    Subject.find({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, function(err, subjects){
       if(err) return next(err);
       console.log(subjects);
       if(!subjects){
-        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {firstSemester : true}).exec(function(err, secondSubjects){
+        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {firstSemester : true})
+        Subject.find({}, function(err, secondSubjects){
           if(err) return next(err);
           console.log(secondSubjects);
         });
@@ -3539,11 +3561,13 @@ router.post("/studentlist", function(req, res, next){
 }
 }else if(req.body.grading === "secondSem"){
   for(var i = 0; i < counter; i++){
-    Subject.updateMany({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, {secondSemester : true}).exec(function(err, subjects){
+    Subject.updateMany({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, {secondSemester : true})
+    Subject.find({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, function(err, subjects){
       if(err) return next(err);
       console.log(subjects);
       if(!subjects){
-        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {secondSemester : true}).exec(function(err, secondSubjects){
+        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {secondSemester : true})
+        Subject.find({}, function(err, secondSubjects){
           if(err) return next(err);
           console.log(secondSubjects);
         });
@@ -3555,34 +3579,40 @@ router.post("/studentlist", function(req, res, next){
   if(req.body.grading === "firstGrading"){
         Subject
         .updateMany({
-          academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {first : true}).exec(function(err, secondSubjects){
+          academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {first : true})
+          Subject.find({}, function(err, secondSubjects){
           if(err) return next(err);
           console.log(secondSubjects);
         });
   }
 }else if(req.body.grading === "secondGrading"){
         Subject
-        .updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {second : true}).exec(function(err, secondSubjects){
+        .updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {second : true})
+        Subject.find({}, function(err, secondSubjects){
           if(err) return next(err);
           console.log(secondSubjects);
         });
 }else if(req.body.grading === "thirdGrading"){
-        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {third : true}).exec(function(err, secondSubjects){
+        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {third : true})
+        Subject.find({}, function(err, secondSubjects){
           if(err) return next(err);
           console.log(secondSubjects);
         });
 }else if(req.body.grading === "fourthGrading"){
-        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {fourth : true}).exec(function(err, secondSubjects){
+        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {fourth : true})
+        Subject.find({}, function(err, secondSubjects){
           if(err) return next(err);
           console.log(secondSubjects);
         });
 }else if(req.body.grading === "firstSem"){
-        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {firstSemester : true}).exec(function(err, secondSubjects){
+        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {firstSemester : true})
+        Subject.find({}, function(err, secondSubjects){
           if(err) return next(err);
           console.log(secondSubjects);
         });
 }else if(req.body.grading === "secondSem"){
-        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {secondSemester : true}).exec(function(err, secondSubjects){
+        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {secondSemester : true})
+        Subject.find({}, function(err, secondSubjects){
           if(err) return next(err);
           console.log(secondSubjects);
         });
