@@ -10,25 +10,21 @@
 
                 <div class="panel-heading" style="color: #ffffff;">Manage Faculty</div>
 
-
-                <div class="container ">
-                    <div class="dropdown " style="margin-top:5px; margin-left: -10px; ">
-                        <button style="border-radius: 5px; " class="dropdown-toggle " type="button " data-toggle="dropdown ">--Please Select--
-                            <span class="caret "></span>
-                        </button>
-                        <ul class="dropdown-menu ">
-                            <li>
-                                <a href="# ">Subject</a>
+                <div class="row">
+                <div class="dropdown" style="margin-top:5px;">
+                    <button style="border-radius: 5px;" class="dropdown-toggle btn btn-default" type="button" data-toggle="dropdown">--Please Select--
+                      <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <button class="btn btn-default form-control" onClick="postLastName()">Last Name</button>
+                            <form id="postFormLastName" action="/manage-faculty" method="GET">
+                              <input type="hidden" value="postLastName" id="postLastName" name="lastName" />
+                            </form>
                             </li>
-                            <li>
-                                <a href="# ">Year</a>
-                            </li>
-                            <li>
-                                <a href="# ">Section</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                    </ul>
+                  </div>
+                </div>  
 
 
                 <br>
@@ -60,3 +56,14 @@
     </div>
     </div>
     </div>
+
+    <script>
+
+        function postLastName(){
+          var postLastName = document.getElementById("postLastName");
+          var postNumVal = (postLastName.value = "postLastName");
+          // console.log(postNumVal);
+          $("#postFormLastName").submit();
+        }
+      
+      </script>

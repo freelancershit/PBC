@@ -3644,10 +3644,17 @@ router.get('/studentlist/:id', function(req, res, next) {
 });
 
 router.get("/manage-faculty", function(req, res, next){
+  if(req.query.lastName){
+    User.find({user: 'faculty'}).sort({"profile.lastName" : 1, "profile.firstName" : 1}).exec(function(err, users){
+      if(err) return next(err);
+      res.render('admin/manage-faculty', { users: users });
+    });
+  }else { 
   User.find({user: "faculty"}, function(err, users){
     if(err) return next(err);
     res.render("admin/manage-faculty", {users: users});
   });
+}
 });
 
 router.get("/manage-faculty/:id", function(req, res, next){
