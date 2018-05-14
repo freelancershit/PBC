@@ -115,8 +115,8 @@ z-index: 99;">
             </ul>
           </li>
           <li>
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2">
-              <span class="glyphicon glyphicon-search"></span> Search</button>
+            <a data-toggle="modal" data-target="#search">
+              <span class="glyphicon glyphicon-search"></span> Search</a>
           </li>
           <% if (!loginUser) { %>
             <li>
@@ -202,3 +202,25 @@ z-index: 99;">
     document.getElementById("btn").click();
  }
 </script>
+
+<div class="modal fade" id="search" role="dialog">
+  <div class="modal-dialog modal-m">
+    <div class="modal-content">
+      <div class="modal-header">  
+          <div class="form-group">
+           <form action="/search" method="GET">
+              <label for="name">Search:</label>
+              <center>
+              <input class="form-control" type="text" placeholder="Search Key">
+              <br>
+              <a href="/search">
+              <button type="button" class="btn btn-default" data-dismiss="modal" style="width: 50%; height:  20%;">Search</button>     
+            </a>
+            </center>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
