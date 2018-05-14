@@ -3406,10 +3406,29 @@ router.post('/enrollment/:id', function(req, res, next) {
 });
 
 router.get('/studentlist', function(req, res, next) {
+  if(req.query.sort){
+    User.find({ user: 'student'}).sort({idNumber : 1}).exec(function(err, users){
+      if(err) return next(err);
+      res.render('admin/studentlist', { users: users });
+    });
+    
+  }else if(req.query.lastName){
+    User.find({user: 'student'}).sort({"profile.lastName" : 1, "profile.firstName" : 1}).exec(function(err, users){
+      if(err) return next(err);
+      res.render('admin/studentlist', { users: users });
+    });
+
+  }else if(req.query.yrLvl){
+    User.find({user: 'student'}).sort({ yrLvl: 1 , section: 1}).exec(function(err, users){
+      if(err) return next(err);
+      res.render('admin/studentlist', { users: users });
+    });
+  }else{
   User.find({ user: 'student' }, function(err, users) {
     if (err) return next(err);
     res.render('admin/studentlist', { users: users });
   });
+}
 });
 
 router.post("/studentlist", function(req, res, next){

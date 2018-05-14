@@ -37,15 +37,23 @@
                 <button class="btn btn-info">Disable Encoding of Grades</button>
             </form>
             <ul class="dropdown-menu">
-              <li>
-                <a href="#">Student #</a>
-              </li>
-              <li>
-                <a href="#">Name</a>
-              </li>
-              <li>
-                <a href="#">Year and Section</a>
-              </li>
+            <button class="btn btn-default form-control" onClick="postForm()">Post No.</button>
+            <form id="postForm" action="/studentlist" method="GET">
+              <input type="hidden" id="postNum" name="sort" />
+            </form>
+            </li>
+            <li>
+            <button class="btn btn-default form-control" onClick="postLastName()">Last Name</button>
+            <form id="postFormLastName" action="/studentlist" method="GET">
+              <input type="hidden" value="postLastName" id="postLastName" name="lastName" />
+            </form>
+            </li>
+            <li>
+            <button class="btn btn-default form-control" onClick="postYrLvl()">YrLvl</button>
+            <form id="postFormYrLvl" action="/studentlist" method="GET">
+              <input type="hidden" value="postYrLvl" id="postYrLvl" name="yrLvl" />
+            </form>
+            </li>
             </ul>
           </div>
         </div>
@@ -99,3 +107,25 @@
 </div>
 
     <!-- //modal -->
+    <script>
+  function postForm(){
+    var postNum = document.getElementById("postNum");
+    var postNumVal = (postNum.value = "postNumber");
+    console.log(postNumVal);
+    $("#postForm").submit();
+  }
+
+  function postLastName(){
+    var postPhotoJournal = document.getElementById("postLastName");
+    var postNumVal = (postNum.value = "postLastName");
+    console.log(postNumVal);
+    $("#postFormLastName").submit();
+  }
+
+  function postYrLvl(){
+    var postCategory = document.getElementById("postYrLvl");
+    var postNumVal = (postNum.value = "postYrLvl");
+    console.log(postNumVal);
+    $("#postFormYrLvl").submit();
+  }
+  </script>
