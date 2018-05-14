@@ -24,15 +24,36 @@
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
-              <li>
-                <a href="#">1</a>
-              </li>
-              <li>
-                <a href="#">2</a>
-              </li>
-              <li>
-                <a href="#">3</a>
-              </li>
+            <li>
+            <button class="btn btn-default form-control" onClick="postForm()">Post No.</button>
+            <form id="postForm" action="/managepubs" method="GET">
+              <input type="hidden" id="postNum" name="sort" />
+            </form>
+            </li>
+            <li>
+            <button class="btn btn-default form-control" onClick="postPhotoJournal()">PhotoJournal</button>
+            <form id="postFormPhotoJournal" action="/managepubs" method="GET">
+              <input type="hidden" value="postPhotoJournal" id="postPhotoJournal" name="photojournal" />
+            </form>
+            </li>
+            <li>
+            <button class="btn btn-default form-control" onClick="postEditorial()">Editorial</button>
+            <form id="postFormEditorial" action="/managepubs" method="GET">
+              <input type="hidden" value="postEditorial" id="postEditorial" name="editorial" />
+            </form>
+            </li>
+            <li>
+            <button class="btn btn-default form-control" onClick="postStory()">Story</button>
+            <form id="postFormStory" action="/managepubs" method="GET">
+              <input type="hidden" value="postStory" id="postStory" name="story" />
+            </form>
+            </li>
+            <li>
+            <button class="btn btn-default form-control" onClick="postPoem()">Poem</button>
+            <form id="postFormPoem" action="/managepubs" method="GET">
+              <input type="hidden" value="postPoem" id="postPoem" name="poem" />
+            </form>
+            </li>
             </ul>
           </div>
         </div>
@@ -178,6 +199,7 @@
               <form id="deletePost" action="/managepubs/delete" method="POST">
               <% if(literaries){ %>
                 <% literaries.forEach(function(news){ %>
+                <% if(news.archive == false || news.archive == "false"){ %>
                   <tr>
                   <td>
                       <input type="checkbox" name="uniqueId" value="<%= news._id %>" />
@@ -195,6 +217,7 @@
                     <%= moment(news.publishDate).format("LL") %>
                     </td>
                   </tr>
+                  <% } %>
                   <% }); %>
                   <% } %>
                   </form>
@@ -269,3 +292,42 @@
 
 
   </script>
+
+  <script>
+  function postForm(){
+    var postNum = document.getElementById("postNum");
+    var postNumVal = (postNum.value = "postNumber");
+    console.log(postNumVal);
+    $("#postForm").submit();
+  }
+
+  function postPhotoJournal(){
+    var postPhotoJournal = document.getElementById("postPhotoJournal");
+    var postNumVal = (postNum.value = "postPhotoJournal");
+    console.log(postNumVal);
+    $("#postFormPhotoJournal").submit();
+  }
+
+  function postEditorial(){
+    var postCategory = document.getElementById("postEditorial");
+    var postNumVal = (postNum.value = "postEditorial");
+    console.log(postNumVal);
+    $("#postFormEditorial").submit();
+  }
+
+  function postStory(){
+    var postCategory = document.getElementById("postStory");
+    var postNumVal = (postNum.value = "postStory");
+    console.log(postNumVal);
+    $("#postFormStory").submit();
+  }
+
+  function postPoem(){
+    var postCategory = document.getElementById("postPoem");
+    var postNumVal = (postNum.value = "postPoem");
+    console.log(postNumVal);
+    $("#postFormPoem").submit();
+  }
+  </script>
+  
+  

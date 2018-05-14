@@ -487,10 +487,32 @@ router.post('/postnewsandannouncements', function(req, res, next) {
 });
 
 router.get('/managenewsandannouncements', function(req, res, next) {
+  if(req.query.sort == "postNumber"){
+    const regex = new RegExp(escapeRegex(req.query.sort), "gi");
+    News.find({ archive: false}).sort({postNumber: 1}).exec(function(err, allNews){
+      if(err) return next(err);
+      res.render('admin/managenews', { allNews: allNews });
+    });
+  }else if(req.query.category){
+    const regex = new RegExp(escapeRegex(req.query.category), "gi");
+    News.find({ archive: false, category: "news"}).sort({publishDate: -1}).exec(function(err, allNews){
+      if(err) return next(err);
+      res.render('admin/managenews', { allNews: allNews });
+    });
+
+  }else if(req.query.announce){
+    const regex = new RegExp(escapeRegex(req.query.announce), "gi");
+    News.find({ archive: false, category: "announcement"}).sort({publishDate: -1}).exec(function(err, allNews){
+      if(err) return next(err);
+      res.render('admin/managenews', { allNews: allNews });
+    });
+  }else{
+    console.log("wew");
   News.find({ archive: false }, function(err, allNews) {
     if (err) return next(err);
     res.render('admin/managenews', { allNews: allNews });
   });
+}
 });
 
 router.delete('/managenewsandannouncements/:id', function(req, res, next) {
@@ -3628,10 +3650,38 @@ router.delete("/manage-faculty/:id", function(req, res, next){
 });
 
 router.get('/managepubs', function(req, res, next) {
-  Literary.find({status: false}, function(err, literaries) {
+  if(req.query.sort){
+    Literary.find({status: false, archive: false}).sort({litNumber: 1}).exec(function(err, literaries){
+      if(err) return next(err);
+      res.render('admin/managepublication', { literaries: literaries });
+    });
+  }else if(req.query.photojournal){
+    Literary.find({status: false, archive: false, category: "photojournal"}).sort({publishDate: 1}).exec(function(err, literaries){
+      if(err) return next(err);
+      res.render('admin/managepublication', { literaries: literaries });
+    });
+  }else if(req.query.editorial){
+    Literary.find({status: false, archive: false, category: "editorial"}).sort({publishDate: 1}).exec(function(err, literaries){
+      if(err) return next(err);
+      res.render('admin/managepublication', { literaries: literaries });
+    });
+  }else if(req.query.story){
+    Literary.find({status: false, archive: false, category: "story"}).sort({publishDate: 1}).exec(function(err, literaries){
+      if(err) return next(err);
+      res.render('admin/managepublication', { literaries: literaries });
+    });
+  }
+  else if(req.query.poem){
+    Literary.find({status: false, archive: false, category: "poem"}).sort({publishDate: 1}).exec(function(err, literaries){
+      if(err) return next(err);
+      res.render('admin/managepublication', { literaries: literaries });
+    });
+  }else{
+  Literary.find({status: false, archive: false}, function(err, literaries) {
     if (err) return next(err);
     res.render('admin/managepublication', { literaries: literaries });
   });
+}
 });
 
 // router.delete('/managepubs/:id', function(req, res, next) {
@@ -3667,14 +3717,14 @@ router.post('/managepubs/:id/edit', function(req, res, next) {
 
 router.post("/managepubs/delete", function(req, res, next){
 if(req.body.uniqueId && req.body.uniqueId.constructor == String){
-  Literary.remove({_id: req.body.uniqueId}).exec(function(err, lit){
+  Literary.update({_id: req.body.uniqueId}, {archive: true}).exec(function(err, lit){
     if(err) return next(err);
     return res.redirect("/managepubs");
   });
 }else if(req.body.uniqueId && req.body.uniqueId.constructor == Array){
   var litArray = req.body.uniqueId;
   litArray.forEach(function(lit){
-    Literary.remove({_id: lit}).exec(function(err, lit){
+    Literary.update({_id: lit}, {archive: true}).exec(function(err, lit){
       if(err) return next(err);
       
     });
@@ -3713,5 +3763,9 @@ if(req.body.uniqueId && req.body.uniqueId.constructor == String){
 }
 
 });
+
+function escapeRegex(text){
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+}
 
 module.exports = router;

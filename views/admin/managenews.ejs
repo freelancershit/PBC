@@ -16,18 +16,27 @@
         <label for="usr" style="margin-left: 5px; margin-top: 15px;">Category:</label>
         <div class="container">
           <div class="dropdown" style="margin-top:5px; margin-left: -10px;">
-            <button style="border-radius: 5px;" class="dropdown-toggle" type="button" data-toggle="dropdown">--Please Select--
+            <button style="border-radius: 5px;" class="dropdown-toggle btn btn-default" type="button" data-toggle="dropdown">--Please Select--
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
               <li>
-                <a href="#">1</a>
+              <button class="btn btn-default form-control" onClick="postForm()">Post No.</button>
+              <form id="postForm" action="/managenewsandannouncements" method="GET">
+                <input type="hidden" id="postNum" name="sort" />
+              </form>
               </li>
               <li>
-                <a href="#">2</a>
+              <button class="btn btn-default form-control" onClick="postCategory()">News</button>
+              <form id="postFormCategory" action="/managenewsandannouncements" method="GET">
+                <input type="hidden" value="postNews" id="postCategory" name="category" />
+              </form>
               </li>
               <li>
-                <a href="#">3</a>
+              <button class="btn btn-default form-control" onClick="postAnnounce()">Announcement</button>
+              <form id="postFormAnnounce" action="/managenewsandannouncements" method="GET">
+                <input type="hidden" value="postAnnounce" id="postAnnounce" name="announce" />
+              </form>
               </li>
             </ul>
           </div>
@@ -145,3 +154,25 @@
 
     <!-- //modal -->
   </div>
+  <script>
+  function postForm(){
+    var postNum = document.getElementById("postNum");
+    var postNumVal = (postNum.value = "postNumber");
+    console.log(postNumVal);
+    $("#postForm").submit();
+  }
+
+  function postCategory(){
+    var postCategory = document.getElementById("postCategory");
+    var postNumVal = (postNum.value = "postNews");
+    console.log(postNumVal);
+    $("#postFormCategory").submit();
+  }
+
+  function postAnnounce(){
+    var postCategory = document.getElementById("postAnnounce");
+    var postNumVal = (postNum.value = "postAnnounce");
+    console.log(postNumVal);
+    $("#postFormAnnounce").submit();
+  }
+  </script>
