@@ -3606,15 +3606,9 @@ router.post("/studentlist", function(req, res, next){
           if(err) return next(err);
           console.log(secondSubjects);
         });
-<<<<<<< HEAD
-}else if(req.body.grading == "firstSem"){
-  console.log("lols")
-        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {firstSemester : true}).exec(function(err, secondSubjects){
-=======
 }else if(req.body.grading === "firstSem"){
         Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {firstSemester : true})
         Subject.find({}, function(err, secondSubjects){
->>>>>>> de78e7726e607dba18147bda68f903b1ff7b3623
           if(err) return next(err);
           console.log(secondSubjects);
         });
