@@ -6,6 +6,7 @@ var literarySchema = new mongoose.Schema({
   category: String,
   title: String,
   content: String,
+  comments: String,
   firstName: String,
   lastName: String,
   middleName: String,

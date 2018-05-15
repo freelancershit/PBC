@@ -3467,11 +3467,13 @@ router.get('/studentlist', function(req, res, next) {
 });
 
 router.post("/studentlist", function(req, res, next){
+  console.log(req.body.grading)
   Subject
   .count({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)})
   .exec(function(err, counter){
     console.log(counter);
-    if(counter > 0){
+  if(counter >= 0){
+    console.log("lol")
   if(req.body.grading === "firstGrading"){
   for(var i = 0; i < counter; i++){
     Subject.updateMany({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, {first : true}).exec(function(err, subjects){
@@ -3525,12 +3527,23 @@ router.post("/studentlist", function(req, res, next){
     });
 }
 }else if(req.body.grading === "firstSem"){
-  for(var i = 0; i < counter; i++){
-    Subject.updateMany({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, {firstSemester : true}).exec(function(err, subjects){
+  // console.log("firstSem test")
+
+  console.log((new Date().getFullYear() - 1))
+  console.log((new Date().getFullYear() + 1))
+  console.log(new Date().getFullYear())
+  console.log(subjects);
+
+  for(var i = 0; i <= counter; i++){
+    Subject.updateMany({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, {"firstSemester" : true})
+    Subject.find({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, function(err, subjects){
+      // console.log("pasok1")
       if(err) return next(err);
-      console.log(subjects);
+     console.log(subjects);
       if(!subjects){
-        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {firstSemester : true}).exec(function(err, secondSubjects){
+        console.log("test")
+        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {"firstSemester" : true}).exec(function(err, secondSubjects){
+          // console.log("pasok")
           if(err) return next(err);
           console.log(secondSubjects);
         });
@@ -3538,7 +3551,7 @@ router.post("/studentlist", function(req, res, next){
     });
 }
 }else if(req.body.grading === "secondSem"){
-  for(var i = 0; i < counter; i++){
+  for(var i = 0; i <= counter; i++){
     Subject.updateMany({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, {secondSemester : true}).exec(function(err, subjects){
       if(err) return next(err);
       console.log(subjects);
@@ -3576,7 +3589,8 @@ router.post("/studentlist", function(req, res, next){
           if(err) return next(err);
           console.log(secondSubjects);
         });
-}else if(req.body.grading === "firstSem"){
+}else if(req.body.grading == "firstSem"){
+  console.log("lols")
         Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {firstSemester : true}).exec(function(err, secondSubjects){
           if(err) return next(err);
           console.log(secondSubjects);
@@ -3769,6 +3783,7 @@ router.post('/managepubs/:id/edit', function(req, res, next) {
     news.category = req.body.category;
     news.title = req.body.title;
     news.content = req.body.content;
+    news.comments = req.body.comments;
     news.save(function(err, news) {
       if (err) return next(err);
       res.redirect('/managepubs');
