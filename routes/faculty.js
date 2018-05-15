@@ -124,12 +124,12 @@ if(req.body.firstGrading && req.body.secondGrading && req.body.thirdGrading && r
 }
 } else{
   if(req.body.firstSem){
-    if(req.body.firstSem > 0){
+    if(req.body.firstSem >= 0 || ""){
       var firstSem = req.body.firstSem;
     }
   }
   if(req.body.secondSem){
-    if(req.body.secondSem > 0){
+    if(req.body.secondSem >= 0 || ""){
       var secondSem = req.body.secondSem;
     }
   }

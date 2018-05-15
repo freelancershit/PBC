@@ -21,6 +21,27 @@ router.get('/createliteraryworks', function(req, res, next) {
     res.render('student/createlitworks', { counter: counter });
   });
 });
+
+router.get("/myliterary", function(req, res, next){
+  Literary.find({student: req.user._id}, function(err, literaries){
+      if(err) return next(err);
+      res.render("student/myliterary", {literaries: literaries});
+  });
+});
+router.post('/myliterary/:id/edit', function(req, res, next) {
+  Literary.findById(req.params.id, function(err, literaries) {
+    if (err) return next(err);
+    literaries.category = req.body.category;
+    literaries.title = req.body.title;
+    literaries.content = req.body.content;
+    literaries.comments = req.body.comments;
+    literaries.save(function(err, literaries) {
+      if (err) return next(err);
+      res.redirect('/myliterary');
+    });
+  });
+});
+
 router.post('/createliteraryworks', function(req, res, next) {
   if (req.body.category && req.body.title && req.body.content) {
     var literary = new Literary();
@@ -32,6 +53,7 @@ router.post('/createliteraryworks', function(req, res, next) {
     literary.middleName = req.user.profile.middleName;
     literary.lastName = req.user.profile.lastName;
     literary.student = req.user._id;
+    literary.comments = "";
     literary.content = req.sanitize(req.body.content);
     literary.save(function(err, literary) {
       if (err) return next(err);

@@ -103,6 +103,30 @@
                               <div class="modal-body">
                                 <div class="form-group">
                                   <label for="usr" style="color:black;">Category:</label>
+                                  <select disabled name="category" class="btn btn-info" id="usr">
+                                    <option selected value="<%= news.category %>">
+                                      <%= news.category %>
+                                    </option>
+                                    <option value="photojournal">Photo Journal</option>
+                                    <option value="editorial">Editorial</option>
+                                  </select>
+                                </div>
+                                <div class="form-group">
+                                  <label for="usr">Title:</label>
+                                  <input disabled value="<%= news.title %>" name="title" type="text" class="form-control" id="usr">
+                                </div>
+                                <div class="form-group">
+                                  <label for="comment">Content:</label>
+                                  <textarea disabled value="<%= news.content %>" name="content" class="form-control" rows="5" id="comment"><%= news.content %></textarea>
+                                </div>
+                                <div class="form-group">
+                                  <label for="comment">Comments:</label>
+                                  <textarea value="<%= news.comments %>" name="comments" class="form-control" rows="5" id="comments"><%= news.comments %></textarea>
+                                </div>
+                              </div>
+                              <div class="modal-body" style="display: none">
+                                <div class="form-group">
+                                  <label for="usr" style="color:black;">Category:</label>
                                   <select name="category" class="btn btn-info" id="usr">
                                     <option selected value="<%= news.category %>">
                                       <%= news.category %>
