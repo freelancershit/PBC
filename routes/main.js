@@ -14,26 +14,26 @@ router.use(expressSanitizer());
 router.get("/search", function(req, res, next){
   if(req.query.search == "news"){
     const regex = new RegExp(escapeRegex(req.query.search), "gi");
-    News.find({category: regex}, function(err, allNews){
+    News.find({category: regex, archive: false}, function(err, allNews){
       if(err) return next(err);
       return res.render("main/search", {allNews: allNews});
     });
 
   }else if(req.query.search == "announcement" || req.query.search == "announcements"){
     const regex = new RegExp(escapeRegex(req.query.search), "gi");
-    News.find({category: regex}, function(err, allNews){
+    News.find({category: regex, archive: false}, function(err, allNews){
       if(err) return next(err);
       return res.render("main/search", {allNews: allNews});
     });
   }else if(req.query.search){
     console.log(req.query.search)
     const regex = new RegExp(escapeRegex(req.query.search), "gi");
-    News.find({$or: [{title: regex}, {content: regex}]}, function(err, allNews){
+    News.find({$or: [{title: regex, archive: false}, {content: regex, archive: false}]}, function(err, allNews){
       if(err) return next(err);
       return res.render("main/search", {allNews: allNews});
     });
   }else{
-    News.find({}, function(err, allNews){
+    News.find({archive: false}, function(err, allNews){
       if(err) return next(err);
       return res.render("main/search", {allNews: allNews});
     });
