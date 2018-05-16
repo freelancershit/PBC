@@ -613,16 +613,16 @@ router.post('/enrollment/:id', function(req, res, next) {
     curriculum.section = req.body.section;
     if(req.body.yrLvl === "grade10" ||req.body.yrLvl === "grade1" ||req.body.yrLvl === "grade2" ||req.body.yrLvl === "grade3" ||req.body.yrLvl === "grade4" ||req.body.yrLvl === "grade5" ||req.body.yrLvl === "grade6" ||req.body.yrLvl === "grade7" ||req.body.yrLvl === "grade8" ||req.body.yrLvl === "grade9"){
     if(!(req.body.faculty1 && req.body.faculty2 && req.body.faculty3 && req.body.faculty4 && req.body.faculty5 && req.body.faculty6 && req.body.faculty7 && req.body.faculty8 && req.body.faculty9 && req.body.faculty10)){
-      req.flash("error", "There is no faculty assigned on some subjects.");
+      req.flash("message", "There is no faculty assigned on some subjects.");
       console.log("error ka")
-      return res.redirect("/enrollment");
+      return res.redirect("/enrollment/"+ req.params.id);
     }
   }
   if(req.body.yrLvl === "grade11" ||req.body.yrLvl === "grade12"){
     if(!(req.body.faculty1 && req.body.faculty2 && req.body.faculty3 && req.body.faculty4 && req.body.faculty5 && req.body.faculty6 && req.body.faculty7 && req.body.faculty8 && req.body.faculty9 && req.body.faculty10)){
       console.log("oops bawal pumasok")
-      req.flash("error", "There is no faculty assigned on some subjects.");
-      return res.redirect("/enrollment");
+      req.flash("message", "There is no faculty assigned on some subjects.");
+      return res.redirect("/enrollment/"+ req.params.id);
     }
   }
     console.log(user);
