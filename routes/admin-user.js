@@ -3472,6 +3472,13 @@ router.get('/studentlist', function(req, res, next) {
       if(err) return next(err);
       res.render('admin/studentlist', { users: users });
     });
+  }else if(req.query.section && req.query.yrLvl1){
+    const regex = new RegExp(escapeRegex(req.query.section), "gi");
+    const regex1 = new RegExp(escapeRegex(req.query.yrLvl1), "gi");
+    User.find({user: 'student', section: regex, yrLvl: regex1}).sort({ yrLvl: 1 , section: 1}).exec(function(err, users){
+      if(err) return next(err);
+      res.render('admin/studentlist', { users: users });
+    });
   }else{
   User.find({ user: 'student' }, function(err, users) {
     if (err) return next(err);
