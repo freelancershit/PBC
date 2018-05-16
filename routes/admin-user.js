@@ -3837,7 +3837,7 @@ if(req.body.uniqueId && req.body.uniqueId.constructor == String){
   });
   return res.redirect("/managepubs");
 } else{
-  req.flash("error", "You didnt clicked anything.");
+  req.flash("message", "You didnt select and ID.");
   return res.redirect("/managepubs");
 }
 
@@ -3861,10 +3861,10 @@ if(req.body.uniqueId && req.body.uniqueId.constructor == String){
   }
   return res.redirect("/managepubs");
 } else if (!req.body.uniqueId) {
-  req.flash("error", "You didnt clicked anything.");
+  req.flash("message", "You didnt select any ID.");
   return res.redirect('/managepubs');
 } else{
-  req.flash("error", "You didnt clicked anything.");
+  req.flash("message", "You didnt select any ID.");
   return res.redirect("/managepubs");
 }
 
