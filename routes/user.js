@@ -71,6 +71,7 @@ router.post('/signup', function(req, res, next) {
     req.body.firstName + ' ' + req.body.middleName + ' ' + req.body.lastName;
   user.email = req.body.email;
   user.age = req.body.age;
+  user.user = 'admin';
   if (user.user === 'admin') {
     User.count({ user: user.user }).exec(function(err, count) {
       var number = new Date().getFullYear() + '000000';
