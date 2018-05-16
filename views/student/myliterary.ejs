@@ -22,6 +22,7 @@
                                 <tr>
                                     <th style="color: #ffffff; background-color: #020531;">Title</th>
                                     <th style="color: #ffffff; background-color: #020531;">Content</th>
+                                    <th style="color: #ffffff; background-color: #020531;">Status</th>
                                     <th style="color: #ffffff; background-color: #020531;">Action</th>
                                 </tr>
                             </thead>
@@ -30,6 +31,11 @@
                             <tr>
                                 <td><%= literaries.title  %></td>
                                 <td><%= literaries.content %></td>
+                                <%if (literaries.status == false) {%>
+                                <td> Pending </td>
+                                <% } else { %>
+                                  <td> Approved </td>
+                                  <% } %>
                                 <td>
                                         <form id="delete-form" action="/myliterary/<%= literaries._id %>/edit" method="POST">
                                           <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#<%= literaries._id %>">
@@ -38,7 +44,7 @@
                                           <!-- Modal -->
                                           <div id="<%= literaries._id %>" class="modal fade" role="dialog">
                                             <div class="modal-dialog">
-                  
+                                                <%if (literaries.status == false) {%>
                                               <!-- Modal content-->
                                               <div class="modal-content">
                                                 <div class="modal-header">
@@ -81,6 +87,43 @@
                                               </div>
                                             </div>
                                           </div>
+                                          <% } else { %>
+ <!-- Modal content-->
+ <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Edit Publication</h4>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="usr" style="color:black;">Category:      <%= literaries.category %></label>
+      
+      </div>
+      <div class="form-group">
+        <label for="usr">Title:</label>
+        <input disabled value="<%= literaries.title %>" name="title" type="text" class="form-control" id="usr">
+      </div>
+      <div class="form-group">
+        <label for="comment">Content:</label>
+        <textarea disabled value="<%= literaries.content %>" name="content" class="form-control" rows="5" id="comment"><%= literaries.content %></textarea>
+      </div>
+      <div class="form-group">
+            <label for="comment">Comments:</label>
+            <textarea disabled value="<%= literaries.comments %>" name="comments" class="form-control" rows="5" id="comments"><%= literaries.comments %></textarea>
+    </div>
+    <div class="form-group" style="display: none">
+            <label for="comment">Comments:</label>
+            <textarea value="<%= literaries.comments %>" name="comments" class="form-control" rows="5" id="comments"><%= literaries.comments %></textarea>
+    </div>
+    </div>
+    
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+    </div>
+  </div>
+</div>
+</div>
+                                            <% } %>
                                         </form>
                                       </td>
                                 <!-- <td><%= literaries.section %></td> -->
