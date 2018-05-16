@@ -39,7 +39,7 @@
 
 
         <div class="table-responsive">
-          <div style="overflow-y: scroll; height:350px; ">
+          <div style="overflow-y: scroll; height:300px; ">
             <table class="table table-striped">
               <thead>
 
@@ -78,10 +78,20 @@
                         <%= subject.fourthGrading %>
                       </td>
                       <td>
-                        <%= subject.finalGrading %>
+                          <% if (subject.fourthGrading > 0) { %>
+                        <%= ((parseFloat(subject.firstGrading)  +  parseFloat(subject.secondGrading) +  parseFloat(subject.thirdGrading) + parseFloat(subject.fourthGrading)) / 4 )%>
+                            <% } %>
                       </td>
                       <td>
-                        <%= subject.remarks %>
+                          <% if (subject.fourthGrading > 0) { %>
+                          <% if (((parseFloat(subject.firstGrading)  +  parseFloat(subject.secondGrading) +  parseFloat(subject.thirdGrading) + parseFloat(subject.fourthGrading)) / 4) > 75) { %>
+                           Passed!
+                            <% } else if (((parseFloat(subject.firstGrading)  +  parseFloat(subject.secondGrading) +  parseFloat(subject.thirdGrading) + parseFloat(subject.fourthGrading)) / 4) < 75) { %>
+                              Failed!
+                                <% } else { %>   
+                                   
+                                    <% } %>
+                                    <% } %>
                       </td>
                     </tr>
                     <% }); %>
