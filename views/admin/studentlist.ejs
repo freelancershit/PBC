@@ -16,7 +16,7 @@
         <label for="usr" style="margin-left: 5px; margin-top: 15px;">Sort By:</label>
         <div class="container">
           <div class="dropdown" style="margin-top:5px; margin-left: -10px;">
-            <button style="border-radius: 5px; width: 150px;" class="dropdown-toggle btn btn-default" type="button" data-toggle="dropdown">--Please Select--
+            <button style="border-radius: 5px; width: 150px; display: none" class="dropdown-toggle btn btn-default" type="button" data-toggle="dropdown">--Please Select--
               <span class="caret"></span>
             </button>
 
@@ -36,7 +36,7 @@
 
               <button class="btn btn-info">Disable Encoding of Grades</button>
             </form>
-            <ul class="dropdown-menu">
+            <!-- <ul class="dropdown-menu">
               <button class="btn btn-default form-control" onClick="postForm()">Post No.</button>
               <form id="postForm" action="/studentlist" method="GET">
                 <input type="hidden" id="postNum" name="sort" />
@@ -54,7 +54,7 @@
                   <input type="hidden" value="postYrLvl" id="postYrLvl" name="yrLvl" />
                 </form>
               </li>
-            </ul>
+            </ul> -->
             <br/>
             <br>
             <form id="delete-form" action="/studentlist" method="GET">
