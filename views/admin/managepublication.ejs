@@ -265,12 +265,17 @@
                   hidden="true" onclick="confirmPublication()">CONFIRM ACCEPT</button>
                 <button style="background-color: #020531;border:0;color: #ffffff; width: 100px; height: 50px;border-radius: 10px;" id="cancelPublication"
                   hidden="true" onclick="cancelAccept()">CANCEL</button>
-                <button style="background-color: #020531;border:0;color: #ffffff; width: 100px; height: 50px;border-radius: 10px;" id="deletePublication"
-                  onclick="deletePublication()">DELETE</button>
-                <button style="background-color: #020531;border:0; color: #ffffff;width: 100px; height: 50px;border-radius: 10px;" id="deleteConfirm"
-                  hidden="true" onclick="deleteConfirm()">CONFIRM DELETE</button>
-                <button style="background-color: #020531;border:0; color: #ffffff;width: 100px; height: 50px; border-radius: 10px;" id="deleteCancel"
-                  hidden="true" onclick="deleteCancel()">CANCEL</button>
+                <% if(literaries.length > 0){ %>
+                  <button style="background-color: #020531;border:0;color: #ffffff; width: 100px; height: 50px;border-radius: 10px;" id="deletePublication"
+                    onclick="deletePublication()">DELETE</button>
+                  <% }else{ %>
+                    <button style="background-color: #020531;border:0;color: #ffffff; width: 100px; height: 50px;border-radius: 10px;" id="deletePublication"
+                      onclick="deletePublication()" disabled>DELETE</button>
+                    <% } %>
+                      <button style="background-color: #020531;border:0; color: #ffffff;width: 100px; height: 50px;border-radius: 10px;" id="deleteConfirm"
+                        hidden="true" onclick="deleteConfirm()">CONFIRM DELETE</button>
+                      <button style="background-color: #020531;border:0; color: #ffffff;width: 100px; height: 50px; border-radius: 10px;" id="deleteCancel"
+                        hidden="true" onclick="deleteCancel()">CANCEL</button>
         </div>
       </div>
 
