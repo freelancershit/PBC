@@ -11,14 +11,30 @@ var async = require('async');
 var passport = require('passport');
 var passportConfig = require('../config/passport');
 
-router.get('/encode', function(req, res, next) {
+function facultyAuthentication(req, res, next) {
+  if (req.isAuthenticated()) {
+    if (req.user.user == 'faculty') {
+      return next();
+    } else {
+      return res.redirect('back');
+    }
+  } else {
+    return res.redirect('/login');
+  }
+}
+
+router.get('/encode', facultyAuthentication, function(req, res, next) {
   Subject.find({ faculty: req.user._id }, function(err, subjects) {
     if (err) return next(err);
     res.render('faculty/viewencoded-grades', { subjects: subjects });
   });
 });
 
-router.get('/encode/:yr/:sec/:subj', function(req, res, next) {
+router.get('/encode/:yr/:sec/:subj', facultyAuthentication, function(
+  req,
+  res,
+  next,
+) {
   Subject.find(
     {
       yrLvl: req.params.yr,
@@ -32,28 +48,28 @@ router.get('/encode/:yr/:sec/:subj', function(req, res, next) {
   );
 });
 
-router.get('/encode-grades/:id/:yrLvl/:subject/:section', function(
-  req,
-  res,
-  next,
-) {
-  Subject.find({
-    faculty: req.params.id,
-    yrLvl: req.params.yrLvl,
-    subject: req.params.subject,
-    section: req.params.section,
-  }).exec(function(err, handle) {
-    console.log(handle);
-    res.render('faculty/encode-grades', {
-      handle: handle,
+router.get(
+  '/encode-grades/:id/:yrLvl/:subject/:section',
+  facultyAuthentication,
+  function(req, res, next) {
+    Subject.find({
+      faculty: req.params.id,
       yrLvl: req.params.yrLvl,
       subject: req.params.subject,
       section: req.params.section,
+    }).exec(function(err, handle) {
+      console.log(handle);
+      res.render('faculty/encode-grades', {
+        handle: handle,
+        yrLvl: req.params.yrLvl,
+        subject: req.params.subject,
+        section: req.params.section,
+      });
     });
-  });
-});
+  },
+);
 
-router.post('/encode-grades', function(req, res, next) {
+router.post('/encode-grades', facultyAuthentication, function(req, res, next) {
   var grades = [];
   console.log('ohh: ' + req.body.toggle);
   var toggle = req.body.toggle;
@@ -161,7 +177,7 @@ router.post('/encode-grades', function(req, res, next) {
           for (var i = 0; i < req.body.id.length; i++) {
             if (req.body.firstSem) {
               grades[i] = {
-                firstSem: firstSem[i],
+                firstSem: req.body.firstSem[i],
                 firstSemester: false,
                 postFirstSem: true,
               };
@@ -169,7 +185,7 @@ router.post('/encode-grades', function(req, res, next) {
 
             if (req.body.secondSem) {
               grades[i] = {
-                secondSem: secondSem[i],
+                secondSem: req.body.secondSem[i],
                 secondSemester: false,
                 postSecondSem: true,
               };
@@ -177,10 +193,10 @@ router.post('/encode-grades', function(req, res, next) {
 
             if (req.body.firstSem && req.body.secondSem) {
               grades[i] = {
-                firstSem: firstSem[i],
+                firstSem: req.body.firstSem[i],
                 firstSemester: false,
                 postFirstSem: true,
-                secondSem: secondSem[i],
+                secondSem: req.body.secondSem[i],
                 postSecondSem: true,
                 secondSemester: false,
               };
@@ -247,25 +263,25 @@ router.post('/encode-grades', function(req, res, next) {
             if (req.body.firstGrading) {
               console.log('value: ' + firstGrading[i]);
               grades[i] = {
-                firstGrading: firstGrading[i],
+                firstGrading: req.body.firstGrading[i],
               };
               console.log('array: ' + grades[i].firstGrading);
               console.log('array: ' + grades[i].first);
             }
             if (req.body.secondGrading) {
               grades[i] = {
-                secondGrading: secondGrading[i],
+                secondGrading: req.body.secondGrading[i],
               };
             }
             if (req.body.thirdGrading) {
               grades[i] = {
-                thirdGrading: thirdGrading[i],
+                thirdGrading: req.body.thirdGrading[i],
               };
             }
 
             if (req.body.fourthGrading) {
               grades[i] = {
-                fourthGrading: fourthGrading[i],
+                fourthGrading: req.body.fourthGrading[i],
               };
             }
 
@@ -276,45 +292,48 @@ router.post('/encode-grades', function(req, res, next) {
               req.body.fourthGrading
             ) {
               grades[i] = {
-                firstGrading: firstGrading[i],
-                secondGrading: secondGrading[i],
-                thirdGrading: thirdGrading[i],
-                fourthGrading: fourthGrading[i],
+                firstGrading: req.body.firstGrading[i],
+                secondGrading: req.body.secondGrading[i],
+                thirdGrading: req.body.thirdGrading[i],
+                fourthGrading: req.body.fourthGrading[i],
               };
             }
           }
         }
       }
     } else {
+      console.log('firstSem: ' + req.body.firstSem);
       if (req.body.firstSem) {
-        if (req.body.firstSem > 0) {
+        if (req.body.firstSem) {
           var firstSem = req.body.firstSem;
         }
       }
       if (req.body.secondSem) {
-        if (req.body.secondSem > 0) {
+        if (req.body.secondSem) {
           var secondSem = req.body.secondSem;
         }
       }
       if (req.body.id) {
+        console.log('firstSem: ' + firstSem);
         if (req.body.id.length > 0) {
+          // var firstSem = req.body.firstSem;
           for (var i = 0; i < req.body.id.length; i++) {
             if (req.body.firstSem) {
               grades[i] = {
-                firstSem: firstSem[i],
+                firstSem: req.body.firstSem[i],
               };
             }
 
             if (req.body.secondSem) {
               grades[i] = {
-                secondSem: secondSem[i],
+                secondSem: req.body.secondSem[i],
               };
             }
 
             if (req.body.firstSem && req.body.secondSem) {
               grades[i] = {
-                firstSem: firstSem[i],
-                secondSem: secondSem[i],
+                firstSem: req.body.firstSem[i],
+                secondSem: req.body.secondSem[i],
               };
             }
           }
@@ -336,7 +355,11 @@ router.post('/encode-grades', function(req, res, next) {
   }
 });
 
-router.post('/encode-grades/save', function(req, res, next) {
+router.post('/encode-grades/save', facultyAuthentication, function(
+  req,
+  res,
+  next,
+) {
   var grades = [];
   if (!(req.body.yrLvl === 'grade11' || req.body.yrLvl === 'grade12')) {
     if (req.body.firstGrading) {
@@ -432,12 +455,13 @@ router.post('/encode-grades/save', function(req, res, next) {
               firstSem: firstSem[i],
               secondSem: secondSem[i],
             };
+            console.log(grades[i]);
           }
         }
       }
     }
   }
-  console.log(grades);
+  console.log('test: ' + grades);
   var gradeArray = req.body.id;
   for (var i = 0; i < gradeArray.length; i++) {
     Subject.update({ _id: gradeArray[i] }, { $set: grades[i] }).exec(function(
@@ -446,9 +470,9 @@ router.post('/encode-grades/save', function(req, res, next) {
     ) {
       if (err) return next(err);
       console.log(subject);
+      return res.redirect('/viewencoded-grades');
     });
   }
-  res.redirect('/viewencoded-grades');
 
   // Subject.findById(req.params.id)
   // .exec(function(err, subject){
@@ -467,7 +491,7 @@ router.post('/encode-grades/save', function(req, res, next) {
   // });
 });
 
-router.get('/encode1-grades', function(req, res, next) {
+router.get('/encode1-grades', facultyAuthentication, function(req, res, next) {
   if (req.query.yrLvl1 && req.query.section) {
     const regex = new RegExp(escapeRegex(req.query.section), 'gi');
     const regex1 = new RegExp(escapeRegex(req.query.yrLvl1), 'gi');
@@ -484,30 +508,34 @@ router.get('/encode1-grades', function(req, res, next) {
   }
 });
 
-router.get('/viewgrades/:id/:yrLvl/:subject/:section', function(
+router.get(
+  '/viewgrades/:id/:yrLvl/:subject/:section',
+  facultyAuthentication,
+  function(req, res, next) {
+    Subject.find(
+      {
+        faculty: req.params.id,
+        yrLvl: req.params.yrLvl,
+        subject: req.params.subject,
+        section: req.params.section,
+      },
+      function(err, subjects) {
+        res.render('faculty/viewgrades', {
+          subjects: subjects,
+          yrLvl: req.params.yrLvl,
+          subject: req.params.subject,
+          section: req.params.section,
+        });
+      },
+    );
+  },
+);
+
+router.get('/viewencoded-grades', facultyAuthentication, function(
   req,
   res,
   next,
 ) {
-  Subject.find(
-    {
-      faculty: req.params.id,
-      yrLvl: req.params.yrLvl,
-      subject: req.params.subject,
-      section: req.params.section,
-    },
-    function(err, subjects) {
-      res.render('faculty/viewgrades', {
-        subjects: subjects,
-        yrLvl: req.params.yrLvl,
-        subject: req.params.subject,
-        section: req.params.section,
-      });
-    },
-  );
-});
-
-router.get('/viewencoded-grades', function(req, res, next) {
   if (req.query.yrLvl1 && req.query.section) {
     const regex = new RegExp(escapeRegex(req.query.section), 'gi');
     const regex1 = new RegExp(escapeRegex(req.query.yrLvl1), 'gi');

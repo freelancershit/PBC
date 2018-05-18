@@ -16,7 +16,7 @@ router.use(expressSanitizer());
 
 function adminAuthentication(req, res, next) {
   if (req.isAuthenticated()) {
-    if (req.user.isAdmin || req.user.superUser) {
+    if (req.user.isAdmin || req.user.superUser && req.user.user == "admin") {
       return next();
     } else {
       return res.redirect('back');
@@ -172,7 +172,7 @@ router.post('/users', adminAuthentication, function(req, res, next) {
         return res.redirect('/users/new');
       }
       if (req.body.user === 'faculty') {
-        user.isAdmin = true;
+        user.isAdmin = false;
       } else if (req.body.user === 'admin') {
         user.isAdmin = true;
         user.superUser = true;
@@ -315,14 +315,14 @@ router.post('/users', adminAuthentication, function(req, res, next) {
 //   }
 // });
 
-router.get('/manage', function(req, res, next) {
+router.get('/manage', adminAuthentication, function(req, res, next) {
   Pending.find({}, function(err, allPending) {
     if (err) return next(err);
     res.render('admin/manage-users', { allPending: allPending });
   });
 });
 
-router.get('/manage/:id', function(req, res, next) {
+router.get('/manage/:id', adminAuthentication, function(req, res, next) {
   Pending.findById(req.params.id, function(err, pending) {
     User.count({ user: 'student' }).exec(function(err, studentCount) {
       if (err) return next(err);
@@ -443,7 +443,7 @@ router.post('/manage/:id', adminAuthentication, function(req, res, next) {
   }
 });
 
-router.delete('/manage/:id', function(req, res, next) {
+router.delete('/manage/:id', adminAuthentication, function(req, res, next) {
   Pending.findByIdAndRemove(req.params.id, function(err, pendingUser) {
     if (err) return next(err);
     res.redirect('/manage');
@@ -484,7 +484,7 @@ router.get('/manageaccount', function(req, res, next) {
 
 });
 
-router.get('/manageaccount/:id', function(req, res, next) {
+router.get('/manageaccount/:id', adminAuthentication, function(req, res, next) {
   User.findById(req.params.id, function(err, user) {
     if (err) return next(err);
     console.log(user);
@@ -492,13 +492,13 @@ router.get('/manageaccount/:id', function(req, res, next) {
   });
 });
 
-router.get('/postnewsandannouncements', function(req, res, next) {
+router.get('/postnewsandannouncements', adminAuthentication, function(req, res, next) {
   User.count().exec(function(err, counter) {
     res.render('admin/postnews', { counter: counter });
   });
 });
 
-router.post('/postnewsandannouncements', function(req, res, next) {
+router.post('/postnewsandannouncements', adminAuthentication, function(req, res, next) {
   if (req.body.category && req.body.title && req.body.content) {
     var news = new News();
     news.postNumber = req.body.postNumber;
@@ -514,7 +514,7 @@ router.post('/postnewsandannouncements', function(req, res, next) {
   console.log(req.body);
 });
 
-router.get('/managenewsandannouncements', function(req, res, next) {
+router.get('/managenewsandannouncements', adminAuthentication, function(req, res, next) {
   if(req.query.sort == "postNumber"){
     const regex = new RegExp(escapeRegex(req.query.sort), "gi");
     News.find({ archive: false}).sort({postNumber: 1}).exec(function(err, allNews){
@@ -543,7 +543,7 @@ router.get('/managenewsandannouncements', function(req, res, next) {
 }
 });
 
-router.delete('/managenewsandannouncements/:id', function(req, res, next) {
+router.delete('/managenewsandannouncements/:id', adminAuthentication, function(req, res, next) {
   News.findById(req.params.id, function(err, news) {
     news.archive = true;
     news.content = req.sanitize(req.body.content);
@@ -554,7 +554,7 @@ router.delete('/managenewsandannouncements/:id', function(req, res, next) {
   });
 });
 
-router.post('/managenewsandannouncements/:id/edit', function(req, res, next) {
+router.post('/managenewsandannouncements/:id/edit', adminAuthentication, function(req, res, next) {
   News.findById(req.params.id, function(err, news) {
     if (err) return next(err);
     news.category = req.body.category;
@@ -567,7 +567,7 @@ router.post('/managenewsandannouncements/:id/edit', function(req, res, next) {
   });
 });
 
-router.get('/enrollment', function(req, res, next) {
+router.get('/enrollment', adminAuthentication, function(req, res, next) {
   if(req.query.lastName){
     User.find({user: 'student'}).sort({"profile.lastName" : 1, "profile.firstName" : 1}).exec(function(err, users){
       if(err) return next(err);
@@ -583,7 +583,7 @@ router.get('/enrollment', function(req, res, next) {
 }
 });
 
-router.get('/enrollment/:id', function(req, res, next) {
+router.get('/enrollment/:id', adminAuthentication, function(req, res, next) {
   User.findById(req.params.id, function(err, user) {
     Handle.find({}, function(err, handles){
       Curriculum.findOne({studentId : req.params.id, academicYear: (new Date()).getFullYear() + "-" +((new Date()).getFullYear() + 1)}, function(err, curriculum){
@@ -599,7 +599,7 @@ router.get('/enrollment/:id', function(req, res, next) {
   });
 });
 
-router.post('/enrollment/:id', function(req, res, next) {
+router.post('/enrollment/:id', adminAuthentication, function(req, res, next) {
   var curriculum = new Curriculum();
   User.findById(req.params.id, function(err, user) {
     user.section = req.body.section;
@@ -3454,7 +3454,7 @@ router.post('/enrollment/:id', function(req, res, next) {
   });
 });
 
-router.get('/studentlist', function(req, res, next) {
+router.get('/studentlist', adminAuthentication, function(req, res, next) {
   if(req.query.sort){
     User.find({ user: 'student'}).sort({idNumber : 1}).exec(function(err, users){
       if(err) return next(err);
@@ -3487,7 +3487,7 @@ router.get('/studentlist', function(req, res, next) {
 }
 });
 
-router.post("/studentlist", function(req, res, next){
+router.post("/studentlist", adminAuthentication, function(req, res, next){
   console.log(req.body.grading)
   Subject
   .count({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)})
@@ -3637,7 +3637,7 @@ return res.redirect("/studentlist");
   
 });
 
-router.put("/studentlist", function(req, res, next){
+router.put("/studentlist", adminAuthentication, function(req, res, next){
   Subject
   .count({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)})
   .exec(function(err, counter){
@@ -3658,7 +3658,7 @@ return res.redirect("/studentlist");
 
 });
 
-router.get('/studentlist/:id', function(req, res, next) {
+router.get('/studentlist/:id', adminAuthentication, function(req, res, next) {
   Curriculum.findOne({
     studentId: req.params.id,
     academicYear:
@@ -3687,7 +3687,7 @@ router.get('/studentlist/:id', function(req, res, next) {
     });
 });
 
-router.get("/manage-faculty", function(req, res, next){
+router.get("/manage-faculty", adminAuthentication, function(req, res, next){
   if(req.query.lastName){
     User.find({user: 'faculty'}).sort({"profile.lastName" : 1, "profile.firstName" : 1}).exec(function(err, users){
       if(err) return next(err);
@@ -3701,7 +3701,7 @@ router.get("/manage-faculty", function(req, res, next){
 }
 });
 
-router.get("/manage-faculty/:id", function(req, res, next){
+router.get("/manage-faculty/:id", adminAuthentication, function(req, res, next){
   User
   .findById({ _id: req.params.id})
   .populate("faculty")
@@ -3713,7 +3713,7 @@ router.get("/manage-faculty/:id", function(req, res, next){
   });
 });
 
-router.post("/manage-faculty/:id", function(req, res, next){
+router.post("/manage-faculty/:id", adminAuthentication, function(req, res, next){
   User.findById({ _id: req.params.id}, function(err, user){
     Handle.findOne({subject: req.body.subject
       , section: req.body.section
@@ -3747,7 +3747,7 @@ router.post("/manage-faculty/:id", function(req, res, next){
 });
 });
 
-router.delete("/manage-faculty/:id", function(req, res, next){
+router.delete("/manage-faculty/:id", adminAuthentication, function(req, res, next){
   Handle.findByIdAndRemove(req.params.id, function(err, subject){
     if(err) return next(err);
     return res.redirect("back");
@@ -3807,7 +3807,7 @@ router.get('/managepubs', function(req, res, next) {
 //   });
 // });
 
-router.post('/managepubs/:id/edit', function(req, res, next) {
+router.post('/managepubs/:id/edit', adminAuthentication, function(req, res, next) {
   Literary.findById(req.params.id, function(err, news) {
     if (err) return next(err);
     news.category = req.body.category;
@@ -3821,7 +3821,7 @@ router.post('/managepubs/:id/edit', function(req, res, next) {
   });
 });
 
-router.post("/managepubs/delete", function(req, res, next){
+router.post("/managepubs/delete", adminAuthentication, function(req, res, next){
 if(req.body.uniqueId && req.body.uniqueId.constructor == String){
   Literary.update({_id: req.body.uniqueId}, {archive: true}).exec(function(err, lit){
     if(err) return next(err);
@@ -3843,7 +3843,7 @@ if(req.body.uniqueId && req.body.uniqueId.constructor == String){
 
 });
 
-router.post("/managepubs/accept", function(req, res, next){
+router.post("/managepubs/accept", adminAuthentication, function(req, res, next){
 
 
 if(req.body.uniqueId && req.body.uniqueId.constructor == String){
