@@ -618,13 +618,13 @@ router.post('/enrollment/:id', adminAuthentication, function(req, res, next) {
       return res.redirect("/enrollment/"+ req.params.id);
     }
   }
-  if(req.body.yrLvl === "grade11" ||req.body.yrLvl === "grade12"){
-    if(!(req.body.faculty1 && req.body.faculty2 && req.body.faculty3 && req.body.faculty4 && req.body.faculty5 && req.body.faculty6 && req.body.faculty7 || req.body.faculty8 || req.body.faculty9 || req.body.faculty10)){
-      console.log("oops bawal pumasok")
-      req.flash("message", "There is no faculty assigned on some subjects.");
-      return res.redirect("/enrollment/"+ req.params.id);
-    }
-  }
+  // if(req.body.yrLvl === "grade11" ||req.body.yrLvl === "grade12"){
+  //   if(!(req.body.faculty1 && req.body.faculty2 && req.body.faculty3 && req.body.faculty4 && req.body.faculty5 && req.body.faculty6 && req.body.faculty7 || req.body.faculty8 || req.body.faculty9 || req.body.faculty10)){
+  //     console.log("oops bawal pumasok")
+  //     req.flash("message", "There is no faculty assigned on some subjects.");
+  //     return res.redirect("/enrollment/"+ req.params.id);
+  //   }
+  // }
     console.log(user);
     console.log(req.body.yrLvl + ' and ' + req.body.yrLvl.length);
     if (req.body.yrLvl === 'grade1' || req.body.yrLvl === 'grade2') {
