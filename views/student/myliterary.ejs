@@ -30,7 +30,7 @@
                             <% literaries.forEach(function(literaries){ %>
                             <tr>
                                 <td><%= literaries.title  %></td>
-                                <td><%= literaries.content %></td>
+                                <td><%- literaries.content %></td>
                                 <%if (literaries.status == false) {%>
                                 <td> Pending </td>
                                 <% } else { %>
@@ -43,7 +43,7 @@
                                           </button>
                                           <!-- Modal -->
                                           <div id="<%= literaries._id %>" class="modal fade" role="dialog">
-                                            <div class="modal-dialog">
+                                            <div class="modal-dialog modal-lg">
                                                 <%if (literaries.status == false) {%>
                                               <!-- Modal content-->
                                               <div class="modal-content">
@@ -75,11 +75,11 @@
                                                   </div>
                                                   <div class="form-group">
                                                         <label for="comment">Comments:</label>
-                                                        <textarea disabled value="<%= literaries.comments %>" name="comments" class="form-control" rows="5" id="comments"><%= literaries.comments %></textarea>
+                                                         <%- literaries.comments %>
                                                 </div>
                                                 <div class="form-group" style="display: none">
                                                         <label for="comment">Comments:</label>
-                                                        <textarea value="<%= literaries.comments %>" name="comments" class="form-control" rows="5" id="comments"><%= literaries.comments %></textarea>
+                                                        <textarea value="<%= literaries.comments %>" name="comments" class="form-control" rows="5" id="comments"></textarea><%= literaries.comments %></textarea>
                                                 </div>
                                                 </div>
                                                 
