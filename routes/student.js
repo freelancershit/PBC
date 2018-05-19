@@ -53,7 +53,7 @@ router.post('/createliteraryworks', function(req, res, next) {
     literary.middleName = req.user.profile.middleName;
     literary.lastName = req.user.profile.lastName;
     literary.student = req.user._id;
-    literary.comments = "";
+    literary.comments = req.sanitize(req.body.content);
     literary.content = req.sanitize(req.body.content);
     literary.save(function(err, literary) {
       if (err) return next(err);

@@ -25,6 +25,7 @@ var UserSchema = new mongoose.Schema({
   idNumber: Number,
   section: { type: String, default: '' },
   yrLvl: { type: String, default: '' },
+  publisher: { type: Boolean, default: false },
   // inbox: [{
   // 	type: Schema.Types.ObjectId,
   // 	ref: "Message"
