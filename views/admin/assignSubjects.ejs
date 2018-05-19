@@ -39,9 +39,7 @@
 
                 <div class="container ">
                     <div class="dropdown " style="margin-top:5px; margin-left: -10px; ">
-                        <button style="border-radius: 5px; " class="dropdown-toggle " type="button " data-toggle="dropdown ">--Please Select--
-                            <span class="caret "></span>
-                        </button>
+                     
                         <ul class="dropdown-menu ">
                             <li>
                                 <a href="# ">Subject</a>
@@ -90,9 +88,10 @@
          
 
 <div class="panel-heading" style="color: #ffffff;">Add Subject Load</div>
-<div class="col-md-12">
+<div class="row">
+    <div class="col-sm-6">
         <br>
-        <div class="form-group">
+            <div class="form-group">
             <label for="">Department </label><br>
             <select onChange="departments()" id="departmental"  class="form-control">
             
@@ -103,6 +102,7 @@
             </select>
             </div>
 <form action="/manage-faculty/<%= users._id %>" method="POST">
+
     <div class="form-group">
             <label for="">Year Level: </label><br>
             <select onChange="generateTable()" id="yrLvl" name="yrLvl" class="form-control">
@@ -121,33 +121,41 @@
             <option id="11" value="grade11">Grade 11</option>
             <option id="12" value="grade12">Grade 12</option>
             </select>
-            </div>
-<div class="form-group">
-<label for="">Subject: </label><br>
-    <select class="form-control" id="subj" name="subject">
-        <option id="math" value="math">Math</option>
-        <option id="science" value="science">Science</option>
-        <option id="english" value="english">English</option>
-        <option id="filipino" value="filipino">Filipino</option>
-        <option id="EP" value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option>
-        <option id="AP" value="araling panlipunan">Araling Panlipunan</option>
-        <option id="MAPEH" value="mapeh">MAPEH</option>
-        <option id="Comp" value="computer">Computer</option>
-        <option id="TLE" value="TLE">TLE(Technology and Livelihood Education)</option>
-        <option id="EPP" value="Edukasyong Pantahanan at Pangkabuhayan">Edukasyong Pantahanan at Pangkabuhayan</option>
-    </select>
+    </div>
 </div>
+<div class="col-sm-6">
+    <br>
+    <div class="form-group">
+    <label for="">Subject: </label><br>
+        <select class="form-control" id="subj" name="subject">
+            <option id="math" value="math">Math</option>
+            <option id="science" value="science">Science</option>
+            <option id="english" value="english">English</option>
+            <option id="filipino" value="filipino">Filipino</option>
+            <option id="EP" value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option>
+            <option id="AP" value="araling panlipunan">Araling Panlipunan</option>
+            <option id="MAPEH" value="mapeh">MAPEH</option>
+            <option id="Comp" value="computer">Computer</option>
+            <option id="TLE" value="TLE">TLE(Technology and Livelihood Education)</option>
+            <option id="EPP" value="Edukasyong Pantahanan at Pangkabuhayan">Edukasyong Pantahanan at Pangkabuhayan</option>
+        </select>
+    </div>
 
-<div class="form-group">
-<label for="">Section: </label><br>
-<div id="section">
-        <select onchange="generate()" id="section1" name="section" class="form-control"><option value="joy">Joy</option><option value="love">Love</option></select>
+    <div class="form-group">
+    <label for="">Section: </label><br>
+        <div id="section">
+                <select onchange="generate()" id="section1" name="section" class="form-control"><option value="joy">Joy</option><option value="love">Love</option></select>
+        </div>
+    </div>
 </div>
 </div>
-<div class="form-group">
-<button id = "btn" style="color:black" disabled class="form-control btn-info">SAVE</button>
+<div class="col-sm-12">
+    <div class="form-group">
+    <button id = "btn" style="color:black" disabled class="form-control btn-info">SAVE</button>
+    </div>
 </div>
 </form>
+
 </div>
 </div>
 </div>
