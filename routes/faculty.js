@@ -470,6 +470,7 @@ router.post('/encode-grades/save', facultyAuthentication, function(
     ) {
       if (err) return next(err);
       console.log(subject);
+      req.flash("message", "You encode a grade ")
       return res.redirect('/viewencoded-grades');
     });
   }

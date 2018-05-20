@@ -569,12 +569,12 @@ router.post('/managenewsandannouncements/:id/edit', adminAuthentication, functio
 
 router.get('/enrollment', adminAuthentication, function(req, res, next) {
   if(req.query.lastName){
-    User.find({user: 'student'}).sort({"profile.lastName" : 1, "profile.firstName" : 1}).exec(function(err, users){
+    User.find({user: 'student', $or: [{section: '', yrLvl:''}, {curriculum: (new Date()).getFullYear() + 1}] }).sort({"profile.lastName" : 1, "profile.firstName" : 1, idNumber: -1}).exec(function(err, users){
       if(err) return next(err);
       res.render('admin/enroll-student', { users: users });
     });
   }else { 
-  User.find({ user: 'student' }, function(err, users) {
+  User.find({ user: 'student', $or: [{section: '', yrLvl:''}, {curriculum: (new Date()).getFullYear() + 1}]}).sort({_id: -1}).exec(function(err, users) {
     if (err) return next(err);
   console.log(users);
     res.render('admin/enroll-student', { users: users });
@@ -586,7 +586,7 @@ router.get('/enrollment', adminAuthentication, function(req, res, next) {
 router.get('/enrollment/:id', adminAuthentication, function(req, res, next) {
   User.findById(req.params.id, function(err, user) {
     Handle.find({}, function(err, handles){
-      Curriculum.findOne({studentId : req.params.id, academicYear: (new Date()).getFullYear() + "-" +((new Date()).getFullYear() + 1)}, function(err, curriculum){
+      Curriculum.findOne({studentId : req.params.id, academicYear: (new Date()).getFullYear() + "-" +((new Date()).getFullYear() + 1)}).exec(function(err, curriculum){
     if (err) return next(err);
     User.find({ user: 'faculty' })
     .populate("faculty")
@@ -604,6 +604,7 @@ router.post('/enrollment/:id', adminAuthentication, function(req, res, next) {
   User.findById(req.params.id, function(err, user) {
     user.section = req.body.section;
     user.yrLvl = req.body.yrLvl;
+    user.curriculum = (new Date()).getFullYear();
     curriculum.firstName = user.profile.firstName;
     curriculum.middleName = user.profile.middleName;
     curriculum.lastName = user.profile.lastName;
@@ -618,13 +619,13 @@ router.post('/enrollment/:id', adminAuthentication, function(req, res, next) {
       return res.redirect("/enrollment/"+ req.params.id);
     }
   }
-  // if(req.body.yrLvl === "grade11" ||req.body.yrLvl === "grade12"){
-  //   if(!(req.body.faculty1 && req.body.faculty2 && req.body.faculty3 && req.body.faculty4 && req.body.faculty5 && req.body.faculty6 && req.body.faculty7 || req.body.faculty8 || req.body.faculty9 || req.body.faculty10)){
-  //     console.log("oops bawal pumasok")
-  //     req.flash("message", "There is no faculty assigned on some subjects.");
-  //     return res.redirect("/enrollment/"+ req.params.id);
-  //   }
-  // }
+  if(req.body.yrLvl === "grade11" ||req.body.yrLvl === "grade12"){
+    if(!(req.body.shfaculty1 && req.body.shfaculty2 && req.body.shfaculty3 && req.body.shfaculty4 && req.body.shfaculty5 && req.body.shfaculty6 && req.body.shfaculty7 || req.body.shfaculty8 || req.body.shfaculty9 || req.body.shfaculty10)){
+      console.log("oops bawal pumasok")
+      req.flash("message", "There is no faculty assigned on some subjects.");
+      return res.redirect("/enrollment/"+ req.params.id);
+    }
+  }
     console.log(user);
     console.log(req.body.yrLvl + ' and ' + req.body.yrLvl.length);
     if (req.body.yrLvl === 'grade1' || req.body.yrLvl === 'grade2') {
@@ -3747,9 +3748,26 @@ router.post("/manage-faculty/:id", adminAuthentication, function(req, res, next)
 });
 });
 
+router.put("/manage-faculty/:id", adminAuthentication, function(req, res, next){
+  User.findById(req.params.id, function(err, user){
+    if(err) return next(err);
+    if(req.body.publisher =="true"){
+    user.publisher = true;
+    user.save();
+    req.flash("message", "You successfully activated the manage publisher in this staff.");
+    return res.redirect("/manage-faculty/" + user._id);
+  }else{
+    user.publisher = true;
+    user.save();
+    req.flash("message", "You successfully disabled the manage publisher in this staff.");
+    return res.redirect("/manage-faculty/" + user._id);
+  }
+  });
+});
 router.delete("/manage-faculty/:id", adminAuthentication, function(req, res, next){
   Handle.findByIdAndRemove(req.params.id, function(err, subject){
     if(err) return next(err);
+    req.flash("message", "You successfully deleted a handled subject of this staff");
     return res.redirect("back");
   });
 });
@@ -3816,6 +3834,7 @@ router.post('/managepubs/:id/edit', adminAuthentication, function(req, res, next
     news.comments = req.body.comments;
     news.save(function(err, news) {
       if (err) return next(err);
+      req.flash("message", "You successfully added a publication!");
       res.redirect('/managepubs');
     });
   });
@@ -3825,6 +3844,7 @@ router.post("/managepubs/delete", adminAuthentication, function(req, res, next){
 if(req.body.uniqueId && req.body.uniqueId.constructor == String){
   Literary.update({_id: req.body.uniqueId}, {archive: true}).exec(function(err, lit){
     if(err) return next(err);
+    req.flash("message", "You successfully deleted a publication!");
     return res.redirect("/managepubs");
   });
 }else if(req.body.uniqueId && req.body.uniqueId.constructor == Array){
@@ -3832,6 +3852,7 @@ if(req.body.uniqueId && req.body.uniqueId.constructor == String){
   litArray.forEach(function(lit){
     Literary.update({_id: lit}, {archive: true}).exec(function(err, lit){
       if(err) return next(err);
+      req.flash("message", "You successfully added a publication!");
       
     });
   });
@@ -3850,6 +3871,7 @@ if(req.body.uniqueId && req.body.uniqueId.constructor == String){
   Literary.update({ _id : req.body.uniqueId }, { status : true}).exec(function(err, lit){
       console.log(lit);
       if(err) return next(err);
+      req.flash("message", "You successfully published!");
       return res.redirect("/managepubs");
     });
 }else if(req.body.uniqueId && req.body.uniqueId.constructor == Array){
