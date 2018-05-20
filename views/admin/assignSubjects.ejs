@@ -96,6 +96,7 @@
                         <div class="panel-heading" style="color: #ffffff;">Add Subject Load</div>
                         <div class="row">
                             <div class="col-sm-12">
+                            <br>
                             <% if(users.publisher == "true" || users.publisher == true){ %>
                                 <form action="/manage-faculty/<%= users._id %>?_method=PUT" method="POST">
                                 <input type="hidden" name="publisher" value="true" />
