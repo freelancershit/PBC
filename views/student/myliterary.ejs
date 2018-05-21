@@ -36,7 +36,9 @@
                                 <% } else { %>
                                   <td> Approved </td>
                                   <% } %>
+                                  
                                 <td>
+                                    <%if (literaries.status == false) {%>
                                         <form id="delete-form" action="/myliterary/<%= literaries._id %>/edit" method="POST">
                                           <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#<%= literaries._id %>">
                                             <i class="fa fa-edit" aria-hidden="true"></i>
@@ -128,6 +130,7 @@
 </div>
                                             <% } %>
                                         </form>
+                                        <% } %>
                                       </td>
                                 <!-- <td><%= literaries.section %></td> -->
                               
