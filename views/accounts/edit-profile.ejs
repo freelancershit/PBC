@@ -68,31 +68,7 @@
 			</div>
 		<% } %>
 	
-                  <label>Birthdate: </label>
-                  <div class="form-group">
-                  <select onchange="change()" class="btn btn-default" name="year" id="year">
-                  <option selected value="<%= user.birthdate.getFullYear() %>" ><%= user.birthdate.getFullYear() %></option>
-                  </select>
-                  <select class="btn btn-default" onchange="change()" name="month" id="month">
-                  <option selected value="<%= user.birthdate.getMonth() + 1 %>"><%= getMonth %></option>
-                      <option value="01">January</option>
-                      <option value="02">February</option>
-                      <option value="03">March</option>
-                      <option value="04">April</option>
-                      <option value="05">May</option>
-                      <option value="06">June</option>
-                      <option value="07">July</option>
-                      <option value="08">August</option>
-                      <option value="09">September</option>
-                      <option value="10">October</option>
-                      <option value="11">November</option>
-                      <option value="12">December</option>
-                  </select>
-                  <select onchange="change()"class="btn btn-default" name="day" id="day">
-                  <option selected value="<%= user.birthdate.getDate() %>"><%= user.birthdate.getDate() %></option>
-                  </select>
-                  
-                  </div>
+                 
 </center>
                   <div class="form-group" >
                       <label for="name">Address:</label>

@@ -100,12 +100,12 @@
                             <% if(users.publisher == "true" || users.publisher == true){ %>
                                 <form action="/manage-faculty/<%= users._id %>?_method=PUT" method="POST">
                                 <input type="hidden" name="publisher" value="true" />
-                                    <button class="btn btn-info">Disable Manage Faculty</button>
+                                    <button class="btn btn-info">Disable Editor</button>
                                 </form>
                                 <% }else{ %>
                                 <form action="/manage-faculty/<%= users._id %>?_method=PUT" method="POST">
                                     <input type="hidden" name="publisher" value="false" />
-                                    <button class="btn btn-info">Enable Manage Faculty</button>
+                                    <button class="btn btn-info">Enable Editor</button>
                                 </form>
                                 <% } %>
                             </div>

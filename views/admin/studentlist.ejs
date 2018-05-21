@@ -13,7 +13,7 @@
           Student List
 
         </div>
-        <label for="usr" style="margin-left: 5px; margin-top: 15px;">Sort By:</label>
+  
         <div class="container">
           <div class="dropdown" style="margin-top:5px; margin-left: -10px;">
             <button style="border-radius: 5px; width: 150px; display: none" class="dropdown-toggle btn btn-default" type="button" data-toggle="dropdown">--Please Select--
@@ -57,6 +57,7 @@
             </ul> -->
             <br/>
             <br>
+            <label for="usr" style="margin-left: 5px; margin-top: 15px;">Filter By:</label>
             <form id="delete-form" action="/studentlist" method="GET">
               <select onChange="appendSection()" id="yrLvl" name="yrLvl1" class="btn btn-default">
                 <option value="">Choose a year level...</option>
