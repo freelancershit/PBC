@@ -18,8 +18,10 @@ function adminAuthentication(req, res, next) {
   if (req.isAuthenticated()) {
     if (req.user.isAdmin || req.user.superUser && req.user.user == "admin") {
       return next();
-    } else {
-      return res.redirect('back');
+    } else if(req.user.publisher == true || req.user.publisher == "true") {
+      return next();
+    }else{
+      return res.redirect('back');      
     }
   } else {
     return res.redirect('/login');
@@ -3741,6 +3743,7 @@ router.post("/manage-faculty/:id", adminAuthentication, function(req, res, next)
     user.save(function(err, user){
       if(err) return next(err);
       console.log(user);
+      req.user("message", "Successfully assigned a subject");
     });
     return res.redirect("back");
   }
@@ -3757,7 +3760,7 @@ router.put("/manage-faculty/:id", adminAuthentication, function(req, res, next){
     req.flash("message", "You successfully activated the manage publisher in this staff.");
     return res.redirect("/manage-faculty/" + user._id);
   }else{
-    user.publisher = true;
+    user.publisher = false;
     user.save();
     req.flash("message", "You successfully disabled the manage publisher in this staff.");
     return res.redirect("/manage-faculty/" + user._id);
@@ -3772,7 +3775,7 @@ router.delete("/manage-faculty/:id", adminAuthentication, function(req, res, nex
   });
 });
 
-router.get('/managepubs', function(req, res, next) {
+router.get('/managepubs', adminAuthentication, function(req, res, next) {
   if(req.query.sort){
     Literary.find({status: false, archive: false}).sort({litNumber: 1}).exec(function(err, literaries){
       if(err) return next(err);
