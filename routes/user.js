@@ -7,6 +7,7 @@ var passport = require('passport');
 var passportConfig = require('../config/passport');
 var nodemailer = require('nodemailer');
 var crypto = require('crypto');
+var transporter = require('nodemailer-smtp-transport');
 
 router.get('/login', function(req, res) {
   News.findOne({ category: 'news' })
@@ -213,7 +214,7 @@ router.post('/edit-profile', function(req, res, next) {
 });
 
 router.get('/forgot', function(req, res) {
-  res.render('account/forgot');
+  res.render('accounts/forgot');
 });
 
 router.post('/forgot', function(req, res, next) {
@@ -241,13 +242,15 @@ router.post('/forgot', function(req, res, next) {
         });
       },
       function(token, user, done) {
-        var smtpTransport = nodemailer.createTransport({
-          service: 'Gmail',
-          auth: {
-            user: 'pbcssinc@gmail.com',
-            pass: process.env.GMAILPW,
-          },
-        });
+        var smtpTransport = nodemailer.createTransport(
+          transporter({
+            service: 'Gmail',
+            auth: {
+              user: 'pbcssinc@gmail.com',
+              pass: 'Pbcssinc!123',
+            },
+          }),
+        );
         var mailOptions = {
           to: user.email,
           from: 'pbcssinc@gmail.com',
@@ -292,7 +295,7 @@ router.get('/reset/:token', function(req, res) {
         req.flash('error', 'Password reset token is invalid or has expired.');
         return res.redirect('/forgot');
       }
-      res.render('account/reset', { token: req.params.token });
+      res.render('accounts/reset', { token: req.params.token });
     },
   );
 });
@@ -315,14 +318,13 @@ router.post('/reset/:token', function(req, res) {
               return res.redirect('back');
             }
             if (req.body.password === req.body.confirm) {
-              user.setPassword(req.body.password, function(err) {
-                user.resetPasswordToken = undefined;
-                user.resetPasswordExpires = undefined;
+              user.password = req.body.password;
+              user.resetPasswordToken = undefined;
+              user.resetPasswordExpires = undefined;
 
-                user.save(function(err) {
-                  req.logIn(user, function(err) {
-                    done(err, user);
-                  });
+              user.save(function(err) {
+                req.logIn(user, function(err) {
+                  done(err, user);
                 });
               });
             } else {
@@ -333,13 +335,15 @@ router.post('/reset/:token', function(req, res) {
         );
       },
       function(user, done) {
-        var smtpTransport = nodemailer.createTransport({
-          service: 'Gmail',
-          auth: {
-            user: 'pbcssincpbcssinc@gmail.com',
-            pass: 'Pbcssinc!123',
-          },
-        });
+        var smtpTransport = nodemailer.createTransport(
+          transporter({
+            service: 'Gmail',
+            auth: {
+              user: 'pbcssinc@gmail.com',
+              pass: 'Pbcssinc!123',
+            },
+          }),
+        );
         var mailOptions = {
           to: user.email,
           from: 'pbcssinc@gmail.com',
