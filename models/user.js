@@ -23,6 +23,8 @@ var UserSchema = new mongoose.Schema({
   contact: String,
   grades: String,
   idNumber: Number,
+  resetPasswordToken: String,
+  resetPasswordExpires: Date,
   section: { type: String, default: '' },
   yrLvl: { type: String, default: '' },
   publisher: { type: Boolean, default: false },

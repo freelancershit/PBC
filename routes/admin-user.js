@@ -18,8 +18,10 @@ function adminAuthentication(req, res, next) {
   if (req.isAuthenticated()) {
     if (req.user.isAdmin || req.user.superUser && req.user.user == "admin") {
       return next();
-    } else {
-      return res.redirect('back');
+    } else if(req.user.publisher == true || req.user.publisher == "true") {
+      return next();
+    }else{
+      return res.redirect('back');      
     }
   } else {
     return res.redirect('/login');
@@ -419,7 +421,8 @@ router.post('/manage/:id', adminAuthentication, function(req, res, next) {
           Pending.findByIdAndRemove(req.params.id, function(err, pendingUser) {
             if (err) return next(err);
             console.log(pendingUser);
-            res.redirect('/manage');
+            req.flash("message", "The account has been created successfully.");
+            return res.redirect('/manage');
           });
           // callback(null, user);
         });
@@ -439,13 +442,14 @@ router.post('/manage/:id', adminAuthentication, function(req, res, next) {
   } else {
     req.flash('errors', 'Please fillup all the required information.');
     console.log(req.body);
-    res.redirect('/manage/' + req.params.id);
+   return res.redirect('/manage/' + req.params.id);
   }
 });
 
 router.delete('/manage/:id', adminAuthentication, function(req, res, next) {
   Pending.findByIdAndRemove(req.params.id, function(err, pendingUser) {
     if (err) return next(err);
+    req.flash("message", "Deletion successful.");
     res.redirect('/manage');
   });
 });
@@ -508,6 +512,7 @@ router.post('/postnewsandannouncements', adminAuthentication, function(req, res,
     news.save(function(err, news) {
       if (err) return next(err);
       console.log(news);
+      req.flash("message", "Added a new article.");
       res.redirect('/postnewsandannouncements');
     });
   }
@@ -549,6 +554,7 @@ router.delete('/managenewsandannouncements/:id', adminAuthentication, function(r
     news.content = req.sanitize(req.body.content);
     news.save(function(err, news) {
       if (err) return next(err);
+      req.flash("message", "You successfully deleted an article.");
       res.redirect('/managenewsandannouncements');
     });
   });
@@ -562,6 +568,7 @@ router.post('/managenewsandannouncements/:id/edit', adminAuthentication, functio
     news.content = req.body.content;
     news.save(function(err, news) {
       if (err) return next(err);
+      req.flash("message", "You successfully create a new " + req.body.category + ".");
       res.redirect('/managenewsandannouncements');
     });
   });
@@ -3451,6 +3458,7 @@ router.post('/enrollment/:id', adminAuthentication, function(req, res, next) {
     }
 
     console.log(user + ' and ' + curriculum);
+    req.flash("message", "You successfully enrolled a new student");
    return res.redirect('/enrollment');
   });
 });
@@ -3632,7 +3640,7 @@ router.post("/studentlist", adminAuthentication, function(req, res, next){
           console.log(secondSubjects);
         });
 }
-
+req.flash("message", "You enable the encoding of grade.");
 return res.redirect("/studentlist");
 });
   
@@ -3654,6 +3662,7 @@ router.put("/studentlist", adminAuthentication, function(req, res, next){
         console.log(subjects);
       });
 }
+req.flash("message", "You successfully disabled the encoding of grades.");
 return res.redirect("/studentlist");
 });
 
@@ -3741,6 +3750,7 @@ router.post("/manage-faculty/:id", adminAuthentication, function(req, res, next)
     user.save(function(err, user){
       if(err) return next(err);
       console.log(user);
+      req.user("message", "Successfully assigned a subject");
     });
     return res.redirect("back");
   }
@@ -3757,7 +3767,7 @@ router.put("/manage-faculty/:id", adminAuthentication, function(req, res, next){
     req.flash("message", "You successfully activated the manage publisher in this staff.");
     return res.redirect("/manage-faculty/" + user._id);
   }else{
-    user.publisher = true;
+    user.publisher = false;
     user.save();
     req.flash("message", "You successfully disabled the manage publisher in this staff.");
     return res.redirect("/manage-faculty/" + user._id);
@@ -3772,7 +3782,7 @@ router.delete("/manage-faculty/:id", adminAuthentication, function(req, res, nex
   });
 });
 
-router.get('/managepubs', function(req, res, next) {
+router.get('/managepubs', adminAuthentication, function(req, res, next) {
   if(req.query.sort){
     Literary.find({status: false, archive: false}).sort({litNumber: 1}).exec(function(err, literaries){
       if(err) return next(err);
@@ -3858,7 +3868,7 @@ if(req.body.uniqueId && req.body.uniqueId.constructor == String){
   });
   return res.redirect("/managepubs");
 } else{
-  req.flash("message", "You didnt select and ID.");
+  req.flash("message", "You didnt select an ID.");
   return res.redirect("/managepubs");
 }
 
