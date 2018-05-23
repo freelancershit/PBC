@@ -3762,12 +3762,12 @@ router.put("/manage-faculty/:id", adminAuthentication, function(req, res, next){
   User.findById(req.params.id, function(err, user){
     if(err) return next(err);
     if(req.body.publisher =="true"){
-    user.publisher = true;
+    user.publisher = false;
     user.save();
     req.flash("message", "You successfully activated the manage publisher in this staff.");
     return res.redirect("/manage-faculty/" + user._id);
   }else{
-    user.publisher = false;
+    user.publisher = true;
     user.save();
     req.flash("message", "You successfully disabled the manage publisher in this staff.");
     return res.redirect("/manage-faculty/" + user._id);
