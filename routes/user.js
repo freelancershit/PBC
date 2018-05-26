@@ -9,13 +9,21 @@ var nodemailer = require('nodemailer');
 var crypto = require('crypto');
 var transporter = require('nodemailer-smtp-transport');
 
-router.get('/login', function(req, res) {
-  News.findOne({ category: 'news' })
-    .sort({ _id: 1 })
-    .exec(function(err1, news) {
-      News.findOne({ category: 'announcement' })
-        .sort({ _id: 1 })
-        .exec(function(err, announcements) {
+router.get('/login', function (req, res) {
+  News.findOne({
+      category: 'news'
+    })
+    .sort({
+      _id: 1
+    })
+    .exec(function (err1, news) {
+      News.findOne({
+          category: 'announcement'
+        })
+        .sort({
+          _id: 1
+        })
+        .exec(function (err, announcements) {
           if (err) return next(err1);
           if (err) return next(err);
           res.render('main/homeplayground', {
@@ -34,10 +42,10 @@ router.post(
     failureRedirect: '/login',
     failureFlash: true,
   }),
-  function(req, res) {},
+  function (req, res) {},
 );
 
-router.get('/profile', function(req, res) {
+router.get('/profile', function (req, res) {
   // User
   // .findOne({_id: req.user._id})
   // .populate('history.item')
@@ -46,16 +54,18 @@ router.get('/profile', function(req, res) {
   // 	res.render('accounts/profile', {user : user});
   // });
   async.waterfall([
-    function(callback) {
-      User.findById({ _id: req.user._id })
+    function (callback) {
+      User.findById({
+          _id: req.user._id
+        })
         .populate('history')
-        .exec(function(err, user) {
+        .exec(function (err, user) {
           if (err) return next(err);
           console.log(user);
           callback(null, user);
         });
     },
-    function(user) {
+    function (user) {
       // History
       // .find({customer: req.user.email})
       // .populate('item')
@@ -63,17 +73,21 @@ router.get('/profile', function(req, res) {
       // 	if(err){
       // 		console.log(err);
       // 	}
-      res.render('accounts/profile', { user: user });
+      res.render('accounts/profile', {
+        user: user
+      });
       // });
     },
   ]);
 });
 
-router.get('/signup', function(req, res) {
-  res.render('accounts/signup', { errors: req.flash('errors') });
+router.get('/signup', function (req, res) {
+  res.render('accounts/signup', {
+    errors: req.flash('errors')
+  });
 });
 
-router.post('/signup', function(req, res, next) {
+router.post('/signup', function (req, res, next) {
   // async.waterfall([
   // function(callback){
   var user = new User();
@@ -83,20 +97,26 @@ router.post('/signup', function(req, res, next) {
   user.age = req.body.age;
   user.user = 'admin';
   if (user.user === 'admin') {
-    User.count({ user: user.user }).exec(function(err, count) {
+    User.count({
+      user: user.user
+    }).exec(function (err, count) {
       var number = new Date().getFullYear() + '000000';
       user.idNumber = parseInt(number) + count;
       user.isAdmin = true;
       user.superUser = true;
     });
   } else if (user.user === 'faculty') {
-    User.count({ user: user.user }).exec(function(err, count) {
+    User.count({
+      user: user.user
+    }).exec(function (err, count) {
       var number = new Date().getFullYear() + '000000';
       user.idNumber = parseInt(number) + count;
       user.isAdmin = true;
     });
   } else {
-    User.count({ user: user.user }).exec(function(err, count) {
+    User.count({
+      user: user.user
+    }).exec(function (err, count) {
       var number = new Date().getFullYear() + '000000';
       user.idNumber = parseInt(number) + count;
     });
@@ -110,14 +130,16 @@ router.post('/signup', function(req, res, next) {
     return res.redirect('/signup');
   }
   user.password = req.body.password;
-  User.findOne({ email: req.body.email }, function(err, existingUser) {
+  User.findOne({
+    email: req.body.email
+  }, function (err, existingUser) {
     if (existingUser) {
       req.flash('errors', 'Account with that email address already exist');
       return res.redirect('/signup');
     } else {
-      user.save(function(err, user) {
+      user.save(function (err, user) {
         if (err) return next(err);
-        req.logIn(user, function(err) {
+        req.logIn(user, function (err) {
           res.redirect('/admindashboard');
         });
       });
@@ -137,9 +159,9 @@ router.post('/signup', function(req, res, next) {
   // ]);
 });
 
-router.get('/logout', function(req, res, next) {
-  User.findById(req.user._id, function(err, user) {
-    user.save(function(err, result) {
+router.get('/logout', function (req, res, next) {
+  User.findById(req.user._id, function (err, user) {
+    user.save(function (err, result) {
       if (err) return next(err);
       console.log(result);
     });
@@ -149,7 +171,7 @@ router.get('/logout', function(req, res, next) {
   res.redirect('/');
 });
 
-router.get('/edit-profile', function(req, res, next) {
+router.get('/edit-profile', function (req, res, next) {
   var month = [
     'January',
     'February',
@@ -165,7 +187,7 @@ router.get('/edit-profile', function(req, res, next) {
     'December',
   ];
 
-  User.findById(req.user._id, function(err, user) {
+  User.findById(req.user._id, function (err, user) {
     if (err) return next(err);
     var getMonth = month[parseInt(user.birthdate.getMonth())];
     res.render('accounts/edit-profile', {
@@ -177,8 +199,10 @@ router.get('/edit-profile', function(req, res, next) {
   });
 });
 
-router.post('/edit-profile', function(req, res, next) {
-  User.findOne({ _id: req.user._id }, function(err, user) {
+router.post('/edit-profile', function (req, res, next) {
+  User.findOne({
+    _id: req.user._id
+  }, function (err, user) {
     if (err) return next(err);
     if (req.body.contact) user.contact = req.body.contact;
     if (req.body.address) user.address = req.body.address;
@@ -205,7 +229,7 @@ router.post('/edit-profile', function(req, res, next) {
     if (req.body.password) {
       user.password = req.body.password;
     }
-    user.save(function(err) {
+    user.save(function (err) {
       if (err) return next(err);
       req.flash('success', 'You successfully edit your profile');
       return res.redirect('/edit-profile');
@@ -213,21 +237,23 @@ router.post('/edit-profile', function(req, res, next) {
   });
 });
 
-router.get('/forgot', function(req, res) {
+router.get('/forgot', function (req, res) {
   res.render('accounts/forgot');
 });
 
-router.post('/forgot', function(req, res, next) {
+router.post('/forgot', function (req, res, next) {
   async.waterfall(
     [
-      function(done) {
-        crypto.randomBytes(20, function(err, buf) {
+      function (done) {
+        crypto.randomBytes(20, function (err, buf) {
           var token = buf.toString('hex');
           done(err, token);
         });
       },
-      function(token, done) {
-        User.findOne({ email: req.body.email }, function(err, user) {
+      function (token, done) {
+        User.findOne({
+          email: req.body.email
+        }, function (err, user) {
           if (!user) {
             req.flash('message', 'No account with that email address exists.');
             return res.redirect('/forgot');
@@ -236,12 +262,12 @@ router.post('/forgot', function(req, res, next) {
           user.resetPasswordToken = token;
           user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
 
-          user.save(function(err) {
+          user.save(function (err) {
             done(err, token, user);
           });
         });
       },
-      function(token, user, done) {
+      function (token, user, done) {
         var smtpTransport = nodemailer.createTransport(
           transporter({
             service: 'Gmail',
@@ -255,8 +281,7 @@ router.post('/forgot', function(req, res, next) {
           to: user.email,
           from: 'pbcssinc@gmail.com',
           subject: 'Node.js Password Reset',
-          text:
-            'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+          text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
             'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
             'http://' +
             req.headers.host +
@@ -265,51 +290,55 @@ router.post('/forgot', function(req, res, next) {
             '\n\n' +
             'If you did not request this, please ignore this email and your password will remain unchanged.\n',
         };
-        smtpTransport.sendMail(mailOptions, function(err) {
+        smtpTransport.sendMail(mailOptions, function (err) {
           console.log('mail sent');
           req.flash(
             'message',
             'An e-mail has been sent to ' +
-              user.email +
-              ' with further instructions.',
+            user.email +
+            ' with further instructions.',
           );
           done(err, 'done');
         });
       },
     ],
-    function(err) {
+    function (err) {
       if (err) return next(err);
       res.redirect('/forgot');
     },
   );
 });
 
-router.get('/reset/:token', function(req, res) {
-  User.findOne(
-    {
+router.get('/reset/:token', function (req, res) {
+  User.findOne({
       resetPasswordToken: req.params.token,
-      resetPasswordExpires: { $gt: Date.now() },
+      resetPasswordExpires: {
+        $gt: Date.now()
+      },
     },
-    function(err, user) {
+    function (err, user) {
       if (!user) {
         req.flash('error', 'Password reset token is invalid or has expired.');
         return res.redirect('/forgot');
       }
-      res.render('accounts/reset', { token: req.params.token });
+      res.render('accounts/reset', {
+        token: req.params.token
+      });
     },
   );
 });
 
-router.post('/reset/:token', function(req, res) {
+router.post('/reset/:token', function (req, res) {
   async.waterfall(
     [
-      function(done) {
-        User.findOne(
-          {
+      function (done) {
+        User.findOne({
             resetPasswordToken: req.params.token,
-            resetPasswordExpires: { $gt: Date.now() },
+            resetPasswordExpires: {
+              $gt: Date.now()
+            },
           },
-          function(err, user) {
+          function (err, user) {
             if (!user) {
               req.flash(
                 'message',
@@ -322,8 +351,8 @@ router.post('/reset/:token', function(req, res) {
               user.resetPasswordToken = undefined;
               user.resetPasswordExpires = undefined;
 
-              user.save(function(err) {
-                req.logIn(user, function(err) {
+              user.save(function (err) {
+                req.logIn(user, function (err) {
                   done(err, user);
                 });
               });
@@ -334,7 +363,7 @@ router.post('/reset/:token', function(req, res) {
           },
         );
       },
-      function(user, done) {
+      function (user, done) {
         var smtpTransport = nodemailer.createTransport(
           transporter({
             service: 'Gmail',
@@ -348,19 +377,18 @@ router.post('/reset/:token', function(req, res) {
           to: user.email,
           from: 'pbcssinc@gmail.com',
           subject: 'Your password has been changed',
-          text:
-            'Hello,\n\n' +
+          text: 'Hello,\n\n' +
             'This is a confirmation that the password for your account ' +
             user.email +
             ' has just been changed.\n',
         };
-        smtpTransport.sendMail(mailOptions, function(err) {
+        smtpTransport.sendMail(mailOptions, function (err) {
           req.flash('message', 'Success! Your password has been changed.');
           done(err);
         });
       },
     ],
-    function(err) {
+    function (err) {
       res.redirect('/');
     },
   );

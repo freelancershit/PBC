@@ -74,7 +74,7 @@ z-index: 99;">
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <a href="/admissionreq">Admission Requirements</a>
+                  <a href="/admissionreq">Admission Guidelines</a>
                 </li>
                 <li>
                   <a href="/scholarships">Scholarships</a>
@@ -182,15 +182,16 @@ z-index: 99;">
                   <label style="color:black; font-weight:bold;">Password:</label>
                   <input class="form-control" type="password" name="password" placeholder="PASSWORD">
                   <br>
-                  <center>
-              <a href="/forgot" style="color: black;">Forgot password</a>
-              </center>
+
                   <center>
                     <button id="pink" class="btn btn-primary" style=" border-radius:5px;font-weight:bold; font-family:Verdana; width: 50%;">SIGN IN</button>
                   </center>
+                  <center>
+                    <a href="/forgot" style="color: black;">Forgot password</a>
+                  </center>
                 </div>
               </form>
-              
+
             </div>
           </div>
         </div>
@@ -206,27 +207,32 @@ z-index: 99;">
         // document.getElementById("btn").click();
 
       };
+
       function myfunction() {
         document.getElementById("btn").click();
       }
     </script>
 
     <div class="modal fade" id="search" role="dialog">
-      <div class="modal-dialog modal-m">
+      <div class="modal-dialog modal-sm">
         <div class="modal-content">
           <div class="modal-header">
-            <div class="form-group">
-              <form action="/search" method="GET">
-                <label for="name">Search:</label>
-                <center>
-                  <input class="form-control" name="search" type="text" placeholder="Search Key">
-                  <br>
-                  <button class="btn btn-default" style="width: 50%; height:  20%;">Search</button>
-                </center>
-              </form>
-            </div>
+            <!-- <div class="form-group"> -->
+            <form action="/search" method="GET">
+              <label for="name"></label>Search:
           </div>
+
+          <br>
+          <center>
+            <input class="form-control" style=" width: 70% " name="search" type="text" placeholder="Search Key">
+            <br>
+            <br>
+            <button class="btn btn-default" style="width: 50%; height:  20%; margin-bottom: 50px">Search</button>
+          </center>
+          </form>
         </div>
       </div>
+    </div>
+    </div>
     </div>
     </div>
