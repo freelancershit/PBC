@@ -113,6 +113,7 @@ router.post('/users', adminAuthentication, function(req, res, next) {
         } else {
           user.save(function(err, user) {
             if (err) return next(err);
+            req.flash("message", "You successfully created a new account");
             res.redirect('/users/new');
             // callback(null, user);
           });
@@ -190,7 +191,8 @@ router.post('/users', adminAuthentication, function(req, res, next) {
         } else {
           user.save(function(err, user) {
             if (err) return next(err);
-            res.redirect('/users/new');
+            req.flash("message", "You successfully created a new account");
+            return res.redirect('/users/new');
             // callback(null, user);
           });
           console.log(user);
