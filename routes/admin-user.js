@@ -582,6 +582,11 @@ router.get('/enrollment', adminAuthentication, function(req, res, next) {
       if(err) return next(err);
       res.render('admin/enroll-student', { users: users });
     });
+  }else if(req.query.idNumber){
+    User.find({user: 'student', idNumber: req.query.idNumber}, function(err, user){
+      if(err) return next(err);
+      return res.render('admin/enroll-student', { users: users });
+    });
   }else { 
   User.find({ user: 'student', $or: [{section: '', yrLvl:''}, {curriculum: (new Date()).getFullYear() + 1}]}).sort({_id: -1}).exec(function(err, users) {
     if (err) return next(err);
@@ -3766,12 +3771,12 @@ router.put("/manage-faculty/:id", adminAuthentication, function(req, res, next){
     if(req.body.publisher == "true" || req.body.publisher == true){
     user.publisher = true;
     user.save();
-    req.flash("message", "You successfully activated the manage publisher in this staff.");
+    req.flash("message", "You successfully disabled the manage publisher on this staff.");
     return res.redirect("/manage-faculty/" + user._id);
   }else{
     user.publisher = false;
     user.save();
-    req.flash("message", "You successfully disabled the manage publisher in this staff.");
+    req.flash("message", "You successfully enable the manage publisher on this staff.");
     return res.redirect("/manage-faculty/" + user._id);
   }
   });

@@ -10,27 +10,19 @@
     <div class="panel-heading" style="color: #ffffff;">Records of Grades:
       <button style="display: none" id="btn" data-toggle="modal" href="#myModal">Open Modal</button>
     </div>
-    <div class=" form-group ">
+    <div class="form-group ">
       <br>
-      <label for="usr " style="margin-left: 5px; ">Academic Year:</label>
-      <div class="container ">
-        <div class="dropdown " style="margin-top:5px; margin-left: -10px; ">
-          <button style="border-radius: 5px; " class="dropdown-toggle " type="button " data-toggle="dropdown ">--Please Select--
-            <span class="caret "></span>
-          </button>
-          <ul class="dropdown-menu ">
-            <li>
-              <a href="# ">1</a>
-            </li>
-            <li>
-              <a href="# ">2</a>
-            </li>
-            <li>
-              <a href="# ">3</a>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <form action="/viewgrade" method="GET">
+        <select name="academicYear" class="btn btn-info">
+        <option>Choose a year...</option>
+          <% if(curriculums){ %>
+            <% curriculums.forEach(function(curriculum){ %>
+              <option value="<%= curriculum.academicYear %>"><%= curriculum.academicYear %></option>
+            <% }); %>
+          <% } %>
+          </select>
+          <button class="btn btn-info">Find</button>
+      </form>
     </div>
     <br>
 

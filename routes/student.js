@@ -22,10 +22,10 @@ router.get('/createliteraryworks', function(req, res, next) {
   });
 });
 
-router.get("/myliterary", function(req, res, next){
-  Literary.find({student: req.user._id}, function(err, literaries){
-      if(err) return next(err);
-      res.render("student/myliterary", {literaries: literaries});
+router.get('/myliterary', function(req, res, next) {
+  Literary.find({ student: req.user._id }, function(err, literaries) {
+    if (err) return next(err);
+    res.render('student/myliterary', { literaries: literaries });
   });
 });
 router.post('/myliterary/:id/edit', function(req, res, next) {
@@ -77,33 +77,66 @@ router.get('/viewgrade', function(req, res, next) {
   //     console.log('subjects: ' + curriculum);
   //     res.render('student/grade', { curriculum: curriculum });
   //   });
-
-  Curriculum.findOne({
-    email: req.user.email,
-    academicYear:
-      (new Date()).getFullYear() + '-' + (new Date().getFullYear() + 1)
-    })
-    .populate('subjects')
-    .exec(function(err, curriculum) {
-      console.log(curriculum);
-      if(curriculum){
-        User.findById(req.user._id, function(err, user) {
-          res.render('student/grade', { curriculum: curriculum, user: user });
-        });
-      } else if(!curriculum){
-        Curriculum.findOne({
-          email: req.user.email,
-          academicYear:
-            ((new Date()).getFullYear() - 1) + '-' + (new Date()).getFullYear()
-          })
-          .populate('subjects')
-          .exec(function(err, curriculum) {
-            User.findById(req.params.id, function(err, user) {
-              res.render('student/grade', { curriculum: curriculum, user: user });
+  if (req.body.academicYear) {
+    Curriculum.find({ email: req.user.email }, function(err, curriculums) {
+      if (err) return next(err);
+      Curriculum.findOne({
+        email: req.user.email,
+        academicYear: req.body.academicYear,
+      })
+        .populate('subjects')
+        .exec(function(err, curriculum) {
+          console.log(curriculum);
+          if (curriculum) {
+            User.findById(req.user._id, function(err, user) {
+              res.render('student/grade', {
+                curriculums: curriculums,
+                curriculum: curriculum,
+                user: user,
+              });
             });
-          });
-      }
+          }
+        });
     });
+  } else {
+    Curriculum.find({ email: req.user.email }, function(err, curriculums) {
+      if (err) return next(err);
+      Curriculum.findOne({
+        email: req.user.email,
+        academicYear:
+          new Date().getFullYear() + '-' + (new Date().getFullYear() + 1),
+      })
+        .populate('subjects')
+        .exec(function(err, curriculum) {
+          console.log(curriculum);
+          if (curriculum) {
+            User.findById(req.user._id, function(err, user) {
+              res.render('student/grade', {
+                curriculums: curriculums,
+                curriculum: curriculum,
+                user: user,
+              });
+            });
+          } else if (!curriculum) {
+            Curriculum.findOne({
+              email: req.user.email,
+              academicYear:
+                new Date().getFullYear() - 1 + '-' + new Date().getFullYear(),
+            })
+              .populate('subjects')
+              .exec(function(err, curriculum) {
+                User.findById(req.params.id, function(err, user) {
+                  res.render('student/grade', {
+                    curriculums: curriculums,
+                    curriculum: curriculum,
+                    user: user,
+                  });
+                });
+              });
+          }
+        });
+    });
+  }
 });
 
 module.exports = router;
