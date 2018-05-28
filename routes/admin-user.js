@@ -498,6 +498,18 @@ router.get('/manageaccount/:id', adminAuthentication, function(req, res, next) {
   });
 });
 
+router.post("/manageaccount/:id", adminAuthentication, function(req, res,next){
+  User.findById(req.params.id, function(err, user){
+    if(err) return next(err);
+    user.deactivate = true;
+    user.save(function(err, save){
+      if(err) return next(err);
+      req.flash("You successfully deactivated this account");
+      return res.redirect("/manageaccount");
+    });
+  });
+});
+
 router.get('/postnewsandannouncements', adminAuthentication, function(req, res, next) {
   User.count().exec(function(err, counter) {
     res.render('admin/postnews', { counter: counter });
@@ -578,12 +590,13 @@ router.post('/managenewsandannouncements/:id/edit', adminAuthentication, functio
 
 router.get('/enrollment', adminAuthentication, function(req, res, next) {
   if(req.query.lastName){
+
     User.find({user: 'student', $or: [{section: '', yrLvl:''}, {curriculum: (new Date()).getFullYear() + 1}] }).sort({"profile.lastName" : 1, "profile.firstName" : 1, idNumber: -1}).exec(function(err, users){
       if(err) return next(err);
       res.render('admin/enroll-student', { users: users });
     });
   }else if(req.query.idNumber){
-    User.find({user: 'student', idNumber: req.query.idNumber}, function(err, user){
+    User.find({user: 'student', idNumber: req.query.idNumber}, function(err, users){
       if(err) return next(err);
       return res.render('admin/enroll-student', { users: users });
     });
@@ -3676,6 +3689,24 @@ return res.redirect("/studentlist");
 });
 
 router.get('/studentlist/:id', adminAuthentication, function(req, res, next) {
+  if(req.query.academicYear){
+    Curriculum.find({studentId: req.params.id}, function(err, curriculums){
+      Curriculum.findOne({
+        studentId: req.params.id,
+        academicYear: req.query.academicYear
+      })
+        .populate('subjects')
+        .exec(function(err, curriculum) {
+          console.log(curriculum);
+          if(curriculum){
+            User.findById(req.params.id, function(err, user) {
+             return res.render('admin/viewgrade', {curriculums: curriculums, curriculum: curriculum, user: user, studentId: req.params.id });
+            });
+          }
+        });
+      });
+  } else{
+  Curriculum.find({studentId: req.params.id}, function(err, curriculums){
   Curriculum.findOne({
     studentId: req.params.id,
     academicYear:
@@ -3686,7 +3717,7 @@ router.get('/studentlist/:id', adminAuthentication, function(req, res, next) {
       console.log(curriculum);
       if(curriculum){
         User.findById(req.params.id, function(err, user) {
-          res.render('admin/viewgrade', { curriculum: curriculum, user: user });
+         return res.render('admin/viewgrade', {curriculums: curriculums, curriculum: curriculum, user: user, studentId: req.params.id });
         });
       } else if(!curriculum){
         Curriculum.findOne({
@@ -3697,11 +3728,13 @@ router.get('/studentlist/:id', adminAuthentication, function(req, res, next) {
           .populate('subjects')
           .exec(function(err, curriculum) {
             User.findById(req.params.id, function(err, user) {
-              res.render('admin/viewgrade', { curriculum: curriculum, user: user });
+              return res.render('admin/viewgrade', {curriculums: curriculums, curriculum: curriculum, user: user, studentId: req.params.id });
             });
           });
       }
     });
+  });
+}
 });
 
 router.get("/manage-faculty", adminAuthentication, function(req, res, next){

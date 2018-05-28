@@ -4,56 +4,80 @@ var router = express.Router();
 var expressSanitizer = require('express-sanitizer');
 var User = require('../models/user');
 var Pending = require('../models/pending');
-var Subject = require("../models/subject");
+var Subject = require('../models/subject');
 var News = require('../models/newsAndAnnouncement');
 
 var Literary = require('../models/literary');
 
 router.use(expressSanitizer());
 
-router.get("/search", function(req, res, next){
-  if(req.query.search == "news"){
-    const regex = new RegExp(escapeRegex(req.query.search), "gi");
-    News.find({category: regex, archive: false}, function(err, allNews){
-      if(err) return next(err);
-      return res.render("main/search", {allNews: allNews});
+router.get('/search', function(req, res, next) {
+  if (req.query.search == 'news') {
+    const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+    News.find({ category: regex, archive: false }, function(err, allNews) {
+      if (err) return next(err);
+      return res.render('main/search', { allNews: allNews });
     });
-
-  }else if(req.query.search == "announcement" || req.query.search == "announcements"){
-    const regex = new RegExp(escapeRegex(req.query.search), "gi");
-    News.find({category: regex, archive: false}, function(err, allNews){
-      if(err) return next(err);
-      return res.render("main/search", {allNews: allNews});
+  } else if (
+    req.query.search == 'announcement' ||
+    req.query.search == 'announcements'
+  ) {
+    const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+    News.find({ category: regex, archive: false }, function(err, allNews) {
+      if (err) return next(err);
+      return res.render('main/search', { allNews: allNews });
     });
-  }else if(req.query.search){
-    console.log(req.query.search)
-    const regex = new RegExp(escapeRegex(req.query.search), "gi");
-    News.find({$or: [{title: regex, archive: false}, {content: regex, archive: false}]}, function(err, allNews){
-      if(err) return next(err);
-      return res.render("main/search", {allNews: allNews});
-    });
-  }else{
-    News.find({archive: false}, function(err, allNews){
-      if(err) return next(err);
-      return res.render("main/search", {allNews: allNews});
+  } else if (req.query.search) {
+    console.log(req.query.search);
+    const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+    News.find(
+      {
+        $or: [
+          { title: regex, archive: false },
+          { content: regex, archive: false },
+        ],
+      },
+      function(err, allNews) {
+        if (err) return next(err);
+        return res.render('main/search', { allNews: allNews });
+      },
+    );
+  } else {
+    News.find({ archive: false }, function(err, allNews) {
+      if (err) return next(err);
+      return res.render('main/search', { allNews: allNews });
     });
   }
 });
 
 router.get('/', function(req, res, next) {
-  News.findOne({category: "news", archive: false}).sort({postNumber: -1}).exec(function(err1, news){
-    News.findOne({category: "announcement", archive: false}).sort({postNumber: -1}).exec(function(err, announcements){
-    if(err) return next(err1);
-    if(err) return next(err);
-      res.render('main/homeplayground', {news: news, announcements: announcements});
-  });
+  if (req.user) {
+    if (req.user.deactivated) {
+      req.logout();
+      req.flash('message', 'Your account has been deactivated');
+      return res.redirect('/');
+    }
+  }
+  News.findOne({ category: 'news', archive: false })
+    .sort({ postNumber: -1 })
+    .exec(function(err1, news) {
+      News.findOne({ category: 'announcement', archive: false })
+        .sort({ postNumber: -1 })
+        .exec(function(err, announcements) {
+          if (err) return next(err1);
+          if (err) return next(err);
+
+          res.render('main/homeplayground', {
+            news: news,
+            announcements: announcements,
+          });
+        });
+    });
 });
- });
 
 router.get('/activities', function(req, res, next) {
   res.render('main/activities');
 });
-
 
 router.get('/search', function(req, res, next) {
   res.render('main/search');
@@ -68,10 +92,13 @@ router.get('/registrationlist', function(req, res, next) {
 });
 
 router.get('/abc', function(req, res, next) {
-    Subject.find({ faculty: '5ae5def3e4708d7dde8a190e' }, function(err, subjects) {
-      if(err) return next(err);
-      console.log(subjects);
-      res.render('main/abc', { subjects: subjects });
+  Subject.find({ faculty: '5ae5def3e4708d7dde8a190e' }, function(
+    err,
+    subjects,
+  ) {
+    if (err) return next(err);
+    console.log(subjects);
+    res.render('main/abc', { subjects: subjects });
   });
 });
 
@@ -127,9 +154,9 @@ router.get('/faculty', function(req, res, next) {
   res.render('main/faculty');
 });
 router.get('/publication', function(req, res, next) {
-  Literary.find({status: true}, function(err, literaries){
-  res.render('main/Publication', {literaries: literaries});
-});
+  Literary.find({ status: true }, function(err, literaries) {
+    res.render('main/Publication', { literaries: literaries });
+  });
 });
 router.get('/facultyviewpubs', function(req, res, next) {
   res.render('faculty/viewpublication');
@@ -195,7 +222,6 @@ router.post('/register', function(req, res, next) {
       }
     }
   });
- 
 });
 
 router.get('/gallery', function(req, res, next) {
@@ -211,13 +237,13 @@ router.get('/home', function(req, res, next) {
 });
 
 router.get('/news', function(req, res, next) {
-  News.find({category: "news"}, function(err, news){
-    if(err) return next(err);
-    News.find({category: "announcement"}, function(err, announcements){
-    if(err) return next(err);
-      res.render('main/news', {news: news, announcements: announcements});
+  News.find({ category: 'news' }, function(err, news) {
+    if (err) return next(err);
+    News.find({ category: 'announcement' }, function(err, announcements) {
+      if (err) return next(err);
+      res.render('main/news', { news: news, announcements: announcements });
+    });
   });
-});
 });
 
 router.get('/orgchart', function(req, res, next) {
@@ -244,8 +270,8 @@ router.get('/vmop', function(req, res, next) {
   res.render('main/vmop');
 });
 
-function escapeRegex(text){
-  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+function escapeRegex(text) {
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
 }
 
 module.exports = router;

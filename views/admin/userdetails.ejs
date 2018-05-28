@@ -84,6 +84,13 @@
                   <%= user.contact %>
                 </span>
               </h3>
+              <h3>
+                <span>
+                <form action="/manageaccount/<%= user._id %>" method="POST">
+                <button class="btn btn-info">DISABLE ACCOUNT</button>
+                </form>
+                </span>
+              </h3>
             </div>
           </div>
         </div>
