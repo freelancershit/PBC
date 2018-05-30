@@ -504,7 +504,7 @@ router.post("/manageaccount/:id", adminAuthentication, function(req, res,next){
     user.deactivate = true;
     user.save(function(err, save){
       if(err) return next(err);
-      req.flash("You successfully deactivated this account");
+      req.flash("message", "You successfully deactivated this account");
       return res.redirect("/manageaccount");
     });
   });
@@ -591,17 +591,17 @@ router.post('/managenewsandannouncements/:id/edit', adminAuthentication, functio
 router.get('/enrollment', adminAuthentication, function(req, res, next) {
   if(req.query.lastName){
 
-    User.find({user: 'student', $or: [{section: '', yrLvl:''}, {curriculum: (new Date()).getFullYear() + 1}] }).sort({"profile.lastName" : 1, "profile.firstName" : 1, idNumber: -1}).exec(function(err, users){
+    User.find({user: 'student', $or: [{section: '', yrLvl:''}, {curriculum: "04/" + ((new Date()).getFullYear() - 1)}] }).sort({"profile.lastName" : 1, "profile.firstName" : 1, idNumber: -1}).exec(function(err, users){
       if(err) return next(err);
       res.render('admin/enroll-student', { users: users });
     });
   }else if(req.query.idNumber){
-    User.find({user: 'student', idNumber: req.query.idNumber}, function(err, users){
+    User.find({user: 'student', idNumber: req.query.idNumber, $or: [{section: '', yrLvl:''}, {curriculum: "04/" + ((new Date()).getFullYear() - 1)}]}, function(err, users){
       if(err) return next(err);
       return res.render('admin/enroll-student', { users: users });
     });
   }else { 
-  User.find({ user: 'student', $or: [{section: '', yrLvl:''}, {curriculum: (new Date()).getFullYear() + 1}]}).sort({_id: -1}).exec(function(err, users) {
+  User.find({ user: 'student', $or: [{section: '', yrLvl:''}, {curriculum: "04/" + ((new Date()).getFullYear() - 1)}]}).sort({_id: -1}).exec(function(err, users) {
     if (err) return next(err);
   console.log(users);
     res.render('admin/enroll-student', { users: users });
@@ -631,7 +631,7 @@ router.post('/enrollment/:id', adminAuthentication, function(req, res, next) {
   User.findById(req.params.id, function(err, user) {
     user.section = req.body.section;
     user.yrLvl = req.body.yrLvl;
-    user.curriculum = (new Date()).getFullYear();
+    user.curriculum = "04/" + (new Date()).getFullYear();
     curriculum.firstName = user.profile.firstName;
     curriculum.middleName = user.profile.middleName;
     curriculum.lastName = user.profile.lastName;
