@@ -27,7 +27,7 @@
 
             </div>
             <div class="row">
-              <div class="dropdown" style="margin-top:5px;">
+              <div class="dropdown" style="margin-top:5px; margin-left: 2%">
                 <button style="border-radius: 5px;" class="dropdown-toggle btn btn-default" type="button" data-toggle="dropdown">--Sort By--
                   <span class="caret"></span>
                 </button>
@@ -40,12 +40,15 @@
                   </li>
                 </ul>
               </div>
-              <form id="delete-form" action="/enrollment" method="GET">
-              <input type="text" name="idNumber" class="btn btn-default" /> 
-                <button class="btn btn-info">Find</button>
-              </form>
+              <div style="margin-left: 2%; margin-bottom: 1%">
+                <form id="delete-form" action="/enrollment" method="GET">
+                  <input type="text" name="idNumber" class="btn btn-default" />
+                  <button class="btn btn-info">Find</button>
+                </form>
+              </div>
             </div>
-            <br>
+
+
             <div class="table-responsive">
               <div style="overflow-y: scroll; height:350px; ">
                 <table class="table table-striped">
