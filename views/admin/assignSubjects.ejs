@@ -101,17 +101,15 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <br>
+                                <form action="/manage-faculty/<%= users._id %>?_method=PUT" method="POST">
                                 <% if(users.publisher == "true" || users.publisher == true){ %>
-                                    <form action="/manage-faculty/<%= users._id %>?_method=PUT" method="POST">
                                         <input type="hidden" name="publisher" value="true" />
                                         <button class="btn btn-info">Disable Editor</button>
-                                    </form>
                                     <% }else{ %>
-                                        <form action="/manage-faculty/<%= users._id %>?_method=PUT" method="POST">
                                             <input type="hidden" name="publisher" value="false" />
                                             <button class="btn btn-info">Enable Editor</button>
-                                        </form>
                                         <% } %>
+                                        </form>                                        
                             </div>
                             <div class="col-sm-6">
                                 <br>

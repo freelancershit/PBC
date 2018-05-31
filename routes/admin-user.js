@@ -3799,20 +3799,30 @@ router.post("/manage-faculty/:id", adminAuthentication, function(req, res, next)
 });
 
 router.put("/manage-faculty/:id", adminAuthentication, function(req, res, next){
-  User.findById(req.params.id, function(err, user){
+  if(req.body.publisher == "true" || req.body.publisher == true){
+  User.update({_id: req.params.id}, {publisher: false}).exec(function(err, user){
     if(err) return next(err);
-    if(req.body.publisher == "true" || req.body.publisher == true){
-    user.publisher = true;
-    user.save();
+    User.findById(req.params.id, function(err, user){
+
+    // user.publisher = true;
+    // user.save(function(err, user){
+    //   if(err) return next(err);
+    //   console.log(user);
+    // });
     req.flash("message", "You successfully disabled the manage publisher on this staff.");
-    return res.redirect("/manage-faculty/" + user._id);
-  }else{
-    user.publisher = false;
-    user.save();
-    req.flash("message", "You successfully enable the manage publisher on this staff.");
-    return res.redirect("/manage-faculty/" + user._id);
-  }
+    return res.redirect("/manage-faculty/" + user_id);
   });
+});
+  
+  }else{
+    User.update({_id: req.params.id}, {publisher: true}).exec(function(err, user){
+      if(err) return next(err);
+      User.findById(req.params.id, function(err, user){
+      req.flash("message", "You successfully enable the manage publisher on this staff.");
+    return res.redirect("/manage-faculty/" + user._id);
+    });
+  });
+  }
 });
 router.delete("/manage-faculty/:id", adminAuthentication, function(req, res, next){
   Handle.findByIdAndRemove(req.params.id, function(err, subject){
