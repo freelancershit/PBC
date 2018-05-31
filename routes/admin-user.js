@@ -629,7 +629,6 @@ router.delete('/managenewsandannouncements/:id', adminAuthentication, function (
   News.findById(req.params.id, function (err, news) {
     news.archive = true;
     news.content = req.sanitize(req.body.content);
-    console.log(news)
     news.save(function (err, news) {
       if (err) return next(err);
       req.flash("message", "You successfully deleted an article.");
@@ -4100,7 +4099,7 @@ router.put("/manage-faculty/:id", adminAuthentication, function (req, res, next)
         //   console.log(user);
         // });
         req.flash("message", "You successfully disabled the manage publisher on this staff.");
-        return res.redirect("/manage-faculty/" + user_id);
+        return res.redirect("/manage-faculty/" + user._id);
       });
     });
 

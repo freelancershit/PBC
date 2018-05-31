@@ -71,8 +71,9 @@ router.get('/search', function (req, res, next) {
 });
 
 router.get('/', function (req, res, next) {
+  console.log(req.user)
   if (req.user) {
-    if (req.user.deactivated) {
+    if (req.user.deactivate) {
       req.logout();
       req.flash('message', 'Your account has been deactivated');
       return res.redirect('/');
