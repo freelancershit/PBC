@@ -101,17 +101,15 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <br>
+                                <form action="/manage-faculty/<%= users._id %>?_method=PUT" method="POST">
                                 <% if(users.publisher == "true" || users.publisher == true){ %>
-                                    <form action="/manage-faculty/<%= users._id %>?_method=PUT" method="POST">
                                         <input type="hidden" name="publisher" value="true" />
                                         <button class="btn btn-info">Disable Editor</button>
-                                    </form>
                                     <% }else{ %>
-                                        <form action="/manage-faculty/<%= users._id %>?_method=PUT" method="POST">
                                             <input type="hidden" name="publisher" value="false" />
                                             <button class="btn btn-info">Enable Editor</button>
-                                        </form>
                                         <% } %>
+                                        </form>                                        
                             </div>
                             <div class="col-sm-6">
                                 <br>
@@ -491,7 +489,7 @@
                         );
                         $("#subj").append("<option value='Oral Communication'>Oral Communication</option>");
                         $("#subj").append(
-                            "<option value='Personal Development/Pansariling Kaunlaran'>Personal Development/Pansariling Kaunlaran</option>"
+                            "<option value='Personal Development o Pansariling Kaunlaran'>Personal Development o Pansariling Kaunlaran</option>"
                         );
                         $("#subj").append(
                             "<option value='Physical Education and Health'>Physical Education and Health</option>");
@@ -570,7 +568,7 @@
                             "<option value='Contemporary Philippine Arts from the Regions'>Contemporary Philippine Arts from the Regions</option>"
                         );
                         $("#subj").append(
-                            "<option value='Introducting to the Philosophy of the Human Person/Pambungad sa Pilosopiya ng Tao'>Introducting to the Philosophy of the Human Person/Pambungad sa Pilosopiya ng Tao</option>"
+                            "<option value='Introduction to the Philosophy of the Human Person o Pambungad sa Pilosopiya ng Tao'>Introduction to the Philosophy of the Human Person o Pambungad sa Pilosopiya ng Tao</option>"
                         );
                         $("#subj").append("<option value='Entrepreneurship'>Entrepreneurship</option>");
                         $("#subj").append(
