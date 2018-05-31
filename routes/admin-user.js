@@ -18,24 +18,30 @@ function adminAuthentication(req, res, next) {
   if (req.isAuthenticated()) {
     if (req.user.isAdmin || req.user.superUser && req.user.user == "admin") {
       return next();
-    } else if(req.user.publisher == true || req.user.publisher == "true") {
+    } else if (req.user.publisher == true || req.user.publisher == "true") {
       return next();
-    }else{
-      return res.redirect('back');      
+    } else {
+      return res.redirect('back');
     }
   } else {
     return res.redirect('/login');
   }
 }
 
-router.get('/users/new', adminAuthentication, function(req, res, next) {
-  User.count({ user: 'admin' }).exec(function(err, adminCount) {
+router.get('/users/new', adminAuthentication, function (req, res, next) {
+  User.count({
+    user: 'admin'
+  }).exec(function (err, adminCount) {
     var adminNumber = new Date().getFullYear() + '000000';
     var adminCounter = parseInt(adminNumber) + parseInt(adminCount);
-    User.count({ user: 'faculty' }).exec(function(err, facultyCount) {
+    User.count({
+      user: 'faculty'
+    }).exec(function (err, facultyCount) {
       var facultyNumber = new Date().getFullYear() + '0000000';
       var facultyCounter = parseInt(facultyNumber) + parseInt(facultyCount);
-      User.count({ user: 'student' }).exec(function(err, studentCount) {
+      User.count({
+        user: 'student'
+      }).exec(function (err, studentCount) {
         if (err) return next(err);
         var studentNumber = new Date().getFullYear() + '00000000';
         var studentCounter = parseInt(studentNumber) + parseInt(studentCount);
@@ -50,7 +56,7 @@ router.get('/users/new', adminAuthentication, function(req, res, next) {
   });
 });
 
-router.post('/users', adminAuthentication, function(req, res, next) {
+router.post('/users', adminAuthentication, function (req, res, next) {
   // async.waterfall([
   //     function(callback){
   var user = new User();
@@ -106,12 +112,14 @@ router.post('/users', adminAuthentication, function(req, res, next) {
       }
       user.isAdmin = false;
       user.password = req.body.password;
-      User.findOne({ email: req.body.email }, function(err, existingUser) {
+      User.findOne({
+        email: req.body.email
+      }, function (err, existingUser) {
         if (existingUser) {
           req.flash('errors', 'Account with that email address already exist');
           return res.redirect('/users/new');
         } else {
-          user.save(function(err, user) {
+          user.save(function (err, user) {
             if (err) return next(err);
             req.flash("message", "You successfully created a new account");
             res.redirect('/users/new');
@@ -150,9 +158,9 @@ router.post('/users', adminAuthentication, function(req, res, next) {
         req.body.lastName;
       user.profile.firstName = req.body.firstName;
       user.profile.lastName = req.body.lastName;
-      if(req.body.middleName){
-      user.profile.middleName = req.body.middleName;
-    }
+      if (req.body.middleName) {
+        user.profile.middleName = req.body.middleName;
+      }
       user.email = req.body.email;
       user.profile.picture = user.gravatar();
       user.age = req.body.age;
@@ -184,12 +192,14 @@ router.post('/users', adminAuthentication, function(req, res, next) {
       }
 
       user.password = req.body.password;
-      User.findOne({ email: req.body.email }, function(err, existingUser) {
+      User.findOne({
+        email: req.body.email
+      }, function (err, existingUser) {
         if (existingUser) {
           req.flash('errors', 'Account with that email address already exist');
           return res.redirect('/users/new');
         } else {
-          user.save(function(err, user) {
+          user.save(function (err, user) {
             if (err) return next(err);
             req.flash("message", "You successfully created a new account");
             return res.redirect('/users/new');
@@ -319,16 +329,20 @@ router.post('/users', adminAuthentication, function(req, res, next) {
 //   }
 // });
 
-router.get('/manage', adminAuthentication, function(req, res, next) {
-  Pending.find({}, function(err, allPending) {
+router.get('/manage', adminAuthentication, function (req, res, next) {
+  Pending.find({}, function (err, allPending) {
     if (err) return next(err);
-    res.render('admin/manage-users', { allPending: allPending });
+    res.render('admin/manage-users', {
+      allPending: allPending
+    });
   });
 });
 
-router.get('/manage/:id', adminAuthentication, function(req, res, next) {
-  Pending.findById(req.params.id, function(err, pending) {
-    User.count({ user: 'student' }).exec(function(err, studentCount) {
+router.get('/manage/:id', adminAuthentication, function (req, res, next) {
+  Pending.findById(req.params.id, function (err, pending) {
+    User.count({
+      user: 'student'
+    }).exec(function (err, studentCount) {
       if (err) return next(err);
       var studentNumber = new Date().getFullYear() + '00000000';
       var studentCounter = parseInt(studentNumber) + parseInt(studentCount);
@@ -343,7 +357,7 @@ router.get('/manage/:id', adminAuthentication, function(req, res, next) {
   });
 });
 
-router.post('/manage/:id', adminAuthentication, function(req, res, next) {
+router.post('/manage/:id', adminAuthentication, function (req, res, next) {
   // async.waterfall([
   //     function(callback){
   var user = new User();
@@ -413,14 +427,16 @@ router.post('/manage/:id', adminAuthentication, function(req, res, next) {
     }
 
     user.password = req.body.password;
-    User.findOne({ email: req.body.email }, function(err, existingUser) {
+    User.findOne({
+      email: req.body.email
+    }, function (err, existingUser) {
       if (existingUser) {
         req.flash('errors', 'Account with that email address already exist');
         return res.redirect('/manage/' + req.params.id);
       } else {
-        user.save(function(err, user) {
+        user.save(function (err, user) {
           if (err) return next(err);
-          Pending.findByIdAndRemove(req.params.id, function(err, pendingUser) {
+          Pending.findByIdAndRemove(req.params.id, function (err, pendingUser) {
             if (err) return next(err);
             console.log(pendingUser);
             req.flash("message", "The account has been created successfully.");
@@ -444,86 +460,109 @@ router.post('/manage/:id', adminAuthentication, function(req, res, next) {
   } else {
     req.flash('errors', 'Please fillup all the required information.');
     console.log(req.body);
-   return res.redirect('/manage/' + req.params.id);
+    return res.redirect('/manage/' + req.params.id);
   }
 });
 
-router.delete('/manage/:id', adminAuthentication, function(req, res, next) {
-  Pending.findByIdAndRemove(req.params.id, function(err, pendingUser) {
+router.delete('/manage/:id', adminAuthentication, function (req, res, next) {
+  Pending.findByIdAndRemove(req.params.id, function (err, pendingUser) {
     if (err) return next(err);
     req.flash("message", "Deletion successful.");
     res.redirect('/manage');
   });
 });
 
-router.get('/manageaccount', function(req, res, next) {
-  if(req.query.Admin){
+router.get('/manageaccount', function (req, res, next) {
+  if (req.query.Admin) {
     const regex = new RegExp(escapeRegex(req.query.Admin), "gi");
-    User.find({user: "admin"}).sort({idNumber: -1}).exec(function(err, allUsers){
-      if(err) return next(err);
-      res.render('admin/manageaccount', { users: allUsers });
+    User.find({
+      user: "admin"
+    }).sort({
+      idNumber: -1
+    }).exec(function (err, allUsers) {
+      if (err) return next(err);
+      res.render('admin/manageaccount', {
+        users: allUsers
+      });
     });
 
-  } else  if(req.query.Faculty){
+  } else if (req.query.Faculty) {
     const regex = new RegExp(escapeRegex(req.query.Faculty), "gi");
-    User.find({user: "faculty"}).sort({idNumber: -1}).exec(function(err, allUsers){
-      if(err) return next(err);
-      res.render('admin/manageaccount', { users: allUsers });
+    User.find({
+      user: "faculty"
+    }).sort({
+      idNumber: -1
+    }).exec(function (err, allUsers) {
+      if (err) return next(err);
+      res.render('admin/manageaccount', {
+        users: allUsers
+      });
     });
-  
-  }
-  else  if(req.query.Student){
+
+  } else if (req.query.Student) {
     const regex = new RegExp(escapeRegex(req.query.Student), "gi");
-    User.find({user: "student"}).sort({idNumber: -1}).exec(function(err, allUsers){
-      if(err) return next(err);
-      res.render('admin/manageaccount', { users: allUsers });
+    User.find({
+      user: "student"
+    }).sort({
+      idNumber: -1
+    }).exec(function (err, allUsers) {
+      if (err) return next(err);
+      res.render('admin/manageaccount', {
+        users: allUsers
+      });
     });
-  
-  
-  }else{
-  User.find({}, function(err, allUsers) {
-    if (err) return next(err);
-    res.render('admin/manageaccount', { users: allUsers });
-  });
-}
+
+
+  } else {
+    User.find({}, function (err, allUsers) {
+      if (err) return next(err);
+      res.render('admin/manageaccount', {
+        users: allUsers
+      });
+    });
+  }
 
 
 });
 
-router.get('/manageaccount/:id', adminAuthentication, function(req, res, next) {
-  User.findById(req.params.id, function(err, user) {
+router.get('/manageaccount/:id', adminAuthentication, function (req, res, next) {
+  User.findById(req.params.id, function (err, user) {
     if (err) return next(err);
     console.log(user);
-    res.render('admin/userdetails', { user: user });
+    res.render('admin/userdetails', {
+      user: user
+    });
   });
 });
 
-router.post("/manageaccount/:id", adminAuthentication, function(req, res,next){
-  User.findById(req.params.id, function(err, user){
-    if(err) return next(err);
+router.post("/manageaccount/:id", adminAuthentication, function (req, res, next) {
+  User.findById(req.params.id, function (err, user) {
+    if (err) return next(err);
     user.deactivate = true;
-    user.save(function(err, save){
-      if(err) return next(err);
+    user.save(function (err, save) {
+      if (err) return next(err);
       req.flash("message", "You successfully deactivated this account");
       return res.redirect("/manageaccount");
     });
   });
 });
 
-router.get('/postnewsandannouncements', adminAuthentication, function(req, res, next) {
-  User.count().exec(function(err, counter) {
-    res.render('admin/postnews', { counter: counter });
+router.get('/postnewsandannouncements', adminAuthentication, function (req, res, next) {
+  User.count().exec(function (err, counter) {
+    res.render('admin/postnews', {
+      counter: counter
+    });
   });
 });
 
-router.post('/postnewsandannouncements', adminAuthentication, function(req, res, next) {
+router.post('/postnewsandannouncements', adminAuthentication, function (req, res, next) {
   if (req.body.category && req.body.title && req.body.content) {
     var news = new News();
     news.postNumber = req.body.postNumber;
     news.category = req.body.category;
     news.title = req.body.title;
     news.content = req.sanitize(req.body.content);
-    news.save(function(err, news) {
+    news.save(function (err, news) {
       if (err) return next(err);
       console.log(news);
       req.flash("message", "Added a new article.");
@@ -533,40 +572,65 @@ router.post('/postnewsandannouncements', adminAuthentication, function(req, res,
   console.log(req.body);
 });
 
-router.get('/managenewsandannouncements', adminAuthentication, function(req, res, next) {
-  if(req.query.sort == "postNumber"){
+router.get('/managenewsandannouncements', adminAuthentication, function (req, res, next) {
+  if (req.query.sort == "postNumber") {
     const regex = new RegExp(escapeRegex(req.query.sort), "gi");
-    News.find({ archive: false}).sort({postNumber: 1}).exec(function(err, allNews){
-      if(err) return next(err);
-      res.render('admin/managenews', { allNews: allNews });
+    News.find({
+      archive: false
+    }).sort({
+      postNumber: 1
+    }).exec(function (err, allNews) {
+      if (err) return next(err);
+      res.render('admin/managenews', {
+        allNews: allNews
+      });
     });
-  }else if(req.query.category){
+  } else if (req.query.category) {
     const regex = new RegExp(escapeRegex(req.query.category), "gi");
-    News.find({ archive: false, category: "news"}).sort({publishDate: -1}).exec(function(err, allNews){
-      if(err) return next(err);
-      res.render('admin/managenews', { allNews: allNews });
+    News.find({
+      archive: false,
+      category: "news"
+    }).sort({
+      publishDate: -1
+    }).exec(function (err, allNews) {
+      if (err) return next(err);
+      res.render('admin/managenews', {
+        allNews: allNews
+      });
     });
 
-  }else if(req.query.announce){
+  } else if (req.query.announce) {
     const regex = new RegExp(escapeRegex(req.query.announce), "gi");
-    News.find({ archive: false, category: "announcement"}).sort({publishDate: -1}).exec(function(err, allNews){
-      if(err) return next(err);
-      res.render('admin/managenews', { allNews: allNews });
+    News.find({
+      archive: false,
+      category: "announcement"
+    }).sort({
+      publishDate: -1
+    }).exec(function (err, allNews) {
+      if (err) return next(err);
+      res.render('admin/managenews', {
+        allNews: allNews
+      });
     });
-  }else{
+  } else {
     console.log("wew");
-  News.find({ archive: false }, function(err, allNews) {
-    if (err) return next(err);
-    res.render('admin/managenews', { allNews: allNews });
-  });
-}
+    News.find({
+      archive: false
+    }, function (err, allNews) {
+      if (err) return next(err);
+      res.render('admin/managenews', {
+        allNews: allNews
+      });
+    });
+  }
 });
 
-router.delete('/managenewsandannouncements/:id', adminAuthentication, function(req, res, next) {
-  News.findById(req.params.id, function(err, news) {
+router.delete('/managenewsandannouncements/:id', adminAuthentication, function (req, res, next) {
+  News.findById(req.params.id, function (err, news) {
     news.archive = true;
     news.content = req.sanitize(req.body.content);
-    news.save(function(err, news) {
+    console.log(news)
+    news.save(function (err, news) {
       if (err) return next(err);
       req.flash("message", "You successfully deleted an article.");
       res.redirect('/managenewsandannouncements');
@@ -574,13 +638,13 @@ router.delete('/managenewsandannouncements/:id', adminAuthentication, function(r
   });
 });
 
-router.post('/managenewsandannouncements/:id/edit', adminAuthentication, function(req, res, next) {
-  News.findById(req.params.id, function(err, news) {
+router.post('/managenewsandannouncements/:id/edit', adminAuthentication, function (req, res, next) {
+  News.findById(req.params.id, function (err, news) {
     if (err) return next(err);
     news.category = req.body.category;
     news.title = req.body.title;
     news.content = req.body.content;
-    news.save(function(err, news) {
+    news.save(function (err, news) {
       if (err) return next(err);
       req.flash("message", "You successfully create a new " + req.body.category + ".");
       res.redirect('/managenewsandannouncements');
@@ -588,47 +652,94 @@ router.post('/managenewsandannouncements/:id/edit', adminAuthentication, functio
   });
 });
 
-router.get('/enrollment', adminAuthentication, function(req, res, next) {
-  if(req.query.lastName){
+router.get('/enrollment', adminAuthentication, function (req, res, next) {
+  if (req.query.lastName) {
 
-    User.find({user: 'student', $or: [{section: '', yrLvl:''}, {curriculum: "04/" + ((new Date()).getFullYear() - 1)}] }).sort({"profile.lastName" : 1, "profile.firstName" : 1, idNumber: -1}).exec(function(err, users){
-      if(err) return next(err);
-      res.render('admin/enroll-student', { users: users });
-    });
-  }else if(req.query.idNumber){
-    User.find({user: 'student', idNumber: req.query.idNumber, $or: [{section: '', yrLvl:''}, {curriculum: "04/" + ((new Date()).getFullYear() - 1)}]}, function(err, users){
-      if(err) return next(err);
-      return res.render('admin/enroll-student', { users: users });
-    });
-  }else { 
-  User.find({ user: 'student', $or: [{section: '', yrLvl:''}, {curriculum: "04/" + ((new Date()).getFullYear() - 1)}]}).sort({_id: -1}).exec(function(err, users) {
-    if (err) return next(err);
-  console.log(users);
-    res.render('admin/enroll-student', { users: users });
-    
-  });
-}
-});
-
-router.get('/enrollment/:id', adminAuthentication, function(req, res, next) {
-  User.findById(req.params.id, function(err, user) {
-    Handle.find({}, function(err, handles){
-      Curriculum.findOne({studentId : req.params.id, academicYear: (new Date()).getFullYear() + "-" +((new Date()).getFullYear() + 1)}).exec(function(err, curriculum){
-    if (err) return next(err);
-    User.find({ user: 'faculty' })
-    .populate("faculty")
-    .exec(function(err, faculties) {
+    User.find({
+      user: 'student',
+      $or: [{
+        section: '',
+        yrLvl: ''
+      }, {
+        curriculum: "04/" + ((new Date()).getFullYear() - 1)
+      }]
+    }).sort({
+      "profile.lastName": 1,
+      "profile.firstName": 1,
+      idNumber: -1
+    }).exec(function (err, users) {
       if (err) return next(err);
-      res.render('admin/enrolling', { user: user, faculties: faculties, handles: handles, curriculum : curriculum });
+      res.render('admin/enroll-student', {
+        users: users
+      });
     });
-  });
-  });
+  } else if (req.query.idNumber) {
+    User.find({
+      user: 'student',
+      idNumber: req.query.idNumber,
+      $or: [{
+        section: '',
+        yrLvl: ''
+      }, {
+        curriculum: "04/" + ((new Date()).getFullYear() - 1)
+      }]
+    }, function (err, users) {
+      if (err) return next(err);
+      return res.render('admin/enroll-student', {
+        users: users
+      });
+    });
+  } else {
+    User.find({
+      user: 'student',
+      $or: [{
+        section: '',
+        yrLvl: ''
+      }, {
+        curriculum: "04/" + ((new Date()).getFullYear() - 1)
+      }]
+    }).sort({
+      _id: -1
+    }).exec(function (err, users) {
+      if (err) return next(err);
+      console.log(users);
+      res.render('admin/enroll-student', {
+        users: users
+      });
+
+    });
+  }
+});
+
+router.get('/enrollment/:id', adminAuthentication, function (req, res, next) {
+  User.findById(req.params.id, function (err, user) {
+    Handle.find({}, function (err, handles) {
+      Curriculum.findOne({
+        studentId: req.params.id,
+        academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() + 1)
+      }).exec(function (err, curriculum) {
+        if (err) return next(err);
+        User.find({
+            user: 'faculty'
+          })
+          .populate("faculty")
+          .exec(function (err, faculties) {
+            if (err) return next(err);
+            res.render('admin/enrolling', {
+              user: user,
+              faculties: faculties,
+              handles: handles,
+              curriculum: curriculum
+            });
+          });
+      });
+    });
   });
 });
 
-router.post('/enrollment/:id', adminAuthentication, function(req, res, next) {
+router.post('/enrollment/:id', adminAuthentication, function (req, res, next) {
   var curriculum = new Curriculum();
-  User.findById(req.params.id, function(err, user) {
+  User.findById(req.params.id, function (err, user) {
     user.section = req.body.section;
     user.yrLvl = req.body.yrLvl;
     user.curriculum = "04/" + (new Date()).getFullYear();
@@ -639,20 +750,20 @@ router.post('/enrollment/:id', adminAuthentication, function(req, res, next) {
     curriculum.studentId = user._id;
     curriculum.yrLvl = req.body.yrLvl;
     curriculum.section = req.body.section;
-    if(req.body.yrLvl === "grade10" ||req.body.yrLvl === "grade1" ||req.body.yrLvl === "grade2" ||req.body.yrLvl === "grade3" ||req.body.yrLvl === "grade4" ||req.body.yrLvl === "grade5" ||req.body.yrLvl === "grade6" ||req.body.yrLvl === "grade7" ||req.body.yrLvl === "grade8" ||req.body.yrLvl === "grade9"){
-    if(!(req.body.faculty1 && req.body.faculty2 && req.body.faculty3 && req.body.faculty4 && req.body.faculty5 && req.body.faculty6 && req.body.faculty7 || req.body.faculty8 || req.body.faculty9 || req.body.faculty10)){
-      req.flash("message", "There is no faculty assigned on some subjects.");
-      console.log("error ka")
-      return res.redirect("/enrollment/"+ req.params.id);
+    if (req.body.yrLvl === "grade10" || req.body.yrLvl === "grade1" || req.body.yrLvl === "grade2" || req.body.yrLvl === "grade3" || req.body.yrLvl === "grade4" || req.body.yrLvl === "grade5" || req.body.yrLvl === "grade6" || req.body.yrLvl === "grade7" || req.body.yrLvl === "grade8" || req.body.yrLvl === "grade9") {
+      if (!(req.body.faculty1 && req.body.faculty2 && req.body.faculty3 && req.body.faculty4 && req.body.faculty5 && req.body.faculty6 && req.body.faculty7 || req.body.faculty8 || req.body.faculty9 || req.body.faculty10)) {
+        req.flash("message", "There is no faculty assigned on some subjects.");
+        console.log("error ka")
+        return res.redirect("/enrollment/" + req.params.id);
+      }
     }
-  }
-  if(req.body.yrLvl === "grade11" ||req.body.yrLvl === "grade12"){
-    if(!(req.body.shfaculty1 && req.body.shfaculty2 && req.body.shfaculty3 && req.body.shfaculty4 && req.body.shfaculty5 && req.body.shfaculty6 && req.body.shfaculty7 || req.body.shfaculty8 || req.body.shfaculty9 || req.body.shfaculty10)){
-      console.log("oops bawal pumasok")
-      req.flash("message", "There is no faculty assigned on some subjects.");
-      return res.redirect("/enrollment/"+ req.params.id);
+    if (req.body.yrLvl === "grade11" || req.body.yrLvl === "grade12") {
+      if (!(req.body.shfaculty1 && req.body.shfaculty2 && req.body.shfaculty3 && req.body.shfaculty4 && req.body.shfaculty5 && req.body.shfaculty6 && req.body.shfaculty7 || req.body.shfaculty8 || req.body.shfaculty9 || req.body.shfaculty10)) {
+        console.log("oops bawal pumasok")
+        req.flash("message", "There is no faculty assigned on some subjects.");
+        return res.redirect("/enrollment/" + req.params.id);
+      }
     }
-  }
     console.log(user);
     console.log(req.body.yrLvl + ' and ' + req.body.yrLvl.length);
     if (req.body.yrLvl === 'grade1' || req.body.yrLvl === 'grade2') {
@@ -796,28 +907,28 @@ router.post('/enrollment/:id', adminAuthentication, function(req, res, next) {
       //     handle.handles.push(subject1);
       //     handle.save();
       // });
-      user.save(function(err, user) {
+      user.save(function (err, user) {
         if (err) return next(err);
         console.log(user);
       });
-      curriculum.save(function(err, curr) {
+      curriculum.save(function (err, curr) {
         if (err) return next(err);
         console.log(curr);
       });
       console.log(
         req.body.faculty1 +
-          ', ' +
-          req.body.faculty2 +
-          ', ' +
-          req.body.faculty3 +
-          ', ' +
-          req.body.faculty4 +
-          ', ' +
-          req.body.faculty5 +
-          ', ' +
-          req.body.faculty6 +
-          ', ' +
-          req.body.faculty7,
+        ', ' +
+        req.body.faculty2 +
+        ', ' +
+        req.body.faculty3 +
+        ', ' +
+        req.body.faculty4 +
+        ', ' +
+        req.body.faculty5 +
+        ', ' +
+        req.body.faculty6 +
+        ', ' +
+        req.body.faculty7,
       );
       console.log('Success');
     } else if (req.body.yrLvl === 'grade3') {
@@ -981,11 +1092,11 @@ router.post('/enrollment/:id', adminAuthentication, function(req, res, next) {
       //     handle.handles.push(subject1);
       //     handle.save();
       // });
-      user.save(function(err, user) {
+      user.save(function (err, user) {
         if (err) return next(err);
         console.log(user);
       });
-      curriculum.save(function(err, curr) {
+      curriculum.save(function (err, curr) {
         if (err) return next(err);
         console.log(curr);
       });
@@ -1176,11 +1287,11 @@ router.post('/enrollment/:id', adminAuthentication, function(req, res, next) {
       //     handle.save();
       // });
       curriculum.subjects.push(subject9);
-      user.save(function(err, user) {
+      user.save(function (err, user) {
         if (err) return next(err);
         console.log(user);
       });
-      curriculum.save(function(err, curr) {
+      curriculum.save(function (err, curr) {
         if (err) return next(err);
         console.log(curr);
       });
@@ -1370,16 +1481,16 @@ router.post('/enrollment/:id', adminAuthentication, function(req, res, next) {
       //     handle.save();
       // });
       curriculum.subjects.push(subject9);
-      user.save(function(err, user) {
+      user.save(function (err, user) {
         if (err) return next(err);
         console.log(user);
       });
-      curriculum.save(function(err, curr) {
+      curriculum.save(function (err, curr) {
         if (err) return next(err);
         console.log(curr);
       });
       console.log('Success');
-    }else if(req.body.yrLvl === "grade11" && req.body.section ==="Sciences Technology Engineering and Mathematics"){
+    } else if (req.body.yrLvl === "grade11" && req.body.section === "Sciences Technology Engineering and Mathematics") {
       var subject1 = new Subject();
       subject1.subject = req.body.shsubject1;
       subject1.email = user.email;
@@ -1560,16 +1671,16 @@ router.post('/enrollment/:id', adminAuthentication, function(req, res, next) {
       //     handle.save();
       // });
       curriculum.subjects.push(subject9);
-      user.save(function(err, user) {
+      user.save(function (err, user) {
         if (err) return next(err);
         console.log(user);
       });
-      curriculum.save(function(err, curr) {
+      curriculum.save(function (err, curr) {
         if (err) return next(err);
         console.log(curr);
       });
       console.log('Success');
-    }else if(req.body.yrLvl === "grade11" && req.body.section ==="Accountancy"){
+    } else if (req.body.yrLvl === "grade11" && req.body.section === "Accountancy") {
       var subject1 = new Subject();
       subject1.subject = req.body.shsubject1;
       subject1.email = user.email;
@@ -1739,16 +1850,16 @@ router.post('/enrollment/:id', adminAuthentication, function(req, res, next) {
       //     handle.handles.push(subject1);
       //     handle.save();
       // });
-      user.save(function(err, user) {
+      user.save(function (err, user) {
         if (err) return next(err);
         console.log(user);
       });
-      curriculum.save(function(err, curr) {
+      curriculum.save(function (err, curr) {
         if (err) return next(err);
         console.log(curr);
       });
       console.log('Success');
-    }else if(req.body.yrLvl === "grade11" && req.body.section ==="Business Management"){
+    } else if (req.body.yrLvl === "grade11" && req.body.section === "Business Management") {
       var subject1 = new Subject();
       subject1.subject = req.body.shsubject1;
       subject1.email = user.email;
@@ -1918,16 +2029,16 @@ router.post('/enrollment/:id', adminAuthentication, function(req, res, next) {
       //     handle.handles.push(subject1);
       //     handle.save();
       // });
-      user.save(function(err, user) {
+      user.save(function (err, user) {
         if (err) return next(err);
         console.log(user);
       });
-      curriculum.save(function(err, curr) {
+      curriculum.save(function (err, curr) {
         if (err) return next(err);
         console.log(curr);
       });
       console.log('Success');
-    }else if(req.body.yrLvl === "grade11" && req.body.section ==="Humanities and Social Sciences"){
+    } else if (req.body.yrLvl === "grade11" && req.body.section === "Humanities and Social Sciences") {
       var subject1 = new Subject();
       subject1.subject = req.body.shsubject1;
       subject1.email = user.email;
@@ -2097,16 +2208,16 @@ router.post('/enrollment/:id', adminAuthentication, function(req, res, next) {
       //     handle.handles.push(subject1);
       //     handle.save();
       // });
-      user.save(function(err, user) {
+      user.save(function (err, user) {
         if (err) return next(err);
         console.log(user);
       });
-      curriculum.save(function(err, curr) {
+      curriculum.save(function (err, curr) {
         if (err) return next(err);
         console.log(curr);
       });
       console.log('Success');
-    }else if(req.body.yrLvl === "grade11" && req.body.section ==="Information and Communication Technology"){
+    } else if (req.body.yrLvl === "grade11" && req.body.section === "Information and Communication Technology") {
       var subject1 = new Subject();
       subject1.subject = req.body.shsubject1;
       subject1.email = user.email;
@@ -2238,17 +2349,17 @@ router.post('/enrollment/:id', adminAuthentication, function(req, res, next) {
       subject7.faculty = req.body.shfaculty7;
       curriculum.subjects.push(subject7);
       subject7.save();
-     
-      user.save(function(err, user) {
+
+      user.save(function (err, user) {
         if (err) return next(err);
         console.log(user);
       });
-      curriculum.save(function(err, curr) {
+      curriculum.save(function (err, curr) {
         if (err) return next(err);
         console.log(curr);
       });
       console.log('Success');
-    }else if(req.body.yrLvl === "grade11" && req.body.section ==="Home Economics"){
+    } else if (req.body.yrLvl === "grade11" && req.body.section === "Home Economics") {
       var subject1 = new Subject();
       subject1.subject = req.body.shsubject1;
       subject1.email = user.email;
@@ -2380,17 +2491,17 @@ router.post('/enrollment/:id', adminAuthentication, function(req, res, next) {
       subject7.faculty = req.body.shfaculty7;
       curriculum.subjects.push(subject7);
       subject7.save();
-      
-      user.save(function(err, user) {
+
+      user.save(function (err, user) {
         if (err) return next(err);
         console.log(user);
       });
-      curriculum.save(function(err, curr) {
+      curriculum.save(function (err, curr) {
         if (err) return next(err);
         console.log(curr);
       });
       console.log('Success');
-    }else if(req.body.yrLvl === "grade12" && req.body.section ==="Sciences Technology Engineering and Mathematics"){
+    } else if (req.body.yrLvl === "grade12" && req.body.section === "Sciences Technology Engineering and Mathematics") {
       var subject1 = new Subject();
       subject1.subject = req.body.shsubject1;
       subject1.email = user.email;
@@ -2571,16 +2682,16 @@ router.post('/enrollment/:id', adminAuthentication, function(req, res, next) {
       //     handle.save();
       // });
       curriculum.subjects.push(subject9);
-      user.save(function(err, user) {
+      user.save(function (err, user) {
         if (err) return next(err);
         console.log(user);
       });
-      curriculum.save(function(err, curr) {
+      curriculum.save(function (err, curr) {
         if (err) return next(err);
         console.log(curr);
       });
       console.log('Success');
-    }else if(req.body.yrLvl === "grade12" && req.body.section ==="Accountancy"){
+    } else if (req.body.yrLvl === "grade12" && req.body.section === "Accountancy") {
       var subject1 = new Subject();
       subject1.subject = req.body.shsubject1;
       subject1.email = user.email;
@@ -2750,16 +2861,16 @@ router.post('/enrollment/:id', adminAuthentication, function(req, res, next) {
       //     handle.handles.push(subject1);
       //     handle.save();
       // });
-      user.save(function(err, user) {
+      user.save(function (err, user) {
         if (err) return next(err);
         console.log(user);
       });
-      curriculum.save(function(err, curr) {
+      curriculum.save(function (err, curr) {
         if (err) return next(err);
         console.log(curr);
       });
       console.log('Success');
-    }else if(req.body.yrLvl === "grade12" && req.body.section ==="Business Management"){
+    } else if (req.body.yrLvl === "grade12" && req.body.section === "Business Management") {
       var subject1 = new Subject();
       subject1.subject = req.body.shsubject1;
       subject1.email = user.email;
@@ -2929,16 +3040,16 @@ router.post('/enrollment/:id', adminAuthentication, function(req, res, next) {
       //     handle.handles.push(subject1);
       //     handle.save();
       // });
-      user.save(function(err, user) {
+      user.save(function (err, user) {
         if (err) return next(err);
         console.log(user);
       });
-      curriculum.save(function(err, curr) {
+      curriculum.save(function (err, curr) {
         if (err) return next(err);
         console.log(curr);
       });
       console.log('Success');
-    }else if(req.body.yrLvl === "grade12" && req.body.section ==="Humanities and Social Sciences"){
+    } else if (req.body.yrLvl === "grade12" && req.body.section === "Humanities and Social Sciences") {
       var subject1 = new Subject();
       subject1.subject = req.body.shsubject1;
       subject1.email = user.email;
@@ -3108,16 +3219,16 @@ router.post('/enrollment/:id', adminAuthentication, function(req, res, next) {
       //     handle.handles.push(subject1);
       //     handle.save();
       // });
-      user.save(function(err, user) {
+      user.save(function (err, user) {
         if (err) return next(err);
         console.log(user);
       });
-      curriculum.save(function(err, curr) {
+      curriculum.save(function (err, curr) {
         if (err) return next(err);
         console.log(curr);
       });
       console.log('Success');
-    }else if(req.body.yrLvl === "grade12" && req.body.section ==="Information and Communication Technology"){
+    } else if (req.body.yrLvl === "grade12" && req.body.section === "Information and Communication Technology") {
       var subject1 = new Subject();
       subject1.subject = req.body.shsubject1;
       subject1.email = user.email;
@@ -3287,16 +3398,16 @@ router.post('/enrollment/:id', adminAuthentication, function(req, res, next) {
       //     handle.handles.push(subject1);
       //     handle.save();
       // });
-      user.save(function(err, user) {
+      user.save(function (err, user) {
         if (err) return next(err);
         console.log(user);
       });
-      curriculum.save(function(err, curr) {
+      curriculum.save(function (err, curr) {
         if (err) return next(err);
         console.log(curr);
       });
       console.log('Success');
-    }else if(req.body.yrLvl === "grade12" && req.body.section ==="Home Economics"){
+    } else if (req.body.yrLvl === "grade12" && req.body.section === "Home Economics") {
       var subject1 = new Subject();
       subject1.subject = req.body.shsubject1;
       subject1.email = user.email;
@@ -3466,11 +3577,11 @@ router.post('/enrollment/:id', adminAuthentication, function(req, res, next) {
       //     handle.handles.push(subject1);
       //     handle.save();
       // });
-      user.save(function(err, user) {
+      user.save(function (err, user) {
         if (err) return next(err);
         console.log(user);
       });
-      curriculum.save(function(err, curr) {
+      curriculum.save(function (err, curr) {
         if (err) return next(err);
         console.log(curr);
       });
@@ -3479,392 +3590,618 @@ router.post('/enrollment/:id', adminAuthentication, function(req, res, next) {
 
     console.log(user + ' and ' + curriculum);
     req.flash("message", "You successfully enrolled a new student");
-   return res.redirect('/enrollment');
+    return res.redirect('/enrollment');
   });
 });
 
-router.get('/studentlist', adminAuthentication, function(req, res, next) {
-  if(req.query.sort){
-    User.find({ user: 'student'}).sort({idNumber : 1}).exec(function(err, users){
-      if(err) return next(err);
-      res.render('admin/studentlist', { users: users });
-    });
-    
-  }else if(req.query.lastName){
-    User.find({user: 'student'}).sort({"profile.lastName" : 1, "profile.firstName" : 1}).exec(function(err, users){
-      if(err) return next(err);
-      res.render('admin/studentlist', { users: users });
+router.get('/studentlist', adminAuthentication, function (req, res, next) {
+  if (req.query.sort) {
+    User.find({
+      user: 'student'
+    }).sort({
+      idNumber: 1
+    }).exec(function (err, users) {
+      if (err) return next(err);
+      res.render('admin/studentlist', {
+        users: users
+      });
     });
 
-  }else if(req.query.yrLvl){
-    User.find({user: 'student'}).sort({ yrLvl: 1 , section: 1}).exec(function(err, users){
-      if(err) return next(err);
-      res.render('admin/studentlist', { users: users });
+  } else if (req.query.lastName) {
+    User.find({
+      user: 'student'
+    }).sort({
+      "profile.lastName": 1,
+      "profile.firstName": 1
+    }).exec(function (err, users) {
+      if (err) return next(err);
+      res.render('admin/studentlist', {
+        users: users
+      });
     });
-  }else if(req.query.section && req.query.yrLvl1){
+
+  } else if (req.query.yrLvl) {
+    User.find({
+      user: 'student'
+    }).sort({
+      yrLvl: 1,
+      section: 1
+    }).exec(function (err, users) {
+      if (err) return next(err);
+      res.render('admin/studentlist', {
+        users: users
+      });
+    });
+  } else if (req.query.section && req.query.yrLvl1) {
     const regex = new RegExp(escapeRegex(req.query.section), "gi");
     const regex1 = new RegExp(escapeRegex(req.query.yrLvl1), "gi");
-    User.find({user: 'student', section: regex, yrLvl: regex1}).sort({ yrLvl: 1 , section: 1}).exec(function(err, users){
-      if(err) return next(err);
-      res.render('admin/studentlist', { users: users });
+    User.find({
+      user: 'student',
+      section: regex,
+      yrLvl: regex1
+    }).sort({
+      yrLvl: 1,
+      section: 1
+    }).exec(function (err, users) {
+      if (err) return next(err);
+      res.render('admin/studentlist', {
+        users: users
+      });
     });
-  }else{
-  User.find({ user: 'student' }, function(err, users) {
-    if (err) return next(err);
-    res.render('admin/studentlist', { users: users });
-  });
-}
+  } else {
+    User.find({
+      user: 'student'
+    }, function (err, users) {
+      if (err) return next(err);
+      res.render('admin/studentlist', {
+        users: users
+      });
+    });
+  }
 });
 
-router.post("/studentlist", adminAuthentication, function(req, res, next){
+router.post("/studentlist", adminAuthentication, function (req, res, next) {
   console.log(req.body.grading)
   Subject
-  .count({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)})
-  .exec(function(err, counter){
-    console.log(counter);
-  if(counter >= 0){
-    console.log("lol")
-  if(req.body.grading === "firstGrading"){
-  // for(var i = 0; i < counter; i++){
-    Subject.updateMany({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, {first : true}).exec(function(err, subjects){
-      if(err) return next(err);
-      console.log("subjects exec: " + subjects);
-    });
-    Subject.find({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, function(err, subjects){
-      if(err) return next(err);
-      console.log(subjects);
-      if(!subjects){
-        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {first : true})
-        Subject.find({}, function(err, secondSubjects){
-          if(err) return next(err);
-          console.log(secondSubjects);
-        });
-      }
-    });
-// }
-} else if(req.body.grading === "secondGrading"){
-  // for(var i = 0; i < counter; i++){
-    Subject.updateMany({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, {second : true}).exec();
-    Subject.find({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, function(err, subjects){
-      if(err) return next(err);
-      console.log(subjects);
-      if(!subjects){
-        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {second : true})
-        Subject.find({}, function(err, secondSubjects){
-          if(err) return next(err);
-          console.log(secondSubjects);
-        });
-      }
-    });
-// }
-}else if(req.body.grading === "thirdGrading"){
-  // for(var i = 0; i < counter; i++){
-    Subject.updateMany({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, {third : true}).exec();
-    Subject.find({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, function(err, subjects){
-      if(err) return next(err);
-      console.log(subjects);
-      if(!subjects){
-        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {third : true}).exec();
-        Subject.find({}, function(err, secondSubjects){
-          if(err) return next(err);
-          console.log(secondSubjects);
-        });
-      }
-    });
-// }
-}else if(req.body.grading === "fourthGrading"){
-  for(var i = 0; i < counter; i++){
-    Subject.updateMany({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, {fourth : true}).exec()
-    Subject.find({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, function(err, subjects){
-      if(err) return next(err);
-      console.log(subjects);
-      if(!subjects){
-        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {fourth : true}).exec()
-        Subject.find({}, function(err, secondSubjects){
-          if(err) return next(err);
-          console.log(secondSubjects);
-        });
-      }
-    });
-}
-}else if(req.body.grading === "firstSem"){
-  for(var i = 0; i < counter; i++){
-    Subject.updateMany({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, {firstSemester : true}).exec()
-    Subject.find({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, function(err, subjects){
-      if(err) return next(err);
-     console.log(subjects);
-      if(!subjects){
-        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {firstSemester : true}).exec()
-        Subject.find({}, function(err, secondSubjects){
-          if(err) return next(err);
-          console.log(secondSubjects);
-        });
-      }
-    });
-}
-}else if(req.body.grading === "secondSem"){
-  for(var i = 0; i < counter; i++){
-    Subject.updateMany({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, {secondSemester : true}).exec()
-    Subject.find({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, function(err, subjects){
-      if(err) return next(err);
-      console.log(subjects);
-      if(!subjects){
-        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {secondSemester : true}).exec()
-        Subject.find({}, function(err, secondSubjects){
-          if(err) return next(err);
-          console.log(secondSubjects);
-        });
-      }
-    });
-}
-}
-} else if(counter == 0){
-  if(req.body.grading === "firstGrading"){
+    .count({
+      academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() + 1)
+    })
+    .exec(function (err, counter) {
+      console.log(counter);
+      if (counter >= 0) {
+        console.log("lol")
+        if (req.body.grading === "firstGrading") {
+          // for(var i = 0; i < counter; i++){
+          Subject.updateMany({
+            academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() + 1)
+          }, {
+            first: true
+          }).exec(function (err, subjects) {
+            if (err) return next(err);
+            console.log("subjects exec: " + subjects);
+          });
+          Subject.find({
+            academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() + 1)
+          }, function (err, subjects) {
+            if (err) return next(err);
+            console.log(subjects);
+            if (!subjects) {
+              Subject.updateMany({
+                academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()
+              }, {
+                first: true
+              })
+              Subject.find({}, function (err, secondSubjects) {
+                if (err) return next(err);
+                console.log(secondSubjects);
+              });
+            }
+          });
+          // }
+        } else if (req.body.grading === "secondGrading") {
+          // for(var i = 0; i < counter; i++){
+          Subject.updateMany({
+            academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() + 1)
+          }, {
+            second: true
+          }).exec();
+          Subject.find({
+            academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() + 1)
+          }, function (err, subjects) {
+            if (err) return next(err);
+            console.log(subjects);
+            if (!subjects) {
+              Subject.updateMany({
+                academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()
+              }, {
+                second: true
+              })
+              Subject.find({}, function (err, secondSubjects) {
+                if (err) return next(err);
+                console.log(secondSubjects);
+              });
+            }
+          });
+          // }
+        } else if (req.body.grading === "thirdGrading") {
+          // for(var i = 0; i < counter; i++){
+          Subject.updateMany({
+            academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() + 1)
+          }, {
+            third: true
+          }).exec();
+          Subject.find({
+            academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() + 1)
+          }, function (err, subjects) {
+            if (err) return next(err);
+            console.log(subjects);
+            if (!subjects) {
+              Subject.updateMany({
+                academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()
+              }, {
+                third: true
+              }).exec();
+              Subject.find({}, function (err, secondSubjects) {
+                if (err) return next(err);
+                console.log(secondSubjects);
+              });
+            }
+          });
+          // }
+        } else if (req.body.grading === "fourthGrading") {
+          for (var i = 0; i < counter; i++) {
+            Subject.updateMany({
+              academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() + 1)
+            }, {
+              fourth: true
+            }).exec()
+            Subject.find({
+              academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() + 1)
+            }, function (err, subjects) {
+              if (err) return next(err);
+              console.log(subjects);
+              if (!subjects) {
+                Subject.updateMany({
+                  academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()
+                }, {
+                  fourth: true
+                }).exec()
+                Subject.find({}, function (err, secondSubjects) {
+                  if (err) return next(err);
+                  console.log(secondSubjects);
+                });
+              }
+            });
+          }
+        } else if (req.body.grading === "firstSem") {
+          for (var i = 0; i < counter; i++) {
+            Subject.updateMany({
+              academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() + 1)
+            }, {
+              firstSemester: true
+            }).exec()
+            Subject.find({
+              academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() + 1)
+            }, function (err, subjects) {
+              if (err) return next(err);
+              console.log(subjects);
+              if (!subjects) {
+                Subject.updateMany({
+                  academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()
+                }, {
+                  firstSemester: true
+                }).exec()
+                Subject.find({}, function (err, secondSubjects) {
+                  if (err) return next(err);
+                  console.log(secondSubjects);
+                });
+              }
+            });
+          }
+        } else if (req.body.grading === "secondSem") {
+          for (var i = 0; i < counter; i++) {
+            Subject.updateMany({
+              academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() + 1)
+            }, {
+              secondSemester: true
+            }).exec()
+            Subject.find({
+              academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() + 1)
+            }, function (err, subjects) {
+              if (err) return next(err);
+              console.log(subjects);
+              if (!subjects) {
+                Subject.updateMany({
+                  academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()
+                }, {
+                  secondSemester: true
+                }).exec()
+                Subject.find({}, function (err, secondSubjects) {
+                  if (err) return next(err);
+                  console.log(secondSubjects);
+                });
+              }
+            });
+          }
+        }
+      } else if (counter == 0) {
+        if (req.body.grading === "firstGrading") {
+          Subject
+            .updateMany({
+              academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()
+            }, {
+              first: true
+            }).exec();
+          Subject.find({}, function (err, secondSubjects) {
+            if (err) return next(err);
+            console.log(secondSubjects);
+          });
+        }
+      } else if (req.body.grading === "secondGrading") {
         Subject
-        .updateMany({
-          academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {first : true}).exec();
-          Subject.find({}, function(err, secondSubjects){
-          if(err) return next(err);
+          .updateMany({
+            academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()
+          }, {
+            second: true
+          }).exec();
+        Subject.find({}, function (err, secondSubjects) {
+          if (err) return next(err);
           console.log(secondSubjects);
         });
-  }
-}else if(req.body.grading === "secondGrading"){
-        Subject
-        .updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {second : true}).exec();
-        Subject.find({}, function(err, secondSubjects){
-          if(err) return next(err);
+      } else if (req.body.grading === "thirdGrading") {
+        Subject.updateMany({
+          academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()
+        }, {
+          third: true
+        }).exec();
+        Subject.find({}, function (err, secondSubjects) {
+          if (err) return next(err);
           console.log(secondSubjects);
         });
-}else if(req.body.grading === "thirdGrading"){
-        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {third : true}).exec();
-        Subject.find({}, function(err, secondSubjects){
-          if(err) return next(err);
+      } else if (req.body.grading === "fourthGrading") {
+        Subject.updateMany({
+          academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()
+        }, {
+          fourth: true
+        }).exec();
+        Subject.find({}, function (err, secondSubjects) {
+          if (err) return next(err);
           console.log(secondSubjects);
         });
-}else if(req.body.grading === "fourthGrading"){
-        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {fourth : true}).exec();
-        Subject.find({}, function(err, secondSubjects){
-          if(err) return next(err);
+      } else if (req.body.grading === "firstSem") {
+        Subject.updateMany({
+          academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()
+        }, {
+          firstSemester: true
+        }).exec();
+        Subject.find({}, function (err, secondSubjects) {
+          if (err) return next(err);
           console.log(secondSubjects);
         });
-}else if(req.body.grading === "firstSem"){
-        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {firstSemester : true}).exec();
-        Subject.find({}, function(err, secondSubjects){
-          if(err) return next(err);
+      } else if (req.body.grading === "secondSem") {
+        Subject.updateMany({
+          academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()
+        }, {
+          secondSemester: true
+        }).exec();
+        Subject.find({}, function (err, secondSubjects) {
+          if (err) return next(err);
           console.log(secondSubjects);
         });
-}else if(req.body.grading === "secondSem"){
-        Subject.updateMany({academicYear: ((new Date()).getFullYear() - 1) + "-" + (new Date()).getFullYear()}, {secondSemester : true}).exec();
-        Subject.find({}, function(err, secondSubjects){
-          if(err) return next(err);
-          console.log(secondSubjects);
-        });
-}
-req.flash("message", "You enable the encoding of grade.");
-return res.redirect("/studentlist");
-});
-  
+      }
+      req.flash("message", "You enable the encoding of grade.");
+      return res.redirect("/studentlist");
+    });
+
 });
 
-router.put("/studentlist", adminAuthentication, function(req, res, next){
+router.put("/studentlist", adminAuthentication, function (req, res, next) {
   Subject
-  .count({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)})
-  .exec(function(err, counter){
-    console.log(counter);
-    if(counter > 0){
-    Subject.updateMany({academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() +1)}, {first : false, second: false, third: false, fourth: false, firstSemester: false, secondSemester: false}).exec(function(err, subjects){
-      if(err) return next(err);
-      console.log(subjects);
+    .count({
+      academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() + 1)
+    })
+    .exec(function (err, counter) {
+      console.log(counter);
+      if (counter > 0) {
+        Subject.updateMany({
+          academicYear: (new Date()).getFullYear() + "-" + ((new Date()).getFullYear() + 1)
+        }, {
+          first: false,
+          second: false,
+          third: false,
+          fourth: false,
+          firstSemester: false,
+          secondSemester: false
+        }).exec(function (err, subjects) {
+          if (err) return next(err);
+          console.log(subjects);
+        });
+      } else if (counter == 0) {
+        Subject.updateMany({
+          academicYear: ((new Date()).getFullYear() - 1) + "-" + ((new Date()).getFullYear())
+        }, {
+          first: false,
+          second: false,
+          third: false,
+          fourth: false,
+          firstSemester: false,
+          secondSemester: false
+        }).exec(function (err, subjects) {
+          if (err) return next(err);
+          console.log(subjects);
+        });
+      }
+      req.flash("message", "You successfully disabled the encoding of grades.");
+      return res.redirect("/studentlist");
     });
-}else if(counter == 0){
-      Subject.updateMany({academicYear: ((new Date()).getFullYear() -1) + "-" + ((new Date()).getFullYear())}, {first : false, second: false, third: false, fourth: false, firstSemester: false, secondSemester: false}).exec(function(err, subjects){
-        if(err) return next(err);
-        console.log(subjects);
-      });
-}
-req.flash("message", "You successfully disabled the encoding of grades.");
-return res.redirect("/studentlist");
-});
 
 });
 
-router.get('/studentlist/:id', adminAuthentication, function(req, res, next) {
-  if(req.query.academicYear){
-    Curriculum.find({studentId: req.params.id}, function(err, curriculums){
+router.get('/studentlist/:id', adminAuthentication, function (req, res, next) {
+  if (req.query.academicYear) {
+    Curriculum.find({
+      studentId: req.params.id
+    }, function (err, curriculums) {
       Curriculum.findOne({
-        studentId: req.params.id,
-        academicYear: req.query.academicYear
-      })
+          studentId: req.params.id,
+          academicYear: req.query.academicYear
+        })
         .populate('subjects')
-        .exec(function(err, curriculum) {
+        .exec(function (err, curriculum) {
           console.log(curriculum);
-          if(curriculum){
-            User.findById(req.params.id, function(err, user) {
-             return res.render('admin/viewgrade', {curriculums: curriculums, curriculum: curriculum, user: user, studentId: req.params.id });
+          if (curriculum) {
+            User.findById(req.params.id, function (err, user) {
+              return res.render('admin/viewgrade', {
+                curriculums: curriculums,
+                curriculum: curriculum,
+                user: user,
+                studentId: req.params.id
+              });
             });
           }
         });
-      });
-  } else{
-  Curriculum.find({studentId: req.params.id}, function(err, curriculums){
-  Curriculum.findOne({
-    studentId: req.params.id,
-    academicYear:
-      (new Date()).getFullYear() + '-' + (new Date().getFullYear() + 1)
-    })
-    .populate('subjects')
-    .exec(function(err, curriculum) {
-      console.log(curriculum);
-      if(curriculum){
-        User.findById(req.params.id, function(err, user) {
-         return res.render('admin/viewgrade', {curriculums: curriculums, curriculum: curriculum, user: user, studentId: req.params.id });
-        });
-      } else if(!curriculum){
-        Curriculum.findOne({
+    });
+  } else {
+    Curriculum.find({
+      studentId: req.params.id
+    }, function (err, curriculums) {
+      Curriculum.findOne({
           studentId: req.params.id,
           academicYear:
-            ((new Date()).getFullYear() - 1) + '-' + (new Date()).getFullYear()
-          })
-          .populate('subjects')
-          .exec(function(err, curriculum) {
-            User.findById(req.params.id, function(err, user) {
-              return res.render('admin/viewgrade', {curriculums: curriculums, curriculum: curriculum, user: user, studentId: req.params.id });
+            (new Date()).getFullYear() + '-' + (new Date().getFullYear() + 1)
+        })
+        .populate('subjects')
+        .exec(function (err, curriculum) {
+          console.log(curriculum);
+          if (curriculum) {
+            User.findById(req.params.id, function (err, user) {
+              return res.render('admin/viewgrade', {
+                curriculums: curriculums,
+                curriculum: curriculum,
+                user: user,
+                studentId: req.params.id
+              });
             });
-          });
+          } else if (!curriculum) {
+            Curriculum.findOne({
+                studentId: req.params.id,
+                academicYear:
+                  ((new Date()).getFullYear() - 1) + '-' + (new Date()).getFullYear()
+              })
+              .populate('subjects')
+              .exec(function (err, curriculum) {
+                User.findById(req.params.id, function (err, user) {
+                  return res.render('admin/viewgrade', {
+                    curriculums: curriculums,
+                    curriculum: curriculum,
+                    user: user,
+                    studentId: req.params.id
+                  });
+                });
+              });
+          }
+        });
+    });
+  }
+});
+
+router.get("/manage-faculty", adminAuthentication, function (req, res, next) {
+  if (req.query.lastName) {
+    User.find({
+      user: 'faculty'
+    }).sort({
+      "profile.lastName": 1,
+      "profile.firstName": 1
+    }).exec(function (err, users) {
+      if (err) return next(err);
+      res.render('admin/manage-faculty', {
+        users: users
+      });
+    });
+  } else {
+    User.find({
+      user: "faculty"
+    }, function (err, users) {
+      if (err) return next(err);
+      res.render("admin/manage-faculty", {
+        users: users
+      });
+    });
+  }
+});
+
+router.get("/manage-faculty/:id", adminAuthentication, function (req, res, next) {
+  User
+    .findById({
+      _id: req.params.id
+    })
+    .populate("faculty")
+    .exec(function (err, users) {
+
+      if (err) return next(err);
+      console.log(users);
+      res.render("admin/assignSubjects", {
+        users: users
+      });
+    });
+});
+
+router.post("/manage-faculty/:id", adminAuthentication, function (req, res, next) {
+  User.findById({
+    _id: req.params.id
+  }, function (err, user) {
+    Handle.findOne({
+      subject: req.body.subject,
+      section: req.body.section,
+      yrLvl: req.body.yrLvl
+    }, function (err, teacher) {
+      if (err) return next(err);
+
+      if (teacher) {
+        req.flash("message", "there is already a faculty assigned to this subject");
+        return res.redirect("back");
+      } else {
+
+        var handle = new Handle();
+        handle.subject = req.body.subject;
+        handle.section = req.body.section;
+        handle.yrLvl = req.body.yrLvl;
+        handle.faculty = user._id;
+        handle.save(function (err, handle) {
+          if (err) return next(err);
+          console.log(handle);
+        });
+
+        user.faculty.push(handle);
+        user.save(function (err, user) {
+          if (err) return next(err);
+          console.log(user);
+          req.flash("message", "Successfully assigned a subject");
+        });
+        return res.redirect("back");
       }
     });
   });
-}
 });
 
-router.get("/manage-faculty", adminAuthentication, function(req, res, next){
-  if(req.query.lastName){
-    User.find({user: 'faculty'}).sort({"profile.lastName" : 1, "profile.firstName" : 1}).exec(function(err, users){
-      if(err) return next(err);
-      res.render('admin/manage-faculty', { users: users });
-    });
-  }else { 
-  User.find({user: "faculty"}, function(err, users){
-    if(err) return next(err);
-    res.render("admin/manage-faculty", {users: users});
-  });
-}
-});
+router.put("/manage-faculty/:id", adminAuthentication, function (req, res, next) {
+  if (req.body.publisher == "true" || req.body.publisher == true) {
+    User.update({
+      _id: req.params.id
+    }, {
+      publisher: false
+    }).exec(function (err, user) {
+      if (err) return next(err);
+      User.findById(req.params.id, function (err, user) {
 
-router.get("/manage-faculty/:id", adminAuthentication, function(req, res, next){
-  User
-  .findById({ _id: req.params.id})
-  .populate("faculty")
-  .exec(function(err, users){
-    
-    if(err) return next(err);
-    console.log(users);
-    res.render("admin/assignSubjects", {users: users});
-  });
-});
-
-router.post("/manage-faculty/:id", adminAuthentication, function(req, res, next){
-  User.findById({ _id: req.params.id}, function(err, user){
-    Handle.findOne({subject: req.body.subject
-      , section: req.body.section
-      , yrLvl: req.body.yrLvl
-    }, function(err, teacher){
-    if(err) return next(err);
-        
-        if(teacher){
-          req.flash("message", "there is already a faculty assigned to this subject");
-          return res.redirect("back");
-        }else{
-          
-    var handle = new Handle();
-    handle.subject = req.body.subject;
-    handle.section = req.body.section;
-    handle.yrLvl = req.body.yrLvl;
-    handle.faculty= user._id;
-    handle.save(function(err, handle){
-      if(err) return next(err);
-      console.log(handle);
+        // user.publisher = true;
+        // user.save(function(err, user){
+        //   if(err) return next(err);
+        //   console.log(user);
+        // });
+        req.flash("message", "You successfully disabled the manage publisher on this staff.");
+        return res.redirect("/manage-faculty/" + user_id);
+      });
     });
 
-    user.faculty.push(handle);
-    user.save(function(err, user){
-      if(err) return next(err);
-      console.log(user);
-      req.flash("message", "Successfully assigned a subject");
+  } else {
+    User.update({
+      _id: req.params.id
+    }, {
+      publisher: true
+    }).exec(function (err, user) {
+      if (err) return next(err);
+      User.findById(req.params.id, function (err, user) {
+        req.flash("message", "You successfully enable the manage publisher on this staff.");
+        return res.redirect("/manage-faculty/" + user._id);
+      });
     });
-    return res.redirect("back");
-  }
-  });
-});
-});
-
-router.put("/manage-faculty/:id", adminAuthentication, function(req, res, next){
-  if(req.body.publisher == "true" || req.body.publisher == true){
-  User.update({_id: req.params.id}, {publisher: false}).exec(function(err, user){
-    if(err) return next(err);
-    User.findById(req.params.id, function(err, user){
-
-    // user.publisher = true;
-    // user.save(function(err, user){
-    //   if(err) return next(err);
-    //   console.log(user);
-    // });
-    req.flash("message", "You successfully disabled the manage publisher on this staff.");
-    return res.redirect("/manage-faculty/" + user_id);
-  });
-});
-  
-  }else{
-    User.update({_id: req.params.id}, {publisher: true}).exec(function(err, user){
-      if(err) return next(err);
-      User.findById(req.params.id, function(err, user){
-      req.flash("message", "You successfully enable the manage publisher on this staff.");
-    return res.redirect("/manage-faculty/" + user._id);
-    });
-  });
   }
 });
-router.delete("/manage-faculty/:id", adminAuthentication, function(req, res, next){
-  Handle.findByIdAndRemove(req.params.id, function(err, subject){
-    if(err) return next(err);
+router.delete("/manage-faculty/:id", adminAuthentication, function (req, res, next) {
+  Handle.findByIdAndRemove(req.params.id, function (err, subject) {
+    if (err) return next(err);
     req.flash("message", "You successfully deleted a handled subject of this staff");
     return res.redirect("back");
   });
 });
 
-router.get('/managepubs', adminAuthentication, function(req, res, next) {
-  if(req.query.sort){
-    Literary.find({status: false, archive: false}).sort({litNumber: 1}).exec(function(err, literaries){
-      if(err) return next(err);
-      res.render('admin/managepublication', { literaries: literaries });
+router.get('/managepubs', adminAuthentication, function (req, res, next) {
+  if (req.query.sort) {
+    Literary.find({
+      status: false,
+      archive: false
+    }).sort({
+      litNumber: 1
+    }).exec(function (err, literaries) {
+      if (err) return next(err);
+      res.render('admin/managepublication', {
+        literaries: literaries
+      });
     });
-  }else if(req.query.photojournal){
-    Literary.find({status: false, archive: false, category: "photojournal"}).sort({publishDate: 1}).exec(function(err, literaries){
-      if(err) return next(err);
-      res.render('admin/managepublication', { literaries: literaries });
+  } else if (req.query.photojournal) {
+    Literary.find({
+      status: false,
+      archive: false,
+      category: "photojournal"
+    }).sort({
+      publishDate: 1
+    }).exec(function (err, literaries) {
+      if (err) return next(err);
+      res.render('admin/managepublication', {
+        literaries: literaries
+      });
     });
-  }else if(req.query.editorial){
-    Literary.find({status: false, archive: false, category: "editorial"}).sort({publishDate: 1}).exec(function(err, literaries){
-      if(err) return next(err);
-      res.render('admin/managepublication', { literaries: literaries });
+  } else if (req.query.editorial) {
+    Literary.find({
+      status: false,
+      archive: false,
+      category: "editorial"
+    }).sort({
+      publishDate: 1
+    }).exec(function (err, literaries) {
+      if (err) return next(err);
+      res.render('admin/managepublication', {
+        literaries: literaries
+      });
     });
-  }else if(req.query.story){
-    Literary.find({status: false, archive: false, category: "story"}).sort({publishDate: 1}).exec(function(err, literaries){
-      if(err) return next(err);
-      res.render('admin/managepublication', { literaries: literaries });
+  } else if (req.query.story) {
+    Literary.find({
+      status: false,
+      archive: false,
+      category: "story"
+    }).sort({
+      publishDate: 1
+    }).exec(function (err, literaries) {
+      if (err) return next(err);
+      res.render('admin/managepublication', {
+        literaries: literaries
+      });
+    });
+  } else if (req.query.poem) {
+    Literary.find({
+      status: false,
+      archive: false,
+      category: "poem"
+    }).sort({
+      publishDate: 1
+    }).exec(function (err, literaries) {
+      if (err) return next(err);
+      res.render('admin/managepublication', {
+        literaries: literaries
+      });
+    });
+  } else {
+    Literary.find({
+      status: false,
+      archive: false
+    }, function (err, literaries) {
+      if (err) return next(err);
+      res.render('admin/managepublication', {
+        literaries: literaries
+      });
     });
   }
-  else if(req.query.poem){
-    Literary.find({status: false, archive: false, category: "poem"}).sort({publishDate: 1}).exec(function(err, literaries){
-      if(err) return next(err);
-      res.render('admin/managepublication', { literaries: literaries });
-    });
-  }else{
-  Literary.find({status: false, archive: false}, function(err, literaries) {
-    if (err) return next(err);
-    res.render('admin/managepublication', { literaries: literaries });
-  });
-}
 });
 
 // router.delete('/managepubs/:id', function(req, res, next) {
@@ -3885,14 +4222,14 @@ router.get('/managepubs', adminAuthentication, function(req, res, next) {
 //   });
 // });
 
-router.post('/managepubs/:id/edit', adminAuthentication, function(req, res, next) {
-  Literary.findById(req.params.id, function(err, news) {
+router.post('/managepubs/:id/edit', adminAuthentication, function (req, res, next) {
+  Literary.findById(req.params.id, function (err, news) {
     if (err) return next(err);
     news.category = req.body.category;
     news.title = req.body.title;
     news.content = req.body.content;
     news.comments = req.body.comments;
-    news.save(function(err, news) {
+    news.save(function (err, news) {
       if (err) return next(err);
       req.flash("message", "You successfully added a publication!");
       res.redirect('/managepubs');
@@ -3900,59 +4237,75 @@ router.post('/managepubs/:id/edit', adminAuthentication, function(req, res, next
   });
 });
 
-router.post("/managepubs/delete", adminAuthentication, function(req, res, next){
-if(req.body.uniqueId && req.body.uniqueId.constructor == String){
-  Literary.update({_id: req.body.uniqueId}, {archive: true}).exec(function(err, lit){
-    if(err) return next(err);
-    req.flash("message", "You successfully deleted a publication!");
-    return res.redirect("/managepubs");
-  });
-}else if(req.body.uniqueId && req.body.uniqueId.constructor == Array){
-  var litArray = req.body.uniqueId;
-  litArray.forEach(function(lit){
-    Literary.update({_id: lit}, {archive: true}).exec(function(err, lit){
-      if(err) return next(err);
-      req.flash("message", "You successfully added a publication!");
-      
+router.post("/managepubs/delete", adminAuthentication, function (req, res, next) {
+  if (req.body.uniqueId && req.body.uniqueId.constructor == String) {
+    Literary.update({
+      _id: req.body.uniqueId
+    }, {
+      archive: true
+    }).exec(function (err, lit) {
+      if (err) return next(err);
+      req.flash("message", "You successfully deleted a publication!");
+      return res.redirect("/managepubs");
     });
-  });
-  return res.redirect("/managepubs");
-} else{
-  req.flash("message", "You didnt select an ID.");
-  return res.redirect("/managepubs");
-}
+  } else if (req.body.uniqueId && req.body.uniqueId.constructor == Array) {
+    var litArray = req.body.uniqueId;
+    litArray.forEach(function (lit) {
+      Literary.update({
+        _id: lit
+      }, {
+        archive: true
+      }).exec(function (err, lit) {
+        if (err) return next(err);
+        req.flash("message", "You successfully added a publication!");
+
+      });
+    });
+    return res.redirect("/managepubs");
+  } else {
+    req.flash("message", "You didnt select an ID.");
+    return res.redirect("/managepubs");
+  }
 
 });
 
-router.post("/managepubs/accept", adminAuthentication, function(req, res, next){
+router.post("/managepubs/accept", adminAuthentication, function (req, res, next) {
 
 
-if(req.body.uniqueId && req.body.uniqueId.constructor == String){
-  Literary.update({ _id : req.body.uniqueId }, { status : true}).exec(function(err, lit){
+  if (req.body.uniqueId && req.body.uniqueId.constructor == String) {
+    Literary.update({
+      _id: req.body.uniqueId
+    }, {
+      status: true
+    }).exec(function (err, lit) {
       console.log(lit);
-      if(err) return next(err);
+      if (err) return next(err);
       req.flash("message", "You successfully published!");
       return res.redirect("/managepubs");
     });
-}else if(req.body.uniqueId && req.body.uniqueId.constructor == Array){
-  var litArray = req.body.uniqueId;
-  for(var i = 0; i < litArray.length; i++){
-  Literary.update({ _id : litArray[i] }, { status : true}).exec(function(err, lit){
-      console.log(lit);
-    });
+  } else if (req.body.uniqueId && req.body.uniqueId.constructor == Array) {
+    var litArray = req.body.uniqueId;
+    for (var i = 0; i < litArray.length; i++) {
+      Literary.update({
+        _id: litArray[i]
+      }, {
+        status: true
+      }).exec(function (err, lit) {
+        console.log(lit);
+      });
+    }
+    return res.redirect("/managepubs");
+  } else if (!req.body.uniqueId) {
+    req.flash("message", "You didnt select any ID.");
+    return res.redirect('/managepubs');
+  } else {
+    req.flash("message", "You didnt select any ID.");
+    return res.redirect("/managepubs");
   }
-  return res.redirect("/managepubs");
-} else if (!req.body.uniqueId) {
-  req.flash("message", "You didnt select any ID.");
-  return res.redirect('/managepubs');
-} else{
-  req.flash("message", "You didnt select any ID.");
-  return res.redirect("/managepubs");
-}
 
 });
 
-function escapeRegex(text){
+function escapeRegex(text) {
   return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 }
 

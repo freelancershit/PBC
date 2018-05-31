@@ -280,11 +280,13 @@ router.get('/home', function (req, res, next) {
 
 router.get('/news', function (req, res, next) {
   News.find({
-    category: 'news'
+    category: 'news',
+    archive: false
   }, function (err, news) {
     if (err) return next(err);
     News.find({
-      category: 'announcement'
+      category: 'announcement',
+      archive: false
     }, function (err, announcements) {
       if (err) return next(err);
       res.render('main/news', {
