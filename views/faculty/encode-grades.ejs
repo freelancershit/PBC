@@ -88,49 +88,49 @@
                                                         </td>
                                                         <td>
                                                             <% if(subject.first == true || subject.first == "true"){ %>
-                                                                <input id="first" value="<%= subject.firstGrading %>" maxlength="3" size="2" name="firstGrading[]" type="number" min="0"
+                                                                <input id="first" value="<%= subject.firstGrading %>" maxlength="2" size="2" name="firstGrading[]" type="number" min="0"
                                                                     max="100" style="width:60px;" class="form-control">
                                                                 <%} else{ %>
-                                                                    <input disabled id="first" value="<%= subject.firstGrading %>" maxlength="3" size="2" name="firstGrading[]" type="number"
+                                                                    <input disabled id="first" value="<%= subject.firstGrading %>" maxlength="2" size="2" name="firstGrading[]" type="number"
                                                                         min="0" max="100" style="width:60px;" class="form-control">
                                                                     <% } %>
                                                         </td>
                                                         <td>
                                                             <% if(subject.second == true || subject.second == "true"){ %>
-                                                                <input id="second" value="<%= subject.secondGrading %>" name="secondGrading[]" type="number" min="0" max="100" style="width:60px"
-                                                                    class="form-control">
+                                                                <input id="second" value="<%= subject.secondGrading %>" name="secondGrading[]" type="number" min="0" max="100" maxlength="2"
+                                                                    style="width:60px" class="form-control">
                                                                 <% }else{ %>
-                                                                    <input disabled id="second" value="<%= subject.secondGrading %>" name="secondGrading[]" type="number" min="0" max="100" style="width:60px"
-                                                                        class="form-control">
+                                                                    <input disabled id="second" value="<%= subject.secondGrading %>" name="secondGrading[]" type="number" min="0" max="100" maxlength="2"
+                                                                        style="width:60px" class="form-control">
                                                                     <% } %>
                                                         </td>
                                                         <td>
                                                             <% if(subject.third == true || subject.third == "true"){ %>
-                                                                <input id="third" value="<%= subject.thirdGrading %>" name="thirdGrading[]" type="number" min="0" max="100" style="width:60px"
-                                                                    class="form-control">
+                                                                <input id="third" value="<%= subject.thirdGrading %>" name="thirdGrading[]" type="number" min="0" max="100" maxlength="2"
+                                                                    style="width:60px" class="form-control">
                                                                 <% }else{ %>
-                                                                    <input disabled id="third" value="<%= subject.thirdGrading %>" name="thirdGrading[]" type="number" min="0" max="100" style="width:60px"
-                                                                        class="form-control">
+                                                                    <input disabled id="third" value="<%= subject.thirdGrading %>" name="thirdGrading[]" type="number" min="0" max="100" maxlength="2"
+                                                                        style="width:60px" class="form-control">
                                                                     <% } %>
                                                         </td>
                                                         <td>
                                                             <% if(subject.fourth == true || subject.fourth == "true"){ %>
-                                                                <input id="fourth" value="<%= subject.fourthGrading %>" name="fourthGrading[]" type="number" min="0" max="100" style="width:60px"
-                                                                    class="form-control">
+                                                                <input id="fourth" value="<%= subject.fourthGrading %>" name="fourthGrading[]" type="number" min="0" max="100" maxlength="2"
+                                                                    style="width:60px" class="form-control">
                                                                 <% }else {%>
-                                                                    <input disabled id="fourth" value="<%= subject.fourthGrading %>" name="fourthGrading[]" type="number" min="0" max="100" style="width:60px"
-                                                                        class="form-control">
+                                                                    <input disabled id="fourth" value="<%= subject.fourthGrading %>" name="fourthGrading[]" type="number" min="0" max="100" maxlength="2"
+                                                                        style="width:60px" class="form-control">
                                                                     <% } %>
                                                         </td>
                                                         <td>
                                                             <input disabled value="<%= (parseFloat(subject.firstGrading)  +  parseFloat(subject.secondGrading) +  parseFloat(subject.thirdGrading) + parseFloat(subject.fourthGrading)) / 4 %>"
-                                                                name="finalGrading[]" type="number" min="0" max="100" style="width:60px"
-                                                                class="form-control">
+                                                                name="finalGrading[]" type="number" min="0" max="100" maxlength="2"
+                                                                style="width:60px" class="form-control">
                                                         </td>
                                                         <td style="display: none">
                                                             <input value="<%= (parseFloat(subject.firstGrading)  +  parseFloat(subject.secondGrading) +  parseFloat(subject.thirdGrading) + parseFloat(subject.fourthGrading)) / 4 %>"
-                                                                name="finalGrading[]" type="number" min="0" max="100" style="width:60px"
-                                                                class="form-control">
+                                                                name="finalGrading[]" type="number" min="0" max="100" maxlength="2"
+                                                                style="width:60px" class="form-control">
                                                         </td>
                                                         <% if (((parseFloat(subject.firstGrading)  +  parseFloat(subject.secondGrading) +  parseFloat(subject.thirdGrading) + parseFloat(subject.fourthGrading)) / 4) > 75) { %>
                                                             <td>
@@ -160,20 +160,20 @@
                                                                     <td>
 
                                                                         <% if(subject.firstSemester == true || subject.firstSemester == "true"){ %>
-                                                                            <input id="firstSem" value="<%= subject.firstSem %>" name="firstSem[]" type="number" min="0" max="100" style="width:60px"
+                                                                            <input id="firstSem" value="<%= subject.firstSem %>" name="firstSem[]" type="number" min="0" max="100" maxlength="2" style="width:60px"
                                                                                 class="form-control">
                                                                             <% }else{ %>
-                                                                                <input disabled id="firstSem" value="<%= subject.firstSem %>" name="firstSem[]" type="number" min="0" max="100" style="width:60px"
-                                                                                    class="form-control">
+                                                                                <input disabled id="firstSem" value="<%= subject.firstSem %>" name="firstSem[]" type="number" min="0" max="100" maxlength="2"
+                                                                                    style="width:60px" class="form-control">
                                                                                 <% } %>
                                                                     </td>
                                                                     <td>
                                                                         <% if(subject.secondSemester == true || subject.secondSemester == "true"){ %>
-                                                                            <input id="secondSem" value="<%= subject.secondSem %>" name="secondSem[]" type="number" min="0" max="100" style="width:60px"
+                                                                            <input id="secondSem" value="<%= subject.secondSem %>" name="secondSem[]" type="number" min="0" max="100" maxlength="2" style="width:60px"
                                                                                 class="form-control">
                                                                             <% }else{ %>
-                                                                                <input disabled id="secondSem" value="<%= subject.secondSem %>" name="secondSem[]" type="number" min="0" max="100" style="width:60px"
-                                                                                    class="form-control">
+                                                                                <input disabled id="secondSem" value="<%= subject.secondSem %>" name="secondSem[]" type="number" min="0" max="100" maxlength="2"
+                                                                                    style="width:60px" class="form-control">
                                                                                 <% } %>
                                                                     </td>
                                                                 </tr>
