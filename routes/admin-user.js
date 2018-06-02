@@ -8,6 +8,7 @@ var Curriculum = require('../models/curriculum');
 var Literary = require('../models/literary');
 var Subject = require('../models/subject');
 var Handle = require('../models/facultyHandle');
+var Vmos = require('../models/vmos');
 var async = require('async');
 var passport = require('passport');
 var passportConfig = require('../config/passport');
@@ -4004,6 +4005,23 @@ router.get('/studentlist/:id', adminAuthentication, function (req, res, next) {
   }
 });
 
+router.post('/vmos', function (req, res, next) {
+  var vmos = new Vmos();
+
+  // Vmos.findByIdAndRemove(req.body.id, function (err, vmos) {});
+  vmos.vision = req.body.vision;
+  vmos.mission = req.body.mission;
+  vmos.save(function (err, vmos) {
+    if (err) return next(err);
+    req.flash(
+      'success',
+      'VMOS Updated'
+    );
+    console.log("updated")
+    res.redirect('/vmos');
+  });
+});
+
 router.get("/manage-faculty", adminAuthentication, function (req, res, next) {
   if (req.query.lastName) {
     User.find({
@@ -4027,6 +4045,40 @@ router.get("/manage-faculty", adminAuthentication, function (req, res, next) {
       });
     });
   }
+});
+router.get("/manage-faculty/:id", adminAuthentication, function (req, res, next) {
+  User
+    .findById({
+      _id: req.params.id
+    })
+    .populate("faculty")
+    .exec(function (err, users) {
+
+      if (err) return next(err);
+      console.log(users);
+      res.render("admin/assignSubjects", {
+        users: users
+      });
+    });
+});
+router.get('/vmos', function (req, res, next) {
+  Vmos.find({}, function (err, visionmission) {
+    if (err) return next(err);
+    console.log(visionmission[0].vision);
+    res.render('admin/vmos', {
+      visionmission: visionmission
+    });
+  });
+  // Vmos.find({}, function (err, vmos) {
+  //   // console.log(vmos.vision)
+  //   if (err) return next(err);
+  //   console.log(vmos);
+  //   console.log(vision);
+  //   res.render('admin/vmos', {
+  //     vmos: vmos
+  //     // mission: mission,
+  //   });
+  // });
 });
 
 router.get("/manage-faculty/:id", adminAuthentication, function (req, res, next) {

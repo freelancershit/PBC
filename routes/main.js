@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var Vmos = require('../models/vmos');
 var expressSanitizer = require('express-sanitizer');
 var User = require('../models/user');
 var Pending = require('../models/pending');
@@ -332,7 +332,14 @@ router.get('/service', function (req, res, next) {
 });
 
 router.get('/vmop', function (req, res, next) {
-  res.render('main/vmop');
+  Vmos.find({}, function (err, visionmission) {
+    if (err) return next(err);
+    console.log(visionmission[0].vision);
+    res.render('main/vmop', {
+      visionmission: visionmission
+    });
+  });
+  // res.render('main/vmop');
 });
 
 function escapeRegex(text) {

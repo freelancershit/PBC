@@ -23,27 +23,32 @@ function facultyAuthentication(req, res, next) {
   }
 }
 
-router.get('/encode', facultyAuthentication, function(req, res, next) {
-  Subject.find({ faculty: req.user._id }, function(err, subjects) {
+router.get('/encode', facultyAuthentication, function (req, res, next) {
+  Subject.find({
+    faculty: req.user._id
+  }, function (err, subjects) {
     if (err) return next(err);
-    res.render('faculty/viewencoded-grades', { subjects: subjects });
+    res.render('faculty/viewencoded-grades', {
+      subjects: subjects
+    });
   });
 });
 
-router.get('/encode/:yr/:sec/:subj', facultyAuthentication, function(
+router.get('/encode/:yr/:sec/:subj', facultyAuthentication, function (
   req,
   res,
   next,
 ) {
-  Subject.find(
-    {
+  Subject.find({
       yrLvl: req.params.yr,
       section: req.params.sec,
       subject: req.params.subject,
     },
-    function(err, subject) {
+    function (err, subject) {
       if (err) return next(err);
-      res.render('faculty/viewgrades', { subject: subject });
+      res.render('faculty/viewgrades', {
+        subject: subject
+      });
     },
   );
 });
@@ -51,14 +56,15 @@ router.get('/encode/:yr/:sec/:subj', facultyAuthentication, function(
 router.get(
   '/encode-grades/:id/:yrLvl/:subject/:section',
   facultyAuthentication,
-  function(req, res, next) {
+  function (req, res, next) {
     Subject.find({
       faculty: req.params.id,
       yrLvl: req.params.yrLvl,
       subject: req.params.subject,
       section: req.params.section,
-    }).exec(function(err, handle) {
-      console.log(handle);
+    }).exec(function (err, handle) {
+      // console.log(handle);
+      // console.log(use)
       res.render('faculty/encode-grades', {
         handle: handle,
         yrLvl: req.params.yrLvl,
@@ -69,7 +75,7 @@ router.get(
   },
 );
 
-router.post('/encode-grades', facultyAuthentication, function(req, res, next) {
+router.post('/encode-grades', facultyAuthentication, function (req, res, next) {
   var grades = [];
   console.log('ohh: ' + req.body.toggle);
   var toggle = req.body.toggle;
@@ -209,8 +215,12 @@ router.post('/encode-grades', facultyAuthentication, function(req, res, next) {
     var gradeArray = req.body.id;
     console.log('before loop:' + grades[i]);
     for (var i = 0; i < gradeArray.length; i++) {
-      Subject.updateMany({ _id: gradeArray[i] }, { $set: grades[i] }).exec(
-        function(err, subject) {
+      Subject.updateMany({
+        _id: gradeArray[i]
+      }, {
+        $set: grades[i]
+      }).exec(
+        function (err, subject) {
           if (err) return next(err);
           console.log(subject);
         },
@@ -344,8 +354,12 @@ router.post('/encode-grades', facultyAuthentication, function(req, res, next) {
     var gradeArray = req.body.id;
     console.log('before loop:' + grades[i]);
     for (var i = 0; i < gradeArray.length; i++) {
-      Subject.updateMany({ _id: gradeArray[i] }, { $set: grades[i] }).exec(
-        function(err, subject) {
+      Subject.updateMany({
+        _id: gradeArray[i]
+      }, {
+        $set: grades[i]
+      }).exec(
+        function (err, subject) {
           if (err) return next(err);
           console.log(subject);
         },
@@ -355,7 +369,7 @@ router.post('/encode-grades', facultyAuthentication, function(req, res, next) {
   }
 });
 
-router.post('/encode-grades/save', facultyAuthentication, function(
+router.post('/encode-grades/save', facultyAuthentication, function (
   req,
   res,
   next,
@@ -464,7 +478,11 @@ router.post('/encode-grades/save', facultyAuthentication, function(
   console.log('test: ' + grades);
   var gradeArray = req.body.id;
   for (var i = 0; i < gradeArray.length; i++) {
-    Subject.update({ _id: gradeArray[i] }, { $set: grades[i] }).exec(function(
+    Subject.update({
+      _id: gradeArray[i]
+    }, {
+      $set: grades[i]
+    }).exec(function (
       err,
       subject,
     ) {
@@ -492,19 +510,32 @@ router.post('/encode-grades/save', facultyAuthentication, function(
   // });
 });
 
-router.get('/encode1-grades', facultyAuthentication, function(req, res, next) {
+router.get('/encode1-grades', facultyAuthentication, function (req, res, next) {
   if (req.query.yrLvl1 && req.query.section) {
     const regex = new RegExp(escapeRegex(req.query.section), 'gi');
     const regex1 = new RegExp(escapeRegex(req.query.yrLvl1), 'gi');
-    Handle.find({ faculty: req.user._id, section: regex, yrLvl: regex1 })
-      .sort({ section: 1, yrLvl: 1 })
-      .exec(function(err, handles) {
+    Handle.find({
+        faculty: req.user._id,
+        section: regex,
+        yrLvl: regex1
+      })
+      .sort({
+        section: 1,
+        yrLvl: 1
+      })
+      .exec(function (err, handles) {
         if (err) return next(err);
-        res.render('faculty/encode1-grades', { handles: handles });
+        res.render('faculty/encode1-grades', {
+          handles: handles
+        });
       });
   } else {
-    Handle.find({ faculty: req.user._id }).exec(function(err, handles) {
-      res.render('faculty/encode1-grades', { handles: handles });
+    Handle.find({
+      faculty: req.user._id
+    }).exec(function (err, handles) {
+      res.render('faculty/encode1-grades', {
+        handles: handles
+      });
     });
   }
 });
@@ -512,15 +543,14 @@ router.get('/encode1-grades', facultyAuthentication, function(req, res, next) {
 router.get(
   '/viewgrades/:id/:yrLvl/:subject/:section',
   facultyAuthentication,
-  function(req, res, next) {
-    Subject.find(
-      {
+  function (req, res, next) {
+    Subject.find({
         faculty: req.params.id,
         yrLvl: req.params.yrLvl,
         subject: req.params.subject,
         section: req.params.section,
       },
-      function(err, subjects) {
+      function (err, subjects) {
         res.render('faculty/viewgrades', {
           subjects: subjects,
           yrLvl: req.params.yrLvl,
@@ -532,7 +562,7 @@ router.get(
   },
 );
 
-router.get('/viewencoded-grades', facultyAuthentication, function(
+router.get('/viewencoded-grades', facultyAuthentication, function (
   req,
   res,
   next,
@@ -540,15 +570,28 @@ router.get('/viewencoded-grades', facultyAuthentication, function(
   if (req.query.yrLvl1 && req.query.section) {
     const regex = new RegExp(escapeRegex(req.query.section), 'gi');
     const regex1 = new RegExp(escapeRegex(req.query.yrLvl1), 'gi');
-    Handle.find({ faculty: req.user._id, section: regex, yrLvl: regex1 })
-      .sort({ section: 1, yrLvl: 1 })
-      .exec(function(err, handles) {
+    Handle.find({
+        faculty: req.user._id,
+        section: regex,
+        yrLvl: regex1
+      })
+      .sort({
+        section: 1,
+        yrLvl: 1
+      })
+      .exec(function (err, handles) {
         if (err) return next(err);
-        res.render('faculty/viewencoded-grades', { handles: handles });
+        res.render('faculty/viewencoded-grades', {
+          handles: handles
+        });
       });
   } else {
-    Handle.find({ faculty: req.user._id }).exec(function(err, handles) {
-      res.render('faculty/viewencoded-grades', { handles: handles });
+    Handle.find({
+      faculty: req.user._id
+    }).exec(function (err, handles) {
+      res.render('faculty/viewencoded-grades', {
+        handles: handles
+      });
     });
   }
 });
