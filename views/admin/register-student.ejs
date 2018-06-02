@@ -83,7 +83,7 @@
 
 <body onload="myFunction()" style="background-color:black">
 
-  <div id="loader"></div>
+  <!-- <div id="loader"></div> -->
 
 
   </div>
@@ -162,9 +162,16 @@
                         <div class="form-group">
                           <label for="name">ID No:</label>
                           <select id="userNumber" class="form-control" name="idNum">
-                            <option value="<%= studentCount %>">
-                              <%= studentCount %>
-                            </option>
+                            <% if (pending.studentNo !== null) { %>
+                              <option value="<%= studentCount %>">
+                                <%= pending.studentNo %>
+                              </option>
+                              <% } else { %>
+                                <option value="<%= studentCount %>">
+                                  <%= studentCount %>
+                                </option>
+                                <% } %>
+
                           </select>
                         </div>
                         <div class="form-group">
@@ -182,13 +189,12 @@
                           <input style="text-transform: capitalize;" value="<%= pending.lastName %>" class="form-control" type="text" name="lastName"
                             placeholder="last name">
                         </div>
-                        <div class="form-group" style="display:none">
-                          <label for="name">Age:</label>
-                          <input value="<%= pending.age %>" class="form-control" type="number" min="0" name="age" placeholder="your age">
-                        </div>
+
+
                         <label>Birthdate: </label>
                         <div class="form-group">
                           <select class="btn btn-default" name="year" id="year">
+
                           </select>
                           <select class="btn btn-default" name="month" id="month">
                             <option value="01">January</option>
@@ -209,9 +215,10 @@
                           </select>
                         </div>
                         <div class="form-group">
-                          <label for="name">Address:</label>
-                          <input value="<%= pending.address %>" class="form-control" type="text" name="address" placeholder="address">
+                          <label for="name">Age:</label>
+                          <input value="<%= pending.age %>" class="form-control" type="number" min="0" name="age" placeholder="your age">
                         </div>
+
 
                       </div>
                       <div class="col-md-4">
@@ -219,9 +226,12 @@
                         <br>
                         <br>
                         <br>
-                        <br>
-                        <br>
-                        <div class="form-group" style="margin-top: -25px">
+
+                        <div class="form-group" style="margin-top:12px">
+                          <label for="name">Address:</label>
+                          <input value="<%= pending.address %>" class="form-control" type="text" name="address" placeholder="address">
+                        </div>
+                        <div class="form-group">
                           <label for="name">Email:</label>
                           <input value="<%= pending.email %>" class="form-control" type="email" name="email" placeholder="email address">
                         </div>
@@ -295,19 +305,39 @@
         </div>
       </div>
       </div>
+      <!-- <%= pending.birthdate.getMo %> -->
       <script type="text/javascript">
         for (var i = (new Date).getFullYear(); i >= 1905; i--) {
           $("#year").append('<option value="' + i + '">' + i + '</option>');
+          // alert("<%= pending.birthdate.getDay() %>")
+
+
+          var month = parseInt("<%= pending.birthdate.getMonth() %>") + 1
+
+          if ("<%= pending.birthdate.getMonth() %>" >= 10) {
+            document.getElementById("month").value = parseInt("<%= pending.birthdate.getMonth() %>") + 1;
+
+          } else {
+            document.getElementById("month").value = "0" +
+              month;
+          }
+          document.getElementById("year").value = "<%= pending.birthdate.getFullYear() %>";
+
+
+
+          // alert("")
         }
         for (var i = 31; i >= 1; i--) {
           $("#day").append('<option value="' + i + '">' + i + '</option>');
+
+          document.getElementById("day").value = "<%= pending.birthdate.getDay() %>";
         }
 
         function getUsers() {
           var users = document.getElementById("users").value;
 
           // document.getElementById("tableFaculty").style.display = "none";
-          var numUsers = document.getElementById("userNumber").value = <%= studentCount %>;
+          var numUsers = document.getElementById("userNumber").value = "<%= studentCount %>";
           console.log(numUsers);
 
         }
@@ -329,7 +359,7 @@
             // document.getElementById("imgbox2").style.visibility = "visible";
           }
         }
-        window.onload = function () {
-          document.getElementById("btn").click();
-        };
+        // window.onload = function () {
+        //   document.getElementById("btn").click();
+        // };
       </script>

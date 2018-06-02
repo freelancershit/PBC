@@ -225,6 +225,9 @@ router.get('/register', function (req, res, next) {
 
 router.post('/register', function (req, res, next) {
   var pending = new Pending();
+
+  console.log(req.body.firstName + " " + req.body.middleName + " " + req.body.lastName);
+
   User.findOne({
     email: req.body.email
   }, function (err, existingUser) {
@@ -233,8 +236,12 @@ router.post('/register', function (req, res, next) {
       return res.redirect('back');
     } else {
       if (
+        // req.body.stuno &&
         req.body.firstName &&
         req.body.middleName &&
+        req.body.year &&
+        req.body.month &&
+        req.body.day &&
         req.body.lastName &&
         req.body.age &&
         req.body.gender &&
@@ -242,6 +249,7 @@ router.post('/register', function (req, res, next) {
         req.body.email &&
         req.body.contact
       ) {
+        pending.studentNo = req.body.stuno;
         pending.firstName = req.body.firstName;
         pending.middleName = req.body.middleName;
         pending.lastName = req.body.lastName;
@@ -249,7 +257,12 @@ router.post('/register', function (req, res, next) {
         pending.address = req.body.address;
         pending.gender = req.body.gender;
         pending.email = req.body.email;
+
+        pending.birthdate = new Date(
+          req.body.year + '-' + req.body.month + '-' + req.body.day,
+        );
         pending.contact = req.body.contact;
+
         pending.save(function (err, pendingUser) {
           console.log(req.body.gender);
           if (err) return next(err);
