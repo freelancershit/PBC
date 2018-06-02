@@ -228,11 +228,14 @@ router.post('/register', function (req, res, next) {
 
   console.log(req.body.firstName + " " + req.body.middleName + " " + req.body.lastName);
 
-  User.findOne({
-    email: req.body.email
+  User.find({
+    email: req.body.email,
+    idNumber: req.body.stuno,
+    name: req.body.firstName + " " + req.body.middleName + " " + req.body.lastName
+
   }, function (err, existingUser) {
     if (existingUser) {
-      req.flash('errors', 'Account with that email address already exist');
+      req.flash('errors', 'Account with that details already exist');
       return res.redirect('back');
     } else {
       if (
