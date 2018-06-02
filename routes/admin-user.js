@@ -3889,8 +3889,25 @@ router.post("/studentlist", adminAuthentication, function (req, res, next) {
           console.log(secondSubjects);
         });
       }
-      req.flash("message", "You enable the encoding of grade.");
-      return res.redirect("/studentlist");
+      if (req.body.grading === "firstGrading") {
+        req.flash("message", "You enable encoding of grades for First Grading.");
+        return res.redirect("/studentlist");
+      } else if (req.body.grading === "secondGrading") {
+        req.flash("message", "You enable encoding of grades for Second Grading.");
+        return res.redirect("/studentlist");
+      } else if (req.body.grading === "thirdGrading") {
+        req.flash("message", "You enable encoding of grades for Third Grading.");
+        return res.redirect("/studentlist");
+      } else if (req.body.grading === "fourthGrading") {
+        req.flash("message", "You enable encoding of grades for Fourth Grading.");
+        return res.redirect("/studentlist");
+      } else if (req.body.grading === "firstSem") {
+        req.flash("message", "You enable encoding of grades for First Semester.");
+        return res.redirect("/studentlist");
+      } else if (req.body.grading === "secondSem") {
+        req.flash("message", "You enable encoding of grades for Second Semester.");
+        return res.redirect("/studentlist");
+      }
     });
 
 });
