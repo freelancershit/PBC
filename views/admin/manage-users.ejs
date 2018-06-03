@@ -28,6 +28,14 @@
 
             </div>
             <br>
+            <form id="delete-form" action="/manage" method="GET">
+            <select class="btn btn-default" name="sort">
+              <option> Select an option.. </option>
+              <option value="lastname">Sort By Last Name </option>
+            </select>
+            <button class="btn btn-info">Sort</button>
+            </form>
+            <br/>
             <div class="table-responsive">
               <div style="overflow-y: scroll; height:450px; ">
                 <table class="table table-striped">

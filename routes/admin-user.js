@@ -330,13 +330,21 @@ router.post('/users', adminAuthentication, function (req, res, next) {
 //   }
 // });
 
-router.get('/manage', adminAuthentication, function (req, res, next) {
-  Pending.find({}, function (err, allPending) {
+router.get('/manage', adminAuthentication, function(req, res, next) {
+  if(req.query.sort){
+    console.log("pasok");
+    Pending.find({}).sort({lastName: -1, firstName: -1}).exec(function(err, allPending){
+      if(err) return next(err);
+      res.render('admin/manage-users', {allPending : allPending});
+    });
+  }else{
+  Pending.find({}, function(err, allPending) {
     if (err) return next(err);
     res.render('admin/manage-users', {
       allPending: allPending
     });
   });
+}
 });
 
 router.get('/manage/:id', adminAuthentication, function (req, res, next) {
