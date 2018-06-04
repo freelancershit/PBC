@@ -24,13 +24,11 @@
 
                         <div class="panel-heading" style="color: #ffffff;">Encode Student Grades
                             <div style="float: right;">
-                                <!-- <%= handle[0].first %> -->
                                 <%if(yrLvl === "grade11" || yrLvl === "grade12"){ %>
                                     <% if (handle[0].firstSemester == true || handle[0].firstSemester == "true") { %>
                                         First Semenster
                                         <% } else if (handle[0].secondSemester == true || handle[0].secondSemester == "true") { %>
                                             Second Semester
-                                            <% } else { %>
 
                                                 <% } %>
                                                     <% } else { %>
@@ -204,14 +202,77 @@
                                                                 </tr>
                                                                 <% }); %>
                                                                     <% } %>
+                                                                    <div class="modal fade" id="encodeModal" role="dialog">
+      <div class="modal-dialog modal-sm" sty>
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <div class="row">
+            </div>
+          </div>
+          <div class="row">
+            <div style="padding-top: 50px;">
+                <div style="margin-top:-70px;">
+                  <br>
+                  <label style="color:black; font-weight:bold;">Password:</label>
+                  <input class="form-control" type="password" name="password" placeholder="PASSWORD">
+                  <br>
+
+                  <center>
+                    <button id="pink" onClick=submitForms()"" class="btn btn-primary" style=" border-radius:5px;font-weight:bold; font-family:Verdana; width: 50%;">Confirm</button>
+                  </center>
+                </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+    <div class="modal fade" id="saveModal" role="dialog">
+      <div class="modal-dialog modal-sm" sty>
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <div class="row">
+
+
+
+            </div>
+          </div>
+
+          <div class="row">
+            <div style="padding-top: 50px;">
+                <div style="margin-top:-70px;">
+                  <br>
+                  <label style="color:black; font-weight:bold;">Password:</label>
+                  <input class="form-control" type="password" name="password" placeholder="PASSWORD">
+                  <br>
+
+                  <center>
+                    <button id="pink" onClick="saveForm()" class="btn btn-primary" style=" border-radius:5px;font-weight:bold; font-family:Verdana; width: 50%;">Confirm</button>
+                  </center>
+                </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>
 
                                         </form>
 
                                 </table>
                                 <div style="margin-top:195px; margin-left:610px;">
-                                    <button id="encode" onclick="submitForms()" type="button" style="width: 100px;" class="btn btn-success">
+                                    <button id="encode" style="width: 100px;" class="btn btn-success" data-toggle="modal" data-target="#encodeModal">
                                         ENCODE</button>
-                                    <button type="button" onclick="saveForm()" style="width: 100px; margin-right:5px;" class="btn btn-success">
+                                    <button style="width: 100px; margin-right:5px;" class="btn btn-success" data-toggle="modal" data-target="#saveModal">
                                         SAVE</button>
                                 </div>
                             </div>
