@@ -234,7 +234,7 @@ router.post('/register', function (req, res, next) {
     name: req.body.firstName + " " + req.body.middleName + " " + req.body.lastName
 
   }, function (err, existingUser) {
-    if (existingUser) {
+    if (existingUser.email === req.body.email && existingUser.lastName === req.body.lastName && existingUser.firstName === req.body.firstName && req.body.middleName === existingUser.middleName ) {
       req.flash('errors', 'Account with that details already exist');
       return res.redirect('back');
     } else {
