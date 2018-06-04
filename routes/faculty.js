@@ -82,10 +82,10 @@ router.post('/encode-grades', facultyAuthentication, function (req, res, next) {
   var toggle = req.body.toggle;
   var password = (req.body.password).toString();
   var userPass = req.user.password;
-  if(req.body.password !== "123"){
-    req.flash("message", "You entered a wrong password");
-    return res.redirect("back");
-  }
+  // if(req.body.password !== "123"){
+  //   req.flash("message", "You entered a wrong password");
+  //   return res.redirect("back");
+  // }
   if (toggle == '') {
     if (!(req.body.yrLvl === 'grade11' || req.body.yrLvl === 'grade12')) {
       if (req.body.firstGrading) {
