@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var expressSanitizer = require('express-sanitizer');
+var nodemailer = require('nodemailer');
+var crypto = require('crypto');
+var transporter = require('nodemailer-smtp-transport');
 var User = require('../models/user');
 var Pending = require('../models/pending');
 var News = require('../models/newsAndAnnouncement');
@@ -120,13 +123,45 @@ router.post('/users', adminAuthentication, function (req, res, next) {
           req.flash('errors', 'Account with that email address already exist');
           return res.redirect('/users/new');
         } else {
+          console.log("pasok");
           user.save(function (err, user) {
+            console.log("lol")
+            var smtpTransport = nodemailer.createTransport(
+              transporter({
+                service: 'Gmail',
+                auth: {
+                  user: 'pbcssinc@gmail.com',
+                  pass: 'Pbcssinc!123',
+                },
+              }),
+            );
+            var mailOptions = {
+              to: req.body.email,
+              from: 'pbcssinc@gmail.com',
+              subject: 'New Account Created',
+              text: 'Username:' +
+                '\n\n' +
+                user.email +
+                '\n\n' +
+                'Password:' +
+                req.body.password
+            };
+            smtpTransport.sendMail(mailOptions, function (err) {
+              if (err) return next(err);
+              console.log('mail sent');
+              req.flash(
+                'message',
+                'An e-mail has been sent to ' +
+                user.email,
+              );
+            });
             if (err) return next(err);
+
             req.flash("message", "You successfully created a new account");
             res.redirect('/users/new');
             // callback(null, user);
           });
-          console.log(user);
+          // console.log(user);
         }
       });
     } else {
@@ -200,9 +235,40 @@ router.post('/users', adminAuthentication, function (req, res, next) {
           req.flash('errors', 'Account with that email address already exist');
           return res.redirect('/users/new');
         } else {
+
           user.save(function (err, user) {
             if (err) return next(err);
             req.flash("message", "You successfully created a new account");
+            // console.log('lolx')
+            var smtpTransport = nodemailer.createTransport(
+              transporter({
+                service: 'Gmail',
+                auth: {
+                  user: 'pbcssinc@gmail.com',
+                  pass: 'Pbcssinc!123',
+                },
+              }),
+            );
+            var mailOptions = {
+              to: req.body.email,
+              from: 'pbcssinc@gmail.com',
+              subject: 'New Account Created',
+              text: 'Username:' +
+                '\n\n' +
+                user.email +
+                '\n\n' +
+                'Password:' +
+                req.body.password
+            };
+            smtpTransport.sendMail(mailOptions, function (err) {
+              if (err) return next(err);
+              console.log('mail sent');
+              req.flash(
+                'message',
+                'An e-mail has been sent to ' +
+                user.email,
+              );
+            });
             return res.redirect('/users/new');
             // callback(null, user);
           });
@@ -330,21 +396,26 @@ router.post('/users', adminAuthentication, function (req, res, next) {
 //   }
 // });
 
-router.get('/manage', adminAuthentication, function(req, res, next) {
-  if(req.query.sort){
+router.get('/manage', adminAuthentication, function (req, res, next) {
+  if (req.query.sort) {
     console.log("pasok");
-    Pending.find({}).sort({lastName: -1, firstName: -1}).exec(function(err, allPending){
-      if(err) return next(err);
-      res.render('admin/manage-users', {allPending : allPending});
+    Pending.find({}).sort({
+      lastName: -1,
+      firstName: -1
+    }).exec(function (err, allPending) {
+      if (err) return next(err);
+      res.render('admin/manage-users', {
+        allPending: allPending
+      });
     });
-  }else{
-  Pending.find({}, function(err, allPending) {
-    if (err) return next(err);
-    res.render('admin/manage-users', {
-      allPending: allPending
+  } else {
+    Pending.find({}, function (err, allPending) {
+      if (err) return next(err);
+      res.render('admin/manage-users', {
+        allPending: allPending
+      });
     });
-  });
-}
+  }
 });
 
 router.get('/manage/:id', adminAuthentication, function (req, res, next) {
