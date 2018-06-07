@@ -342,6 +342,7 @@ router.post('/data', function (req, res, next) {
   data.firstName = req.body.firstName;
   data.lastName = req.body.lastName;
   data.save(function (err, data) {
+    console.log(data);
     if (err) return next(err);
     req.flash(
       'success',
