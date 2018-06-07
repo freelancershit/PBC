@@ -97,7 +97,33 @@
                 </form>
               </div>
             </div>
-
+            <br>
+            <div class="row">
+              <div class="col-sm-4">
+                <div style="font-weight: bold">First Grading:
+                  <%= subject.first ? "Enable" : "Disable" %>
+                </div>
+                <div style="font-weight: bold">Second Grading:
+                  <%= subject.second ? "Enable" : "Disable" %>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div style="font-weight: bold">Third Grading:
+                  <%= subject.third ? "Enable" : "Disable" %>
+                </div>
+                <div style="font-weight: bold">Forth Grading:
+                  <%= subject.fourth ? "Enable" : "Disable" %>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div style="font-weight: bold">First Semester:
+                  <%= subject.firstSemester ? "Enable" : "Disable" %>
+                </div>
+                <div style="font-weight: bold">Second Semester:
+                  <%= subject.secondSemester ? "Enable" : "Disable" %>
+                </div>
+              </div>
+            </div>
             <br>
             <div class="table-responsive">
               <div style="overflow-y: scroll; height:350px; ">
