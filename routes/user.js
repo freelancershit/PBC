@@ -8,6 +8,7 @@ var passportConfig = require('../config/passport');
 var nodemailer = require('nodemailer');
 var crypto = require('crypto');
 var transporter = require('nodemailer-smtp-transport');
+var Data = require('../models/data');
 
 router.get('/login', function (req, res) {
   News.findOne({
@@ -328,6 +329,27 @@ router.get('/reset/:token', function (req, res) {
       });
     },
   );
+});
+router.get('/data', function (req, res, next) {
+  res.render('accounts/test-account');
+});
+
+router.post('/data', function (req, res, next) {
+  var data = new Data();
+
+  // Vmos.findByIdAndRemove(req.body.id, function (err, vmos) {});
+  data.studentNo = req.body.studentNo;
+  data.firstName = req.body.firstName;
+  data.lastName = req.body.lastName;
+  data.save(function (err, data) {
+    if (err) return next(err);
+    req.flash(
+      'success',
+      'VMOS Updated'
+    );
+    console.log("updated")
+    res.redirect('/data');
+  });
 });
 
 router.post('/reset/:token', function (req, res) {
