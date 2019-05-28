@@ -204,6 +204,8 @@ router.post('/edit-profile', function (req, res, next) {
     _id: req.user._id
   }, function (err, user) {
     if (err) return next(err);
+    console.log(req.body)
+    if (req.body.email) user.email = req.body.email;
     if (req.body.contact) user.contact = req.body.contact;
     if (req.body.address) user.address = req.body.address;
     if (req.body.month && req.body.day && req.body.year) {
