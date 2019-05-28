@@ -34,7 +34,11 @@
                 <div class="container">
                     <div class="panel panel-info  col-sm-9" id="myScrollspy" style="padding: 0px; margin-top: 80px; min-height:485px;">
 
-                        <div class="panel-heading" style="color: #ffffff;">Manage Faculty</div>
+                        <div class="panel-heading" style="color: #ffffff;">Manage Faculty
+                            <b style="float: right;">
+                                <%= users.profile.name %>
+                            </b>
+                        </div>
 
 
                         <div class="container ">
@@ -96,18 +100,18 @@
                         <div class="panel-heading" style="color: #ffffff;">Add Subject Load</div>
                         <div class="row">
                             <div class="col-sm-12">
-                            <br>
-                            <% if(users.publisher == "true" || users.publisher == true){ %>
-                                <form action="/manage-faculty/<%= users._id %>?_method=PUT" method="POST">
-                                <input type="hidden" name="publisher" value="true" />
-                                    <button class="btn btn-info">Disable Editor</button>
-                                </form>
-                                <% }else{ %>
-                                <form action="/manage-faculty/<%= users._id %>?_method=PUT" method="POST">
-                                    <input type="hidden" name="publisher" value="false" />
-                                    <button class="btn btn-info">Enable Editor</button>
-                                </form>
-                                <% } %>
+                                <br>
+                                <% if(users.publisher == "true" || users.publisher == true){ %>
+                                    <form action="/manage-faculty/<%= users._id %>?_method=PUT" method="POST">
+                                        <input type="hidden" name="publisher" value="true" />
+                                        <button class="btn btn-info">Disable Editor</button>
+                                    </form>
+                                    <% }else{ %>
+                                        <form action="/manage-faculty/<%= users._id %>?_method=PUT" method="POST">
+                                            <input type="hidden" name="publisher" value="false" />
+                                            <button class="btn btn-info">Enable Editor</button>
+                                        </form>
+                                        <% } %>
                             </div>
                             <div class="col-sm-6">
                                 <br>
@@ -200,7 +204,6 @@
             </div>
             </div>
             <script>
-
                 function departments() {
                     var value = document.getElementById("departmental").value;
                     var grade1 = document.getElementById("1");
@@ -269,9 +272,11 @@
                     // document.getElementById("btn").click();
 
                 };
+
                 function myfunction() {
                     document.getElementById("btn").click();
                 }
+
                 function generateTable() {
                     var value = document.getElementById("yrLvl").value;
                     var math = document.getElementById("math");
@@ -289,7 +294,9 @@
                     console.log(value);
                     if (value === "grade1") {
                         $("#subj").empty();
-                        $("#subj").append('<option id="math" value="math">Math</option><option id="science" value="science">Science</option><option id="english" value="english">English</option><option id="filipino" value="filipino">Filipino</option><option id="EP" value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option><option id="AP" value="araling panlipunan">Araling Panlipunan</option><option id="MAPEH" value="mapeh">MAPEH</option><option id="Comp" value="computer">Computer</option><option id="TLE" value="TLE">TLE(Technology and Livelihood Education)</option><option id="EPP" value="Edukasyong Pantahanan at Pangkabuhayan">Edukasyong Pantahanan at Pangkabuhayan</option>');
+                        $("#subj").append(
+                            '<option id="math" value="math">Math</option><option id="science" value="science">Science</option><option id="english" value="english">English</option><option id="filipino" value="filipino">Filipino</option><option id="EP" value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option><option id="AP" value="araling panlipunan">Araling Panlipunan</option><option id="MAPEH" value="mapeh">MAPEH</option><option id="Comp" value="computer">Computer</option><option id="TLE" value="TLE">TLE(Technology and Livelihood Education)</option><option id="EPP" value="Edukasyong Pantahanan at Pangkabuhayan">Edukasyong Pantahanan at Pangkabuhayan</option>'
+                        );
                         $("#section1").empty();
                         $("#section1").append('<option value="joy">Joy</option><option value="love">Love</option>');
                         english.disabled = false;
@@ -306,9 +313,12 @@
 
                     } else if (value === "grade2") {
                         $("#subj").empty();
-                        $("#subj").append('<option id="math" value="math">Math</option><option id="science" value="science">Science</option><option id="english" value="english">English</option><option id="filipino" value="filipino">Filipino</option><option id="EP" value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option><option id="AP" value="araling panlipunan">Araling Panlipunan</option><option id="MAPEH" value="mapeh">MAPEH</option><option id="Comp" value="computer">Computer</option><option id="TLE" value="TLE">TLE(Technology and Livelihood Education)</option><option id="EPP" value="Edukasyong Pantahanan at Pangkabuhayan">Edukasyong Pantahanan at Pangkabuhayan</option>');
+                        $("#subj").append(
+                            '<option id="math" value="math">Math</option><option id="science" value="science">Science</option><option id="english" value="english">English</option><option id="filipino" value="filipino">Filipino</option><option id="EP" value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option><option id="AP" value="araling panlipunan">Araling Panlipunan</option><option id="MAPEH" value="mapeh">MAPEH</option><option id="Comp" value="computer">Computer</option><option id="TLE" value="TLE">TLE(Technology and Livelihood Education)</option><option id="EPP" value="Edukasyong Pantahanan at Pangkabuhayan">Edukasyong Pantahanan at Pangkabuhayan</option>'
+                        );
                         $("#section1").empty();
-                        $("#section1").append('<option value="honor">Honor</option><option value="unity">Unity</option>');
+                        $("#section1").append(
+                            '<option value="honor">Honor</option><option value="unity">Unity</option>');
                         english.disabled = false;
                         filipino.disabled = false;
                         math.disabled = false;
@@ -323,7 +333,9 @@
                         btn.disabled = false
                     } else if (value === "grade3") {
                         $("#subj").empty();
-                        $("#subj").append('<option id="math" value="math">Math</option><option id="science" value="science">Science</option><option id="english" value="english">English</option><option id="filipino" value="filipino">Filipino</option><option id="EP" value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option><option id="AP" value="araling panlipunan">Araling Panlipunan</option><option id="MAPEH" value="mapeh">MAPEH</option><option id="Comp" value="computer">Computer</option><option id="TLE" value="TLE">TLE(Technology and Livelihood Education)</option><option id="EPP" value="Edukasyong Pantahanan at Pangkabuhayan">Edukasyong Pantahanan at Pangkabuhayan</option>');
+                        $("#subj").append(
+                            '<option id="math" value="math">Math</option><option id="science" value="science">Science</option><option id="english" value="english">English</option><option id="filipino" value="filipino">Filipino</option><option id="EP" value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option><option id="AP" value="araling panlipunan">Araling Panlipunan</option><option id="MAPEH" value="mapeh">MAPEH</option><option id="Comp" value="computer">Computer</option><option id="TLE" value="TLE">TLE(Technology and Livelihood Education)</option><option id="EPP" value="Edukasyong Pantahanan at Pangkabuhayan">Edukasyong Pantahanan at Pangkabuhayan</option>'
+                        );
                         $("#section1").empty();
                         $("#section1")
                             .append(
@@ -346,7 +358,9 @@
 
                     } else if (value === "grade4") {
                         $("#subj").empty();
-                        $("#subj").append('<option id="math" value="math">Math</option><option id="science" value="science">Science</option><option id="english" value="english">English</option><option id="filipino" value="filipino">Filipino</option><option id="EP" value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option><option id="AP" value="araling panlipunan">Araling Panlipunan</option><option id="MAPEH" value="mapeh">MAPEH</option><option id="Comp" value="computer">Computer</option><option id="TLE" value="TLE">TLE(Technology and Livelihood Education)</option><option id="EPP" value="Edukasyong Pantahanan at Pangkabuhayan">Edukasyong Pantahanan at Pangkabuhayan</option>');
+                        $("#subj").append(
+                            '<option id="math" value="math">Math</option><option id="science" value="science">Science</option><option id="english" value="english">English</option><option id="filipino" value="filipino">Filipino</option><option id="EP" value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option><option id="AP" value="araling panlipunan">Araling Panlipunan</option><option id="MAPEH" value="mapeh">MAPEH</option><option id="Comp" value="computer">Computer</option><option id="TLE" value="TLE">TLE(Technology and Livelihood Education)</option><option id="EPP" value="Edukasyong Pantahanan at Pangkabuhayan">Edukasyong Pantahanan at Pangkabuhayan</option>'
+                        );
                         $("#section1").empty();
                         $("#section1")
                             .append(
@@ -368,7 +382,9 @@
                         btn.disabled = false
                     } else if (value === "grade5") {
                         $("#subj").empty();
-                        $("#subj").append('<option id="math" value="math">Math</option><option id="science" value="science">Science</option><option id="english" value="english">English</option><option id="filipino" value="filipino">Filipino</option><option id="EP" value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option><option id="AP" value="araling panlipunan">Araling Panlipunan</option><option id="MAPEH" value="mapeh">MAPEH</option><option id="Comp" value="computer">Computer</option><option id="TLE" value="TLE">TLE(Technology and Livelihood Education)</option><option id="EPP" value="Edukasyong Pantahanan at Pangkabuhayan">Edukasyong Pantahanan at Pangkabuhayan</option>');
+                        $("#subj").append(
+                            '<option id="math" value="math">Math</option><option id="science" value="science">Science</option><option id="english" value="english">English</option><option id="filipino" value="filipino">Filipino</option><option id="EP" value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option><option id="AP" value="araling panlipunan">Araling Panlipunan</option><option id="MAPEH" value="mapeh">MAPEH</option><option id="Comp" value="computer">Computer</option><option id="TLE" value="TLE">TLE(Technology and Livelihood Education)</option><option id="EPP" value="Edukasyong Pantahanan at Pangkabuhayan">Edukasyong Pantahanan at Pangkabuhayan</option>'
+                        );
                         $("#section1").empty();
                         $("#section1")
                             .append(
@@ -389,7 +405,9 @@
                         btn.disabled = false
                     } else if (value === "grade6") {
                         $("#subj").empty();
-                        $("#subj").append('<option id="math" value="math">Math</option><option id="science" value="science">Science</option><option id="english" value="english">English</option><option id="filipino" value="filipino">Filipino</option><option id="EP" value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option><option id="AP" value="araling panlipunan">Araling Panlipunan</option><option id="MAPEH" value="mapeh">MAPEH</option><option id="Comp" value="computer">Computer</option><option id="TLE" value="TLE">TLE(Technology and Livelihood Education)</option><option id="EPP" value="Edukasyong Pantahanan at Pangkabuhayan">Edukasyong Pantahanan at Pangkabuhayan</option>');
+                        $("#subj").append(
+                            '<option id="math" value="math">Math</option><option id="science" value="science">Science</option><option id="english" value="english">English</option><option id="filipino" value="filipino">Filipino</option><option id="EP" value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option><option id="AP" value="araling panlipunan">Araling Panlipunan</option><option id="MAPEH" value="mapeh">MAPEH</option><option id="Comp" value="computer">Computer</option><option id="TLE" value="TLE">TLE(Technology and Livelihood Education)</option><option id="EPP" value="Edukasyong Pantahanan at Pangkabuhayan">Edukasyong Pantahanan at Pangkabuhayan</option>'
+                        );
                         $("#section1").empty();
                         $("#section1")
                             .append(
@@ -410,7 +428,9 @@
                         btn.disabled = false
                     } else if (value === "grade7") {
                         $("#subj").empty();
-                        $("#subj").append('<option id="math" value="math">Math</option><option id="science" value="science">Science</option><option id="english" value="english">English</option><option id="filipino" value="filipino">Filipino</option><option id="EP" value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option><option id="AP" value="araling panlipunan">Araling Panlipunan</option><option id="MAPEH" value="mapeh">MAPEH</option><option id="Comp" value="computer">Computer</option><option id="TLE" value="TLE">TLE(Technology and Livelihood Education)</option><option id="EPP" value="Edukasyong Pantahanan at Pangkabuhayan">Edukasyong Pantahanan at Pangkabuhayan</option>');
+                        $("#subj").append(
+                            '<option id="math" value="math">Math</option><option id="science" value="science">Science</option><option id="english" value="english">English</option><option id="filipino" value="filipino">Filipino</option><option id="EP" value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option><option id="AP" value="araling panlipunan">Araling Panlipunan</option><option id="MAPEH" value="mapeh">MAPEH</option><option id="Comp" value="computer">Computer</option><option id="TLE" value="TLE">TLE(Technology and Livelihood Education)</option><option id="EPP" value="Edukasyong Pantahanan at Pangkabuhayan">Edukasyong Pantahanan at Pangkabuhayan</option>'
+                        );
                         $("#section1").empty();
                         $("#section1")
                             .append(
@@ -434,7 +454,9 @@
                         btn.disabled = false
                     } else if (value === "grade8") {
                         $("#subj").empty();
-                        $("#subj").append('<option id="math" value="math">Math</option><option id="science" value="science">Science</option><option id="english" value="english">English</option><option id="filipino" value="filipino">Filipino</option><option id="EP" value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option><option id="AP" value="araling panlipunan">Araling Panlipunan</option><option id="MAPEH" value="mapeh">MAPEH</option><option id="Comp" value="computer">Computer</option><option id="TLE" value="TLE">TLE(Technology and Livelihood Education)</option><option id="EPP" value="Edukasyong Pantahanan at Pangkabuhayan">Edukasyong Pantahanan at Pangkabuhayan</option>');
+                        $("#subj").append(
+                            '<option id="math" value="math">Math</option><option id="science" value="science">Science</option><option id="english" value="english">English</option><option id="filipino" value="filipino">Filipino</option><option id="EP" value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option><option id="AP" value="araling panlipunan">Araling Panlipunan</option><option id="MAPEH" value="mapeh">MAPEH</option><option id="Comp" value="computer">Computer</option><option id="TLE" value="TLE">TLE(Technology and Livelihood Education)</option><option id="EPP" value="Edukasyong Pantahanan at Pangkabuhayan">Edukasyong Pantahanan at Pangkabuhayan</option>'
+                        );
                         $("#section1").empty();
                         $("#section1")
                             .append(
@@ -458,7 +480,9 @@
                         btn.disabled = false
                     } else if (value === "grade9") {
                         $("#subj").empty();
-                        $("#subj").append('<option id="math" value="math">Math</option><option id="science" value="science">Science</option><option id="english" value="english">English</option><option id="filipino" value="filipino">Filipino</option><option id="EP" value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option><option id="AP" value="araling panlipunan">Araling Panlipunan</option><option id="MAPEH" value="mapeh">MAPEH</option><option id="Comp" value="computer">Computer</option><option id="TLE" value="TLE">TLE(Technology and Livelihood Education)</option><option id="EPP" value="Edukasyong Pantahanan at Pangkabuhayan">Edukasyong Pantahanan at Pangkabuhayan</option>');
+                        $("#subj").append(
+                            '<option id="math" value="math">Math</option><option id="science" value="science">Science</option><option id="english" value="english">English</option><option id="filipino" value="filipino">Filipino</option><option id="EP" value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option><option id="AP" value="araling panlipunan">Araling Panlipunan</option><option id="MAPEH" value="mapeh">MAPEH</option><option id="Comp" value="computer">Computer</option><option id="TLE" value="TLE">TLE(Technology and Livelihood Education)</option><option id="EPP" value="Edukasyong Pantahanan at Pangkabuhayan">Edukasyong Pantahanan at Pangkabuhayan</option>'
+                        );
                         $("#section1").empty();
                         $("#section1")
                             .append(
@@ -481,7 +505,9 @@
                         btn.disabled = false
                     } else if (value === "grade10") {
                         $("#subj").empty();
-                        $("#subj").append('<option id="math" value="math">Math</option><option id="science" value="science">Science</option><option id="english" value="english">English</option><option id="filipino" value="filipino">Filipino</option><option id="EP" value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option><option id="AP" value="araling panlipunan">Araling Panlipunan</option><option id="MAPEH" value="mapeh">MAPEH</option><option id="Comp" value="computer">Computer</option><option id="TLE" value="TLE">TLE(Technology and Livelihood Education)</option><option id="EPP" value="Edukasyong Pantahanan at Pangkabuhayan">Edukasyong Pantahanan at Pangkabuhayan</option>');
+                        $("#subj").append(
+                            '<option id="math" value="math">Math</option><option id="science" value="science">Science</option><option id="english" value="english">English</option><option id="filipino" value="filipino">Filipino</option><option id="EP" value="edukasyon sa pag papakatao">Edukasyon sa Pagpapakatao</option><option id="AP" value="araling panlipunan">Araling Panlipunan</option><option id="MAPEH" value="mapeh">MAPEH</option><option id="Comp" value="computer">Computer</option><option id="TLE" value="TLE">TLE(Technology and Livelihood Education)</option><option id="EPP" value="Edukasyong Pantahanan at Pangkabuhayan">Edukasyong Pantahanan at Pangkabuhayan</option>'
+                        );
                         $("#section1").empty();
                         $("#section1")
                             .append(
@@ -542,29 +568,46 @@
                         $("#subj").empty();
                         $("#subj").append("<option value='Earth Science'>Earth Science</option>");
                         $("#subj").append("<option value='General Mathematics'>General Mathematics</option>");
-                        $("#subj").append("<option value='Komunikasyon sa Pananaliksik sa Wika at Kulturang Pilipino'>Komunikasyon sa Pananaliksik sa Wika at Kulturang Pilipino</option>");
+                        $("#subj").append(
+                            "<option value='Komunikasyon sa Pananaliksik sa Wika at Kulturang Pilipino'>Komunikasyon sa Pananaliksik sa Wika at Kulturang Pilipino</option>"
+                        );
                         $("#subj").append("<option value='Oral Communication'>Oral Communication</option>");
-                        $("#subj").append("<option value='Personal Development/Pansariling Kaunlaran'>Personal Development/Pansariling Kaunlaran</option>");
-                        $("#subj").append("<option value='Physical Education and Health'>Physical Education and Health</option>");
-                        $("#subj").append("<option value='English for Academic and Professional Purposes'>English for Academic and Professional Purposes</option>");
+                        $("#subj").append(
+                            "<option value='Personal Development/Pansariling Kaunlaran'>Personal Development/Pansariling Kaunlaran</option>"
+                        );
+                        $("#subj").append(
+                            "<option value='Physical Education and Health'>Physical Education and Health</option>");
+                        $("#subj").append(
+                            "<option value='English for Academic and Professional Purposes'>English for Academic and Professional Purposes</option>"
+                        );
                         $("#subj").append("<option value='General Chemistry 1'>General Chemistry 1</option>");
                         $("#subj").append("<option value='Pre Calculus'>Pre Calculus</option>");
                     } else if (section1 === "Accountancy") {
                         $("#subj").empty();
-                        $("#subj").append("<option value='21st Century Literature from the Philippines and the World'>21st Century Literature from the Philippines and the World</option>");
-                        $("#subj").append("<option value='Understanding Culture, Society and Politics'>Understanding Culture, Society and Politics</option>");
+                        $("#subj").append(
+                            "<option value='21st Century Literature from the Philippines and the World'>21st Century Literature from the Philippines and the World</option>"
+                        );
+                        $("#subj").append(
+                            "<option value='Understanding Culture, Society and Politics'>Understanding Culture, Society and Politics</option>"
+                        );
                         $("#subj").append("<option value='Physical Science'>Physical Science</option>");
-                        $("#subj").append("<option value='Physical Education and Health'>Physical Education and Health</option>");
+                        $("#subj").append(
+                            "<option value='Physical Education and Health'>Physical Education and Health</option>");
                         $("#subj").append("<option value='Empowerment Technologies'>Empowerment Technologies</option>");
                         $("#subj").append("<option value='Practical Research 2'>Practical Research 2</option>");
                         $("#subj").append("<option value='Entrepreneurship'>Entrepreneurship</option>");
                         $("#subj").append("<option value='Business Mathematics'>Business Mathematics</option>");
                     } else if (section1 === "Business Management") {
                         $("#subj").empty();
-                        $("#subj").append("<option value='21st Century Literature from the Philippines and the World'>21st Century Literature from the Philippines and the World</option>");
-                        $("#subj").append("<option value='Understanding Culture, Society and Politics'>Understanding Culture, Society and Politics</option>");
+                        $("#subj").append(
+                            "<option value='21st Century Literature from the Philippines and the World'>21st Century Literature from the Philippines and the World</option>"
+                        );
+                        $("#subj").append(
+                            "<option value='Understanding Culture, Society and Politics'>Understanding Culture, Society and Politics</option>"
+                        );
                         $("#subj").append("<option value='Physical Science'>Physical Science</option>");
-                        $("#subj").append("<option value='Physical Education and Health'>Physical Education and Health</option>");
+                        $("#subj").append(
+                            "<option value='Physical Education and Health'>Physical Education and Health</option>");
                         $("#subj").append("<option value='Empowerment Technologies'>Empowerment Technologies</option>");
                         $("#subj").append("<option value='Practical Research 2'>Practical Research 2</option>");
                         $("#subj").append("<option value='Entrepreneurship'>Entrepreneurship</option>");
@@ -572,30 +615,53 @@
                     } else if (section1 === "Humanities and Social Sciences") {
                         $("#subj").empty();
                         $("#subj").append("<option value='Reading and Writing'>Reading and Writing</option>");
-                        $("#subj").append("<option value='Pagbasa at Pagsusuri ng Ibat Ibang Teksto Tungo sa Pananaliksik'>Pagbasa at Pagsusuri ng Ibat Ibang Teksto Tungo sa Pananaliksik</option>");
-                        $("#subj").append("<option value='Statistics and Probability'>Statistics and Probability</option>");
-                        $("#subj").append("<option value='Physical Education and Health'>Physical Education and Health</option>");
-                        $("#subj").append("<option value='Filipino sa Piling Larangan'>Filipino sa Piling Larangan</option>");
+                        $("#subj").append(
+                            "<option value='Pagbasa at Pagsusuri ng Ibat Ibang Teksto Tungo sa Pananaliksik'>Pagbasa at Pagsusuri ng Ibat Ibang Teksto Tungo sa Pananaliksik</option>"
+                        );
+                        $("#subj").append(
+                            "<option value='Statistics and Probability'>Statistics and Probability</option>");
+                        $("#subj").append(
+                            "<option value='Physical Education and Health'>Physical Education and Health</option>");
+                        $("#subj").append(
+                            "<option value='Filipino sa Piling Larangan'>Filipino sa Piling Larangan</option>");
                         $("#subj").append("<option value='Practical Research 1'>Practical Research 1</option>");
-                        $("#subj").append("<option value='Disciplines and Ideas in the Social Sciences'>Disciplines and Ideas in the Social Sciences</option>");
-                        $("#subj").append("<option value='Creative Non-Fiction: The Literacy Essay'>Creative Non-Fiction: The Literacy Essay</option>");
+                        $("#subj").append(
+                            "<option value='Disciplines and Ideas in the Social Sciences'>Disciplines and Ideas in the Social Sciences</option>"
+                        );
+                        $("#subj").append(
+                            "<option value='Creative Non-Fiction: The Literacy Essay'>Creative Non-Fiction: The Literacy Essay</option>"
+                        );
                     } else if (section1 === "Information and Communication Technology") {
                         $("#subj").empty();
                         $("#subj").append("<option value='Reading and Writing'>Reading and Writing</option>");
-                        $("#subj").append("<option value='Pagbasa at Pagsusuri ng Ibat Ibang Teksto Tungo sa Pananaliksik'>Pagbasa at Pagsusuri ng Ibat Ibang Teksto Tungo sa Pananaliksik</option>");
-                        $("#subj").append("<option value='Statistics and Probability'>Statistics and Probability</option>");
-                        $("#subj").append("<option value='Physical Education and Health'>Physical Education and Health</option>");
-                        $("#subj").append("<option value='Filipino sa Piling Larangan'>Filipino sa Piling Larangan</option>");
+                        $("#subj").append(
+                            "<option value='Pagbasa at Pagsusuri ng Ibat Ibang Teksto Tungo sa Pananaliksik'>Pagbasa at Pagsusuri ng Ibat Ibang Teksto Tungo sa Pananaliksik</option>"
+                        );
+                        $("#subj").append(
+                            "<option value='Statistics and Probability'>Statistics and Probability</option>");
+                        $("#subj").append(
+                            "<option value='Physical Education and Health'>Physical Education and Health</option>");
+                        $("#subj").append(
+                            "<option value='Filipino sa Piling Larangan'>Filipino sa Piling Larangan</option>");
                         $("#subj").append("<option value='Practical Research 1'>Practical Research 1</option>");
-                        $("#subj").append("<option value='Computer System Servicing'>Computer System Servicing</option>");
+                        $("#subj").append(
+                            "<option value='Computer System Servicing'>Computer System Servicing</option>");
                     } else if (section1 === "Home Economics") {
                         $("#subj").empty();
-                        $("#subj").append("<option value='Contemporary Philippine Arts from the Regions'>Contemporary Philippine Arts from the Regions</option>");
-                        $("#subj").append("<option value='Introducting to the Philosophy of the Human Person/Pambungad sa Pilosopiya ng Tao'>Introducting to the Philosophy of the Human Person/Pambungad sa Pilosopiya ng Tao</option>");
+                        $("#subj").append(
+                            "<option value='Contemporary Philippine Arts from the Regions'>Contemporary Philippine Arts from the Regions</option>"
+                        );
+                        $("#subj").append(
+                            "<option value='Introducting to the Philosophy of the Human Person/Pambungad sa Pilosopiya ng Tao'>Introducting to the Philosophy of the Human Person/Pambungad sa Pilosopiya ng Tao</option>"
+                        );
                         $("#subj").append("<option value='Entrepreneurship'>Entrepreneurship</option>");
-                        $("#subj").append("<option value='Physical Education and Health'>Physical Education and Health</option>");
-                        $("#subj").append("<option value='Inquiries, Investigations and Immersions'>Inquiries, Investigations and Immersions</option>");
-                        $("#subj").append("<option value='Bread and Pastry Production'>Bread and Pastry Production</option>");
+                        $("#subj").append(
+                            "<option value='Physical Education and Health'>Physical Education and Health</option>");
+                        $("#subj").append(
+                            "<option value='Inquiries, Investigations and Immersions'>Inquiries, Investigations and Immersions</option>"
+                        );
+                        $("#subj").append(
+                            "<option value='Bread and Pastry Production'>Bread and Pastry Production</option>");
                         $("#subj").append("<option value='Work Immersion'>Work Immersion</option>");
                     }
 
